@@ -1,0 +1,42 @@
+* Select a dock marker on map
+
+Basic flow of usecase "Select a dock marker on map"
+
+No  | Doer     | Action
+----------------------------------------------------------------------
+1   | User     | Request to select a dock marker on map
+2   | Software | Show list of dock markers according to search result
+3   | Software | Use usecase "View dock's information"
+4   | User     | Select a dock marker from the list
+5   | Software | Redirect to dock marker detail section, end use case
+----------------------------------------------------------------------
+
+Alternative flow 
+
+Location             | Doer     | Condition                 | Action
+---------------------------------------------------------------------------------------------------------
+Step 4 of basic flow | Software | User choose a dock marker | Insert usecase "View detailed information 
+                     |          |                           | of available bike", resume to step 5
+---------------------------------------------------------------------------------------------------------
+
+=========================================================================================================
+
+* View dock's information
+
+Basic flow
+
+No  | Doer     | Action
+-----------------------------------------------------------------------------
+1   | Software | Show dialog form including dock's information, end usecase
+-----------------------------------------------------------------------------
+
+===========================================================================================================
+
+* View detailed information of available bike
+
+Basic flow
+
+No  | Doer     | Action
+----------------------------------------------------------------------------------------
+1   | Software | Show dialog form including available bikes's information, end usecase
+----------------------------------------------------------------------------------------
