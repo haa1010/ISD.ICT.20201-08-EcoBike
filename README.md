@@ -56,7 +56,7 @@ In this lab, we have to complete **Interaction Diagrams** (Sequence Diagrams and
     - Usecase : Select a dock marker on list
 ## Revisions
 Reviewer for each member:
-- Tran Thi Hang  : Pham Nhat Linh
+- Tran Thi Hang  : Duong Thi Hue
 - Pham Nhat Linh : Do Minh Thong
 - Duong Thi Hue  : Pham Nhat Linh
 - Do Minh Thong  : Tran Thi Hang
