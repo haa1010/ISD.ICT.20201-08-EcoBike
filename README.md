@@ -6,13 +6,16 @@ In this lab, we have to design interfaces for our project, including:
 ## Contributions
 - Tran Thi Hang  : 
     - README.md
-    - Usecase : 
+    - Screen : Return Bike, Transaction Error pop-up, Select Dock to Return Bike 
+    - Screen configuration
 - Pham Nhat Linh : 
-    - Usecase : 
+    - Screen : Rent Bike, Payment, Invoice, Enter barcode pop-up
+    - Subsystem : Interbank
 - Duong Thi Hue  : 
-    - Usecase : 
-- Do Minh Thong  :
-    - Usecase : 
+    - Screen : View Bike information, View Dock information, View Renting Bike information
+    - Transition Diagram
+- Do Minh Thong  :  
+    - Screen : Splash, Home, View Distance pop-up
 ## Revisions
 Reviewer for each member:
 - Tran Thi Hang  : Do Minh Thong
