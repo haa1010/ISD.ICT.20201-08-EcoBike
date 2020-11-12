@@ -1,3 +1,23 @@
+# LAB 06 - CLASS DESIGN
+## Tasks
+In this lab, we have to design in detail for some classes
+## Contributions
+- Tran Thi Hang  : 
+    - README.md
+    - Class : PaymentController, InterbankInterface, ReturnBikeHandler, ReturnBikeController, RentedBikeInfoScreen, TransactionInfo, PaymentHandler 
+- Pham Nhat Linh : 
+    - Class : Card, Invoice, InvoiceHandler, Order, RentBikeController, RentBikeHandler, BarcodeHandler 
+- Duong Thi Hue  : 
+    - Class : ListDockToReturnHandler, ViewBikeController, BikeInformationHandler, Bike, StandardElectricBike, StandardBike, TwinBike
+- Do Minh Thong  :  
+    - Class : SelectDockMarkerController, ListDockForViewHandler, ViewStationController, StationInfoHandler, ListBikeHandler, Station
+## Revisions
+Reviewer for each member:
+- Tran Thi Hang  : Duong Thi Hue
+- Pham Nhat Linh : Tran Thi Hang
+- Duong Thi Hue  : Do Minh Thong
+- Do Minh Thong  : Pham Nhat Linh
+----------------------------------
 # LAB 05 - INTERFACE DESIGN
 ## Tasks
 In this lab, we have to design interfaces for our project, including:
