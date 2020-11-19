@@ -1,3 +1,29 @@
+# LAB 07 - DATA MODELING
+## Tasks
+In this lab, we have to design database for our project, including:
+- Entity - Relation diagram (ER Diagram)
+- Database design
+- Detailed design of components in database (table/document)
+- Complete software design document (SDD)
+## Contributions
+- Tran Thi Hang  : 
+    - README.md
+    - Detailed design: Card, TransactionInfo
+- Pham Nhat Linh : 
+    - Detailed design: Order, Invoice
+- Duong Thi Hue  : 
+    - Detailed design: Bike, StandardElectricBike
+- Do Minh Thong  :  
+    - Detailed design: Station
+    - Relational Diagram
+- All team members : ER Diagram, Database design
+## Revisions
+Reviewer for each member:
+- Tran Thi Hang  : Pham Nhat Linh
+- Pham Nhat Linh : Do Minh Thong 
+- Duong Thi Hue  : Tran Thi Hang
+- Do Minh Thong  : Duong Thi Hue
+----------------------------------
 # LAB 06 - CLASS DESIGN
 ## Tasks
 In this lab, we have to design in detail for some classes
