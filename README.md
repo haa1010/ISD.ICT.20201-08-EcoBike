@@ -9,13 +9,17 @@ In this lab, we have to design database for our project, including:
 - Tran Thi Hang  : 
     - README.md
     - Detailed design: Card, TransactionInfo
+    - SDD: System Architecture and Architecture Design 
 - Pham Nhat Linh : 
     - Detailed design: Order, Invoice
+    - SDD: Introduction, Overall Description
 - Duong Thi Hue  : 
     - Detailed design: Bike, StandardElectricBike
+    - SDD: Design Considerations
 - Do Minh Thong  :  
     - Detailed design: Station
     - Relational Diagram
+    - SDD: Detailed Design
 - All team members : ER Diagram, Database design
 ## Revisions
 Reviewer for each member:
