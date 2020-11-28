@@ -20,8 +20,7 @@ public class RentBikeController extends BaseController {
      */
     public boolean checkAvailableBike(Bike bike){
         try{
-            if(bike.getStation()!=null) return true;
-            else return false;
+           return bike.isRenting();
         }catch(Exception e){
             return false;
         }

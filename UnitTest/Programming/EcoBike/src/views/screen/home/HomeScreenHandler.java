@@ -1,22 +1,24 @@
 package views.screen.home;
 
-import controller.HomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import utils.Utils;
 import views.screen.BaseScreenHandler;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable{
 
-    public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
+    //public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
 
     @FXML
     private Label numMediaInCart;
@@ -39,31 +41,35 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     @FXML
     private HBox hboxMedia;
 
-    @FXML
-    private SplitMenuButton splitMenuBtnSearch;
-
-    private List homeItems;
-
-    public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
+    public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
     }
 
-    public Label getNumMediaCartLabel(){
-        return this.numMediaInCart;
-    }
-
-    public HomeController getBController() {
-        return (HomeController) super.getBController();
-    }
-
-    @Override
-    public void show() {
-//        numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
-//        super.show();
-    }
-
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
+//    @FXML
+//    private SplitMenuButton splitMenuBtnSearch;
+//
+//    private List homeItems;
+//
+//    public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
+//        super(stage, screenPath);
+//    }
+//
+//    public Label getNumMediaCartLabel(){
+//        return this.numMediaInCart;
+//    }
+//
+//    public HomeController getBController() {
+//        return (HomeController) super.getBController();
+//    }
+//
+//    @Override
+//    public void show() {
+////        numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
+////        super.show();
+//    }
+//
+//    @Override
+//    public void initialize(URL arg0, ResourceBundle arg1) {
 //        setBController(new HomeController());
 //        try{
 //            List medium = getBController().getAllMedia();
@@ -99,7 +105,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 //        addMenuItem(0, "Book", splitMenuBtnSearch);
 //        addMenuItem(1, "DVD", splitMenuBtnSearch);
 //        addMenuItem(2, "CD", splitMenuBtnSearch);
-    }
+  //  }
 
     public void setImage(){
 
@@ -154,6 +160,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 //        menuButton.getItems().add(position, menuItem);
     }
 
-    
-    
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

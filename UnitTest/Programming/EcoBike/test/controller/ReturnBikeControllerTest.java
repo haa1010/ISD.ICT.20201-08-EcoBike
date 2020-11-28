@@ -21,9 +21,9 @@ public class ReturnBikeControllerTest {
             "0,false",
             "-1,false"
     })
-    void testCheckAvailableBike( int numEmptyDockPoint,boolean expected){
+    void testCheckStationReturnBike( int numEmptyDockPoint,boolean expected){
         Station station= new Station(numEmptyDockPoint);
-        boolean valid= returnBikeController.checkStationRenturnBike(station);
+        boolean valid= returnBikeController.checkStationReturnBike(station);
         assertEquals(expected,valid);
 
     }
