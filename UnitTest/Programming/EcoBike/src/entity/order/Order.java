@@ -42,6 +42,6 @@ public class Order {
     public void setDeliveryInfo(HashMap deliveryInfo) {
         this.deliveryInfo = deliveryInfo;
     }
-
-
+	}
 }
+
