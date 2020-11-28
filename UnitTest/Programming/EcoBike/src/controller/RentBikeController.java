@@ -26,4 +26,20 @@ public class RentBikeController extends BaseController {
             return false;
         }
     }
+    /**
+     * check input barcode format;
+     * @param String barcode
+     * @return
+     * @author linh
+     */
+    public boolean validateBarcode(String barcode) {
+    	if(barcode == null) return false;
+    	if(barcode.length()!=6) return false;
+    	// check every character of barcode
+			for(int i = 0; i<barcode.length(); i++){
+				if(!Character.isLetterOrDigit(barcode.charAt(i)))
+					return false;
+			}
+	    return true;
+    }
 }

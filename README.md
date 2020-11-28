@@ -8,8 +8,8 @@ In this lab, we have to apply Test Driven Development(TDD) for our project and d
     - Entity: Card
     - Unit Test: ValidateExpirationDateTest, ValidateNameTest, ValidateNumberFieldTest
 - Pham Nhat Linh : 
-    - Entity: 
-    - Unit Test:
+    - Entity: Order
+    - Unit Test: ValidateBarcodeTest, checkRentingBike(in ReturnBikeController)
 - Duong Thi Hue  : 
     - Entity: 
     - Unit Test:
