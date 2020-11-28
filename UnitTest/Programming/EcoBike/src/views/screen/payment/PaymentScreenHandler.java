@@ -1,5 +1,12 @@
 package views.screen.payment;
 
+import java.io.IOException;
+import java.util.Map;
+
+import controller.PaymentController;
+import common.exception.PlaceOrderException;
+import invoice.Invoice;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,26 +26,26 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
 	@FXML
 	private ImageView loadingImage;
-//
-//	private Invoice invoice;
-//
-//	public PaymentScreenHandler(Stage stage, String screenPath, int amount, String contents) throws IOException {
-//		super(stage, screenPath);
-//	}
-//
-//	public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
-//		super(stage, screenPath);
-//		this.invoice = invoice;
-//
-//		btnConfirmPayment.setOnMouseClicked(e -> {
-//			try {
-//				confirmToPayOrder();
+
+	private Invoice invoice;
+
+	public PaymentScreenHandler(Stage stage, String screenPath, int amount, String contents) throws IOException {
+		super(stage, screenPath);
+	}
+
+	public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
+		super(stage, screenPath);
+		this.invoice = invoice;
+		
+		btnConfirmPayment.setOnMouseClicked(e -> {
+			try {
+				confirmToPayOrder();
 //				((PaymentController) getBController()).emptyCart();
-//			} catch (Exception exp) {
-//				System.out.println(exp.getStackTrace());
-//			}
-//		});
-//	}
+			} catch (Exception exp) {
+				System.out.println(exp.getStackTrace());
+			}
+		});
+	}
 
 	@FXML
 	private Label pageTitle;
@@ -55,8 +62,20 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	@FXML
 	private TextField securityCode;
 
-	public PaymentScreenHandler(Stage stage, String screenPath) throws IOException {
-		super(stage, screenPath);
+	@FXML
+	private TextField bankName;
+
+	void confirmToPayOrder() throws IOException{
+//		String contents = "pay order";
+//		PaymentController ctrl = (PaymentController) getBController();
+//		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
+//				expirationDate.getText(), securityCode.getText(), bankName.getText());
+//
+//		BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE") );
+//		resultScreen.setPreviousScreen(this);
+//		resultScreen.setHomeScreenHandler(homeScreenHandler);
+//		resultScreen.setScreenTitle("Result Screen");
+//		resultScreen.show();
 	}
 //
 //	public PaymentScreenHandler(Stage stage, String paymentScreenPath, Invoice invoice) {

@@ -15,12 +15,12 @@ public boolean checkStationRenturnBike(Station station) {
     try {
         if (station.getNumEmptyDockPoint() > 0) {
             return true;
-        }
+//        }
 
     } catch (Exception e) {
         return false;
     }
-    return false;
+//    return false;
 }
 
 }

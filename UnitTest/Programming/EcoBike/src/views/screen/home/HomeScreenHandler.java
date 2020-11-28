@@ -13,13 +13,6 @@ import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.logging.Logger;
-
-
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable{
 
@@ -65,12 +58,47 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     @Override
     public void show() {
-
+//        numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
+//        super.show();
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
+//        setBController(new HomeController());
+//        try{
+//            List medium = getBController().getAllMedia();
+//            this.homeItems = new ArrayList<>();
+//            for (Object object : medium) {
+//                Media media = (Media)object;
+//                MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
+//                this.homeItems.add(m1);
+//            }
+//        }catch (SQLException | IOException e){
+//            LOGGER.info("Errors occured: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+        
+            
+//        aimsImage.setOnMouseClicked(e -> {
+//            addMediaHome(this.homeItems);
+//        });
+//
+//        cartImage.setOnMouseClicked(e -> {
+//            CartScreenHandler cartScreen;
+//            try {
+//                LOGGER.info("User clicked to view cart");
+//                cartScreen = new CartScreenHandler(this.stage, Configs.CART_SCREEN_PATH);
+//                cartScreen.setHomeScreenHandler(this);
+//                cartScreen.setBController(new ViewCartController());
+//                cartScreen.requestToViewCart(this);
+//            } catch (IOException | SQLException e1) {
+//                throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+//            }
+//        });
+//        addMediaHome(this.homeItems);
+//        addMenuItem(0, "Book", splitMenuBtnSearch);
+//        addMenuItem(1, "DVD", splitMenuBtnSearch);
+//        addMenuItem(2, "CD", splitMenuBtnSearch);
     }
 
     public void setImage(){
@@ -78,12 +106,52 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     }
 
     public void addMediaHome(List items){
-
+//        ArrayList mediaItems = (ArrayList)((ArrayList) items).clone();
+//        hboxMedia.getChildren().forEach(node -> {
+//            VBox vBox = (VBox) node;
+//            vBox.getChildren().clear();
+//        });
+//        while(!mediaItems.isEmpty()){
+//            hboxMedia.getChildren().forEach(node -> {
+//                int vid = hboxMedia.getChildren().indexOf(node);
+//                VBox vBox = (VBox) node;
+//                while(vBox.getChildren().size()<3 && !mediaItems.isEmpty()){
+//                    MediaHandler media = (MediaHandler) mediaItems.get(0);
+//                    vBox.getChildren().add(media.getContent());
+//                    mediaItems.remove(media);
+//                }
+//            });
+//            return;
+//        }
     }
 
     private void addMenuItem(int position, String text, MenuButton menuButton){
-
-
+//        MenuItem menuItem = new MenuItem();
+//        Label label = new Label();
+//        label.prefWidthProperty().bind(menuButton.widthProperty().subtract(31));
+//        label.setText(text);
+//        label.setTextAlignment(TextAlignment.RIGHT);
+//        menuItem.setGraphic(label);
+//        menuItem.setOnAction(e -> {
+//            // empty home media
+//            hboxMedia.getChildren().forEach(node -> {
+//                VBox vBox = (VBox) node;
+//                vBox.getChildren().clear();
+//            });
+//
+//            // filter only media with the choosen category
+//            List filteredItems = new ArrayList<>();
+//            homeItems.forEach(me -> {
+//                MediaHandler media = (MediaHandler) me;
+//                if (media.getMedia().getTitle().toLowerCase().startsWith(text.toLowerCase())){
+//                    filteredItems.add(media);
+//                }
+//            });
+//
+//            // fill out the home with filted media as category
+//            addMediaHome(filteredItems);
+//        });
+//        menuButton.getItems().add(position, menuItem);
     }
 
     

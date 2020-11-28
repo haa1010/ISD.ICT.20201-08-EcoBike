@@ -1,5 +1,8 @@
 package controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Map;
@@ -15,9 +18,9 @@ import subsystem.InterbankSubsystem;
 
 /**
  * This {@code PaymentController} class control the flow of the payment process
- * in our AIMS Software.
+ * in our EcoBikeRental Software.
  * 
- * @author hieud
+ * @author hangtt
  *
  */
 public class PaymentController extends BaseController {
@@ -31,6 +34,8 @@ public class PaymentController extends BaseController {
 	 * Represent the Interbank subsystem
 	 */
 	private InterbankInterface interbank;
+	private double amount;
+	private String content;
 
 	/**
 	 * Validate the input date which should be in the format "mm/yy", and then
@@ -77,26 +82,58 @@ public class PaymentController extends BaseController {
 	 * @param cardHolderName - the card holder name
 	 * @param expirationDate - the expiration date in the format "mm/yy"
 	 * @param securityCode   - the cvv/cvc code of the credit card
+	 * @param bankName	     - the interbank name of card
 	 * @return {@link java.util.Map Map} represent the payment result with a
 	 *         message.
 	 */
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
-			String expirationDate, String securityCode) {
+			String expirationDate, String securityCode, String bankName) {
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
-		try {
-			this.card = new Card(cardNumber, cardHolderName, Integer.parseInt(securityCode),
-					getExpirationDate(expirationDate));
-
-			this.interbank = new InterbankSubsystem();
-			TransactionInfo transaction = interbank.payOrder(card, amount, contents);
-
-			result.put("RESULT", "PAYMENT SUCCESSFUL!");
-			result.put("MESSAGE", "You have succesffully paid the order!");
-		} catch (PaymentException | UnrecognizedException ex) {
-			result.put("MESSAGE", ex.getMessage());
-		}
+//		try {
+//			this.card = new Card(cardNumber, cardHolderName, Integer.parseInt(securityCode),
+//					getExpirationDate(expirationDate));
+//
+//			this.interbank = new InterbankSubsystem();
+//			TransactionInfo transaction = interbank.payOrder(card, amount, contents);
+//
+//			result.put("RESULT", "PAYMENT SUCCESSFUL!");
+//			result.put("MESSAGE", "You have succesffully paid the order!");
+//		} catch (PaymentException | UnrecognizedException ex) {
+//			result.put("MESSAGE", ex.getMessage());
+//		}
 		return result;
 	}
 
+
+	public boolean validateName(String name) {
+		try {
+			return ((!name.equals("")) && (name.matches("^[ A-Za-z]+$")));
+		} catch (NullPointerException e) {
+			return false;
+		}
+	}
+
+	public boolean validateNumberField(String number) {
+
+		try {
+			Integer.parseInt(number);
+		} catch (NumberFormatException | NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean validateExpirationDate(String time) {
+
+		try {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate dateTime = LocalDate.parse(time, formatter);
+			LocalDate now = LocalDate.now();
+			boolean isAfter = dateTime.isAfter(now);
+			return isAfter;
+		} catch (DateTimeParseException | NullPointerException e) {
+			return false;
+		}
+	}
 }

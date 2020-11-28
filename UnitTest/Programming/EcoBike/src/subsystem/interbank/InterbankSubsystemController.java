@@ -1,5 +1,7 @@
 package subsystem.interbank;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import common.exception.InternalServerErrorException;
@@ -66,12 +68,13 @@ public class InterbankSubsystemController {
 	private TransactionInfo makePaymentTransaction(MyMap response) {
 		if (response == null)
 			return null;
-		MyMap transcation = (MyMap) response.get("transaction");
-		Card card = new Card((String) transcation.get("cardCode"), (String) transcation.get("owner"),
-				Integer.parseInt((String) transcation.get("cvvCode")), (String) transcation.get("dateExpired"));
+		MyMap transaction = (MyMap) response.get("transaction");
+		Card card = new Card(Integer.parseInt((String) transaction.get("id")), (String) transaction.get("securityCode"),
+				(String) transaction.get("name"), (String) transaction.get("pin"), (String) transaction.get("bankName"),
+				LocalDate.parse((String) transaction.get("expiration"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) );
 		TransactionInfo trans = new TransactionInfo((String) response.get("errorCode"), card,
-				(String) transcation.get("transactionId"), (String) transcation.get("transactionContent"),
-				Integer.parseInt((String) transcation.get("amount")), (String) transcation.get("createdAt"));
+				(String) transaction.get("transactionId"), (String) transaction.get("transactionContent"),
+				Integer.parseInt((String) transaction.get("amount")), (String) transaction.get("createdAt"));
 
 		switch (trans.getErrorCode()) {
 		case "00":
