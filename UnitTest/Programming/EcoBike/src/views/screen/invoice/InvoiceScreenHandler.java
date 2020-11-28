@@ -10,14 +10,14 @@ import controller.PaymentController;
 import invoice.Invoice;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
-import views.screen.payment.PaymentScreenHandler;
+
+import java.io.IOException;
+import java.util.logging.Logger;
 
 public class InvoiceScreenHandler extends BaseScreenHandler {
 
@@ -88,13 +88,13 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 
 	@FXML
 	void confirmInvoice(MouseEvent event) throws IOException {
-		BaseScreenHandler paymentScreen = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
-		paymentScreen.setBController(new PaymentController());
-		paymentScreen.setPreviousScreen(this);
-		paymentScreen.setHomeScreenHandler(homeScreenHandler);
-		paymentScreen.setScreenTitle("Payment Screen");
-		paymentScreen.show();
-		LOGGER.info("Confirmed invoice");
-	}
+//		BaseScreenHandler paymentScreen = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
+//		paymentScreen.setBController(new PaymentController());
+//		paymentScreen.setPreviousScreen(this);
+//		paymentScreen.setHomeScreenHandler(homeScreenHandler);
+//		paymentScreen.setScreenTitle("Payment Screen");
+//		paymentScreen.show();
+//		LOGGER.info("Confirmed invoice");
+}
 
 }

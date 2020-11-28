@@ -6,6 +6,7 @@ package controller;
  */
 public class BaseController {
 
+
     /**
      * The method checks whether the Media in Cart, if it were in, we will return the CartMedia else return null
      * @param media
@@ -22,4 +23,5 @@ public class BaseController {
 //    public List getListCartMedia(){
 //        return Cart.getCart().getListMedia();
 //    }
+
 }
