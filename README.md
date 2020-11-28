@@ -1,3 +1,29 @@
+# LAB 08 - UNIT TESTING
+## Tasks
+In this lab, we have to apply Test Driven Development(TDD) for our project and document the Unit test design with the provided template for Test plan
+
+## Contributions
+- Tran Thi Hang  : 
+    - README.md
+    - Entity: Card
+    - Unit Test: ValidateExpirationDateTest, ValidateNameTest, ValidateNumberFieldTest
+- Pham Nhat Linh : 
+    - Entity: Order
+    - Unit Test: ValidateBarcodeTest, checkRentingBike(in ReturnBikeController)
+- Duong Thi Hue  : 
+    - Entity: 
+    - Unit Test:
+- Do Minh Thong  :  
+    - Entity: 
+    - Unit Test:
+    
+## Revisions
+Reviewer for each member:
+- Tran Thi Hang  : Duong Thi Hue
+- Pham Nhat Linh : Do Minh Thong 
+- Duong Thi Hue  : Tran Thi Hang
+- Do Minh Thong  : Pham Nhat Linh
+----------------------------------
 # LAB 07 - DATA MODELING
 ## Tasks
 In this lab, we have to design database for our project, including:
