@@ -1,10 +1,5 @@
 package entity.bike;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import common.exception.MediaNotAvailableException;
 import entity.station.Station;
 
 
@@ -13,6 +8,9 @@ public class Bike {
     protected String type;
     protected String licensePlate;
 
+
+
+    protected boolean isRenting = false;
     protected int numPedal;
     protected int numSaddle;
     protected int numRearSeat;
@@ -31,7 +29,13 @@ public class Bike {
         this.barcode = barcode;
         this.value = value;
     }
+    public boolean isRenting() {
+        return isRenting;
+    }
 
+    public void setRenting(boolean renting) {
+        isRenting = renting;
+    }
     public void setId(int id) {
         this.id = id;
     }

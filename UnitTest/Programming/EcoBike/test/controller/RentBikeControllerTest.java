@@ -1,7 +1,6 @@
 package controller;
 
 import entity.bike.StandardBike;
-import entity.station.Station;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -18,15 +17,14 @@ private RentBikeController rentBikeController;
 
     @ParameterizedTest
     @CsvSource({
-            "true",
-            "false",
-            "false"
+            "true,true",
+            "false,false"
+
     })
 
-   void testCheckAvailableBike( boolean expected){
+   void testCheckAvailableBike( boolean renting,boolean expected){
     StandardBike bike= new StandardBike();
-    Station station=new Station();
-    bike.setStation(station);
+ bike.setRenting(renting);
     boolean valid= rentBikeController.checkAvailableBike(bike);
     assertEquals(expected,valid);
 

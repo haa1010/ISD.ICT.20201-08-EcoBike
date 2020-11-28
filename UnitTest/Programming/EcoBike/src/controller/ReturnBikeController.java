@@ -12,7 +12,7 @@ public class ReturnBikeController extends BaseController{
  * @author hue
  *
  */
-public boolean checkStationRenturnBike(Station station) {
+public boolean checkStationReturnBike(Station station) {
     try {
         if (station.getNumEmptyDockPoint() > 0)
             return true;
