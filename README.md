@@ -12,9 +12,9 @@ In this lab, we have to apply Test Driven Development(TDD) for our project and d
     - Unit Test: ValidateBarcodeTest, checkRentingBike(in ReturnBikeController)
 - Duong Thi Hue  : 
     - Entity: Bike
-    - Unit Test:checkAvailableBike, checkStationReturnBike
+    - Unit Test:  checkAvailableBike, checkStationReturnBike
 - Do Minh Thong  :  
-    - Entity: 
+    - Entity: Station
     - Unit Test:
     
 ## Revisions

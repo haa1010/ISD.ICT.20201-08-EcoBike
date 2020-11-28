@@ -8,11 +8,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RentBikeControllerTest {
-private RentBikeController rentBikeController;
-@BeforeEach
-    void setUp() throws Exception{
-    rentBikeController= new RentBikeController();
-}
+    private RentBikeController rentBikeController;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        rentBikeController = new RentBikeController();
+    }
 
 
     @ParameterizedTest
@@ -21,12 +22,25 @@ private RentBikeController rentBikeController;
             "false,false"
 
     })
+    void testCheckAvailableBike(boolean renting, boolean expected) {
+        StandardBike bike = new StandardBike();
+        bike.setRenting(renting);
+        boolean valid = rentBikeController.checkAvailableBike(bike);
+        assertEquals(expected, valid);
 
-   void testCheckAvailableBike( boolean renting,boolean expected){
-    StandardBike bike= new StandardBike();
- bike.setRenting(renting);
-    boolean valid= rentBikeController.checkAvailableBike(bike);
-    assertEquals(expected,valid);
+    }
 
-}
+
+    @ParameterizedTest
+    @CsvSource({
+            " ,false",
+            " asbasced ,false",
+            "12ab@#,false",
+            "1a2b3c,true"
+    })
+    public void test(String barcode, boolean expected) {
+        boolean isValid = rentBikeController.validateBarcode(barcode);
+        assertEquals(expected,isValid);
+    }
+
 }
