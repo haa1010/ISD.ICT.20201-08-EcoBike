@@ -19,7 +19,7 @@ class ValidateBarcodeTest {
 	@ParameterizedTest
     @CsvSource({
             " ,false",
-            " asb ced ,false",
+            " asbasced ,false",
             "12ab@#,false",
             "1a2b3c,true"
     })
