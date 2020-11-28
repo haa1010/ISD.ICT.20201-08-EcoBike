@@ -1,5 +1,7 @@
 package controller;
 
+import entity.station.Station;
+
 public class ReturnBikeController extends BaseController{
 
 
@@ -9,9 +11,9 @@ public class ReturnBikeController extends BaseController{
  * @author hue
  *
  */
-public boolean checkStationRentBike(entity.station.Station station) {
+public boolean checkStationRenturnBike(Station station) {
     try {
-        if (station.getNumEmptyDockPoint != 0) {
+        if (station.getNumEmptyDockPoint() > 0) {
             return true;
         }
 
