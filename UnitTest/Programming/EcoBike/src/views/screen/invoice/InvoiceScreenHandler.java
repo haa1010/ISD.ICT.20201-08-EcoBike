@@ -8,8 +8,6 @@ import java.util.logging.Logger;
 import common.exception.ProcessInvoiceException;
 import controller.PaymentController;
 import entity.invoice.Invoice;
-import entity.order.Order;
-import entity.order.OrderMedia;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;

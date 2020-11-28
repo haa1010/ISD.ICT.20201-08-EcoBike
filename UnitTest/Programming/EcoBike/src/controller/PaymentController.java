@@ -7,9 +7,8 @@ import java.util.Map;
 import common.exception.InvalidCardException;
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
-import entity.cart.Cart;
-import entity.payment.CreditCard;
-import entity.payment.PaymentTransaction;
+import entity.transaction.Card;
+import entity.transaction.TransactionInfo;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
@@ -26,7 +25,7 @@ public class PaymentController extends BaseController {
 	/**
 	 * Represent the card used for payment
 	 */
-	private CreditCard card;
+	private Card card;
 
 	/**
 	 * Represent the Interbank subsystem
@@ -86,11 +85,11 @@ public class PaymentController extends BaseController {
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
 		try {
-			this.card = new CreditCard(cardNumber, cardHolderName, Integer.parseInt(securityCode),
+			this.card = new Card(cardNumber, cardHolderName, Integer.parseInt(securityCode),
 					getExpirationDate(expirationDate));
 
 			this.interbank = new InterbankSubsystem();
-			PaymentTransaction transaction = interbank.payOrder(card, amount, contents);
+			TransactionInfo transaction = interbank.payOrder(card, amount, contents);
 
 			result.put("RESULT", "PAYMENT SUCCESSFUL!");
 			result.put("MESSAGE", "You have succesffully paid the order!");
@@ -100,7 +99,4 @@ public class PaymentController extends BaseController {
 		return result;
 	}
 
-	public void emptyCart(){
-        Cart.getCart().emptyCart();
-    }
 }

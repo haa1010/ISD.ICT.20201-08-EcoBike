@@ -17,9 +17,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import entity.payment.CreditCard;
-import entity.payment.PaymentTransaction;
-
 public class API {
 
 	public static DateFormat DATE_FORMATER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

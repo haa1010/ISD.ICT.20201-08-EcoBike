@@ -2,8 +2,8 @@ package subsystem;
 
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
-import entity.payment.CreditCard;
-import entity.payment.PaymentTransaction;
+import entity.transaction.Card;
+import entity.transaction.TransactionInfo;
 
 /**
  * The {@code InterbankInterface} class is used to communicate with the
@@ -20,13 +20,13 @@ public interface InterbankInterface {
 	 * @param card     - the credit card used for payment
 	 * @param amount   - the amount to pay
 	 * @param contents - the transaction contents
-	 * @return {@link entity.payment.PaymentTransaction PaymentTransaction} - if the
+	 * @return {@link TransactionInfo PaymentTransaction} - if the
 	 *         payment is successful
 	 * @throws PaymentException      if responded with a pre-defined error code
 	 * @throws UnrecognizedException if responded with an unknown error code or
 	 *                               something goes wrong
 	 */
-	public abstract PaymentTransaction payOrder(CreditCard card, int amount, String contents)
+	public abstract TransactionInfo payOrder(Card card, int amount, String contents)
 			throws PaymentException, UnrecognizedException;
 
 	/**
@@ -35,13 +35,13 @@ public interface InterbankInterface {
 	 * @param card     - the credit card which would be refunded to
 	 * @param amount   - the amount to refund
 	 * @param contents - the transaction contents
-	 * @return {@link entity.payment.PaymentTransaction PaymentTransaction} - if the
+	 * @return {@link TransactionInfo PaymentTransaction} - if the
 	 *         payment is successful
 	 * @throws PaymentException      if responded with a pre-defined error code
 	 * @throws UnrecognizedException if responded with an unknown error code or
 	 *                               something goes wrong
 	 */
-	public abstract PaymentTransaction refund(CreditCard card, int amount, String contents)
+	public abstract TransactionInfo refund(Card card, int amount, String contents)
 			throws PaymentException, UnrecognizedException;
 
 }
