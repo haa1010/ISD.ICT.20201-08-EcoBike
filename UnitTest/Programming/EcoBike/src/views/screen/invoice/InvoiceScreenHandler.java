@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import common.exception.ProcessInvoiceException;
 import controller.PaymentController;
-import entity.invoice.Invoice;
+import invoice.Invoice;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -62,27 +62,27 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 	}
 
 	private void setInvoiceInfo(){
-		HashMap<String, String> deliveryInfo = invoice.getOrder().getDeliveryInfo();
-		name.setText(deliveryInfo.get("name"));
-		province.setText(deliveryInfo.get("province"));
-		instructions.setText(deliveryInfo.get("instructions"));
-		address.setText(deliveryInfo.get("address"));
-		subtotal.setText(Utils.getCurrencyFormat(invoice.getOrder().getAmount()));
-		shippingFees.setText(Utils.getCurrencyFormat(invoice.getOrder().getShippingFees()));
-		int amount = invoice.getOrder().getAmount() + invoice.getOrder().getShippingFees();
-		total.setText(Utils.getCurrencyFormat(amount));
-		invoice.setAmount(amount);
-		invoice.getOrder().getlstOrderMedia().forEach(orderMedia -> {
-			try {
-				MediaInvoiceScreenHandler mis = new MediaInvoiceScreenHandler(Configs.INVOICE_MEDIA_SCREEN_PATH);
-				mis.setOrderMedia((OrderMedia) orderMedia);
-				vboxItems.getChildren().add(mis.getContent());
-			} catch (IOException | SQLException e) {
-				System.err.println("errors: " + e.getMessage());
-				throw new ProcessInvoiceException(e.getMessage());
-			}
-			
-		});
+//		HashMap<String, String> deliveryInfo = invoice.getOrder().getDeliveryInfo();
+//		name.setText(deliveryInfo.get("name"));
+//		province.setText(deliveryInfo.get("province"));
+//		instructions.setText(deliveryInfo.get("instructions"));
+//		address.setText(deliveryInfo.get("address"));
+//		subtotal.setText(Utils.getCurrencyFormat(invoice.getOrder().getAmount()));
+//		shippingFees.setText(Utils.getCurrencyFormat(invoice.getOrder().getShippingFees()));
+//		int amount = invoice.getOrder().getAmount() + invoice.getOrder().getShippingFees();
+//		total.setText(Utils.getCurrencyFormat(amount));
+//		invoice.setAmount(amount);
+//		invoice.getOrder().getlstOrderMedia().forEach(orderMedia -> {
+//			try {
+//				MediaInvoiceScreenHandler mis = new MediaInvoiceScreenHandler(Configs.INVOICE_MEDIA_SCREEN_PATH);
+//				mis.setOrderMedia((OrderMedia) orderMedia);
+//				vboxItems.getChildren().add(mis.getContent());
+//			} catch (IOException | SQLException e) {
+//				System.err.println("errors: " + e.getMessage());
+//				throw new ProcessInvoiceException(e.getMessage());
+//			}
+//
+//		});
 
 	}
 

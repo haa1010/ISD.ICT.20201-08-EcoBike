@@ -11,14 +11,14 @@ public class ReturnBikeController extends BaseController{
  */
 public boolean checkStationRentBike(entity.station.Station station) {
     try {
-        if (station.getNumEmptyDockPoint != 0) {
+//        if (station.getNumEmptyDockPoint != 0) {
             return true;
-        }
+//        }
 
     } catch (Exception e) {
         return false;
     }
-    return false;
+//    return false;
 }
 
 }
