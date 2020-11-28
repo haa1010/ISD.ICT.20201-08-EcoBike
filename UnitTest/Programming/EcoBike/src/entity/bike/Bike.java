@@ -9,27 +9,28 @@ import entity.station.Station;
 
 
 public class Bike {
-protected int id ;
+    protected int id;
     protected String type;
     protected String licensePlate;
 
-    protected int  numPedal ;
+    protected int numPedal;
     protected int numSaddle;
     protected int numRearSeat;
     protected String barcode;
     protected double value;
     protected double coefficient;
     protected entity.station.Station station;
-public Bike( int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode ){
-this.id=id;
-this.type=type;
-this.licensePlate=licensePlate;
-this.numPedal=numPedal;
-this.numSaddle=numSaddle;
-this.numRearSeat=numRearSeat;
-this.barcode=barcode;
-this.value=value;
-}
+
+    public Bike(int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode) {
+        this.id = id;
+        this.type = type;
+        this.licensePlate = licensePlate;
+        this.numPedal = numPedal;
+        this.numSaddle = numSaddle;
+        this.numRearSeat = numRearSeat;
+        this.barcode = barcode;
+        this.value = value;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -103,16 +104,18 @@ this.value=value;
         return station;
     }
 
-    public Bike(){}
-    public  void setBikeInfo( int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode ){
-       this.id=id;
-        this.type=type;
-        this.licensePlate=licensePlate;
-        this.numPedal=numPedal;
-        this.numSaddle=numSaddle;
-        this.numRearSeat=numRearSeat;
-        this.barcode=barcode;
-        this.value=value;
+    public Bike() {
+    }
+
+    public void setBikeInfo(int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode) {
+        this.id = id;
+        this.type = type;
+        this.licensePlate = licensePlate;
+        this.numPedal = numPedal;
+        this.numSaddle = numSaddle;
+        this.numRearSeat = numRearSeat;
+        this.barcode = barcode;
+        this.value = value;
     }
 
 }

@@ -1,14 +1,12 @@
 package entity.db;
 
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import java.sql.Connection;
 import utils.*;
 
-public class AIMSDB {
+public class EcoBikeRental {
 
 	private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
 	private static Connection connect;
@@ -28,6 +26,6 @@ public class AIMSDB {
     
 
     public static void main(String[] args) {
-        AIMSDB.getConnection();
+        EcoBikeRental.getConnection();
     }
 }

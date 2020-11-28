@@ -1,15 +1,15 @@
-package entity.payment;
+package entity.transaction;
 
-public class PaymentTransaction {
+public class TransactionInfo {
 	private String errorCode;
-	private CreditCard card;
+	private Card card;
 	private String transactionId;
 	private String transactionContent;
 	private int amount;
 	private String createdAt;
 	
-	public PaymentTransaction(String errorCode, CreditCard card, String transactionId, String transactionContent,
-			int amount, String createdAt) {
+	public TransactionInfo(String errorCode, Card card, String transactionId, String transactionContent,
+						   int amount, String createdAt) {
 		super();
 		this.errorCode = errorCode;
 		this.card = card;

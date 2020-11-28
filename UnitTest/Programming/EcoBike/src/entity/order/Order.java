@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import utils.Configs;
-
 public class Order {
     
     private int shippingFees;
@@ -20,13 +18,6 @@ public class Order {
         this.lstOrderMedia = lstOrderMedia;
     }
 
-    public void addOrderMedia(OrderMedia om){
-        this.lstOrderMedia.add(om);
-    }
-
-    public void removeOrderMedia(OrderMedia om){
-        this.lstOrderMedia.remove(om);
-    }
 
     public List getlstOrderMedia() {
         return this.lstOrderMedia;
@@ -52,13 +43,5 @@ public class Order {
         this.deliveryInfo = deliveryInfo;
     }
 
-    public int getAmount(){
-        double amount = 0;
-        for (Object object : lstOrderMedia) {
-            OrderMedia om = (OrderMedia) object;
-            amount += om.getPrice();
-        }
-        return (int) (amount + (Configs.PERCENT_VAT/100)*amount);
-    }
 
 }

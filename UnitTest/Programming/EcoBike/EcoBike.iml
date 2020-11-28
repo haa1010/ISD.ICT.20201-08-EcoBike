@@ -7,7 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="com.zenjava:javafx-maven-plugin:1.5" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
