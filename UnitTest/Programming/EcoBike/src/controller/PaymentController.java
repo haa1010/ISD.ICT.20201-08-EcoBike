@@ -138,7 +138,7 @@ public class PaymentController extends BaseController {
 		}
 	}
 
-	public double getBalance() {}
+	public void getBalance() {}
 
 	public boolean validateBalance(Card card, double money) {
 		try {

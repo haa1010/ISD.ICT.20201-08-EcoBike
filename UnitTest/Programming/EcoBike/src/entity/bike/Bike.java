@@ -2,7 +2,6 @@ package entity.bike;
 
 import entity.station.Station;
 
-
 public class Bike {
     protected int id;
     protected String type;
@@ -17,7 +16,7 @@ public class Bike {
     protected String barcode;
     protected double value;
     protected double coefficient;
-    protected entity.station.Station station;
+    protected Station station;
 
     public Bike(int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode) {
         this.id = id;
