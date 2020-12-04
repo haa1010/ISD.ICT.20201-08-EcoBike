@@ -8,6 +8,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import common.exception.InvalidCardException;
+import common.exception.NotEnoughBalanceException;
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
 import entity.transaction.Card;
@@ -133,6 +134,17 @@ public class PaymentController extends BaseController {
 			boolean isAfter = dateTime.isAfter(now);
 			return isAfter;
 		} catch (DateTimeParseException | NullPointerException e) {
+			return false;
+		}
+	}
+
+	public void getBalance() {}
+
+	public boolean validateBalance(Card card, double money) {
+		try {
+			if (card.getBalance() >= money) return true;
+			return false;
+		} catch (NotEnoughBalanceException e) {
 			return false;
 		}
 	}

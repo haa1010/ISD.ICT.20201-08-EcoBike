@@ -27,4 +27,16 @@ public class ReturnBikeControllerTest {
         assertEquals(expected,valid);
 
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1.5,9,0",
+            "1,70,19000",
+            "1.5,40,15000",
+            "1.5,45,19500"
+    })
+    void testCalculateMoney(float coefficient, int time, double expected){
+        double money = returnBikeController.calculateMoney(coefficient, time);
+        assertEquals(expected, money);
+    }
 }

@@ -14,10 +14,20 @@ public class SplashScreenHandler implements Initializable {
     @FXML
     ImageView logo;
 
+    @FXML
+    ImageView loading;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        File file = new File("assets/images/Logo.png");
-        Image image = new Image(file.toURI().toString());
-        logo.setImage(image);
+        try {
+            File file = new File("assets/images/Splash.png");
+            Image image = new Image(file.toURI().toString());
+            logo.setImage(image);
+            File file2 = new File("assets/images/loading.gif");
+            Image image2 = new Image(file2.toURI().toString());
+            loading.setImage(image2);
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        }
     }
 }
