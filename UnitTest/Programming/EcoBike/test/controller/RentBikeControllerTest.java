@@ -22,13 +22,13 @@ public class RentBikeControllerTest {
             "false,false"
 
     })
-    void testCheckAvailableBike(boolean renting, boolean expected) {
-        StandardBike bike = new StandardBike();
-        bike.setRenting(renting);
-        boolean valid = rentBikeController.checkAvailableBike(bike);
-        assertEquals(expected, valid);
-
-    }
+//    void testCheckAvailableBike(boolean renting, boolean expected) {
+//        StandardBike bike = new StandardBike();
+//        bike.setRenting(renting);
+//        boolean valid = rentBikeController.checkAvailableBike(bike);
+//        assertEquals(expected, valid);
+//
+//    }
 
 
     @ParameterizedTest
