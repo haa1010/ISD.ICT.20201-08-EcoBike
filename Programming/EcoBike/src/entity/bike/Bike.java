@@ -1,4 +1,8 @@
 package entity.bike;
+/**
+ * @author hue
+ * @version 1.0
+ */
 
 import entity.db.EcoBikeRental;
 import entity.station.Station;
@@ -23,6 +27,7 @@ public class Bike {
     protected double coefficient;
     protected Station station;
     protected String urlImage;
+
     public Bike() throws SQLException {
         stm = EcoBikeRental.getConnection().createStatement();
     }
@@ -61,33 +66,33 @@ public Bike(int id, String licensePlate, String barcode) {
         this.licensePlate = licensePlate;
     }
 
-//    public void setNumPedal(int numPedal) {
-//        this.numPedal = numPedal;
-//    }
-//
-//    public void setNumSaddle(int numSaddle) {
-//        this.numSaddle = numSaddle;
-//    }
-//
-//    public void setNumRearSeat(int numRearSeat) {
-//        this.numRearSeat = numRearSeat;
-//    }
+    public void setNumPedal(int numPedal) {
+        this.numPedal = numPedal;
+    }
+
+    public void setNumSaddle(int numSaddle) {
+        this.numSaddle = numSaddle;
+    }
+
+    public void setNumRearSeat(int numRearSeat) {
+        this.numRearSeat = numRearSeat;
+    }
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
     }
 
-//   public void setValue(double value) {
-//        this.value = value;
-//    }
+   public void setValue(double value) {
+        this.value = value;
+    }
 
     public void setStation(Station station) {
         this.station = station;
     }
-//
-//    public void setCoefficient(double coefficient) {
-//        this.coefficient = coefficient;
-//    }
+
+    public void setCoefficient(double coefficient) {
+        this.coefficient = coefficient;
+    }
 
     public int getId() {
         return id;
