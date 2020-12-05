@@ -1,6 +1,7 @@
 package views.screen.home;
 
 import controller.HomeController;
+import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -74,18 +75,18 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         setBController(new HomeController());
-//        try{
-//            List medium = getBController().getAllMedia();
-//            this.homeItems = new ArrayList();
-//            for (Object object : medium) {
-//                Media media = (Media)object;
+        try{
+            List medium = getBController().getAllStations();
+            this.homeItems = new ArrayList();
+            for (Object object : medium) {
+                Station station = (Station)object;
 //                MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
-//                this.homeItems.add(m1);
-//            }
-//        }catch (SQLException | IOException e){
-//            LOGGER.info("Errors occured: " + e.getMessage());
-//            e.printStackTrace();
-//        }
+                this.homeItems.add(station);
+            }
+        }catch (SQLException e){
+            LOGGER.info("Errors occured: " + e.getMessage());
+            e.printStackTrace();
+        }
         
             
         home.setOnMouseClicked(e -> {
@@ -105,9 +106,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 //            }
 //        });
         addMediaHome(this.homeItems);
-        addMenuItem(0, "Book", splitMenuBtnSearch);
-        addMenuItem(1, "DVD", splitMenuBtnSearch);
-        addMenuItem(2, "CD", splitMenuBtnSearch);
+//        addMenuItem(0, "Book", splitMenuBtnSearch);
+//        addMenuItem(1, "DVD", splitMenuBtnSearch);
+//        addMenuItem(2, "CD", splitMenuBtnSearch);
     }
 
     public void setImage(){
