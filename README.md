@@ -1,3 +1,24 @@
+# LAB 09 - PROGRAMMING
+In this lab, we start implement our design by applying Test Driven Development(TDD), write Javadoc for some of classes and apply a programming style to our codes using Checkstyle.
+
+## Contributions
+- Tran Thi Hang  : 
+    - README.md
+    - View: Select Dock to Return Bike, Transaction Error popup, Return Bike
+- Pham Nhat Linh : 
+    - View: Barcode Screen, Invoice, Payment, Rent Bike
+- Duong Thi Hue  : 
+    - View: Renting Bike, Bike
+- Do Minh Thong  :  
+    - View: Home Screen, Splash Screen, View Distance popup
+    
+## Revisions
+Reviewer for each member:
+- Tran Thi Hang  : Do Minh Thong 
+- Pham Nhat Linh : Tran Thi Hang
+- Duong Thi Hue  : Pham Nhat Linh
+- Do Minh Thong  : Duong Thi Hue
+----------------------------------
 # LAB 08 - UNIT TESTING
 ## Tasks
 In this lab, we have to apply Test Driven Development(TDD) for our project and document the Unit test design with the provided template for Test plan
