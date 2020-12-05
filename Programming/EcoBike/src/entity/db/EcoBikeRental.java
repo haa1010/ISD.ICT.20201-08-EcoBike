@@ -1,31 +1,49 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package entity.db;
 
-import java.sql.DriverManager;
-import java.util.logging.Logger;
-
 import java.sql.Connection;
-import utils.*;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Logger;
+import utils.Utils;
 
 public class EcoBikeRental {
+    private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
+    private static Connection connect;
 
-	private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
-	private static Connection connect;
+    public EcoBikeRental() {
+    }
+
 
     public static Connection getConnection() {
-        if (connect != null) return connect;
+        Connection conn = null;
+
         try {
-			Class.forName("org.sqlite.JDBC");
-            String url = "jdbc:sqlite:assets/db/aims.db";
-            connect = DriverManager.getConnection(url);
-            LOGGER.info("Connect database successfully");
-        } catch (Exception e) {
-            LOGGER.info(e.getMessage());
-        } 
-        return connect;
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://remotemysql.com/3I4cIEwZdW";
+            String user = "3I4cIEwZdW";
+            String password = "ah4boEj89z";
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("DB connected");
+            Statement st = conn.createStatement();
+            String query = "insert into Station (name,numEmptyDockPoint,numAvailableBike,area,address) VALUES (\"Hoang Mai\",300,200,1500,\"Hoang Mai\")";
+            st.executeUpdate(query);
+            System.out.println("Hi");
+            return conn;
+        } catch (SQLException | ClassNotFoundException var10) {
+            System.out.println(var10.getMessage());
+            return conn;
+        } finally {
+            ;
+        }
     }
-    
 
     public static void main(String[] args) {
-        EcoBikeRental.getConnection();
+        getConnection();
     }
 }
