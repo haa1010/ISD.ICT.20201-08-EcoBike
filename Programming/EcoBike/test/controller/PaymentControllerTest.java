@@ -6,6 +6,24 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * This class test some validate methods for Card Information in EcoBikeRental project
+ *
+ * @author Tran Thi Hang
+ * @version 1.0
+ * <p>
+ * created_at: 01/12/2020
+ * <p>
+ * project_name: EcoBike Rental (EBR)
+ * <p>
+ * teacher_name: Dr. Nguyen Thi Thu Trang
+ * <p>
+ * class_name: TT.CNTT ICT 02 K62
+ * <p>
+ * helpers: Teaching Assistants and other team members
+ *
+ *
+ */
 public class PaymentControllerTest {
     private PaymentController PaymentController;
 
