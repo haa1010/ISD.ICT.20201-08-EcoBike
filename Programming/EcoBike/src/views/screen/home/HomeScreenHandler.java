@@ -1,13 +1,5 @@
 package views.screen.home;
 
-<<<<<<< HEAD:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
-<<<<<<< HEAD:UnitTest/Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
-import controller.HomeController;
-import entity.station.Station;
-=======
->>>>>>> 94d61a88b8307c822c0d51173e7606ea27907525:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
-=======
->>>>>>> 59cc1ba62c9b9a2a3c59945b4f8d66e522a09cb0:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -65,30 +57,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 //    public Label getNumMediaCartLabel(){
 //        return this.numMediaInCart;
 //    }
-<<<<<<< HEAD:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
-<<<<<<< HEAD:UnitTest/Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
-
-    public HomeController getBController() {
-        return (HomeController) super.getBController();
-    }
-
-    @Override
-    public void show() {
-//        numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
-//        super.show();
-    }
-
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        setBController(new HomeController());
-        try{
-            List medium = getBController().getAllStations();
-            this.homeItems = new ArrayList();
-            for (Object object : medium) {
-                Station station = (Station)object;
-=======
-=======
->>>>>>> 59cc1ba62c9b9a2a3c59945b4f8d66e522a09cb0:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
 //
 //    public HomeController getBController() {
 //        return (HomeController) super.getBController();
@@ -108,14 +76,13 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 //            this.homeItems = new ArrayList<>();
 //            for (Object object : medium) {
 //                Media media = (Media)object;
->>>>>>> 94d61a88b8307c822c0d51173e7606ea27907525:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
 //                MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
-                this.homeItems.add(station);
-            }
-        }catch (SQLException e){
-            LOGGER.info("Errors occured: " + e.getMessage());
-            e.printStackTrace();
-        }
+//                this.homeItems.add(m1);
+//            }
+//        }catch (SQLException | IOException e){
+//            LOGGER.info("Errors occured: " + e.getMessage());
+//            e.printStackTrace();
+//        }
         
             
 //        aimsImage.setOnMouseClicked(e -> {
@@ -134,25 +101,11 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 //                throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
 //            }
 //        });
-<<<<<<< HEAD:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
-<<<<<<< HEAD:UnitTest/Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
-        addMediaHome(this.homeItems);
-//        addMenuItem(0, "Book", splitMenuBtnSearch);
-//        addMenuItem(1, "DVD", splitMenuBtnSearch);
-//        addMenuItem(2, "CD", splitMenuBtnSearch);
-    }
-=======
-=======
->>>>>>> 59cc1ba62c9b9a2a3c59945b4f8d66e522a09cb0:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
 //        addMediaHome(this.homeItems);
 //        addMenuItem(0, "Book", splitMenuBtnSearch);
 //        addMenuItem(1, "DVD", splitMenuBtnSearch);
 //        addMenuItem(2, "CD", splitMenuBtnSearch);
   //  }
-<<<<<<< HEAD:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
->>>>>>> 94d61a88b8307c822c0d51173e7606ea27907525:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
-=======
->>>>>>> 59cc1ba62c9b9a2a3c59945b4f8d66e522a09cb0:Programming/EcoBike/src/views/screen/home/HomeScreenHandler.java
 
     public void setImage(){
 
