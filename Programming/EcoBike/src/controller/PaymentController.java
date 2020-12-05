@@ -17,12 +17,24 @@ import subsystem.InterbankSubsystem;
 
 
 /**
- * This {@code PaymentController} class control the flow of the payment process
- * in our EcoBikeRental Software.
- * 
- * @author hangtt
+ * This class controls the flow of the payment process in our EcoBikeRental project
+ *
+ * @author Tran Thi Hang
+ * @version 1.0
+ * <p>
+ * created_at: 01/12/2020
+ * <p>
+ * project_name: EcoBike Rental (EBR)
+ * <p>
+ * teacher_name: Dr. Nguyen Thi Thu Trang
+ * <p>
+ * class_name: TT.CNTT ICT 02 K62
+ * <p>
+ * helpers: Teaching Assistants and other team members
+ *
  *
  */
+
 public class PaymentController extends BaseController {
 
 	/**
@@ -105,6 +117,12 @@ public class PaymentController extends BaseController {
 		return result;
 	}
 
+	/**
+	 * This method validates Cardholder's name and Interbank's name of Card Information
+	 *
+	 * @param name
+	 * @return boolean
+	 */
 
 	public boolean validateName(String name) {
 		try {
@@ -114,6 +132,12 @@ public class PaymentController extends BaseController {
 		}
 	}
 
+	/**
+	 * This method validate all number field of Card Information, includes: Card Number and Security Code
+	 *
+	 * @param number
+	 * @return boolean
+	 */
 	public boolean validateNumberField(String number) {
 
 		try {
@@ -124,8 +148,13 @@ public class PaymentController extends BaseController {
 		return true;
 	}
 
+	/**
+	 * This method check if expiration date of Card Information is valid for making transaction
+	 *
+	 * @param time
+	 * @return boolean
+	 */
 	public boolean validateExpirationDate(String time) {
-
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate dateTime = LocalDate.parse(time, formatter);

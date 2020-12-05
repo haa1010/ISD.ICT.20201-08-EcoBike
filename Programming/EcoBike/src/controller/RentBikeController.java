@@ -4,11 +4,9 @@ package controller;
 import entity.bike.Bike;
 
 /**
- * This {@code PaymentController} class control the flow of the payment process
+ * This {@code RentBikeController} class control the flow of the renting bike process
  * in our EcoBike Software.
  * 
- * @author hieud
- *
  */
 public class RentBikeController extends BaseController {
 
