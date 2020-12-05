@@ -15,7 +15,7 @@ In this lab, we have to apply Test Driven Development(TDD) for our project and d
     - Unit Test:  checkAvailableBike, checkStationReturnBike
 - Do Minh Thong  :  
     - Entity: Station
-    - Unit Test:
+    - Unit Test: validateBalance, calculateMoney
     
 ## Revisions
 Reviewer for each member:

@@ -42,4 +42,5 @@ public class RentBikeControllerTest {
         boolean isValid = rentBikeController.validateBarcode(barcode);
         assertEquals(expected,isValid);
     }
+
 }
