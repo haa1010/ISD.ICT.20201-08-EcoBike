@@ -1,11 +1,11 @@
 #  An Internet Media Store
 <p align="center">
-  <img src="assets/images/aims_cover_image.png" />
+  <img src="assets/images/Logo.png" />
 </p>
 
 ## Getting Started
 
-Welcome to the AIMS project. Here is a guideline to help you get started.
+Welcome to the EcoBikeRental project. Here is a guideline to help you get started.
 
 ## Folder Structure
 
@@ -41,6 +41,7 @@ Click on `Run` -> `Run Configurations...`  -> `Java Application`, create a new l
 > `--module-path lib/win/javafx-sdk-15 --add-modules javafx.controls,javafx.fxml`
 
 ## Author
-- nguyenlm - Software Engeneering Student - k61
-- manhvd   - Software Engeneering Student - k61
-- hieudm   - ICT - k61
+- hangtt - TT.CNTT ICT02 K62 
+- huedt  - TT.CNTT ICT02 K62 
+- thongdm  - TT.CNTT ICT02 K62 
+- linhpn  - TT.CNTT K63 
