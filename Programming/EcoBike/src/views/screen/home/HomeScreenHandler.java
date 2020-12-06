@@ -1,33 +1,38 @@
 package views.screen.home;
 
+import controller.HomeController;
+import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utils.Utils;
 import views.screen.BaseScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable{
 
-    //public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
+    public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
 
     @FXML
-    private Label numMediaInCart;
+    private Label homeLabel;
 
     @FXML
-    private ImageView aimsImage;
+    private ImageView home;
 
     @FXML
-    private ImageView cartImage;
+    private ImageView search;
 
     @FXML
     private VBox vboxMedia1;
@@ -39,56 +44,55 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private VBox vboxMedia3;
 
     @FXML
-    private HBox hboxMedia;
+    private TextField searchInput;
 
-    public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
+    @FXML
+    private Button rentBikeButton;
+
+    @FXML
+    private SplitMenuButton splitMenuBtnSearch;
+
+    private List homeItems;
+
+    public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
     }
 
-//    @FXML
-//    private SplitMenuButton splitMenuBtnSearch;
-//
-//    private List homeItems;
-//
-//    public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
-//        super(stage, screenPath);
-//    }
-//
 //    public Label getNumMediaCartLabel(){
 //        return this.numMediaInCart;
 //    }
-//
-//    public HomeController getBController() {
-//        return (HomeController) super.getBController();
-//    }
-//
-//    @Override
-//    public void show() {
-////        numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
-////        super.show();
-//    }
-//
-//    @Override
-//    public void initialize(URL arg0, ResourceBundle arg1) {
-//        setBController(new HomeController());
-//        try{
-//            List medium = getBController().getAllMedia();
-//            this.homeItems = new ArrayList<>();
-//            for (Object object : medium) {
-//                Media media = (Media)object;
+
+    public HomeController getBController() {
+        return (HomeController) super.getBController();
+    }
+
+    @Override
+    public void show() {
+//        numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
+//        super.show();
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        setBController(new HomeController());
+        try{
+            List medium = getBController().getAllStations();
+            this.homeItems = new ArrayList();
+            for (Object object : medium) {
+                Station station = (Station)object;
 //                MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
-//                this.homeItems.add(m1);
-//            }
-//        }catch (SQLException | IOException e){
-//            LOGGER.info("Errors occured: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-        
-            
-//        aimsImage.setOnMouseClicked(e -> {
-//            addMediaHome(this.homeItems);
-//        });
-//
+                this.homeItems.add(station);
+            }
+        }catch (SQLException e){
+            LOGGER.info("Errors occured: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+
+        home.setOnMouseClicked(e -> {
+            addMediaHome(this.homeItems);
+        });
+
 //        cartImage.setOnMouseClicked(e -> {
 //            CartScreenHandler cartScreen;
 //            try {
@@ -101,11 +105,11 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 //                throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
 //            }
 //        });
-//        addMediaHome(this.homeItems);
+        addMediaHome(this.homeItems);
 //        addMenuItem(0, "Book", splitMenuBtnSearch);
 //        addMenuItem(1, "DVD", splitMenuBtnSearch);
 //        addMenuItem(2, "CD", splitMenuBtnSearch);
-  //  }
+    }
 
     public void setImage(){
 
@@ -158,11 +162,5 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 //            addMediaHome(filteredItems);
 //        });
 //        menuButton.getItems().add(position, menuItem);
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }
