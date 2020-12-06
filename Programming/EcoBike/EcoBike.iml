@@ -10,6 +10,7 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
+    <orderEntry type="library" exported="" name="JavaFX15" level="project" />
     <orderEntry type="module-library" exported="">
       <library name="junit5">
         <CLASSES>
