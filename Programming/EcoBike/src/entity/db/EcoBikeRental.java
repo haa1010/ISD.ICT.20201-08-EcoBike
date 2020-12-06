@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Logger;
+
 import utils.Utils;
 
 public class EcoBikeRental {
@@ -25,15 +26,12 @@ public class EcoBikeRental {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://remotemysql.com/3I4cIEwZdW";
-            String user = "3I4cIEwZdW";
-            String password = "ah4boEj89z";
+            String url = "jdbc:mysql://remotemysql.com/vaftyLWDOZ";
+            String user = "vaftyLWDOZ";
+            String password = "9db0uNrKek";
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("DB connected");
-            Statement st = conn.createStatement();
-            String query = "insert into Station (name,numEmptyDockPoint,numAvailableBike,area,address) VALUES (\"Hoang Mai\",300,200,1500,\"Hoang Mai\")";
-            st.executeUpdate(query);
-            System.out.println("Hi");
+
             return conn;
         } catch (SQLException | ClassNotFoundException var10) {
             System.out.println(var10.getMessage());
