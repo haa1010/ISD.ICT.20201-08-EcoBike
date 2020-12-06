@@ -1,9 +1,12 @@
 package controller;
 
 
+import entity.bike.Bike;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,8 +25,8 @@ public class RentBikeControllerTest {
             "false,false"
 
     })
-    void testCheckAvailableBike(boolean renting, boolean expected) {
-        StandardBike bike = new StandardBike();
+    void testCheckAvailableBike(boolean renting, boolean expected) throws SQLException {
+        Bike bike = new Bike();
         bike.setRenting(renting);
         boolean valid = rentBikeController.checkAvailableBike(bike);
         assertEquals(expected, valid);
@@ -40,7 +43,7 @@ public class RentBikeControllerTest {
     })
     public void test(String barcode, boolean expected) {
         boolean isValid = rentBikeController.validateBarcode(barcode);
-        assertEquals(expected,isValid);
+        assertEquals(expected, isValid);
     }
 
 }
