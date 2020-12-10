@@ -1,161 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.fxml.Bike">
-   <children>
-      <GridPane layoutX="14.0" layoutY="28.0" prefHeight="60.0" prefWidth="1366.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="970.199951171875" minWidth="10.0" prefWidth="72.00001220703125" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0000305175781" minWidth="10.0" prefWidth="388.999951171875" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0000305175781" minWidth="10.0" prefWidth="521.800048828125" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0000305175781" minWidth="10.0" prefWidth="218.0000122070312" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.9999023437499" minWidth="0.0" prefWidth="119.99990234374991" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ImageView fitHeight="53.0" fitWidth="1366.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../assets/images/Logo.png" />
-               </image>
-            </ImageView>
-            <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike information" wrappingWidth="400.53671646118164" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Arial Bold" size="48.0" />
-               </font>
-            </Text>
-            <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="2" />
-            <Text fx:id="liscensePlate" fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="29A-1234" GridPane.columnIndex="2">
-               <font>
-                  <Font name="Arial Bold" size="48.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </Text>
-            <ImageView fx:id="home" fitHeight="69.0" fitWidth="71.0" onMouseEntered="#home" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
-               <image>
-                  <Image url="@../../../assets/images/Home.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="25.0" />
-               </GridPane.margin>
-            </ImageView>
-         </children>
-      </GridPane>
-      <ImageView fx:id="urlImage" fitHeight="530.0" fitWidth="579.0" layoutX="20.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0">
-         <image>
-            <Image url="@../../../assets/images/bike_preview.png" />
-         </image>
-      </ImageView>
-      <GridPane fx:id="bikeInfor" layoutX="691.0" layoutY="157.0" prefHeight="336.0" prefWidth="627.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number Plate">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Barcode" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Battery Percentage" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remaing Time" GridPane.rowIndex="4">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit" GridPane.rowIndex="5">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coeficient price" GridPane.rowIndex="6">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="liscensePlate" strokeType="OUTSIDE" strokeWidth="0.0" text="29A-1234" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="barcode" strokeType="OUTSIDE" strokeWidth="0.0" text="123456" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="type" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard E-Bike" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="batteryPercentage" strokeType="OUTSIDE" strokeWidth="0.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="remainingTime" strokeType="OUTSIDE" strokeWidth="0.0" text="2 hours" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" text="400,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="coefficient" strokeType="OUTSIDE" strokeWidth="0.0" text="1.5" GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Text>
-         </children>
-      </GridPane>
-      <Text layoutX="947.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text layoutX="838.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike information">
-         <font>
-            <Font name="Arial Bold" size="26.0" />
-         </font>
-      </Text>
-      <Button layoutX="512.0" layoutY="672.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="24.0" />
-         </font>
-      </Button>
-      <Button layoutX="734.0" layoutY="672.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Rent now" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="24.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <GridPane layoutX="14.0" layoutY="28.0" prefHeight="60.0" prefWidth="1366.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="970.199951171875" minWidth="10.0" prefWidth="72.00001220703125" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0000305175781" minWidth="10.0" prefWidth="388.999951171875" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0000305175781" minWidth="10.0" prefWidth="521.800048828125" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0000305175781" minWidth="10.0" prefWidth="218.0000122070312" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.9999023437499" minWidth="0.0" prefWidth="119.99990234374991" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ImageView fitHeight="53.0" fitWidth="1366.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../assets/images/Logo.png" />
+                    </image>
+                </ImageView>
+                <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike information" wrappingWidth="400.53671646118164" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="Arial Bold" size="48.0" />
+                    </font>
+                </Text>
+                <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="2" />
+                <Label fx:id="liscensePlateTitle" text="29A-1234" GridPane.columnIndex="2">
+                    <font>
+                        <Font name="Arial Bold" size="48.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="10.0" />
+                    </GridPane.margin>
+                </Label>
+
+                <ImageView fx:id="home" fitHeight="69.0" fitWidth="71.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                    <image>
+                        <Image url="@../../../assets/images/home.png" />
+                    </image>
+                    <GridPane.margin>
+                        <Insets left="25.0" />
+                    </GridPane.margin>
+                </ImageView>
+            </children>
+        </GridPane>
+        <ImageView fx:id="urlImage" fitHeight="530.0" fitWidth="579.0" layoutX="20.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0">
+            <image>
+                <Image url="@../../../assets/images/bike_preview.png" />
+            </image>
+        </ImageView>
+        <GridPane fx:id="bikeInfor" layoutX="691.0" layoutY="192.0" prefHeight="336.0" prefWidth="627.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Barcode" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number Plate">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                </Text>
+                <Label fx:id="liscensePlate" text="29A-1234" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="barcode" text="STEB01" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="type" text="Standard Electronic bike" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="batteryPercentage" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="remainingTime" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                </Text>
+                <Label fx:id="deposit" text="400,000 đ" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="batteryLabel" text="Battery percentage" GridPane.rowIndex="4">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="remainingLabel" text="Remaining time" GridPane.rowIndex="5">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </GridPane>
+        <Text layoutX="947.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+        <Text layoutX="849.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike information">
+            <font>
+                <Font name="Arial Bold" size="26.0" />
+            </font>
+        </Text>
+        <Button layoutX="512.0" layoutY="672.0" mnemonicParsing="false" onMouseClicked="#cancelViewBike" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+        </Button>
+        <Button layoutX="734.0" layoutY="672.0" mnemonicParsing="false" onMouseClicked="#rentBike" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Rent now" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+        </Button>
+    </children>
 </AnchorPane>
