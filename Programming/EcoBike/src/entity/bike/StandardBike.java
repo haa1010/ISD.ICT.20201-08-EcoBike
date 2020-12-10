@@ -5,6 +5,8 @@ import entity.db.EcoBikeRental;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StandardBike extends Bike {
     public StandardBike() throws SQLException {
@@ -32,7 +34,7 @@ public class StandardBike extends Bike {
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural  join Station  where type=`Standard bike` where barcode= " + barcode + ";";
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station  where type=`Standard bike` where barcode= " + barcode + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
@@ -46,4 +48,24 @@ public class StandardBike extends Bike {
 
         return null;
     }
+
+    public List getAllBike() throws SQLException {
+        ArrayList allBike = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station  where type=`Standard bike`;";
+            Statement stm = EcoBikeRental.getConnection().createStatement();
+            ResultSet res = stm.executeQuery(sql);
+
+            while (res.next()) {
+
+
+                allBike.add(setValueBike(res));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return allBike;
+    }
+
 }
