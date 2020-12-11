@@ -104,7 +104,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     }
 
     /**
-     * back to previuous screen
+     * back to previous screen
      */
     @FXML
     private void cancelViewBike() {
