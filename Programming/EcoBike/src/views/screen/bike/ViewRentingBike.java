@@ -1,7 +1,5 @@
 package views.screen.bike;
 
-import java.sql.Timestamp;
-
 import controller.ViewBikeController;
 import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
@@ -9,8 +7,6 @@ import entity.order.Order;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -25,13 +21,10 @@ import views.screen.BaseScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
+
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
-import java.util.TimerTask;
-import java.util.logging.Logger;
-import java.util.logging.LoggingPermission;
 
 public class ViewRentingBike extends BaseScreenHandler implements Initializable {
     @FXML
@@ -66,6 +59,8 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     private Label seconds;
     private Order order;
     private LocalTime startAt;
+    @FXML
+    private ImageView pause;
 
     public boolean isFlag() {
         return flag;
@@ -79,14 +74,27 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     private boolean flag;
 
     @FXML
-    private void pauseCountingTime(MouseEvent event) {
+    private void pauseCountingTime(MouseEvent event) throws IOException {
         if (animation != null) {
             if (!isFlag()) {
                 animation.pause();
+
+
+                //  Image icon16 = new Image("../../../assets/images/playIcon.png");
+
+                String imagePath = "file:///D:/itss/ISD.ICT.20201.08/Programming/EcoBike/assets/images/playIcon.png";
+                Image image = new Image(imagePath);
+                pause.setImage(image);
                 setFlag(true);
 
             } else {
                 animation.play();
+                String imageSource = "file:///D:/itss/ISD.ICT.20201.08/Programming/EcoBike/assets/images/pauseIcon.png";
+
+                boolean backgroundLoading = true;
+// The image is being loaded in the background
+                Image image = new Image(imageSource, backgroundLoading);
+                pause.setImage(image);
                 setFlag(false);
             }
         }
@@ -181,7 +189,7 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
             remainingLabel.setText(" ");
 
         }
-    
+
 
     }
 
@@ -193,6 +201,11 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+//        String imageSource = "D:/itss/ISD.ICT.20201.08/Programming/EcoBike/assets/images/pauseIcon.png";
+//
+//        boolean backgroundLoading = true;
+//// The image is being loaded in the background
+//        Image image = new Image(imageSource, backgroundLoading);
+//        pause.setImage(image);
     }
 }

@@ -92,7 +92,7 @@
                                 </Text>
                                 <ImageView fx:id="pause" fitHeight="42.0" fitWidth="43.0" onMouseClicked="#pauseCountingTime" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" GridPane.columnIndex="2">
                                     <image>
-                                        <Image url="@../../../assets/images/icon-design-trademark-logo-brand-area%201.png" />
+                                        <Image url="@../../../assets/images/pauseIcon.png" />
                                     </image>
                                     <GridPane.margin>
                                         <Insets left="10.0" />
@@ -165,16 +165,6 @@
                         </GridPane>
                     </children>
                 </GridPane>
-                <Text fill="#201c1c" layoutX="10.0" layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaining time">
-                    <font>
-                        <Font name="Arial Bold" size="24.0" />
-                    </font>
-                </Text>
-                <Text fill="#201c1c" layoutX="10.0" layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaining time">
-                    <font>
-                        <Font name="Arial Bold" size="24.0" />
-                    </font>
-                </Text>
                 <GridPane layoutX="683.0" layoutY="200.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
