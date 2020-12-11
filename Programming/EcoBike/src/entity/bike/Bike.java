@@ -199,14 +199,11 @@ public class Bike {
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-
                 return setValueBike(res);
-
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return null;
     }
 

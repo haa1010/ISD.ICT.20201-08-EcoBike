@@ -1,3 +1,5 @@
+import controller.BaseController;
+import controller.ReturnBikeController;
 import controller.ViewBikeController;
 import entity.bike.Bike;
 import entity.bike.StandardBike;
@@ -13,7 +15,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Configs;
 import views.screen.bike.BikeScreenHandler;
+import views.screen.bike.ReturnBikeHandler;
 import views.screen.home.HomeScreenHandler;
+
+import java.sql.SQLException;
 
 public class App extends Application {
 
@@ -53,15 +58,24 @@ public class App extends Application {
                 try {
                     StandardElectricBike stde = new StandardElectricBike();
 
-                    ViewBikeController viewBikeController = new ViewBikeController(stde.getBikeByBarcode("STEB01"));
-                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO, stde.getBikeByBarcode("STEB01"));
-                    bikeScreenHandler.setScreenTitle("View bike");
-                    bikeScreenHandler.setBController(viewBikeController);
-                    bikeScreenHandler.show();
+//                    ViewBikeController viewBikeController = new ViewBikeController(stde.getBikeByBarcode("STEB01"));
+//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO, stde.getBikeByBarcode("STEB01"));
+//                    bikeScreenHandler.setScreenTitle("View bike");
+//                    bikeScreenHandler.setBController(viewBikeController);
+//                    bikeScreenHandler.show();
+
 //					HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
 //					homeHandler.setScreenTitle("Home Screen");
 //					homeHandler.setImage();
 //					homeHandler.show();
+                    Bike bike;
+                    try {
+                        bike = new Bike().getBikeById(3);
+                        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(primaryStage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), bike);
+                        returnBikeHandler.show();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
