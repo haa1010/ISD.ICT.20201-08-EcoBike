@@ -10,8 +10,8 @@ public class Order {
     protected Bike rentedBike;
     protected LocalTime start;
     protected LocalTime end;
-    protected double deposit;
-    protected double totalUpToNow;
+    protected int deposit;
+    protected int totalUpToNow;
 
     void calculateTotalUptoNow() {
         return;
@@ -29,11 +29,11 @@ public class Order {
         return end;
     }
 
-    public double getDeposit() {
+    public int getDeposit() {
         return deposit;
     }
 
-    public double getTotalUpToNow() {
+    public int getTotalUpToNow() {
         return totalUpToNow;
     }
 
@@ -49,22 +49,22 @@ public class Order {
         this.end = end;
     }
 
-    public void setDeposit(double deposit) {
+    public void setDeposit(int deposit) {
         this.deposit = deposit;
     }
 
-    public void setTotalUpToNow(double totalUpToNow) {
+    public void setTotalUpToNow(int totalUpToNow) {
         this.totalUpToNow = totalUpToNow;
     }
 
     public Order(Bike rentedBike, LocalTime start) {
         this.rentedBike = rentedBike;
-        this.deposit = rentedBike.getValue() * 0.4;
+        this.deposit = (int)(rentedBike.getValue() * 0.4);
         this.start = start;
         this.totalUpToNow = 15000;
     }
 
-    public Order(Bike rentedBike, LocalTime start, LocalTime end, double deposit, double totalUpToNow) {
+    public Order(Bike rentedBike, LocalTime start, LocalTime end, int deposit, int totalUpToNow) {
         this.rentedBike = rentedBike;
         this.start = start;
         this.end = end;
