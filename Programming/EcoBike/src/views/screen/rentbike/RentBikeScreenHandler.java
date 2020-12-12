@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 import controller.PaymentController;
 import entity.bike.Bike;
+import entity.invoice.Invoice;
 import entity.order.Order;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
-import views.screen.payment.RentPaymentScreenHandler;
+import views.screen.payment.PaymentScreenHandler;
 import entity.bike.*;
 
 public class RentBikeScreenHandler extends BaseScreenHandler {
@@ -53,7 +54,8 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException {
     	Order order = new Order(rented, LocalTime.now());
-    	BaseScreenHandler payment = new RentPaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, order);
+    	Invoice invoice = new Invoice(order);
+    	BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
     	payment.setBController(new PaymentController());
     	payment.setPreviousScreen(this);
     	payment.setHomeScreenHandler(homeScreenHandler);

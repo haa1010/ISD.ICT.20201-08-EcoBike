@@ -14,19 +14,21 @@ import javafx.scene.text.FontWeight;
 public class Configs {
 
     // api constants
-    public static final String GET_BALANCE_URL = "https://ecopark-system-api.herokuapp.com/api/card/balance/118609_group1_2020";
+    public static final String GET_BALANCE_URL = "https://ecopark-system-api.herokuapp.com/api/card/balance/121319_group8_2020";
     public static final String GET_VEHICLECODE_URL = "https://ecopark-system-api.herokuapp.com/api/get-vehicle-code/1rjdfasdfas";
     public static final String PROCESS_TRANSACTION_URL = "https://ecopark-system-api.herokuapp.com/api/card/processTransaction";
     public static final String RESET_URL = "https://ecopark-system-api.herokuapp.com/api/card/reset";
+    public static final String appCode = "A1SRyiBqj/E=";
+    public static final String hashCode = "BtNH8J4Tl/I=";
 
     // demo data
     public static final String POST_DATA = "{"
-            + " \"secretKey\": \"BUXj/7/gHHI=\" ,"
+            + " \"secretKey\": \"BtNH8J4Tl/I=\" ,"
             + " \"transaction\": {"
             + " \"command\": \"pay\" ,"
-            + " \"cardCode\": \"118609_group1_2020\" ,"
-            + " \"owner\": \"Group 1\" ,"
-            + " \"cvvCode\": \"185\" ,"
+            + " \"cardCode\": \"121319_group8_2020\" ,"
+            + " \"owner\": \"Group 8\" ,"
+            + " \"cvvCode\": \"128\" ,"
             + " \"dateExpried\": \"1125\" ,"
             + " \"transactionContent\": \"Pei debt\" ,"
             + " \"amount\": 50000 "

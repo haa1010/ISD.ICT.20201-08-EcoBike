@@ -49,7 +49,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="734.0" layoutY="672.0" mnemonicParsing="false" onMouseClicked="#moveToNextScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
+      <Button layoutX="734.0" layoutY="672.0" mnemonicParsing="false" onMouseClicked="#confirmToPayDeposit" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -74,7 +74,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="owner" layoutX="286.0" layoutY="369.0" prefHeight="43.0" prefWidth="306.0" promptText="123456789101112" style="-fx-background-color: #f8edcd;" text="Pham Nhat Linh">
+      <TextField fx:id="holderName" layoutX="286.0" layoutY="369.0" prefHeight="43.0" prefWidth="306.0" promptText="123456789101112" style="-fx-background-color: #f8edcd;" text="Pham Nhat Linh">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
@@ -84,7 +84,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="code" layoutX="814.0" layoutY="533.0" prefHeight="43.0" prefWidth="263.0" promptText="123456789101112" style="-fx-background-color: #f8edcd;" text="123">
+      <TextField fx:id="securityCode" layoutX="814.0" layoutY="533.0" prefHeight="43.0" prefWidth="263.0" promptText="123456789101112" style="-fx-background-color: #f8edcd;" text="123">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
@@ -99,8 +99,12 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <ComboBox fx:id="bank" layoutX="814.0" layoutY="217.0" prefHeight="43.0" prefWidth="263.0" style="-fx-background-color: #f8edcd;" />
       <ComboBox fx:id="month" layoutX="286.0" layoutY="533.0" prefHeight="43.0" prefWidth="110.0" promptText="Month" style="-fx-background-color: #f8edcd;" />
       <ComboBox fx:id="year" layoutX="423.0" layoutY="533.0" prefHeight="43.0" prefWidth="178.0" promptText="Year" style="-fx-background-color: #f8edcd;" />
+      <TextField fx:id="bankName" layoutX="814.0" layoutY="217.0" prefHeight="43.0" prefWidth="263.0" style="-fx-background-color: #f8edcd;">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

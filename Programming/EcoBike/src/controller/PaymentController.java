@@ -65,7 +65,6 @@ public class PaymentController extends BaseController {
 		if (strs.length != 2) {
 			throw new InvalidCardException();
 		}
-
 		String expirationDate = null;
 		int month = -1;
 		int year = -1;
@@ -165,4 +164,8 @@ public class PaymentController extends BaseController {
 			return false;
 		}
 	}
+	/*
+	 * @linh
+	 * continue to write
+	 */
 }
