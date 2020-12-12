@@ -39,12 +39,6 @@ public class PaymentScreenHandler extends BaseScreenHandler implements Initializ
 		super(stage, screenPath);
 		this.invoice = invoice;
 	}
-
-	@FXML
-    private ComboBox<String> month;
-
-    @FXML
-    private ComboBox<String> year;
     
 	@FXML
 	private Label pageTitle;
@@ -116,14 +110,6 @@ public class PaymentScreenHandler extends BaseScreenHandler implements Initializ
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		final BooleanProperty firstTime = new SimpleBooleanProperty(true); // Variable to store the focus on stage load
-		holderName.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
-            if(newValue && firstTime.get()){
-                content.requestFocus(); // Delegate the focus to container
-                firstTime.setValue(false); // Variable value changed for future references
-            }
-        });
-		this.month.getItems().addAll(Configs.MONTH);
-		this.year.getItems().addAll(Configs.YEARS);
+		
     }
 }
