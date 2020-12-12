@@ -46,12 +46,10 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private Label remainingLabel;
     @FXML
     private Label remainingTime;
-    @FXML
+
     private Bike bike;
     @FXML
     private ImageView urlImage;
-    @FXML
-    private Button rentBike;
     @FXML
     private Button cancel;
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
@@ -64,11 +62,6 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 
     }
 
-    @FXML
-    private void handleClick(MouseEvent event) {
-        System.out.println(event.getX());
-        System.out.println(event.getY());
-    }
 
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();
@@ -105,13 +98,13 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 
     }
 
-    @FXML
-    private void backToHome() {
+
+    public void backToHome() {
         LOGGER.info("home button clicked");
     }
 
     /**
-     * back to previuous screen
+     * back to previous screen
      */
     @FXML
     private void cancelViewBike() {

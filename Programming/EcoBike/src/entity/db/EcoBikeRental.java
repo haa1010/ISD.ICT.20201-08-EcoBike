@@ -32,13 +32,13 @@ public class EcoBikeRental {
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("DB connected");
 
-            return conn;
         } catch (SQLException | ClassNotFoundException var10) {
             System.out.println(var10.getMessage());
-            return conn;
         } finally {
-            ;
+            return conn;
+
         }
+
     }
 
     public static void main(String[] args) {

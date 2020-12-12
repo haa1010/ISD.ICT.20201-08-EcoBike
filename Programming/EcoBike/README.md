@@ -1,4 +1,4 @@
-#  An Internet Media Store
+#  Eco Bike Rental
 <p align="center">
   <img src="assets/images/Logo.png" />
 </p>
@@ -39,7 +39,6 @@ Click on `Run` -> `Run Configurations...`  -> `Java Application`, create a new l
 > `--module-path lib/linux/javafx-sdk-15 --add-modules javafx.controls,javafx.fxml`
 - For Windows:
 > `--module-path lib/win/javafx-sdk-15 --add-modules javafx.controls,javafx.fxml`
-
 ## Author
 - hangtt - TT.CNTT ICT02 K62 
 - huedt  - TT.CNTT ICT02 K62 

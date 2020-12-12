@@ -13,8 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.fxml.ReturnBike">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane maxHeight="-Infinity" prefHeight="70.0" prefWidth="1366.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -53,7 +52,7 @@
                   <Font name="Arial Bold" size="32.0" />
                </font>
             </Text>
-            <ImageView fitHeight="180.0" fitWidth="263.0" layoutX="23.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="83.0">
+            <ImageView fx:id="bikeImage" fitHeight="180.0" fitWidth="263.0" layoutX="23.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="83.0">
                <image>
                   <Image url="@../../../assets/images/bike_preview.png" />
                </image>
@@ -114,42 +113,42 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="29A-1234" GridPane.columnIndex="1">
+                  <Text fx:id="numberPlate" strokeType="OUTSIDE" strokeWidth="0.0" text="29A-1234" GridPane.columnIndex="1">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="123456" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Text fx:id="barcode" strokeType="OUTSIDE" strokeWidth="0.0" text="123456" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Standard E-Bike" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Text fx:id="type" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard E-Bike" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Text fx:id="battery" strokeType="OUTSIDE" strokeWidth="0.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2 hours" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Text fx:id="remainingTime" strokeType="OUTSIDE" strokeWidth="0.0" text="2 hours" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="400,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" text="400,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3 hours" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Text fx:id="rentedTime" strokeType="OUTSIDE" strokeWidth="0.0" text="3 hours" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#4d5deb" strokeType="OUTSIDE" strokeWidth="0.0" text="850,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <Text fx:id="total" fill="#4d5deb" strokeType="OUTSIDE" strokeWidth="0.0" text="850,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
                         <Font name="Arial Bold" size="28.0" />
                      </font>
@@ -158,12 +157,12 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <Button layoutX="502.0" layoutY="662.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
+      <Button fx:id="cancelBtn" layoutX="502.0" layoutY="662.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="724.0" layoutY="662.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
+      <Button fx:id="submitBtn" layoutX="724.0" layoutY="662.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -192,7 +191,7 @@
                      <children>
                         <Pane prefHeight="200.0" prefWidth="400.0">
                            <children>
-                              <TextField disable="true" layoutX="5.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="190.0" text="12/12">
+                              <TextField fx:id="expiration" disable="true" layoutX="5.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="190.0" text="12/12">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -206,7 +205,7 @@
                         </Pane>
                         <Pane prefHeight="200.0" prefWidth="400.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField disable="true" layoutX="5.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="190.0" text="123456">
+                              <TextField fx:id="securityCode" disable="true" layoutX="5.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="190.0" text="123456">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -222,7 +221,7 @@
                   </GridPane>
                   <Pane prefHeight="96.0" prefWidth="407.0">
                      <children>
-                        <TextField disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="Tran Thi Hang">
+                        <TextField fx:id="cardHolder" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="Tran Thi Hang">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>
@@ -236,7 +235,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="400.0" GridPane.rowIndex="1">
                      <children>
-                        <TextField disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="111111111111111111111">
+                        <TextField fx:id="cardNumber" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="111111111111111111111">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -250,7 +249,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="400.0" GridPane.rowIndex="2">
                      <children>
-                        <TextField disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="Vietinbank">
+                        <TextField fx:id="bank" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="Vietinbank">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -269,7 +268,7 @@
                   <Font name="Arial Bold" size="32.0" />
                </font>
             </Text>
-            <Button layoutX="166.0" layoutY="454.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Edit" textFill="WHITE">
+            <Button fx:id="editBtn" layoutX="166.0" layoutY="454.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Edit" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>

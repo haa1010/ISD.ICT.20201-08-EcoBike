@@ -57,9 +57,8 @@ public class StandardElectricBike extends Bike {
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-                Bike bike = setValueBike(res);
-                bike = new StandardElectricBike();
-                StandardElectricBike eBike = (StandardElectricBike) bike;
+
+                StandardElectricBike eBike = setValueBike(res);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
                 return eBike;
@@ -105,7 +104,6 @@ public class StandardElectricBike extends Bike {
             if (res.next()) {
 
                 StandardElectricBike eBike = setValueBike(res);
-
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
 
@@ -127,13 +125,10 @@ public class StandardElectricBike extends Bike {
             ResultSet res = stm.executeQuery(sql);
 
             while (res.next()) {
-                Bike bike = setValueBike(res);
-                bike = new StandardElectricBike();
-                StandardElectricBike eBike = (StandardElectricBike) bike;
+               
+                StandardElectricBike eBike = setValueBike(res);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
-
-
                 allBike.add(eBike);
             }
         } catch (SQLException throwables) {
