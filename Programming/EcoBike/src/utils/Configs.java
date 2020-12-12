@@ -1,5 +1,9 @@
 package utils;
 
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.stream.IntStream;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -49,7 +53,16 @@ public class Configs {
     public static final String RETURN_BIKE_SCREEN_PATH = "/views/fxml/return_bike.fxml";
     public static final String BIKE_INFO = "/views/fxml/bike.fxml";
     public static final String RENT_BIKE_INFO = "/views/fxml/rentingBike.fxml";
+    public static final String BARCODER_SCREEN_PATH = "/views/fxml/barcode.fxml";
+    public static final String RENT_BIKE = "/views/fxml/rent_bike.fxml";
     public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
+    // credit card expires on the last day of the month of that year
+    public static final String MONTH[] = { 
+    		"January", "Febuary", "March", "April",
+    		"May", "June", "July", "August",
+    		"September", "October", "November", "December"
+    };
+    public static final String YEARS[] = Arrays.stream(IntStream.rangeClosed(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.YEAR)+5).toArray()).mapToObj(String::valueOf).toArray(String[]::new);
 
 
 }

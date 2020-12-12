@@ -5,7 +5,7 @@ import java.util.Map;
 
 import controller.PaymentController;
 import common.exception.PlaceOrderException;
-import invoice.Invoice;
+import entity.invoice.Invoice;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

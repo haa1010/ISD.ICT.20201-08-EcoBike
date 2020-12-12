@@ -10,6 +10,17 @@ import entity.bike.Bike;
  */
 public class RentBikeController extends BaseController {
 
+	
+	public Bike validateBarcodeBike(String barcode) throws Exception {
+		Bike tmp;
+		if(!this.validateBarcode(barcode))
+			throw new Exception("Invalid Barcode");
+		tmp = new Bike().getBikeByBarcode(barcode);
+		if(checkAvailableBike(tmp))
+			throw new Exception("Bike has already been rented");
+		return tmp;
+	}
+	
     /**
      * check bike is on any station: if true return true else return false;
      * @param bike
@@ -30,8 +41,9 @@ public class RentBikeController extends BaseController {
      * @author linh
      */
     public boolean validateBarcode(String barcode) {
+    	barcode = barcode.trim();
     	if(barcode == null) return false;
-    	if(barcode.length()!=6) return false;
+    	//if(barcode.length()!=6) return false;
     	// check every character of barcode
 			for(int i = 0; i<barcode.length(); i++){
 				if(!Character.isLetterOrDigit(barcode.charAt(i)))

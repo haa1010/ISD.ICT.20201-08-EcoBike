@@ -27,7 +27,7 @@ public class TwinBike extends Bike {
         bike.setNumRearSeat(res.getInt("numRearSeat"));
         bike.setLicensePlate(res.getString("licensePlate"));
         bike.setNumPedal(res.getInt("numPedal"));
-        bike.setValue(res.getDouble("value"));
+        bike.setValue(res.getInt("value"));
         bike.setCoefficient(res.getInt("coefficientPrice"));
         bike.setUrlImage(res.getString("urlImage"));
         bike.setNumSaddle(res.getInt("numSaddle"));

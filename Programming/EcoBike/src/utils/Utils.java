@@ -34,7 +34,7 @@ public class Utils {
         return hours + " hours " + minutes + " minutes";
     }
 
-    public static String getCurrencyFormat(double num) {
+    public static String getCurrencyFormat(int num) {
         Locale vietname = new Locale("vi", "VN");
         NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietname);
         return defaultFormat.format(num);
