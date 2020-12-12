@@ -14,7 +14,8 @@ public class Invoice {
 			this.contents = "Pay deposit when rent bike "+this.order.getRentedBike().getBarcode();
 		}
 		else {
-			this.amount = order.calculateTotalUptoNow();
+			// full amount = ?
+			this.amount = order.getTotalUpToNow() - order.getDeposit();
 			this.contents = "Pay Rent and Return Deposit";
 		}
 	}
