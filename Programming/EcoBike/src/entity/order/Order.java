@@ -13,8 +13,10 @@ public class Order {
     protected int deposit;
     protected int totalUpToNow;
 
-    void calculateTotalUptoNow() {
-        return;
+    public int calculateTotalUptoNow() {
+    	int total = 0;
+    	
+        return total;
     }
 
     public Bike getRentedBike() {
