@@ -1,3 +1,14 @@
+# LAB 10 - DESIGN CONCEPTS
+## Tasks
+In this lab, we have to review coupling and cohesion level, determine level of the design and update the design and source code corresponding to our proposals.
+
+## Revisions
+Reviewer for each member:
+- Tran Thi Hang  : Duong Thi Hue
+- Pham Nhat Linh : Tran Thi Hang
+- Duong Thi Hue  : Do Minh Thong
+- Do Minh Thong  : Pham Nhat Linh
+----------------------------------
 # LAB 09 - PROGRAMMING
 In this lab, we start implement our design by applying Test Driven Development(TDD), write Javadoc for some of classes and apply a programming style to our codes using Checkstyle.
 

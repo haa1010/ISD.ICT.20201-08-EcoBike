@@ -1,5 +1,4 @@
-package controller;
-
+import controller.PaymentController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -25,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *
  */
 public class PaymentControllerTest {
-    private PaymentController PaymentController;
+    private controller.PaymentController PaymentController;
 
     @BeforeEach
     void setUp() throws Exception {

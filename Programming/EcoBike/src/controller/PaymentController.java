@@ -155,6 +155,8 @@ public class PaymentController extends BaseController {
 	 * @param time
 	 * @return boolean
 	 *
+	 *
+	 */
 	public boolean validateExpirationDate(String time) {
 		try {
 			time = time.trim();
@@ -167,8 +169,7 @@ public class PaymentController extends BaseController {
 			return false;
 		}
 	}
-	*/
-	
+
 	/*
 	 * @linh
 	 * continue to write
