@@ -59,7 +59,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	private TextField bankName;
 
 	/*
-	 * this is for pay order button when return bike
+	 * this is for confirm button when return bike
 	 */
 	void confirmToPayOrder() throws IOException{
 //		String contents = "pay order";

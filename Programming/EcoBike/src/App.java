@@ -1,14 +1,9 @@
-import controller.BaseController;
 import controller.ReturnBikeController;
 import controller.ViewBikeController;
 import entity.bike.Bike;
-import entity.bike.StandardBike;
-import entity.bike.StandardElectricBike;
 import entity.bike.TwinBike;
 import entity.order.Order;
 import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +13,11 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Configs;
-import views.screen.bike.BikeScreenHandler;
 import views.screen.bike.ReturnBikeHandler;
-import views.screen.home.HomeScreenHandler;
+import views.screen.bike.ViewRentingBike;
 
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 public class App extends Application {
 
