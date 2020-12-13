@@ -20,8 +20,8 @@ public class StandardBike extends Bike {
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-
-                return setValueBike(res);
+                StandardElectricBike bike = new StandardElectricBike();
+                return setValueBike(res, bike);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -38,8 +38,8 @@ public class StandardBike extends Bike {
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-
-                return setValueBike(res);
+                StandardElectricBike bike = new StandardElectricBike();
+                return setValueBike(res, bike);
 
             }
         } catch (SQLException throwables) {
@@ -58,8 +58,9 @@ public class StandardBike extends Bike {
 
             while (res.next()) {
 
+                StandardElectricBike bike = new StandardElectricBike();
 
-                allBike.add(setValueBike(res));
+                allBike.add(setValueBike(res, bike));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
