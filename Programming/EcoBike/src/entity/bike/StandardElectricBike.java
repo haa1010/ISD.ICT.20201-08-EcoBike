@@ -58,7 +58,8 @@ public class StandardElectricBike extends Bike {
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
 
-                StandardElectricBike eBike = setValueBike(res);
+                StandardElectricBike bike = new StandardElectricBike();
+                StandardElectricBike eBike = (StandardElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
                 return eBike;
@@ -70,40 +71,17 @@ public class StandardElectricBike extends Bike {
         return null;
     }
 
-    @Override
-    public StandardElectricBike setValueBike(ResultSet res) throws SQLException {
-        StandardElectricBike bike = new StandardElectricBike();
-        bike.setLicensePlate(res.getString("licensePlate"));
-        bike.setId(res.getInt("id"));
-        bike.setNumRearSeat(res.getInt("numRearSeat"));
-        bike.setLicensePlate(res.getString("licensePlate"));
-        bike.setNumPedal(res.getInt("numPedal"));
-        bike.setValue(res.getInt("value"));
-        bike.setCoefficient(res.getInt("coefficientPrice"));
-        bike.setUrlImage(res.getString("urlImage"));
-        bike.setNumSaddle(res.getInt("numSaddle"));
-        bike.setBarcode(res.getString("barcode"));
-        bike.setRenting(res.getBoolean("isRenting"));
-        bike.setType(res.getString("type"));
-        Station station = new Station();
-        station.setId(res.getInt("stationID"));
-        station.setName(res.getString("name"));
-        station.setNumAvailableBike(res.getInt("numAvailableBike"));
-        station.setNumEmptyDockPoint(res.getInt("numEmptyDockPoint"));
-        bike.setStation(station);
-        return bike;
-    }
 
     @Override
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
             String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station natural join ElectricBike where Bike.barcode= " + barcode;
-            Statement stm = EcoBikeRental.getConnection().createStatement();
+            // Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-
-                StandardElectricBike eBike = setValueBike(res);
+                StandardElectricBike bike = new StandardElectricBike();
+                StandardElectricBike eBike = (StandardElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
 
@@ -125,8 +103,9 @@ public class StandardElectricBike extends Bike {
             ResultSet res = stm.executeQuery(sql);
 
             while (res.next()) {
-               
-                StandardElectricBike eBike = setValueBike(res);
+
+                StandardElectricBike bike = new StandardElectricBike();
+                StandardElectricBike eBike = (StandardElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
                 allBike.add(eBike);
