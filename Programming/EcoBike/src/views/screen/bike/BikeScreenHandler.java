@@ -73,7 +73,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         liscensePlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
-        double deposit1 = bike.getValue() * 0.4;
+        int deposit1 = (int) (bike.getValue() * 0.4);
         liscensePlateTitle.setText(bike.getLicensePlate());
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url

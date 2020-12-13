@@ -65,7 +65,6 @@ public class PaymentController extends BaseController {
 		if (strs.length != 2) {
 			throw new InvalidCardException();
 		}
-
 		String expirationDate = null;
 		int month = -1;
 		int year = -1;
@@ -102,18 +101,18 @@ public class PaymentController extends BaseController {
 			String expirationDate, String securityCode, String bankName) {
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
-//		try {
-//			this.card = new Card(cardNumber, cardHolderName, Integer.parseInt(securityCode),
-//					getExpirationDate(expirationDate));
-//
-//			this.interbank = new InterbankSubsystem();
-//			TransactionInfo transaction = interbank.payOrder(card, amount, contents);
-//
-//			result.put("RESULT", "PAYMENT SUCCESSFUL!");
-//			result.put("MESSAGE", "You have succesffully paid the order!");
-//		} catch (PaymentException | UnrecognizedException ex) {
-//			result.put("MESSAGE", ex.getMessage());
-//		}
+		try {
+			this.card = new Card(cardNumber, cardHolderName, Integer.parseInt(securityCode),
+					getExpirationDate(expirationDate));
+
+			this.interbank = new InterbankSubsystem();
+			TransactionInfo transaction = interbank.payOrder(card, amount, contents);
+
+			result.put("RESULT", "PAYMENT SUCCESSFUL!");
+			result.put("MESSAGE", "You have succesffully paid the order!");
+		} catch (PaymentException | UnrecognizedException ex) {
+			result.put("MESSAGE", ex.getMessage());
+		}
 		return result;
 	}
 
@@ -126,6 +125,7 @@ public class PaymentController extends BaseController {
 
 	public boolean validateName(String name) {
 		try {
+			name = name.trim();
 			return ((!name.equals("")) && (name.matches("^[ A-Za-z]+$")));
 		} catch (NullPointerException e) {
 			return false;
@@ -133,14 +133,15 @@ public class PaymentController extends BaseController {
 	}
 
 	/**
-	 * This method validate all number field of Card Information, includes: Card Number and Security Code
+	 * This method validate Security Code/cvvCode
 	 *
 	 * @param number
 	 * @return boolean
 	 */
-	public boolean validateNumberField(String number) {
+	public boolean validateNumberField(String number)  {
 
 		try {
+			number = number.trim();
 			Integer.parseInt(number);
 		} catch (NumberFormatException | NullPointerException e) {
 			return false;
@@ -153,9 +154,10 @@ public class PaymentController extends BaseController {
 	 *
 	 * @param time
 	 * @return boolean
-	 */
+	 *
 	public boolean validateExpirationDate(String time) {
 		try {
+			time = time.trim();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate dateTime = LocalDate.parse(time, formatter);
 			LocalDate now = LocalDate.now();
@@ -164,5 +166,41 @@ public class PaymentController extends BaseController {
 		} catch (DateTimeParseException | NullPointerException e) {
 			return false;
 		}
+	}
+	*/
+	
+	/*
+	 * @linh
+	 * continue to write
+	 */
+	
+	/**
+	 * This method validate cardCode
+	 *
+	 * @param number
+	 * @return boolean
+	 */
+	public boolean validateCardCode(String number) {
+		try {
+			number = number.trim();
+			return ((!number.equals("")) && (number.matches("^[_A-Za-z0-9]*$")));
+		} catch (NumberFormatException | NullPointerException e) {
+			return false;
+		}
+	}
+	public void validateCardInfo(String cardNumber, String holderName, String expirationDate, String securityCode, String bankName) throws Exception {
+		try {
+			String date = this.getExpirationDate(expirationDate);
+		} catch(InvalidCardException e) {
+			throw new Exception("Invalid Expiration Date");
+		}
+		if(!this.validateName(holderName))
+			throw new Exception("Invalid Owner Name");
+		else if(!this.validateName(bankName))
+			throw new Exception("Invalid Bank Name");
+		else if(!this.validateNumberField(securityCode))
+			throw new Exception("Wrong format cvvCode");
+		else if(!this.validateCardCode(cardNumber))
+			throw new Exception("Wrong format code number");
 	}
 }

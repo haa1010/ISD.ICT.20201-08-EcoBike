@@ -1,18 +1,30 @@
+/*
+ * @author linh
+ */
+
 package views.screen.payment;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import controller.PaymentController;
 import common.exception.PlaceOrderException;
-import invoice.Invoice;
+import entity.invoice.Invoice;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import utils.Configs;
 import views.screen.BaseScreenHandler;
 
 import java.io.IOException;
@@ -21,32 +33,13 @@ import java.io.IOException;
 
 public class PaymentScreenHandler extends BaseScreenHandler {
 
-	@FXML
-	private Button btnConfirmPayment;
-
-	@FXML
-	private ImageView loadingImage;
-
 	private Invoice invoice;
-
-	public PaymentScreenHandler(Stage stage, String screenPath, int amount, String contents) throws IOException {
-		super(stage, screenPath);
-	}
 
 	public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
 		super(stage, screenPath);
 		this.invoice = invoice;
-		
-		btnConfirmPayment.setOnMouseClicked(e -> {
-			try {
-				confirmToPayOrder();
-//				((PaymentController) getBController()).emptyCart();
-			} catch (Exception exp) {
-				System.out.println(exp.getStackTrace());
-			}
-		});
 	}
-
+    
 	@FXML
 	private Label pageTitle;
 
@@ -65,6 +58,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	@FXML
 	private TextField bankName;
 
+	/*
+	 * this is for pay order button when return bike
+	 */
 	void confirmToPayOrder() throws IOException{
 //		String contents = "pay order";
 //		PaymentController ctrl = (PaymentController) getBController();
@@ -94,5 +90,45 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 //		resultScreen.setScreenTitle("Result Screen");
 //		resultScreen.show();
 //	}
+	
+	/*
+	 * this is for pay deposit
+	 */
 
+    @FXML
+    void confirmToPayDeposit(MouseEvent event) throws IOException {
+    	String contents = "pay order";
+		PaymentController ctrl = (PaymentController) getBController();
+		try {
+			ctrl.validateCardInfo(cardNumber.getText(), holderName.getText(),
+				expirationDate.getText(), securityCode.getText(), bankName.getText());
+		} catch (Exception e) {
+			notifyError(e.getMessage());
+		}
+		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
+				expirationDate.getText(), securityCode.getText(), bankName.getText());
+
+		BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount());
+		resultScreen.setPreviousScreen(this);
+		resultScreen.setHomeScreenHandler(homeScreenHandler);
+		resultScreen.setScreenTitle("Result Screen");
+		resultScreen.show();
+    }
+    
+    /*
+     * Back to rent bike screen 
+     */
+    @FXML
+    void backToPreviousScreen(MouseEvent event) {
+    		
+    }
+    @FXML
+    private Label errorDisplay;
+    /*
+     * display error
+     */
+    void notifyError(String error) {
+    	errorDisplay.setText(error);
+    }
+    
 }

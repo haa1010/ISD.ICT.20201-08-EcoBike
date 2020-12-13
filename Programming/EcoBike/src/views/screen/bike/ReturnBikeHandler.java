@@ -83,7 +83,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         numberPlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
-        double deposit1 = bike.getValue() * 0.4;
+        int deposit1 = (int)(bike.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url
         String imageSource = bike.getUrlImage();

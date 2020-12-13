@@ -167,7 +167,7 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         liscensePlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
-        double deposit1 = order.getDeposit();
+        int deposit1 = order.getDeposit();
         liscensePlateTitle.setText(bike.getLicensePlate());
         amountUpToNow.setText(Utils.getCurrencyFormat(order.getTotalUpToNow()));
         deposit.setText(Utils.getCurrencyFormat(deposit1));

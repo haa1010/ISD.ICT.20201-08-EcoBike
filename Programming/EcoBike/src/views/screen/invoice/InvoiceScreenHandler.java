@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import common.exception.ProcessInvoiceException;
 import controller.PaymentController;
-import invoice.Invoice;
+import entity.invoice.Invoice;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;

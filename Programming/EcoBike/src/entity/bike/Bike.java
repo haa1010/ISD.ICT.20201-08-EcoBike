@@ -23,7 +23,7 @@ public class Bike {
     protected int numSaddle;
     protected int numRearSeat;
     protected String barcode;
-    protected double value;
+    protected int value;
     protected double coefficient;
     protected Station station;
     protected String urlImage;
@@ -40,7 +40,7 @@ public class Bike {
 
     }
 
-    public Bike(int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode, boolean isRenting, String urlImage, int coefficient) {
+    public Bike(int id, String type, String licensePlate, int value, int numPedal, int numSaddle, int numRearSeat, String barcode, boolean isRenting, String urlImage, int coefficient) {
         this.id = id;
         this.type = type;
         this.licensePlate = licensePlate;
@@ -90,7 +90,7 @@ public class Bike {
         this.barcode = barcode;
     }
 
-    public void setValue(double value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
@@ -138,7 +138,7 @@ public class Bike {
         return barcode;
     }
 
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
@@ -158,7 +158,7 @@ public class Bike {
         bike.setNumRearSeat(res.getInt("numRearSeat"));
         bike.setLicensePlate(res.getString("licensePlate"));
         bike.setNumPedal(res.getInt("numPedal"));
-        bike.setValue(res.getDouble("value"));
+        bike.setValue(res.getInt("value"));
         bike.setCoefficient(res.getInt("coefficientPrice"));
         bike.setUrlImage(res.getString("urlImage"));
         bike.setNumSaddle(res.getInt("numSaddle"));
