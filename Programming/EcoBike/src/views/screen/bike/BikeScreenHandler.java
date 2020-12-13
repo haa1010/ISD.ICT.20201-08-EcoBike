@@ -55,7 +55,6 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
     public BikeScreenHandler(Stage stage, String screenPath, Bike bike) throws IOException {
-
         super(stage, screenPath);
         this.bike = bike;
         setBikeInfo();
@@ -83,7 +82,6 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 // The image is being loaded in the background
         Image image = new Image(imageSource, backgroundLoading);
         urlImage.setImage(image);
-
         if (bike instanceof StandardElectricBike) {
             batteryLabel.setText("Battery percentage");
             int battery = ((StandardElectricBike) bike).getBatteryPercentage();
