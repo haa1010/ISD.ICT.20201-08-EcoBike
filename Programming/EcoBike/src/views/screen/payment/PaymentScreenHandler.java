@@ -31,7 +31,7 @@ import java.io.IOException;
 
 //import entity.invoice.Invoice;
 
-public class PaymentScreenHandler extends BaseScreenHandler implements Initializable {
+public class PaymentScreenHandler extends BaseScreenHandler {
 
 	private Invoice invoice;
 
@@ -96,8 +96,23 @@ public class PaymentScreenHandler extends BaseScreenHandler implements Initializ
 	 */
 
     @FXML
-    void confirmToPayDeposit(MouseEvent event) {
-    	
+    void confirmToPayDeposit(MouseEvent event) throws IOException {
+    	String contents = "pay order";
+		PaymentController ctrl = (PaymentController) getBController();
+		try {
+			ctrl.validateCardInfo(cardNumber.getText(), holderName.getText(),
+				expirationDate.getText(), securityCode.getText(), bankName.getText());
+		} catch (Exception e) {
+			notifyError(e.getMessage());
+		}
+		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
+				expirationDate.getText(), securityCode.getText(), bankName.getText());
+
+		BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount());
+		resultScreen.setPreviousScreen(this);
+		resultScreen.setHomeScreenHandler(homeScreenHandler);
+		resultScreen.setScreenTitle("Result Screen");
+		resultScreen.show();
     }
     
     /*
@@ -107,9 +122,13 @@ public class PaymentScreenHandler extends BaseScreenHandler implements Initializ
     void backToPreviousScreen(MouseEvent event) {
     		
     }
-    
-    @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+    @FXML
+    private Label errorDisplay;
+    /*
+     * display error
+     */
+    void notifyError(String error) {
+    	errorDisplay.setText(error);
     }
+    
 }

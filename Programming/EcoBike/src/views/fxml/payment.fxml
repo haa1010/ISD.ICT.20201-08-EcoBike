@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -108,5 +109,10 @@
             <Font name="Arial" size="24.0" />
          </font>
       </TextField>
+      <Label fx:id="errorDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="477.0" layoutY="604.0" prefHeight="59.0" prefWidth="453.0" text="*Error Display Here" textFill="RED">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

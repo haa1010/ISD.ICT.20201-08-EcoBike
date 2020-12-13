@@ -20,7 +20,7 @@ public class Card {
     private String pin;
     private String bank;
     private String expiration;
-    private double balance;
+    private int balance;
 
     public int getId() {
         return id;
@@ -70,7 +70,7 @@ public class Card {
         this.expiration = expiration;
     }
 
-    public double getBalance() {
+    public int getBalance() {
         return balance;
     }
 
@@ -110,5 +110,22 @@ public class Card {
         }
         return null;
     }
+    
+    /**
+    * redo Card entity use for transaction
+    *
+    * @author linh
+    */
+    private String cardCode;
+	private String owner;
+	private int cvvCode;
+	private String dateExpired;
 
+	public Card(String cardCode, String owner, int cvvCode, String dateExpired) {
+		super();
+		this.cardCode = cardCode;
+		this.owner = owner;
+		this.cvvCode = cvvCode;
+		this.dateExpired = dateExpired;
+	}
 }

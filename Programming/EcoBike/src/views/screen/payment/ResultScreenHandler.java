@@ -10,27 +10,40 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import utils.Utils;
 import views.screen.BaseScreenHandler;
 
-public class ResultScreenHandler extends BaseScreenHandler {
+// This is invoice screen handler
 
-	private String result;
-	private String message;
+public class ResultScreenHandler extends BaseScreenHandler {
 
 	public ResultScreenHandler(Stage stage, String screenPath, String result, String message) throws IOException {
 		super(stage, screenPath);
 		resultLabel.setText(result);
 		messageLabel.setText(message);
 	}
+	
+	public ResultScreenHandler(Stage stage, String screenPath, String result, String message, String username, String contents, int amount) throws IOException {
+		super(stage, screenPath);
+		resultLabel.setText(result);
+		messageLabel.setText(message);
+		this.username.setText(username);
+		this.transaction_detail.setText(contents);
+		this.amount.setText(Utils.getCurrencyFormat(amount));
+	}
+	
+    @FXML
+    private Label username;
 
-	@FXML
-	private Label pageTitle;
+    @FXML
+    private Label transaction_detail;
+
+    @FXML
+    private Label amount;
 
 	@FXML
 	private Label resultLabel;
 
-	@FXML
-	private Button okButton;
 	
 	@FXML
 	private Label messageLabel;
