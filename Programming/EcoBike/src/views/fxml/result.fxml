@@ -44,18 +44,18 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="338.0" layoutY="76.0" prefHeight="71.0" prefWidth="710.0" text="Your Transaction Is Successful">
+      <Label fx:id="resultLabel" alignment="CENTER" layoutX="338.0" layoutY="76.0" prefHeight="71.0" prefWidth="710.0" text="Your Transaction Is Successful">
          <font>
             <Font name="Arial Bold" size="30.0" />
          </font>
       </Label>
       <Rectangle fill="WHITE" height="499.0" layoutX="114.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="1159.0" />
-      <Button fx:id="btnBackToHome" layoutX="583.0" layoutY="688.0" mnemonicParsing="false" onMouseClicked="#backToHome" prefHeight="48.0" prefWidth="221.0" style="-fx-background-color: #4D5DEB;" text="Back To Home" textFill="WHITE">
+      <Button fx:id="confirmPayment" layoutX="583.0" layoutY="688.0" mnemonicParsing="false" onMouseClicked="#backToHome" prefHeight="48.0" prefWidth="221.0" style="-fx-background-color: #4D5DEB;" text="Back To Home" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Label fx:id="TransactionID" alignment="CENTER" layoutX="124.0" layoutY="152.0" prefHeight="48.0" prefWidth="337.0" text="Transaction #420E69">
+      <Label fx:id="messageLabel" alignment="CENTER" layoutX="124.0" layoutY="152.0" prefHeight="48.0" prefWidth="337.0" text="Transaction #420E69">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>
