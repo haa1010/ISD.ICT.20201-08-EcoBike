@@ -1,6 +1,7 @@
 import controller.ReturnBikeController;
 import controller.ViewBikeController;
 import entity.bike.Bike;
+import entity.bike.StandardElectricBike;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -78,7 +79,7 @@ public class App extends Application {
 //					homeHandler.show();
                     Bike bike;
                     try {
-                        bike = new Bike().getBikeById(3);
+                        bike = new StandardElectricBike().getBikeById(3);
                         ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(primaryStage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), bike);
                         returnBikeHandler.show();
                     } catch (SQLException throwables) {
