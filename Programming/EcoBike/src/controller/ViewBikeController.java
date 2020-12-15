@@ -45,13 +45,10 @@ public class ViewBikeController extends BaseController {
 
     }
 
-    
+
     public void returnBike() {
 
     }
 
 
-    public static void main(String[] args) {
-        LocalTime time = LocalTime.now();
-    }
 }
