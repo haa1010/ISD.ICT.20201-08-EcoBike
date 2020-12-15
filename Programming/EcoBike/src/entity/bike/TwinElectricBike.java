@@ -17,40 +17,16 @@ public class TwinElectricBike extends StandardElectricBike {
 
 
     @Override
-    public TwinElectricBike setValueBike(ResultSet res) throws SQLException {
-        TwinElectricBike bike = new TwinElectricBike();
-        bike.setLicensePlate(res.getString("licensePlate"));
-        bike.setId(res.getInt("id"));
-        bike.setNumRearSeat(res.getInt("numRearSeat"));
-        bike.setLicensePlate(res.getString("licensePlate"));
-        bike.setNumPedal(res.getInt("numPedal"));
-        bike.setValue(res.getDouble("value"));
-        bike.setCoefficient(res.getInt("coefficientPrice"));
-        bike.setUrlImage(res.getString("urlImage"));
-        bike.setNumSaddle(res.getInt("numSaddle"));
-        bike.setBarcode(res.getString("barcode"));
-        bike.setRenting(res.getBoolean("isRenting"));
-        bike.setType(res.getString("type"));
-        Station station = new Station();
-        station.setId(res.getInt("stationID"));
-        station.setName(res.getString("name"));
-        station.setNumAvailableBike(res.getInt("numAvailableBike"));
-        station.setNumEmptyDockPoint(res.getInt("numEmptyDockPoint"));
-        bike.setStation(station);
-        return bike;
-    }
-
-    @Override
-    public StandardElectricBike getBikeById(int id) throws SQLException {
+    public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
             String sql = "SELECT * FROM Bike B join natural join Station natural join BikeDetail natural join ElectricBike SEB  where  where type=\"Electric twin bike\" id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-                Bike bike = setValueBike(res);
-                bike = new StandardElectricBike();
-                StandardElectricBike eBike = (StandardElectricBike) bike;
+                TwinElectricBike bike = new TwinElectricBike();
+
+                TwinElectricBike eBike = (TwinElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
                 return eBike;
@@ -71,7 +47,9 @@ public class TwinElectricBike extends StandardElectricBike {
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
 
-                StandardElectricBike eBike = setValueBike(res);
+                TwinElectricBike bike = new TwinElectricBike();
+
+                TwinElectricBike eBike = (TwinElectricBike) setValueBike(res, bike);
 
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
@@ -94,9 +72,8 @@ public class TwinElectricBike extends StandardElectricBike {
             ResultSet res = stm.executeQuery(sql);
 
             while (res.next()) {
-                Bike bike = setValueBike(res);
-                bike = new StandardElectricBike();
-                StandardElectricBike eBike = (StandardElectricBike) bike;
+                TwinElectricBike bike = new TwinElectricBike();
+                TwinElectricBike eBike = (TwinElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
 

@@ -23,7 +23,7 @@ public class Bike {
     protected int numSaddle;
     protected int numRearSeat;
     protected String barcode;
-    protected double value;
+    protected int value;
     protected double coefficient;
     protected Station station;
     protected String urlImage;
@@ -40,7 +40,7 @@ public class Bike {
 
     }
 
-    public Bike(int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode, boolean isRenting, String urlImage, int coefficient) {
+    public Bike(int id, String type, String licensePlate, int value, int numPedal, int numSaddle, int numRearSeat, String barcode, boolean isRenting, String urlImage, int coefficient) {
         this.id = id;
         this.type = type;
         this.licensePlate = licensePlate;
@@ -90,7 +90,7 @@ public class Bike {
         this.barcode = barcode;
     }
 
-    public void setValue(double value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
@@ -138,7 +138,7 @@ public class Bike {
         return barcode;
     }
 
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
@@ -150,14 +150,15 @@ public class Bike {
         return coefficient;
     }
 
-    public Bike setValueBike(ResultSet res) throws SQLException {
-        Bike bike = new Bike();
+    public Bike setValueBike(ResultSet res, Bike bike) throws SQLException {
+
+
         bike.setLicensePlate(res.getString("licensePlate"));
         bike.setId(res.getInt("id"));
         bike.setNumRearSeat(res.getInt("numRearSeat"));
         bike.setLicensePlate(res.getString("licensePlate"));
         bike.setNumPedal(res.getInt("numPedal"));
-        bike.setValue(res.getDouble("value"));
+        bike.setValue(res.getInt("value"));
         bike.setCoefficient(res.getInt("coefficientPrice"));
         bike.setUrlImage(res.getString("urlImage"));
         bike.setNumSaddle(res.getInt("numSaddle"));
@@ -177,11 +178,10 @@ public class Bike {
         try {
             String qId = "\"" + id + "\"";
             String sql = "SELECT * FROM Bike natual join BikeDetail natural join Station  where id=" + qId + ";";
-            Statement stm = EcoBikeRental.getConnection().createStatement();
-            ResultSet res = stm.executeQuery(sql);
+            ResultSet res = this.stm.executeQuery(sql);
             if (res.next()) {
-
-                return setValueBike(res);
+                Bike bike = new Bike();
+                return setValueBike(res, bike);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -195,11 +195,12 @@ public class Bike {
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
-            String sql = "SELECT * FROM Bike natural join BikeDetail where barcode= " + barcode + ";";
-            Statement stm = EcoBikeRental.getConnection().createStatement();
-            ResultSet res = stm.executeQuery(sql);
+            String sql = "SELECT * FROM Bike  natural join Station natural join BikeDetail where barcode= " + barcode + ";";
+            //  Statement stm = EcoBikeRental.getConnection().createStatement();
+            ResultSet res = this.stm.executeQuery(sql);
             if (res.next()) {
-                return setValueBike(res);
+                Bike bike = new Bike();
+                return setValueBike(res, bike);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -211,13 +212,13 @@ public class Bike {
         ArrayList allBike = new ArrayList<>();
         try {
             String sql = "SELECT * FROM Bike natural  joint Station natural join BikeDetail;";
-            Statement stm = EcoBikeRental.getConnection().createStatement();
+
             ResultSet res = stm.executeQuery(sql);
 
             while (res.next()) {
 
-
-                allBike.add(setValueBike(res));
+                Bike bike = new Bike();
+                allBike.add(setValueBike(res, bike));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -236,7 +237,7 @@ public class Bike {
      * @throws SQLException
      */
     public void updateBikeFieldById(String tbname, int id, String column, Object value) throws SQLException {
-        Statement stm = EcoBikeRental.getConnection().createStatement();
+        //   Statement stm = EcoBikeRental.getConnection().createStatement();
         if (value instanceof String) {
             value = "\"" + value + "\"";
         }

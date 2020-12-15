@@ -38,7 +38,7 @@
                   </Text>
                </children>
             </GridPane>
-            <ImageView fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="home" fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/images/home.png" />
                </image>
@@ -88,22 +88,22 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Battery Percentage" GridPane.rowIndex="3">
+                  <Text fx:id="batteryLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Battery Percentage" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remaing Time" GridPane.rowIndex="4">
+                  <Text fx:id="remainingTimeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaing Time" GridPane.rowIndex="6">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit" GridPane.rowIndex="5">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rented Time" GridPane.rowIndex="6">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rented Time" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
@@ -128,22 +128,22 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="battery" strokeType="OUTSIDE" strokeWidth="0.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Text fx:id="battery" strokeType="OUTSIDE" strokeWidth="0.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="remainingTime" strokeType="OUTSIDE" strokeWidth="0.0" text="2 hours" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Text fx:id="remainingTime" strokeType="OUTSIDE" strokeWidth="0.0" text="2 hours" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" text="400,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" text="400,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="rentedTime" strokeType="OUTSIDE" strokeWidth="0.0" text="3 hours" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Text fx:id="rentedTime" strokeType="OUTSIDE" strokeWidth="0.0" text="3 hours" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
@@ -162,7 +162,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="submitBtn" layoutX="724.0" layoutY="662.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
+      <Button fx:id="submitBtn" layoutX="724.0" layoutY="662.0" mnemonicParsing="false" onMouseClicked="#submitReturnBike" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -183,7 +183,6 @@
                   <GridPane GridPane.rowIndex="3">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -191,21 +190,7 @@
                      <children>
                         <Pane prefHeight="200.0" prefWidth="400.0">
                            <children>
-                              <TextField fx:id="expiration" disable="true" layoutX="5.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="190.0" text="12/12">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </TextField>
-                              <Text fill="#201c1c" layoutX="5.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXP Date">
-                                 <font>
-                                    <Font name="Arial Bold" size="24.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="400.0" GridPane.columnIndex="1">
-                           <children>
-                              <TextField fx:id="securityCode" disable="true" layoutX="5.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="190.0" text="123456">
+                              <TextField fx:id="cvvCode" disable="true" layoutX="5.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="190.0" text="123456">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -221,7 +206,7 @@
                   </GridPane>
                   <Pane prefHeight="96.0" prefWidth="407.0">
                      <children>
-                        <TextField fx:id="cardHolder" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="Tran Thi Hang">
+                        <TextField fx:id="owner" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="Tran Thi Hang">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>
@@ -235,7 +220,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="400.0" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="cardNumber" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="111111111111111111111">
+                        <TextField fx:id="cardCode" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="111111111111111111111">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -249,16 +234,20 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="400.0" GridPane.rowIndex="2">
                      <children>
-                        <TextField fx:id="bank" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="Vietinbank">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </TextField>
-                        <Text fill="#201c1c" layoutX="3.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bank Name">
-                           <font>
-                              <Font name="Arial Bold" size="24.0" />
-                           </font>
-                        </Text>
+                        <Pane layoutX="2.0" prefHeight="107.0" prefWidth="393.0">
+                           <children>
+                              <TextField fx:id="dateExpired" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" text="12/12">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </TextField>
+                              <Text fill="#201c1c" layoutX="3.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date">
+                                 <font>
+                                    <Font name="Arial Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
                      </children>
                   </Pane>
                </children>
@@ -268,7 +257,7 @@
                   <Font name="Arial Bold" size="32.0" />
                </font>
             </Text>
-            <Button fx:id="editBtn" layoutX="166.0" layoutY="454.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Edit" textFill="WHITE">
+            <Button fx:id="editBtn" layoutX="166.0" layoutY="454.0" mnemonicParsing="false" onMouseClicked="#moveToPaymentScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Edit" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>

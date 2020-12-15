@@ -4,6 +4,11 @@ import entity.bike.Bike;
 import entity.station.Station;
 import entity.transaction.Card;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+
 
 public class ReturnBikeController extends BaseController {
 
@@ -48,6 +53,16 @@ public class ReturnBikeController extends BaseController {
             return false;
         }
         return false;
+    }
+
+    public int calculateAmount(double coefficient, LocalDateTime start) {
+        Duration dur = Duration.between(start, LocalDateTime.now());
+        long minutes = dur.toMinutes();
+        if (minutes <= 10) return 0;
+        if (minutes <= 30) return (int) (10000 * coefficient);
+        
+        return (int) (10000 + (Math.ceil((minutes - 30) / 15) * 3000) * coefficient);
+
     }
 }
 

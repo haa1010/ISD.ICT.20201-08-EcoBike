@@ -3,12 +3,16 @@ package views.screen;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 import controller.BaseController;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utils.Utils;
+import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
 
 public class BaseScreenHandler extends FXMLScreenHandler {
@@ -19,6 +23,12 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     protected HomeScreenHandler homeScreenHandler;
     protected Hashtable<String, String> messages;
     private BaseController bController;
+
+    public Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+
+    public void backToHome() {
+        LOGGER.info("home button clicked");
+    }
 
     private BaseScreenHandler(String screenPath) throws IOException {
         super(screenPath);

@@ -1,9 +1,8 @@
-import controller.BaseController;
 import controller.ReturnBikeController;
 import controller.ViewBikeController;
 import entity.bike.Bike;
-import entity.bike.StandardBike;
 import entity.bike.StandardElectricBike;
+import entity.order.Order;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -16,10 +15,13 @@ import javafx.util.Duration;
 import utils.Configs;
 import views.screen.bike.BikeScreenHandler;
 import views.screen.bike.ReturnBikeHandler;
+import views.screen.bike.ViewRentingBike;
 import views.screen.home.HomeScreenHandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class App extends Application {
 
@@ -57,13 +59,15 @@ public class App extends Application {
             // After fade out, load actual content
             fadeOut.setOnFinished((e) -> {
                 try {
-//                    StandardElectricBike stde = new StandardElectricBike();
-//                    ViewBikeController viewBikeController = new ViewBikeController(stde.getBikeByBarcode("STEB01"));
-//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO, stde.getBikeByBarcode("STEB01"));
+                    //  Bike stde = new Bike().getBikeByBarcode("STEB01");
+
+//                    Bike stde = new Bike().getBikeByBarcode("STEB01");
+//                    ViewBikeController viewBikeController = new ViewBikeController(stde);
+//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH, stde);
 //                    bikeScreenHandler.setScreenTitle("View bike");
 //                    bikeScreenHandler.setBController(viewBikeController);
 //                    bikeScreenHandler.show();
-
+                    //Show home screen after splash screen
                     try {
                         HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
                         homeHandler.setScreenTitle("Home Screen");
@@ -75,6 +79,24 @@ public class App extends Application {
 //                    Bike bike;
 //                    try {
 //                        bike = new Bike().getBikeById(3);
+
+                    // Test rent bike
+//                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
+//
+//                    Order order = new Order(stde, LocalDateTime.now());
+//                    ViewBikeController viewBikeController = new ViewBikeController(stde);
+//                    ViewRentingBike viewRentingBike = new ViewRentingBike(primaryStage, Configs.RENT_BIKE_INFO_PATH, order);
+//                    viewRentingBike.setScreenTitle("View bike");
+//                    viewRentingBike.setBController(viewBikeController);
+//                    viewRentingBike.show();
+
+//					HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN_PATH);
+//					homeHandler.setScreenTitle("Home Screen");
+//					homeHandler.setImage();
+//					homeHandler.show();
+//                    Bike bike;
+//                    try {
+//                        bike = new StandardElectricBike().getBikeById(3);
 //                        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(primaryStage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), bike);
 //                        returnBikeHandler.show();
 //                    } catch (SQLException throwables) {
@@ -89,4 +111,7 @@ public class App extends Application {
         }
     }
 
+    ;
 }
+
+

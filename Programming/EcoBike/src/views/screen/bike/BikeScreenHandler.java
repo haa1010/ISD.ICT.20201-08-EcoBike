@@ -46,29 +46,21 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private Label remainingLabel;
     @FXML
     private Label remainingTime;
-    @FXML
+
     private Bike bike;
     @FXML
     private ImageView urlImage;
-    @FXML
-    private Button rentBike;
     @FXML
     private Button cancel;
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
     public BikeScreenHandler(Stage stage, String screenPath, Bike bike) throws IOException {
-
         super(stage, screenPath);
         this.bike = bike;
         setBikeInfo();
 
     }
 
-    @FXML
-    private void handleClick(MouseEvent event) {
-        System.out.println(event.getX());
-        System.out.println(event.getY());
-    }
 
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();
@@ -81,7 +73,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         liscensePlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
-        double deposit1 = bike.getValue() * 0.4;
+        int deposit1 = (int) (bike.getValue() * 0.4);
         liscensePlateTitle.setText(bike.getLicensePlate());
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url
@@ -90,7 +82,6 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 // The image is being loaded in the background
         Image image = new Image(imageSource, backgroundLoading);
         urlImage.setImage(image);
-
         if (bike instanceof StandardElectricBike) {
             batteryLabel.setText("Battery percentage");
             int battery = ((StandardElectricBike) bike).getBatteryPercentage();
@@ -105,8 +96,8 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 
     }
 
-    @FXML
-    private void backToHome() {
+
+    public void backToHome() {
         LOGGER.info("home button clicked");
     }
 
