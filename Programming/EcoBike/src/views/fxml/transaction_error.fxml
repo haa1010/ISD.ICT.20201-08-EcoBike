@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="405.0" prefWidth="930.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.fxml.TransactionError">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="23.0" layoutY="14.0" prefHeight="67.0" prefWidth="433.0">
         <columnConstraints>
@@ -34,22 +34,22 @@
             </ImageView>
          </children>
       </GridPane>
-      <Text fill="#ed1a1a" layoutX="233.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Transaction Is Failed!">
+      <Text fill="#ed1a1a" layoutX="347.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Transaction Is Failed!">
          <font>
-            <Font name="Arial Bold" size="40.0" />
+            <Font name="Arial Bold" size="56.0" />
          </font>
       </Text>
-      <Button layoutX="305.0" layoutY="321.0" mnemonicParsing="false" style="-fx-background-color: #EB4D55;" text="Change Card Information" textFill="WHITE">
+      <Button layoutX="489.0" layoutY="578.0" mnemonicParsing="false" onMouseClicked="#moveToPaymentScreen" style="-fx-background-color: #EB4D55;" text="Change Card Information" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="24.0" />
+            <Font name="Arial Bold" size="32.0" />
          </font>
       </Button>
-      <Label layoutX="238.0" layoutY="179.0" prefHeight="50.0" prefWidth="505.0" text="Insufficient account balance. " textOverrun="CLIP">
+      <Label fx:id="message" layoutX="355.0" layoutY="263.0" prefHeight="185.0" prefWidth="931.0" text="Insufficient account balance. " textOverrun="CLIP">
          <font>
-            <Font name="Arial Bold" size="36.0" />
+            <Font name="Arial Bold" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="240.0" layoutY="248.0" text="Please try again!">
+      <Label layoutX="559.0" layoutY="453.0" text="Please try again!">
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font>

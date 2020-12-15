@@ -60,7 +60,7 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
     		throw new Exception();
     	}
     	
-    	BaseScreenHandler rent = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE, rentByBarcode);
+    	BaseScreenHandler rent = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, rentByBarcode);
     	rent.setPreviousScreen(this);
     	rent.setHomeScreenHandler(homeScreenHandler);
     	rent.setScreenTitle("Rent Bike Screen");

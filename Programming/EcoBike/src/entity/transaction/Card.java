@@ -14,79 +14,42 @@ import java.sql.Statement;
  */
 
 public class Card {
-    private int id;
-    private String securityCode;
-    private String name;
-    private String pin;
-    private String bank;
-    private String expiration;
-    private int balance;
+    private String cvvCode;
+    private String owner;
+    private String cardCode;
+    private String dateExpired;
 
-    public int getId() {
-        return id;
+    public String getCvvCode() {
+        return cvvCode;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getSecurityCode() {
-        return securityCode;
-    }
-
-    public void setSecurityCode(String securityCode) {
-        this.securityCode = securityCode;
+    public void setCvvCode(String cvvCode) {
+        this.cvvCode = cvvCode;
     }
 
     public String getName() {
-        return name;
+        return owner;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.owner = name;
     }
 
-    public String getPin() {
-        return pin;
+    public String getCardCode() {
+        return cardCode;
     }
 
-    public void setPin(String pin) {
-        this.pin = pin;
-    }
-
-    public String getBank() {
-        return bank;
-    }
-
-    public void setBank(String bank) {
-        this.bank = bank;
-    }
-
-    public String getExpiration() {
-        return expiration;
-    }
-
-    public void setExpiration(String expiration) {
-        this.expiration = expiration;
-    }
-
-    public int getBalance() {
-        return balance;
-    }
-
-    public void setBalance() {
-//		 query with interbank to set balance
-//		this.balance = balance;
+    public void setCardCode(String cardCode) {
+        this.cardCode = cardCode;
     }
 
 
-    public Card(int id, String securityCode, String name, String pin, String bank, String expiration) {
-        this.id = id;
-        this.securityCode = securityCode;
-        this.name = name;
-        this.pin = pin;
-        this.bank = bank;
-        this.expiration = expiration;
+    public String getDateExpired() {
+        return dateExpired;
+    }
+
+    public void setDateExpired(String expiration) {
+        this.dateExpired = expiration;
     }
 
 
@@ -96,13 +59,11 @@ public class Card {
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-                int id = res.getInt("id");
-                String name = res.getString("name");
-                String bank = res.getString("bankName");
-                String securityCode = res.getString("securityCode");
-                String pin = res.getString("pin");
-                String expiration = res.getString("expiration");
-                Card card = new Card(id, securityCode, name, pin, bank, expiration);
+                String name = res.getString("owner");
+                String securityCode = res.getString("cvvCode");
+                String pin = res.getString("cardCode");
+                String expiration = res.getString("dateExpired");
+                Card card = new Card(securityCode, name, pin, expiration);
                 return card;
             }
         } catch (SQLException e) {
@@ -110,19 +71,9 @@ public class Card {
         }
         return null;
     }
-    
-    /**
-    * redo Card entity use for transaction
-    *
-    * @author linh
-    */
-    private String cardCode;
-	private String owner;
-	private int cvvCode;
-	private String dateExpired;
 
-	public Card(String cardCode, String owner, int cvvCode, String dateExpired) {
-		super();
+
+	public Card(String cardCode, String owner, String cvvCode, String dateExpired) {
 		this.cardCode = cardCode;
 		this.owner = owner;
 		this.cvvCode = cvvCode;

@@ -102,7 +102,7 @@ public class PaymentController extends BaseController {
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
 		try {
-			this.card = new Card(cardNumber, cardHolderName, Integer.parseInt(securityCode),
+			this.card = new Card(cardNumber, cardHolderName, securityCode,
 					getExpirationDate(expirationDate));
 
 			this.interbank = new InterbankSubsystem();
