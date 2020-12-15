@@ -45,7 +45,6 @@ public class Configs {
 
     public static String CURRENCY = "VND";
     public static float PERCENT_VAT = 10;
-
     // static resource
     public static final String IMAGE_PATH = "assets/images";
     public static final String RESULT_SCREEN_PATH = "/views/fxml/result.fxml";
@@ -62,10 +61,10 @@ public class Configs {
 
     public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
     // credit card expires on the last day of the month of that year
-    public static final String MONTH[] = { 
-    		"January", "Febuary", "March", "April",
-    		"May", "June", "July", "August",
-    		"September", "October", "November", "December"
+    public static final String MONTH[] = {
+            "January", "Febuary", "March", "April",
+            "May", "June", "July", "August",
+            "September", "October", "November", "December"
     };
 
 
@@ -80,7 +79,7 @@ public class Configs {
         put("7", "Invalid amount");
     }};
 
-    public static final String YEARS[] = Arrays.stream(IntStream.rangeClosed(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.YEAR)+5).toArray()).mapToObj(String::valueOf).toArray(String[]::new);
+    public static final String YEARS[] = Arrays.stream(IntStream.rangeClosed(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.YEAR) + 5).toArray()).mapToObj(String::valueOf).toArray(String[]::new);
 
 
 }

@@ -22,6 +22,7 @@ import views.screen.BaseScreenHandler;
 import java.io.IOException;
 import java.net.URL;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
@@ -58,7 +59,7 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     @FXML
     private Label seconds;
     private Order order;
-    private LocalTime startAt;
+    private Integer startAt;
     @FXML
     private ImageView pause;
 
@@ -113,10 +114,10 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         this.bike = order.getRentedBike();
         this.order = order;
         setBikeInfo();
-        int hour = (int) ChronoUnit.HOURS.between(order.getStart(), LocalTime.now());
-        int minute = (int) ChronoUnit.MINUTES.between(order.getStart(), LocalTime.now());
-        int second = (int) ChronoUnit.SECONDS.between(order.getStart(), LocalTime.now());
-        LocalTime start = LocalTime.of(hour, minute, second);
+        int hour = (int) ChronoUnit.HOURS.between(order.getStart(), LocalDateTime.now());
+        int minute = (int) ChronoUnit.MINUTES.between(order.getStart(), LocalDateTime.now());
+        int second = (int) ChronoUnit.SECONDS.between(order.getStart(), LocalDateTime.now());
+        int start = hour * 3600 + minute * 60 + second;
         this.startAt = start;
         Timeline animation = new Timeline(
                 new KeyFrame(Duration.seconds(1), ev -> {
@@ -143,20 +144,32 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     }
 
 
-    public LocalTime getStartAt() {
+    public Integer getStartAt() {
         return startAt;
     }
 
-    public void setStartAt(LocalTime startAt) {
+    public void setStartAt(Integer startAt) {
         this.startAt = startAt;
     }
 
     public void setTimeCounting() {
-        LocalTime newTime = this.getStartAt().plusSeconds(1);
-        hours.setText(String.valueOf(newTime.getHour()));
-        minutes.setText(String.valueOf(newTime.getMinute()));
-        seconds.setText(String.valueOf(newTime.getSecond()));
-        this.setStartAt(newTime);
+        int hour = this.getStartAt() / 3600;
+        int minute = (this.getStartAt() - hour * 3600) / 60;
+        int second = this.getStartAt() - hour * 3600 - minute * 60;
+        if (second < 59) second += 1;
+        else {
+            second = 0;
+            if (minute < 59) minute += 1;
+            else {
+                hour += 1;
+                minute = 0;
+            }
+        }
+        hours.setText(String.valueOf(hour));
+        minutes.setText(String.valueOf(minute));
+        seconds.setText(String.valueOf(second));
+        int newStart = hour * 3600 + minute * 60 + second;
+        this.setStartAt(newStart);
     }
 
 

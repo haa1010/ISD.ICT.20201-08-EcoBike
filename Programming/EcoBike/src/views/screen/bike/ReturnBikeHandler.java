@@ -25,6 +25,7 @@ import views.screen.payment.PaymentScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.logging.Logger;
 
@@ -92,7 +93,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         numberPlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
-        int deposit1 = (int)(bike.getValue() * 0.4);
+        int deposit1 = (int) (bike.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url
         String imageSource = bike.getUrlImage();
@@ -115,7 +116,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException {
-        Order order = new Order(bike, LocalTime.now());
+        Order order = new Order(bike, LocalDateTime.now());
         Invoice invoice = new Invoice(order);
         BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
         payment.setBController(new PaymentController());
@@ -133,7 +134,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     @FXML
-    void submitReturnBike (MouseEvent event) throws IOException {
+    void submitReturnBike(MouseEvent event) throws IOException {
 
         // call API if success display invoice screen
 
@@ -144,16 +145,17 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         String errorMessage;
         errorMessage = Configs.errorCodes.get(errorCode);
 
-        Order order = new Order(bike, LocalTime.now());
+        Order order = new Order(bike, LocalDateTime.now());
         Invoice invoice = new Invoice(order);
 
-        TransactionErrorScreenHandler tes  = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, errorMessage, invoice);
+        TransactionErrorScreenHandler tes = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, errorMessage, invoice);
         tes.setPreviousScreen(this);
-        tes.setBController( new ReturnBikeController());
+        tes.setBController(new ReturnBikeController());
         tes.setHomeScreenHandler(homeScreenHandler);
         tes.setScreenTitle("Transaction Error Screen");
         tes.show();
     }
+
     @FXML
     void backToHome(MouseEvent event) throws IOException {
         HomeScreenHandler homeScreenHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
