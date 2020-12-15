@@ -75,5 +75,4 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
         this.homeScreenHandler = HomeScreenHandler;
     }
-
 }

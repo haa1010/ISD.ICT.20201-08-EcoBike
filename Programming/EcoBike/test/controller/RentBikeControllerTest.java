@@ -18,7 +18,6 @@ public class RentBikeControllerTest {
         rentBikeController = new RentBikeController();
     }
 
-
     @ParameterizedTest
     @CsvSource({
             "true,true",
@@ -32,7 +31,6 @@ public class RentBikeControllerTest {
         assertEquals(expected, valid);
 
     }
-
 
     @ParameterizedTest
     @CsvSource({
