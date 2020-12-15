@@ -73,9 +73,8 @@ public class InterbankSubsystemController {
 		if (response == null)
 			return null;
 		MyMap transaction = (MyMap) response.get("transaction");
-		Card card = new Card(Integer.parseInt((String) transaction.get("id")), (String) transaction.get("securityCode"),
-				(String) transaction.get("name"), (String) transaction.get("pin"), (String) transaction.get("bankName"),
-				(String) transaction.get("expiration") );
+		Card card = new Card( (String) transaction.get("cvvCode"),
+				(String) transaction.get("owner"), (String) transaction.get("cardCode"), (String) transaction.get("dateExpired") );
 		TransactionInfo trans = new TransactionInfo((String) response.get("errorCode"), card,
 				(String) transaction.get("transactionId"), (String) transaction.get("transactionContent"),
 				Integer.parseInt((String) transaction.get("amount")), (String) transaction.get("createdAt"));

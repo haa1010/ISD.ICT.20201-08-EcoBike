@@ -50,7 +50,7 @@ public class StandardElectricBike extends Bike {
     }
 
     @Override
-    public StandardElectricBike getBikeById(int id) throws SQLException {
+    public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
             String sql = "SELECT * FROM Bike B join natural join Station natural join BikeDetail natural join ElectricBike SEB  where id=" + qId + ";";
