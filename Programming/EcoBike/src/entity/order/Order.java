@@ -2,20 +2,21 @@ package entity.order;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import entity.bike.Bike;
 
 public class Order {
     protected Bike rentedBike;
-    protected LocalTime start;
-    protected LocalTime end;
+    protected LocalDateTime start;
+    protected LocalDateTime end;
     protected int deposit;
     protected int totalUpToNow;
 
     public int calculateTotalUptoNow() {
-    	int total = 0;
-    	
+        int total = 0;
+
         return total;
     }
 
@@ -23,11 +24,11 @@ public class Order {
         return rentedBike;
     }
 
-    public LocalTime getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public LocalTime getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
@@ -43,11 +44,11 @@ public class Order {
         this.rentedBike = rentedBike;
     }
 
-    public void setStart(LocalTime start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public void setEnd(LocalTime end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 
@@ -59,14 +60,14 @@ public class Order {
         this.totalUpToNow = totalUpToNow;
     }
 
-    public Order(Bike rentedBike, LocalTime start) {
+    public Order(Bike rentedBike, LocalDateTime start) {
         this.rentedBike = rentedBike;
-        this.deposit = (int)(rentedBike.getValue() * 0.4);
+        this.deposit = (int) (rentedBike.getValue() * 0.4);
         this.start = start;
         this.totalUpToNow = 15000;
     }
 
-    public Order(Bike rentedBike, LocalTime start, LocalTime end, int deposit, int totalUpToNow) {
+    public Order(Bike rentedBike, LocalDateTime start, LocalDateTime end, int deposit, int totalUpToNow) {
         this.rentedBike = rentedBike;
         this.start = start;
         this.end = end;

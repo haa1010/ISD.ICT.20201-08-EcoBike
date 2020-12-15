@@ -17,7 +17,7 @@ public class TwinElectricBike extends StandardElectricBike {
 
 
     @Override
-    public StandardElectricBike getBikeById(int id) throws SQLException {
+    public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
             String sql = "SELECT * FROM Bike B join natural join Station natural join BikeDetail natural join ElectricBike SEB  where  where type=\"Electric twin bike\" id=" + qId + ";";
