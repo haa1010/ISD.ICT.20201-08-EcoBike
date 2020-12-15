@@ -1,4 +1,4 @@
-package views.screen.bike;
+package views.screen.returnbike;
 
 import controller.BaseController;
 import controller.PaymentController;
@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
+import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
@@ -73,7 +74,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Bike bike;
     private Card card;
 
-    private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+    private static Logger LOGGER = Utils.getLogger(ReturnBikeHandler.class.getName());
 
     public ReturnBikeHandler(Stage stage, String screenPath, BaseController bController, Bike bike) throws IOException {
         super(stage, screenPath);
