@@ -4,10 +4,9 @@ import java.io.IOException;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -15,7 +14,7 @@ import utils.Configs;
 import views.screen.BaseScreenHandler;
 
 
-public class PopupScreen extends BaseScreenHandler{
+public class PopupHomeScreen extends BaseScreenHandler{
     
 
     @FXML
@@ -24,13 +23,25 @@ public class PopupScreen extends BaseScreenHandler{
     @FXML
     Label message;
 
+    @FXML
+    Label address;
+
+    @FXML
+    Label distance;
+
+    @FXML
+    Label estimatedTime;
+
+    @FXML
+    Button back;
+
     
-    public PopupScreen(Stage stage) throws IOException{
-        super(stage, Configs.POPUP_PATH);
+    public PopupHomeScreen(Stage stage) throws IOException{
+        super(stage, Configs.POPUP_HOME_PATH);
     }
 
-    private static PopupScreen popup(String message, String imagepath, Boolean undecorated) throws IOException{
-        PopupScreen popup = new PopupScreen(new Stage());
+    private static PopupHomeScreen popup(String message, String imagepath, Boolean undecorated) throws IOException{
+        PopupHomeScreen popup = new PopupHomeScreen(new Stage());
         if (undecorated) popup.stage.initStyle(StageStyle.UNDECORATED);
         popup.message.setText(message);
         popup.setImage(imagepath);
@@ -45,7 +56,7 @@ public class PopupScreen extends BaseScreenHandler{
         popup(message, Configs.IMAGE_PATH + "/" + "tickerror.png", false).show(false);
     }
 
-    public static PopupScreen loading(String message) throws IOException{
+    public static PopupHomeScreen loading(String message) throws IOException{
         return popup(message, Configs.IMAGE_PATH + "/" + "loading.gif", true);
     }
 

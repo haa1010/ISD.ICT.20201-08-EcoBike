@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="javafx-sdk-151">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/EcoBike/lib/win/javafx-sdk-15" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

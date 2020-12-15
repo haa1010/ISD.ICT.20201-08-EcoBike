@@ -31,22 +31,29 @@ public class Bike {
     public Bike() throws SQLException {
         stm = EcoBikeRental.getConnection().createStatement();
     }
-public Bike(int id, String licensePlate, String barcode) {
-    this.id = id;
-    this.licensePlate = licensePlate;
-    this.barcode = barcode;
 
-}
-    public Bike(int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode) {
+    public Bike(int id, String licensePlate, String barcode, String type) {
+        this.id = id;
+        this.licensePlate = licensePlate;
+        this.barcode = barcode;
+        this.type = type;
+
+    }
+
+    public Bike(int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode, boolean isRenting, String urlImage, int coefficient) {
         this.id = id;
         this.type = type;
         this.licensePlate = licensePlate;
         this.numPedal = numPedal;
         this.numSaddle = numSaddle;
         this.numRearSeat = numRearSeat;
+        this.coefficient = coefficient;
         this.barcode = barcode;
         this.value = value;
+        this.isRenting = isRenting;
+        this.urlImage = urlImage;
     }
+
     public boolean isRenting() {
         return isRenting;
     }
@@ -54,6 +61,7 @@ public Bike(int id, String licensePlate, String barcode) {
     public void setRenting(boolean renting) {
         isRenting = renting;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -82,7 +90,7 @@ public Bike(int id, String licensePlate, String barcode) {
         this.barcode = barcode;
     }
 
-   public void setValue(double value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
@@ -142,79 +150,85 @@ public Bike(int id, String licensePlate, String barcode) {
         return coefficient;
     }
 
-
-    public Bike getBikeById(int id) throws SQLException{
-        try {
-           String qId = "\"" + id + "\"";
-        String sql = "SELECT * FROM Bike where id="+qId+";";
-        Statement stm = EcoBikeRental.getConnection().createStatement();
-        ResultSet res = stm.executeQuery(sql);
-        if(res.next()) {
-            return  null;
-
-
-//                return new Bike()
-//                        .setLicensePlate(res.getString("licensePlate"))
-//                        .setId(res.getInt("id"))
-//                        .setStation(new Station().getStationById(res.getInt("stationID"))
-//                                .setIsRenting(res.getBoolean("isRenting"))
-//                         .setBarcode(res.getString("barcode"))
-//                        .setType(res.getString("type"));
-        }} catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-
-        return null;
-
+    public Bike setValueBike(ResultSet res) throws SQLException {
+        Bike bike = new Bike();
+        bike.setLicensePlate(res.getString("licensePlate"));
+        bike.setId(res.getInt("id"));
+        bike.setNumRearSeat(res.getInt("numRearSeat"));
+        bike.setLicensePlate(res.getString("licensePlate"));
+        bike.setNumPedal(res.getInt("numPedal"));
+        bike.setValue(res.getDouble("value"));
+        bike.setCoefficient(res.getInt("coefficientPrice"));
+        bike.setUrlImage(res.getString("urlImage"));
+        bike.setNumSaddle(res.getInt("numSaddle"));
+        bike.setBarcode(res.getString("barcode"));
+        bike.setRenting(res.getBoolean("isRenting"));
+        bike.setType(res.getString("type"));
+        Station station = new Station();
+        station.setId(res.getInt("stationID"));
+        station.setName(res.getString("name"));
+        station.setNumAvailableBike(res.getInt("numAvailableBike"));
+        station.setNumEmptyDockPoint(res.getInt("numEmptyDockPoint"));
+        bike.setStation(station);
+        return bike;
     }
-    public Bike getBikeByBarcode(String barcode)throws SQLException{
+
+    public Bike getBikeById(int id) throws SQLException {
         try {
-            barcode = "\"" + barcode + "\"";
-            String sql = "SELECT * FROM Bike where barcode= "+ barcode +";";
+            String qId = "\"" + id + "\"";
+            String sql = "SELECT * FROM Bike natual join BikeDetail natural join Station  where id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
-            if(res.next()) {
+            if (res.next()) {
 
-            return null;
-//                return new Bike()
-//                        .setLicensePlate(res.getString("licensePlate"))
-//                        .setId(res.getInt("id"))
-//                        .setStation(new Station().getStationById(res.getInt("stationID"))
-//                                .setBarcode(res.getString("barcode"))
-//.setIsRenting(res.getBoolean("isRenting"))
-//                                .setType(res.getString("type"));
-            }} catch (SQLException throwables) {
+                return setValueBike(res);
+            }
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         return null;
+
     }
-    public List getAllBike() throws SQLException{
+
+
+    public Bike getBikeByBarcode(String barcode) throws SQLException {
+        try {
+            barcode = "\"" + barcode + "\"";
+            String sql = "SELECT * FROM Bike natural join BikeDetail where barcode= " + barcode + ";";
+            Statement stm = EcoBikeRental.getConnection().createStatement();
+            ResultSet res = stm.executeQuery(sql);
+            if (res.next()) {
+                return setValueBike(res);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
-       try{ String sql = "SELECT * FROM Bike ;";
-        Statement stm = EcoBikeRental.getConnection().createStatement();
-        ResultSet res = stm.executeQuery(sql);
+        try {
+            String sql = "SELECT * FROM Bike natural  joint Station natural join BikeDetail;";
+            Statement stm = EcoBikeRental.getConnection().createStatement();
+            ResultSet res = stm.executeQuery(sql);
 
-        while(res.next()) {
+            while (res.next()) {
 
-//Bike bike= new Bike()
-//.setLicensePlate(res.getString("licensePlate"))
-//                    .setId(res.getInt("id"))
-//                    .setStation(new Station().getStationById(res.getInt("stationID"))
-//                            .setBarcode(res.getString("barcode"))
-//                            .setStation(new Station().getStationById(res.getInt("stationID"))
-//                                    .setIsRenting(res.getBoolean("isRenting"))
-//                                    .setType(res.getString("type"));
-//                    allBike.add(bike);
-        }} catch (SQLException throwables) {
-        throwables.printStackTrace();
-    }
+
+                allBike.add(setValueBike(res));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         return allBike;
     }
 
     /**
      * update row in table
+     *
      * @param tbname
      * @param id
      * @param column
@@ -223,19 +237,14 @@ public Bike(int id, String licensePlate, String barcode) {
      */
     public void updateBikeFieldById(String tbname, int id, String column, Object value) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
-        if (value instanceof String){
+        if (value instanceof String) {
             value = "\"" + value + "\"";
         }
         stm.executeUpdate(" update " + tbname + " set" + " "
                 + column + "=" + value + " "
                 + "where id=" + id + ";");
     }
-    public void insertBike(Bike  bike){
-//        Statement stm = EcoBikeRental.getConnection().createStatement();
-//        stm.executeUpdate(" insert into " + Bike + " values(" +
-//                + bike.get + "=" + value + " "
-//                + "where id=" + id + ";");
-    }
+
 
     @Override
     public String toString() {
@@ -247,15 +256,6 @@ public Bike(int id, String licensePlate, String barcode) {
                 ", urlImage='" + urlImage + "'" +
                 "}";
     }
-    public void setBikeInfo(int id, String type, String licensePlate, double value, int numPedal, int numSaddle, int numRearSeat, String barcode) {
-        this.id = id;
-        this.type = type;
-        this.licensePlate = licensePlate;
-        this.numPedal = numPedal;
-        this.numSaddle = numSaddle;
-        this.numRearSeat = numRearSeat;
-        this.barcode = barcode;
-        this.value = value;
-    }
+
 
 }
