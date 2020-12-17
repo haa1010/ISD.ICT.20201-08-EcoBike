@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 
 /**
  * @author nguyenlm Contains the configs for AIMS Project
@@ -62,8 +59,7 @@ public class Configs {
     public static final String BARCODER_SCREEN_PATH = "/views/fxml/barcode.fxml";
     public static final String RENT_BIKE_PATH = "/views/fxml/rent_bike.fxml";
     public static final String HOME_SCREEN_PATH = "/views/fxml/home.fxml";
-    public static final String BIKE_INFO = "/views/fxml/BikeInfo.fxml";
-    public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
+    public static final String BIKE_INFO = "/views/fxml/bike_info.fxml";
     // credit card expires on the last day of the month of that year
     public static final String MONTH[] = {
             "January", "Febuary", "March", "April",
