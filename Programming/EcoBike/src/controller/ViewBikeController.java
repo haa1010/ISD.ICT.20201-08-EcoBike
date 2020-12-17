@@ -58,7 +58,6 @@ public class ViewBikeController extends BaseController {
             return new TwinElectricBike().getBikeById(id);
         }
         return null;
-
     }
 
     public Bike viewBikeInfoById(int id) throws SQLException {

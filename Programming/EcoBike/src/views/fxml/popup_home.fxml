@@ -6,11 +6,11 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="634.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.screen.home.HomeScreenHandler">
+<AnchorPane prefHeight="400.0" prefWidth="634.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="132.0" fitWidth="132.0" layoutX="251.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../assets/images/map%20(1)%201.png" />
+            <Image url="@../../../assets/images/dock-img.png" />
          </image>
       </ImageView>
       <Line endX="558.0" endY="186.5" layoutX="28.0" startX="31.5" startY="186.5" />
@@ -45,7 +45,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="463.0" layoutY="347.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #4D5DEB;" text="Back" textFill="WHITE">
+      <Button fx:id="back" layoutX="463.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #4D5DEB;" text="Back" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

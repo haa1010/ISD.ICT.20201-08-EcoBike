@@ -51,7 +51,6 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         super(stage, screenPath);
     }
 
-
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();
     }

@@ -105,6 +105,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             addStationHome(this.homeItems);
         });
 
+        rentBikeButton.setOnMouseClicked(e -> {
+
+        });
+
         addStationHome(this.homeItems);
     }
 

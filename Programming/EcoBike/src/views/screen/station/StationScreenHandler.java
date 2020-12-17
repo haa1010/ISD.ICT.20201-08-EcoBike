@@ -86,23 +86,13 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
         return (ViewStationController) super.getBController();
     }
 
+    public Stage getStage() {
+        return this.stage;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setBController(new ViewStationController());
-
-
-//        home.setOnMouseClicked(event -> {
-//            HomeScreenHandler homeScreen;
-//            System.out.println("Home clicked!");
-//            try {
-//                homeScreen = new HomeScreenHandler(this.stage, Configs.HOME_PATH);
-//                homeScreen.setHomeScreenHandler(homeScreen);
-//                homeScreen.setBController(new ViewStationController());
-//                homeScreen.requestToReturnHome(this);
-//            } catch (Exception e1) {
-//                e1.printStackTrace();
-//            }
-//        });
     }
 
     public void requestToViewStation(BaseScreenHandler prevScreen) throws SQLException {
@@ -132,7 +122,6 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
         });
         while (!stationItems.isEmpty()) {
             hboxBike.getChildren().forEach(node -> {
-                // int vid = hboxBike.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
                 while (vBox.getChildren().size() < 2 && !stationItems.isEmpty()) {
