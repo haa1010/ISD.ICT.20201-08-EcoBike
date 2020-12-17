@@ -190,7 +190,7 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         Image image = new Image(imageSource, backgroundLoading);
         urlImage.setImage(image);
 
-        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike);
+        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
 
 

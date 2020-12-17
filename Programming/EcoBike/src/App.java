@@ -1,4 +1,5 @@
 import controller.ReturnBikeController;
+import controller.ViewBikeController;
 import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
 import entity.order.Order;
@@ -12,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Configs;
+import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
 import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
@@ -55,14 +57,13 @@ public class App extends Application {
                 try {
 
 
-                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
+                    Bike stde = new Bike().getBikeById(5);
                     ViewBikeController viewBikeController = new ViewBikeController(stde);
                     BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
-                    bikeScreenHandler.setBController(viewBikeController);
                     bikeScreenHandler.setBike(stde.getId(), stde.getType());
                     bikeScreenHandler.setBikeInfo();
                     bikeScreenHandler.setScreenTitle("View bike");
-
+                    bikeScreenHandler.setBController(viewBikeController);
                     bikeScreenHandler.show();
                     //Show home screen after splash screen
 //                    try {

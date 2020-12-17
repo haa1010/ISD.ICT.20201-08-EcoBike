@@ -28,7 +28,7 @@ public class TwinBike extends Bike {
             String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station  where type=\"Twin bike\" and id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
-            stm.close();
+
             if (res.next()) {
                 TwinBike bike = new TwinBike();
                 return setValueBike(res, bike);

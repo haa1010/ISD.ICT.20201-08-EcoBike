@@ -74,7 +74,7 @@
                 <Font name="Arial Bold" size="24.0" />
             </font>
         </Button>
-        <Button layoutX="734.0" layoutY="672.0" mnemonicParsing="false" onMouseClicked="#rentBike" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Rent now" textFill="WHITE">
+        <Button fx:id="canRent" layoutX="734.0" layoutY="672.0" mnemonicParsing="false" onMouseClicked="#rentBike" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Rent now" textFill="WHITE">
             <font>
                 <Font name="Arial Bold" size="24.0" />
             </font>

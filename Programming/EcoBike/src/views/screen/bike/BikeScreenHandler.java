@@ -59,6 +59,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
             this.bike = new TwinElectricBike().getBikeById(id);
         }
 
+
     }
 
     public ViewBikeController getBController() {
@@ -78,7 +79,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         Image image = new Image(imageSource, backgroundLoading);
         urlImage.setImage(image);
 
-        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike);
+        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, true);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
         if (bike.isRenting()) {
             canRent.setDisable(true);
