@@ -69,14 +69,12 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
         this.station = station;
         try {
             setStationInfo();
-            List medium = getBController().getAllBike(station.getId());
+            List medium = getBController().getAllBikeAvailable(station.getId());
             this.stationItems = new ArrayList<>();
             for (Object object : medium) {
                 Bike bike = (Bike) object;
-                BikeHandler bikeHandler = new BikeHandler(Configs.BIKE_STATION_PATH, bike, homeScreenHandler);
-                if (!bike.getRenting()) {
-                    this.stationItems.add(bikeHandler);
-                }
+                BikeHandler bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, this);
+                this.stationItems.add(bikeHandler);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -91,18 +89,20 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setBController(new ViewStationController());
-        home.setOnMouseClicked(event -> {
-            HomeScreenHandler homeScreen;
-            System.out.println("Home clicked!");
-            try {
-                homeScreen = new HomeScreenHandler(this.stage, Configs.HOME_PATH);
-                homeScreen.setHomeScreenHandler(homeScreen);
-                homeScreen.setBController(new ViewStationController());
-                homeScreen.requestToReturnHome(this);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        });
+
+
+//        home.setOnMouseClicked(event -> {
+//            HomeScreenHandler homeScreen;
+//            System.out.println("Home clicked!");
+//            try {
+//                homeScreen = new HomeScreenHandler(this.stage, Configs.HOME_PATH);
+//                homeScreen.setHomeScreenHandler(homeScreen);
+//                homeScreen.setBController(new ViewStationController());
+//                homeScreen.requestToReturnHome(this);
+//            } catch (Exception e1) {
+//                e1.printStackTrace();
+//            }
+//        });
     }
 
     public void requestToViewStation(BaseScreenHandler prevScreen) throws SQLException {
@@ -132,10 +132,10 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
         });
         while (!stationItems.isEmpty()) {
             hboxBike.getChildren().forEach(node -> {
-                int vid = hboxBike.getChildren().indexOf(node);
+                // int vid = hboxBike.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-                while(vBox.getChildren().size() < 2 && !stationItems.isEmpty()){
+                while (vBox.getChildren().size() < 2 && !stationItems.isEmpty()) {
                     BikeHandler bike = (BikeHandler) stationItems.get(0);
                     vBox.getChildren().add(bike.getContent());
                     stationItems.remove(bike);

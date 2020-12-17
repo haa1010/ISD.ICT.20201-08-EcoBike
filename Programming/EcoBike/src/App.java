@@ -57,12 +57,6 @@ public class App extends Application {
             // After fade out, load actual content
             fadeOut.setOnFinished((e) -> {
                 try {
-                    // view bike
-//                    ViewBikeController viewBikeController = new ViewBikeController();
-//                    Bike stde = viewBikeController.viewBikeInfoById(5);
-//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(this.stage, Configs.BIKE_INFO_PATH);
-//                    bikeScreenHandler.setBController(viewBikeController);
-//                    bikeScreenHandler.requestToViewBike(this, stde.getId(), stde.getType());
 
                     //Show home screen after splash screen
                     try {

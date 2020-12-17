@@ -20,6 +20,7 @@ import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
 import views.screen.rentbike.RentBikeScreenHandler;
+import views.screen.station.BikeHandler;
 import views.screen.station.StationScreenHandler;
 
 
@@ -50,17 +51,6 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         super(stage, screenPath);
     }
 
-    public void setBike(int id, String type) throws SQLException {
-        if (type.equals("Standard electric bike")) {
-            this.bike = new StandardElectricBike().getBikeById(id);
-        } else if (type.equals("Standard bike")) {
-            this.bike = new StandardBike().getBikeById(id);
-        } else if (type.equals("Twin bike")) {
-            this.bike = new TwinBike().getBikeById(id);
-        } else if (type.equals("Electric twin bike")) {
-            this.bike = new TwinElectricBike().getBikeById(id);
-        }
-    }
 
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();
