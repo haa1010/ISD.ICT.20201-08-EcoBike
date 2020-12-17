@@ -14,10 +14,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Configs;
 import views.screen.bike.BikeScreenHandler;
+import views.screen.bike.ViewRentingBike;
 import views.screen.home.HomeScreenHandler;
 import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class App extends Application {
 
@@ -57,14 +59,14 @@ public class App extends Application {
                 try {
 
 
-                    Bike stde = new Bike().getBikeById(5);
-                    ViewBikeController viewBikeController = new ViewBikeController(stde);
-                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
-                    bikeScreenHandler.setBike(stde.getId(), stde.getType());
-                    bikeScreenHandler.setBikeInfo();
-                    bikeScreenHandler.setScreenTitle("View bike");
-                    bikeScreenHandler.setBController(viewBikeController);
-                    bikeScreenHandler.show();
+//                    ViewBikeController viewBikeController = new ViewBikeController();
+//                    Bike stde = viewBikeController.viewBikeInfoById(5);
+//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
+//                    bikeScreenHandler.setBController(viewBikeController);
+//                    bikeScreenHandler.setBikeInfo(stde.getId(), stde.getType());
+//                    bikeScreenHandler.setScreenTitle("View bike");
+//
+//                    bikeScreenHandler.show();
                     //Show home screen after splash screen
 //                    try {
 //                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
@@ -78,15 +80,17 @@ public class App extends Application {
 //                    try {
 //                        bike = new Bike().getBikeById(3);
 
-                    // Test rent bike
-//                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
-//
-//                    Order order = new Order(stde, LocalDateTime.now());
-//                    ViewBikeController viewBikeController = new ViewBikeController(stde);
-//                    ViewRentingBike viewRentingBike = new ViewRentingBike(primaryStage, Configs.RENT_BIKE_INFO_PATH, order);
-//                    viewRentingBike.setScreenTitle("View bike");
-//                    viewRentingBike.setBController(viewBikeController);
-//                    viewRentingBike.show();
+                    //   Test rent bike
+                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
+
+                    Order order = new Order(stde, LocalDateTime.now());
+                    ViewRentingBike viewRentingBike = new ViewRentingBike(primaryStage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBike.setBController(new ViewBikeController());
+                    viewRentingBike.setStartAt();
+                    viewRentingBike.setBikeInfo();
+                    viewRentingBike.setScreenTitle("View renting bike");
+
+                    viewRentingBike.show();
 
 //                    HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN_PATH);
 //                    homeHandler.setScreenTitle("Home Screen");
