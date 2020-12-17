@@ -64,10 +64,11 @@ public class App extends Application {
                     Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
                     ViewBikeController viewBikeController = new ViewBikeController(stde);
                     BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
+                    bikeScreenHandler.setBController(viewBikeController);
                     bikeScreenHandler.setBike(stde);
                     bikeScreenHandler.setBikeInfo();
                     bikeScreenHandler.setScreenTitle("View bike");
-                    bikeScreenHandler.setBController(viewBikeController);
+
                     bikeScreenHandler.show();
                     //Show home screen after splash screen
 //                    try {

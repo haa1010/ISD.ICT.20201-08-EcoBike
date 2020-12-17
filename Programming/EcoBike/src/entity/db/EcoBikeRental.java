@@ -26,10 +26,12 @@ public class EcoBikeRental {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/vaftyLWDOZ";
-            String user = "root";
-            String password = "30041975";
+            String url = "jdbc:mysql://remotemysql.com/vaftyLWDOZ";
+            String user = "vaftyLWDOZ";
+            String password = "9db0uNrKek";
+
             conn = DriverManager.getConnection(url, user, password);
+
         } catch (SQLException | ClassNotFoundException var10) {
             LOGGER.info(var10.getMessage());
         } finally {
@@ -39,7 +41,4 @@ public class EcoBikeRental {
 
     }
 
-    public static void main(String[] args) {
-        getConnection();
-    }
 }

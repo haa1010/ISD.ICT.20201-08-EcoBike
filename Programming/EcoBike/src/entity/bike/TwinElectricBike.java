@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TwinElectricBike extends StandardElectricBike {
     public TwinElectricBike() throws SQLException {
-        super();
+
 
     }
 
@@ -20,9 +20,10 @@ public class TwinElectricBike extends StandardElectricBike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike B join natural join Station natural join BikeDetail natural join ElectricBike SEB  where  where type=\"Electric twin bike\" id=" + qId + ";";
+            String sql = "SELECT * FROM Bike B natural join BikeDetail natural join ElectricBike SEB  where  where type=\"Electric twin bike\" id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+            stm.close();
             if (res.next()) {
                 TwinElectricBike bike = new TwinElectricBike();
 
@@ -42,9 +43,10 @@ public class TwinElectricBike extends StandardElectricBike {
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station natural join ElectricBike where type=\"Electric twin bike\" Bike.barcode= " + barcode;
+            String sql = "SELECT * FROM Bike natural join BikeDetail  natural join ElectricBike where type=\"Electric twin bike\" Bike.barcode= " + barcode;
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+
             if (res.next()) {
 
                 TwinElectricBike bike = new TwinElectricBike();
@@ -71,6 +73,7 @@ public class TwinElectricBike extends StandardElectricBike {
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 
+
             while (res.next()) {
                 TwinElectricBike bike = new TwinElectricBike();
                 TwinElectricBike eBike = (TwinElectricBike) setValueBike(res, bike);
@@ -80,6 +83,7 @@ public class TwinElectricBike extends StandardElectricBike {
 
                 allBike.add(eBike);
             }
+            stm.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

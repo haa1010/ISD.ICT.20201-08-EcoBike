@@ -47,15 +47,16 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     }
 
     public void setBike(Bike bike) throws SQLException {
-        if (bike.getType() == "Standard electric bike") {
+        if (bike.getType().equals("Standard electric bike")) {
             this.bike = new StandardElectricBike().getBikeById(bike.getId());
-        } else if (bike.getType() == "Standard bike") {
+        } else if (bike.getType().equals("Standard bike")) {
             this.bike = new StandardBike().getBikeById(bike.getId());
-        } else if (bike.getType() == "Twin bike") {
+        } else if (bike.getType().equals("Twin bike")) {
             this.bike = new TwinBike().getBikeById(bike.getId());
-        } else if (bike.getType() == "Electric twin bike") {
+        } else if (bike.getType().equals("Electric twin bike")) {
             this.bike = new TwinElectricBike().getBikeById(bike.getId());
         }
+        bike.setStation(getBController().getStation(bike.getStation().getId()));
     }
 
     public ViewBikeController getBController() {
