@@ -2,6 +2,7 @@ package controller;
 
 import entity.bike.Bike;
 import entity.order.Order;
+import entity.station.Station;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -43,6 +44,11 @@ public class ViewBikeController extends BaseController {
 
     public void rentBike() {
 
+    }
+
+    public Station getStation(Integer id) throws SQLException {
+
+        return new Station().getStationById(id);
     }
 
 

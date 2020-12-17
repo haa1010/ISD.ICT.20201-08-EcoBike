@@ -4,8 +4,7 @@ package views.screen.bike;
 import common.exception.PlaceOrderException;
 import controller.RentBikeController;
 import controller.ViewBikeController;
-import entity.bike.Bike;
-import entity.bike.StandardElectricBike;
+import entity.bike.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -39,15 +38,28 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private Bike bike;
     @FXML
     private ImageView urlImage;
+    @FXML
+    private Button canRent;
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
-    public BikeScreenHandler(Stage stage, String screenPath, Bike bike) throws IOException {
+    public BikeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
-        this.bike = bike;
-        setBikeInfo();
+
 
     }
 
+    public void setBike(int id, String type) throws SQLException {
+        if (type.equals("Standard electric bike")) {
+            this.bike = new StandardElectricBike().getBikeById(id);
+        } else if (type.equals("Standard bike")) {
+            this.bike = new StandardBike().getBikeById(id);
+        } else if (type.equals("Twin bike")) {
+            this.bike = new TwinBike().getBikeById(id);
+        } else if (type.equals("Electric twin bike")) {
+            this.bike = new TwinElectricBike().getBikeById(id);
+        }
+
+    }
 
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();
@@ -68,6 +80,11 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
+        if (bike.isRenting()) {
+            canRent.setDisable(true);
+        } else {
+            canRent.setDisable(false);
+        }
     }
 
 

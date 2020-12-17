@@ -45,7 +45,7 @@ public class StandardElectricBike extends Bike {
     }
 
     public StandardElectricBike() throws SQLException {
-        super();
+
 
     }
 
@@ -53,17 +53,20 @@ public class StandardElectricBike extends Bike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike B natural join Station natural join BikeDetail natural join ElectricBike SEB where B.id = " + qId + ";";
+            String sql = "SELECT * FROM Bike B  natural join BikeDetail natural join Station natural join ElectricBike SEB where B.id = " + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+
             if (res.next()) {
 
                 StandardElectricBike bike = new StandardElectricBike();
                 StandardElectricBike eBike = (StandardElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
+                stm.close();
                 return eBike;
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -76,9 +79,10 @@ public class StandardElectricBike extends Bike {
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station natural join ElectricBike where Bike.barcode= " + barcode;
-            // Statement stm = EcoBikeRental.getConnection().createStatement();
+            String sql = "SELECT * FROM Bike natural join BikeDetail  natural join Station natural join ElectricBike where Bike.barcode= " + barcode;
+            Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+
             if (res.next()) {
                 StandardElectricBike bike = new StandardElectricBike();
                 StandardElectricBike eBike = (StandardElectricBike) setValueBike(res, bike);
@@ -86,7 +90,9 @@ public class StandardElectricBike extends Bike {
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
 
                 return eBike;
+
             }
+            stm.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -98,9 +104,10 @@ public class StandardElectricBike extends Bike {
     public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural join ElectricBike;";
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station natural join ElectricBike;";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+
 
             while (res.next()) {
 
@@ -110,6 +117,7 @@ public class StandardElectricBike extends Bike {
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
                 allBike.add(eBike);
             }
+            stm.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
