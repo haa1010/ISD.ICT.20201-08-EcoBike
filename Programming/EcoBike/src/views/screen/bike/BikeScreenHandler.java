@@ -4,8 +4,7 @@ package views.screen.bike;
 import common.exception.PlaceOrderException;
 import controller.RentBikeController;
 import controller.ViewBikeController;
-import entity.bike.Bike;
-import entity.bike.StandardElectricBike;
+import entity.bike.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -41,13 +40,23 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private ImageView urlImage;
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
-    public BikeScreenHandler(Stage stage, String screenPath, Bike bike) throws IOException {
+    public BikeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
-        this.bike = bike;
-        setBikeInfo();
+
 
     }
 
+    public void setBike(Bike bike) throws SQLException {
+        if (bike.getType() == "Standard electric bike") {
+            this.bike = new StandardElectricBike().getBikeById(bike.getId());
+        } else if (bike.getType() == "Standard bike") {
+            this.bike = new StandardBike().getBikeById(bike.getId());
+        } else if (bike.getType() == "Twin bike") {
+            this.bike = new TwinBike().getBikeById(bike.getId());
+        } else if (bike.getType() == "Electric twin bike") {
+            this.bike = new TwinElectricBike().getBikeById(bike.getId());
+        }
+    }
 
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();

@@ -10,17 +10,10 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="module-library" exported="">
-      <library name="junit5">
-        <CLASSES>
-          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" exported="" name="mysql-connector-java-8.0.22" level="project" />
-    <orderEntry type="library" exported="" name="org.junit.jupiter:junit-jupiter:5.7.0" level="project" />
-    <orderEntry type="library" exported="" name="javafx-swt" level="project" />
+    <orderEntry type="library" exported="" name="lib1" level="project" />
+    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.49" level="project" />
+    <orderEntry type="library" exported="" name="jfoenix-9.0.10" level="project" />
+    <orderEntry type="library" exported="" name="org.junit.jupiter:junit-jupiter-api:5.5.1" level="project" />
+    <orderEntry type="library" exported="" name="org.junit.jupiter:junit-jupiter-params:5.1.1" level="project" />
   </component>
 </module>

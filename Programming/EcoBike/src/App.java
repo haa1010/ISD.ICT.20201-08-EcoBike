@@ -59,23 +59,25 @@ public class App extends Application {
             // After fade out, load actual content
             fadeOut.setOnFinished((e) -> {
                 try {
-                    //  Bike stde = new Bike().getBikeByBarcode("STEB01");
 
-//                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
-//                    ViewBikeController viewBikeController = new ViewBikeController(stde);
-//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH, stde);
-//                    bikeScreenHandler.setScreenTitle("View bike");
-//                    bikeScreenHandler.setBController(viewBikeController);
-//                    bikeScreenHandler.show();
+
+                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
+                    ViewBikeController viewBikeController = new ViewBikeController(stde);
+                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
+                    bikeScreenHandler.setBike(stde);
+                    bikeScreenHandler.setBikeInfo();
+                    bikeScreenHandler.setScreenTitle("View bike");
+                    bikeScreenHandler.setBController(viewBikeController);
+                    bikeScreenHandler.show();
                     //Show home screen after splash screen
-                    try {
-                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
-                        homeHandler.setScreenTitle("Home Screen");
-                        homeHandler.setImage();
-                        homeHandler.show();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+//                    try {
+//                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
+//                        homeHandler.setScreenTitle("Home Screen");
+//                        homeHandler.setImage();
+//                        homeHandler.show();
+//                    } catch (IOException e1) {
+//                        e1.printStackTrace();
+//                    }
 //                    Bike bike;
 //                    try {
 //                        bike = new Bike().getBikeById(3);
