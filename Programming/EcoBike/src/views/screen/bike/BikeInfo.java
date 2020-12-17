@@ -39,6 +39,8 @@ public class BikeInfo extends FXMLScreenHandler implements Initializable {
     @FXML
     private Label remainingLabel;
     @FXML
+    private Label station;
+    @FXML
     private Label remainingTime;
     private Bike bike;
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
@@ -57,8 +59,10 @@ public class BikeInfo extends FXMLScreenHandler implements Initializable {
         liscensePlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
+        station.setText(bike.getStation().getName());
+
         int deposit1 = (int) (bike.getValue() * 0.4);
-        
+
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url
         if (bike instanceof StandardElectricBike) {

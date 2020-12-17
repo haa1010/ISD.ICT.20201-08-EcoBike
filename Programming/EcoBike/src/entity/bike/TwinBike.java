@@ -25,9 +25,10 @@ public class TwinBike extends Bike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural  join Station  where type=\"Twin bike\" and id=" + qId + ";";
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station  where type=\"Twin bike\" and id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+            stm.close();
             if (res.next()) {
                 TwinBike bike = new TwinBike();
                 return setValueBike(res, bike);
@@ -46,6 +47,7 @@ public class TwinBike extends Bike {
             String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station  where type=\"Twin bike\" and barcode= " + barcode + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+            stm.close();
             if (res.next()) {
 
                 TwinBike bike = new TwinBike();
@@ -62,7 +64,7 @@ public class TwinBike extends Bike {
     public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station  where type=\"Twin bike\";";
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station where type=\"Twin bike\";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 
@@ -72,6 +74,7 @@ public class TwinBike extends Bike {
 
                 allBike.add(setValueBike(res, bike));
             }
+            stm.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

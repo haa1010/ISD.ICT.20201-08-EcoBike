@@ -29,10 +29,6 @@ public class EcoBikeRental {
                 String user = "vaftyLWDOZ";
                 String password = "9db0uNrKek";
 
-
-                // String url = "jdbc:mysql://remotemysql.com/PyWrwZ3fjw";
-                // String user = "PyWrwZ3fjw";
-                // String password = "Mlc9r8FaVm";
                 conn = DriverManager.getConnection(url, user, password);
                 System.out.println("DB connected");
 
@@ -42,10 +38,5 @@ public class EcoBikeRental {
 
         }
         return conn;
-
-    }
-
-    public static void main(String[] args) {
-        getConnection();
     }
 }
