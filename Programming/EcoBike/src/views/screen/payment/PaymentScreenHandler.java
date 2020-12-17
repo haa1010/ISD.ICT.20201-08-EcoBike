@@ -61,7 +61,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	/*
 	 * this is for confirm button when return bike
 	 */
-	void confirmToPayOrder() throws IOException{
+
+//	void confirmToPayOrder() throws IOException{
 //		String contents = "pay order";
 //		PaymentController ctrl = (PaymentController) getBController();
 //		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
@@ -72,7 +73,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 //		resultScreen.setHomeScreenHandler(homeScreenHandler);
 //		resultScreen.setScreenTitle("Result Screen");
 //		resultScreen.show();
-	}
+//	}
 //
 //	public PaymentScreenHandler(Stage stage, String paymentScreenPath, Invoice invoice) {
 //		super();

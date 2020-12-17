@@ -35,8 +35,8 @@ public class Utils {
     }
 
     public static String getCurrencyFormat(int num) {
-        Locale vietname = new Locale("vi", "VN");
-        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietname);
+        Locale vietnam = new Locale("vi", "VN");
+        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietnam);
         return defaultFormat.format(num);
     }
 

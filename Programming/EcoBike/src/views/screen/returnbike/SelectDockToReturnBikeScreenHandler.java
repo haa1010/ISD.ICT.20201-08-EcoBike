@@ -2,6 +2,7 @@ package views.screen.returnbike;
 
 import controller.*;
 import entity.bike.Bike;
+import entity.order.Order;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,13 +34,13 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
 
     private List docks;
 
-    private Bike bike;
+    private Order order;
 
     private static Logger LOGGER = Utils.getLogger(ReturnBikeHandler.class.getName());
 
-    public SelectDockToReturnBikeScreenHandler(Stage stage, String screenPath, Bike bike) throws IOException {
+    public SelectDockToReturnBikeScreenHandler(Stage stage, String screenPath, Order order) throws IOException {
         super(stage, screenPath);
-        this.bike = bike;
+        this.order = order;
         addDockSelection();
 
     }
@@ -86,7 +87,7 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
     }
 
     public void dockChosen( Station s) throws IOException {
-        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(stage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), bike, s);
+        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(stage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), s, order);
         returnBikeHandler.show();
     }
 }

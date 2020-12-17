@@ -17,6 +17,7 @@ import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class App extends Application {
 
@@ -95,7 +96,8 @@ public class App extends Application {
                     Bike bike;
                     try {
                         bike = new StandardElectricBike().getBikeById(3);
-                    SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  bike);
+                        Order order = new Order(bike, LocalDateTime.now());
+                        SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  order);
                     d.show();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
