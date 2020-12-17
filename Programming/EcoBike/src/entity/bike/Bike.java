@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bike {
-    protected Statement stm;
+
     protected int id;
     protected String type;
     protected String licensePlate;
@@ -29,7 +29,7 @@ public class Bike {
     protected String urlImage;
 
     public Bike() throws SQLException {
-        stm = EcoBikeRental.getConnection().createStatement();
+
     }
 
     public Bike(int id, String licensePlate, String barcode, String type) {
@@ -172,8 +172,6 @@ public class Bike {
         Station station = new Station();
         station.setId(res.getInt("stationID"));
         station.setName(res.getString("name"));
-        station.setNumAvailableBike(res.getInt("numAvailableBike"));
-        station.setNumEmptyDockPoint(res.getInt("numEmptyDockPoint"));
         bike.setStation(station);
         return bike;
     }
@@ -181,8 +179,10 @@ public class Bike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike natual join BikeDetail natural join Station  where id=" + qId + ";";
-            ResultSet res = this.stm.executeQuery(sql);
+            String sql = "SELECT * FROM Bike natual join BikeDetail natural join Station   where id=" + qId + ";";
+            Statement stm = EcoBikeRental.getConnection().createStatement();
+            ResultSet res = stm.executeQuery(sql);
+
             if (res.next()) {
                 Bike bike = new Bike();
                 return setValueBike(res, bike);
@@ -200,8 +200,9 @@ public class Bike {
         try {
             barcode = "\"" + barcode + "\"";
             String sql = "SELECT * FROM Bike  natural join Station natural join BikeDetail where barcode= " + barcode + ";";
-            //  Statement stm = EcoBikeRental.getConnection().createStatement();
-            ResultSet res = this.stm.executeQuery(sql);
+            Statement stm = EcoBikeRental.getConnection().createStatement();
+            ResultSet res = stm.executeQuery(sql);
+
             if (res.next()) {
                 Bike bike = new Bike();
                 return setValueBike(res, bike);
@@ -215,8 +216,8 @@ public class Bike {
     public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM Bike natural  joint Station natural join BikeDetail;";
-
+            String sql = "SELECT * FROM Bike natural join Station natural join BikeDetail;";
+            Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 
             while (res.next()) {
@@ -241,13 +242,14 @@ public class Bike {
      * @throws SQLException
      */
     public void updateBikeFieldById(String tbname, int id, String column, Object value) throws SQLException {
-        //   Statement stm = EcoBikeRental.getConnection().createStatement();
+        Statement stm = EcoBikeRental.getConnection().createStatement();
         if (value instanceof String) {
             value = "\"" + value + "\"";
         }
         stm.executeUpdate(" update " + tbname + " set" + " "
                 + column + "=" + value + " "
                 + "where id=" + id + ";");
+
     }
 
 

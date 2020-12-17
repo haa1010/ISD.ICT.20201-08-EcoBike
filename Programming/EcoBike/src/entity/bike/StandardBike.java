@@ -16,9 +16,10 @@ public class StandardBike extends Bike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike natual join BikeDetail natural  join Station  where type=\"Standard bike\" and id=" + qId + ";";
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station where type=\"Standard bike\" and id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+
             if (res.next()) {
                 StandardElectricBike bike = new StandardElectricBike();
                 return setValueBike(res, bike);
@@ -37,6 +38,7 @@ public class StandardBike extends Bike {
             String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station  where type=\"Standard bike\" and barcode= " + barcode + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
+
             if (res.next()) {
                 StandardElectricBike bike = new StandardElectricBike();
                 return setValueBike(res, bike);
@@ -52,7 +54,7 @@ public class StandardBike extends Bike {
     public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station  where type=\"Standard bike\";";
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station where type=\"Standard bike\";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 

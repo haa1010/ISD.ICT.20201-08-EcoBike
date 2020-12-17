@@ -22,24 +22,21 @@ public class EcoBikeRental {
 
 
     public static Connection getConnection() {
-        conn = null;
+        if (conn == null) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                String url = "jdbc:mysql://remotemysql.com/vaftyLWDOZ";
+                String user = "vaftyLWDOZ";
+                String password = "9db0uNrKek";
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/vaftyLWDOZ";
-            String user = "root";
-            String password = "30041975";
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (SQLException | ClassNotFoundException var10) {
-            LOGGER.info(var10.getMessage());
-        } finally {
-            return conn;
+                conn = DriverManager.getConnection(url, user, password);
+                System.out.println("DB connected");
+
+            } catch (SQLException | ClassNotFoundException var10) {
+                System.out.println(var10.getMessage());
+            }
 
         }
-
-    }
-
-    public static void main(String[] args) {
-        getConnection();
+        return conn;
     }
 }
