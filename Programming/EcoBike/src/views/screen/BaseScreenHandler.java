@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utils.Configs;
 import utils.Utils;
 import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
@@ -26,8 +27,14 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 
     public Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
-    public void backToHome() {
+
+    public void backToHome() throws IOException {
+
         LOGGER.info("home button clicked");
+        HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
+        homeHandler.setScreenTitle("Home Screen");
+        homeHandler.setImage();
+        homeHandler.show();
     }
 
     private BaseScreenHandler(String screenPath) throws IOException {
