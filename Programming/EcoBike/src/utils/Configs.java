@@ -62,7 +62,7 @@ public class Configs {
     public static final String BARCODER_SCREEN_PATH = "/views/fxml/barcode.fxml";
     public static final String RENT_BIKE_PATH = "/views/fxml/rent_bike.fxml";
     public static final String HOME_SCREEN_PATH = "/views/fxml/home.fxml";
-
+    public static final String BIKE_INFO = "/views/fxml/BikeInfo.fxml";
     public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
     // credit card expires on the last day of the month of that year
     public static final String MONTH[] = {

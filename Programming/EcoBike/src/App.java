@@ -61,7 +61,7 @@ public class App extends Application {
                 try {
                     //  Bike stde = new Bike().getBikeByBarcode("STEB01");
 
-//                    Bike stde = new Bike().getBikeByBarcode("STEB01");
+//                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
 //                    ViewBikeController viewBikeController = new ViewBikeController(stde);
 //                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH, stde);
 //                    bikeScreenHandler.setScreenTitle("View bike");
@@ -90,10 +90,10 @@ public class App extends Application {
 //                    viewRentingBike.setBController(viewBikeController);
 //                    viewRentingBike.show();
 
-//					HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN_PATH);
-//					homeHandler.setScreenTitle("Home Screen");
-//					homeHandler.setImage();
-//					homeHandler.show();
+//                    HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN_PATH);
+//                    homeHandler.setScreenTitle("Home Screen");
+//                    homeHandler.setImage();
+//                    homeHandler.show();
 //                    Bike bike;
 //                    try {
 //                        bike = new StandardElectricBike().getBikeById(3);

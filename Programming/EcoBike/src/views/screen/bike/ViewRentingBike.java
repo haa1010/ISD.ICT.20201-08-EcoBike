@@ -13,9 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 
@@ -52,6 +54,8 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     private Bike bike;
     @FXML
     private ImageView urlImage;
+    @FXML
+    private Pane bikeInfo;
     @FXML
     private Label hours;
     @FXML
@@ -176,14 +180,9 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     /**
      * set bike info to view
      */
-    public void setBikeInfo() {
-        liscensePlate.setText(bike.getLicensePlate());
-        barcode.setText(bike.getBarcode());
-        type.setText(bike.getType());
-        int deposit1 = order.getDeposit();
+    public void setBikeInfo() throws IOException {
+
         liscensePlateTitle.setText(bike.getLicensePlate());
-        amountUpToNow.setText(Utils.getCurrencyFormat(order.getTotalUpToNow()));
-        deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url
         String imageSource = bike.getUrlImage();
         boolean backgroundLoading = true;
@@ -191,34 +190,15 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         Image image = new Image(imageSource, backgroundLoading);
         urlImage.setImage(image);
 
-        if (bike instanceof StandardElectricBike) {
-            batteryLabel.setText("Battery percentage");
-            int battery = ((StandardElectricBike) bike).getBatteryPercentage();
-            batteryPercentage.setText(battery + " %");
-            remainingLabel.setText("Remaining time");
-            remainingTime.setText(Utils.convertTime(((StandardElectricBike) bike).getRemainingTime()));
-        } else {
-            batteryLabel.setText("");
-            remainingLabel.setText(" ");
-
-        }
+        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike);
+        bikeInfo.getChildren().add(bikeInfoItems.getContent());
 
 
-    }
-
-
-    public void backToHome() {
-        LOGGER.info("home button clicked");
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        String imageSource = "D:/itss/ISD.ICT.20201.08/Programming/EcoBike/assets/images/pauseIcon.png";
-//
-//        boolean backgroundLoading = true;
-//// The image is being loaded in the background
-//        Image image = new Image(imageSource, backgroundLoading);
-//        pause.setImage(image);
+
     }
 }
