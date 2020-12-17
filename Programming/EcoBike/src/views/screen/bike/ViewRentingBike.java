@@ -26,6 +26,7 @@ import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 import java.io.IOException;
 import java.net.URL;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -108,6 +109,16 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         }
 
     }
+
+    public void requestToViewRentingBike(BaseScreenHandler prevScreen) throws SQLException, IOException {
+        setStartAt();
+        setBikeInfo();
+        setScreenTitle("View renting bike");
+        setPreviousScreen(prevScreen);
+        setScreenTitle("View bike");
+        show();
+    }
+
 
     @FXML
     private void returnBike() throws IOException {

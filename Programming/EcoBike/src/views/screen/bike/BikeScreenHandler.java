@@ -20,6 +20,7 @@ import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
 import views.screen.rentbike.RentBikeScreenHandler;
+import views.screen.station.StationScreenHandler;
 
 
 import java.io.File;
@@ -51,6 +52,12 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         return (ViewBikeController) super.getBController();
     }
 
+    public void requestToViewBike(BaseScreenHandler prevScreen, int id, String type) throws SQLException, IOException {
+        setBikeInfo(id, type);
+        setScreenTitle("View bike");
+        show();
+    }
+
     /**
      * set bike info to view
      */
@@ -78,9 +85,14 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
      * back to previous screen
      */
     @FXML
-    private void cancelViewBike() {
+    private void cancelViewBike() throws IOException, SQLException {
         LOGGER.info("Cancel button clicked");
-        // this.getPreviousScreen().show();
+        if (this.getPreviousScreen() instanceof HomeScreenHandler) {
+            backToHome();
+        } else {
+            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation());
+            stationScreenHandler.requestToViewStation(this);
+        }
     }
 
     /**
@@ -89,7 +101,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     @FXML
     private void rentBike() throws IOException {
         LOGGER.info("Rent bike button clicked");
-        
+
         RentBikeScreenHandler rentBike = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, bike);
         rentBike.setPreviousScreen(this);
         rentBike.setHomeScreenHandler(homeScreenHandler);
