@@ -15,29 +15,33 @@ import utils.Utils;
 
 public class EcoBikeRental {
     private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
-    private static Connection connect;
+    private static Connection conn;
 
     public EcoBikeRental() {
     }
 
 
     public static Connection getConnection() {
-        Connection conn = null;
+        if (conn == null) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+//            String url = "jdbc:mysql://remotemysql.com/vaftyLWDOZ";
+//            String user = "vaftyLWDOZ";
+//            String password = "9db0uNrKek";
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://remotemysql.com/vaftyLWDOZ";
-            String user = "vaftyLWDOZ";
-            String password = "9db0uNrKek";
-            conn = DriverManager.getConnection(url, user, password);
-            System.out.println("DB connected");
 
-        } catch (SQLException | ClassNotFoundException var10) {
-            System.out.println(var10.getMessage());
-        } finally {
-            return conn;
+                String url = "jdbc:mysql://remotemysql.com/PyWrwZ3fjw";
+                String user = "PyWrwZ3fjw";
+                String password = "Mlc9r8FaVm";
+                conn = DriverManager.getConnection(url, user, password);
+                System.out.println("DB connected");
+
+            } catch (SQLException | ClassNotFoundException var10) {
+                System.out.println(var10.getMessage());
+            }
 
         }
+        return conn;
 
     }
 

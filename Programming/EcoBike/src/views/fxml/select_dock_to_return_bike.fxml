@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.fxml.SelectDockToReturnBike">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
 
         <AnchorPane maxHeight="-Infinity" prefHeight="70.0" prefWidth="1366.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -47,10 +48,16 @@
         </AnchorPane>
       <ScrollPane layoutX="24.0" layoutY="123.0">
          <content>
-                  <HBox fx:id="hboxMedia" prefHeight="629.0" prefWidth="1311.0">
+                  <HBox fx:id="hboxDock" alignment="CENTER" prefHeight="629.0" prefWidth="1311.0">
                       <children>
-                          <VBox fx:id="vboxMedia1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="650.0" style="-fx-border-color: #33adff;" />
-                          <VBox fx:id="vboxMedia3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="650.0" style="-fx-border-color: #33adff;" />
+                          <VBox fx:id="vboxDock1" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="650.0">
+                     <padding>
+                        <Insets bottom="15.0" top="15.0" />
+                     </padding></VBox>
+                          <VBox fx:id="vboxDock2" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="650.0">
+                     <padding>
+                        <Insets bottom="15.0" top="15.0" />
+                     </padding></VBox>
                       </children>
                   </HBox>
          </content>

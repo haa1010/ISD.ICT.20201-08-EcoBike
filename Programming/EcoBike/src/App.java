@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Configs;
 import views.screen.returnbike.ReturnBikeHandler;
+import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
 import java.sql.SQLException;
 
@@ -74,11 +75,14 @@ public class App extends Application {
 //					homeHandler.setScreenTitle("Home Screen");
 //					homeHandler.setImage();
 //					homeHandler.show();
+
                     Bike bike;
                     try {
                         bike = new StandardElectricBike().getBikeById(3);
-                        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(primaryStage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), bike);
-                        returnBikeHandler.show();
+//                        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(primaryStage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), bike);
+//                        returnBikeHandler.show();
+                        SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  bike);
+                        d.show();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

@@ -102,7 +102,7 @@ public class Station {
         List stations = getAllStations();
 
         for(Object s : stations) {
-            if(((Station) s).getNumEmptyDockPoint() > 0) {
+            if(((Station) s).getNumEmptyDockPoint() <= 0) {
                 stations.remove(s);
             }
         }

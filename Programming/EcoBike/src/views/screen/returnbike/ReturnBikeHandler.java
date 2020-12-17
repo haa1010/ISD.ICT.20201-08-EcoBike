@@ -7,6 +7,7 @@ import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
 import entity.invoice.Invoice;
 import entity.order.Order;
+import entity.station.Station;
 import entity.transaction.Card;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,6 +52,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Text rentedTime;
     @FXML
     private Text total;
+    @FXML
+    private Text station;
 
     @FXML
     private ImageView bikeImage;
@@ -72,14 +75,17 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Button editBtn;
 
     private Bike bike;
+    private Station s;
     private Card card;
 
     private static Logger LOGGER = Utils.getLogger(ReturnBikeHandler.class.getName());
 
-    public ReturnBikeHandler(Stage stage, String screenPath, BaseController bController, Bike bike) throws IOException {
+    public ReturnBikeHandler(Stage stage, String screenPath, BaseController bController, Bike bike, Station station) throws IOException {
         super(stage, screenPath);
         setBController(bController);
         this.bike = bike;
+        this.s = station;
+
         setBikeInfo();
         card = getBController().getCard();
         setCardInfo();
@@ -93,6 +99,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         numberPlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
+        station.setText(s.getName());
         int deposit1 = (int)(bike.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url
@@ -155,6 +162,13 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         tes.setScreenTitle("Transaction Error Screen");
         tes.show();
     }
+
+    @FXML
+    void backToDockSelection (MouseEvent event) throws IOException {
+        SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  bike);
+        d.show();
+    }
+
     @FXML
     void backToHome(MouseEvent event) throws IOException {
         HomeScreenHandler homeScreenHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
