@@ -27,11 +27,11 @@ public class Card {
         this.cvvCode = cvvCode;
     }
 
-    public String getName() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setName(String name) {
+    public void setOwner(String name) {
         this.owner = name;
     }
 

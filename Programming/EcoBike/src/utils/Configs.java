@@ -68,7 +68,6 @@ public class Configs {
     public static final String RETURN_DOCK_ITEM_PATH = "/views/fxml/return_dock_item.fxml";
     public static final String SELECT_DOCK_TO_RETURN_BIKE_PATH = "/views/fxml/select_dock_to_return_bike.fxml";
 
-
     // credit card expires on the last day of the month of that year
     public static final String MONTH[] = {
             "January", "Febuary", "March", "April",

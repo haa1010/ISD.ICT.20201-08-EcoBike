@@ -89,27 +89,27 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="batteryLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Battery Percentage" GridPane.rowIndex="5">
+                  <Text fx:id="batteryLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Start renting" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="remainingTimeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaing Time" GridPane.rowIndex="6">
+                  <Text fx:id="remainingTimeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="End renting" GridPane.rowIndex="6">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit" GridPane.rowIndex="4">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rented Time" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rented Time" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total" GridPane.rowIndex="8">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total (VND)" GridPane.rowIndex="8">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
@@ -129,22 +129,22 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="battery" strokeType="OUTSIDE" strokeWidth="0.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Text fx:id="start" strokeType="OUTSIDE" strokeWidth="0.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="remainingTime" strokeType="OUTSIDE" strokeWidth="0.0" text="2 hours" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Text fx:id="end" strokeType="OUTSIDE" strokeWidth="0.0" text="2 hours" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" text="400,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" text="400,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="rentedTime" strokeType="OUTSIDE" strokeWidth="0.0" text="3 hours" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Text fx:id="rentedTime" strokeType="OUTSIDE" strokeWidth="0.0" text="3 hours" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
@@ -161,7 +161,7 @@
                   </Text>
                   <Text fx:id="station" layoutX="233.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Station 1" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
-                        <Font name="Arial" size="24.0" />
+                        <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Text>
                </children>
@@ -178,7 +178,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="835.0" layoutY="119.0" prefHeight="485.0" prefWidth="488.0">
+      <AnchorPane layoutX="897.0" layoutY="125.0" prefHeight="485.0" prefWidth="488.0">
          <children>
             <GridPane layoutX="44.0" layoutY="73.0" prefHeight="222.0" prefWidth="403.0">
               <columnConstraints>
@@ -275,6 +275,6 @@
             </Button>
          </children>
       </AnchorPane>
-      <Separator layoutX="801.0" layoutY="144.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="5.0" style="-fx-background-color: #c2c2c2;" />
+      <Separator layoutX="894.0" layoutY="144.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="5.0" style="-fx-background-color: #c2c2c2;" />
    </children>
 </AnchorPane>

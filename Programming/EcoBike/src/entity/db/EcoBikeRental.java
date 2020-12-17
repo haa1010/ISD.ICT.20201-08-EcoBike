@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import utils.Utils;
 
 public class EcoBikeRental {
-    private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
     private static Connection conn;
 
     public EcoBikeRental() {
@@ -32,10 +31,9 @@ public class EcoBikeRental {
                 conn = DriverManager.getConnection(url, user, password);
                 System.out.println("DB connected");
 
-            } catch (SQLException | ClassNotFoundException var10) {
-                System.out.println(var10.getMessage());
+            } catch (SQLException | ClassNotFoundException e) {
+                System.out.println(e.getMessage());
             }
-
         }
         return conn;
     }
