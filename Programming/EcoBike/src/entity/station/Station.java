@@ -95,6 +95,24 @@ public class Station {
         stm = EcoBikeRental.getConnection().createStatement();
     }
 
+    public List getAllBikeAvailable(int stationId) throws SQLException {
+        Statement stm = EcoBikeRental.getConnection().createStatement();
+        ResultSet res = stm.executeQuery("select * from Bike where isRenting= \"false\" and stationId = " + stationId);
+
+        ArrayList medium = new ArrayList<>();
+        while (res.next()) {
+            Bike bike = new Bike();
+            bike.setId(res.getInt("id"));
+            bike.setType(res.getString("type"));
+            bike.setLicensePlate(res.getString("licensePlate"));
+            bike.setBarcode(res.getString("barCode"));
+            bike.setUrlImage(res.getString("urlImage"));
+            bike.setRenting(res.getBoolean("isRenting"));
+            medium.add(bike);
+        }
+        return medium;
+    }
+
     public List getAllStations() throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Station");
@@ -156,7 +174,7 @@ public class Station {
         return result;
     }
 
-    public List getAllBike(int stationId) throws SQLException{
+    public List getAllBike(int stationId) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Bike where stationId = " + stationId);
         ArrayList medium = new ArrayList<>();

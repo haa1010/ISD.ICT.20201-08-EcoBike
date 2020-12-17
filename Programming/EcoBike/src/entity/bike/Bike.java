@@ -179,7 +179,7 @@ public class Bike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station   where id=" + qId + ";";
+            String sql = "SELECT * FROM Bike natural join BikeDetail join  Station on Bike.stationID=Station.id  where id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 
@@ -199,7 +199,7 @@ public class Bike {
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
-            String sql = "SELECT * FROM Bike  natural join Station natural join BikeDetail where barcode= " + barcode + ";";
+            String sql = "SELECT * FROM Bike  join  Station on Bike.stationID=Station.id natural join BikeDetail where barcode= " + barcode + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 
@@ -216,7 +216,7 @@ public class Bike {
     public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM Bike natural join Station natural join BikeDetail;";
+            String sql = "SELECT * FROM Bike join  Station on Bike.stationID=Station.id natural join BikeDetail;";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 
