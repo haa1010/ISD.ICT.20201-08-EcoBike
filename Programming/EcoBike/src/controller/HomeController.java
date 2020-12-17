@@ -12,6 +12,6 @@ import java.util.List;
  */
 public class HomeController extends BaseController {
     public List getAllStations() throws SQLException {
-        return new Station().getAllStation();
+        return new Station().getAllStations();
     }
 }

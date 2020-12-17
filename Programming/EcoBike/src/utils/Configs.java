@@ -46,6 +46,7 @@ public class Configs {
     public static String CURRENCY = "VND";
     public static float PERCENT_VAT = 10;
     // static resource
+    public static final String IMAGE_PATH = "assets/images";
     public static final String RESULT_SCREEN_PATH = "/views/fxml/result.fxml";
     public static final String INVOICE_MEDIA_SCREEN_PATH = "/views/fxml/media_invoice.fxml";
     public static final String PAYMENT_SCREEN_PATH = "/views/fxml/payment.fxml";
