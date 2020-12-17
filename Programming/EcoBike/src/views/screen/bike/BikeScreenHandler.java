@@ -19,6 +19,8 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
+import views.screen.rentbike.RentBikeScreenHandler;
+import views.screen.station.StationScreenHandler;
 
 
 import java.io.File;
@@ -40,7 +42,9 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private ImageView urlImage;
     @FXML
     private Button canRent;
+
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+    private HomeScreenHandler homeScreenHandler;
 
     public BikeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
@@ -62,11 +66,17 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         return (ViewBikeController) super.getBController();
     }
 
+    public void requestToViewBike(BaseScreenHandler prevScreen, int id, String type) throws SQLException, IOException {
+        setBikeInfo(id, type);
+        setScreenTitle("View bike");
+        show();
+    }
+
     /**
      * set bike info to view
      */
-    public void setBikeInfo() throws IOException {
-
+    public void setBikeInfo(int id, String type) throws IOException, SQLException {
+        this.bike = getBController().setBike(id, type);
         liscensePlateTitle.setText(bike.getLicensePlate());
         // set image from url
         String imageSource = bike.getUrlImage();
@@ -75,7 +85,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         Image image = new Image(imageSource, backgroundLoading);
         urlImage.setImage(image);
 
-        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike);
+        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, true);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
         if (bike.isRenting()) {
             canRent.setDisable(true);
@@ -89,24 +99,29 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
      * back to previous screen
      */
     @FXML
-    private void cancelViewBike() {
+    private void cancelViewBike() throws IOException, SQLException {
         LOGGER.info("Cancel button clicked");
-        // this.getPreviousScreen().show();
+        if (this.getPreviousScreen() instanceof HomeScreenHandler) {
+            backToHome();
+        } else {
+            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler);
+            stationScreenHandler.requestToViewStation(this);
+        }
     }
 
     /**
      * switch to rentBike screen
      */
     @FXML
-    private void rentBike() {
+    private void rentBike() throws IOException {
         LOGGER.info("Rent bike button clicked");
-        getBController().rentBike();
-//        RentBikeHandler rentBike = new RentBikeHandler(this.stage, Configs.SHIPPING_SCREEN_PATH, bike);
-//        rentBike.setPreviousScreen(this);
-//        rentBike.setHomeScreenHandler(homeScreenHandler);
-//        rentBike.setScreenTitle("Rent bike");
-//        rentBike.setBController(new RentBikeController());
-//        rentBike.show();
+
+        RentBikeScreenHandler rentBike = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, bike);
+        rentBike.setPreviousScreen(this);
+        rentBike.setHomeScreenHandler(homeScreenHandler);
+        rentBike.setScreenTitle("Rent bike");
+        rentBike.setBController(new RentBikeController());
+        rentBike.show();
     }
 
     @Override

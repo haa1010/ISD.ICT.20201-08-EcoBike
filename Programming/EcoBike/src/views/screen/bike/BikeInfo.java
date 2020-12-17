@@ -39,16 +39,19 @@ public class BikeInfo extends FXMLScreenHandler implements Initializable {
     @FXML
     private Label remainingLabel;
     @FXML
+    private Label stationLabel;
+    @FXML
     private Label station;
     @FXML
     private Label remainingTime;
     private Bike bike;
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+    private boolean isViewBike;
 
-
-    public BikeInfo(String screenPath, Bike bike) throws IOException {
+    public BikeInfo(String screenPath, Bike bike, boolean isViewBike) throws IOException {
         super(screenPath);
         this.bike = bike;
+        this.isViewBike = isViewBike;
         setBikeInfo();
     }
 
@@ -60,9 +63,7 @@ public class BikeInfo extends FXMLScreenHandler implements Initializable {
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
         station.setText(bike.getStation().getName());
-
         int deposit1 = (int) (bike.getValue() * 0.4);
-
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url
         if (bike instanceof StandardElectricBike) {
@@ -75,6 +76,11 @@ public class BikeInfo extends FXMLScreenHandler implements Initializable {
             batteryLabel.setText("");
             remainingLabel.setText(" ");
 
+        }
+        if (isViewBike) {
+            stationLabel.setText("Current station");
+        } else {
+            stationLabel.setText("Rent station");
         }
 
 

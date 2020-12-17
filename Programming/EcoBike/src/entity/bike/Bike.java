@@ -179,7 +179,7 @@ public class Bike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike natual join BikeDetail natural join Station   where id=" + qId + ";";
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station   where id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 

@@ -54,9 +54,9 @@ public class BikeHandler extends FXMLScreenHandler{
             try {
                 bikeScreen = new BikeScreenHandler(home.getStage(), Configs.BIKE_INFO_PATH);
                 bikeScreen.setBike(bike.getId(), bike.getType());
-                bikeScreen.setBikeInfo();
+                bikeScreen.setBikeInfo(bike.getId(), bike.getType());
                 bikeScreen.setHomeScreenHandler(home);
-                bikeScreen.setBController(new ViewBikeController(this.bike));
+                bikeScreen.setBController(new ViewBikeController());
                 bikeScreen.requestToViewBike(home);
             } catch (Exception e1) {
                 System.out.println(e1.getMessage());

@@ -21,7 +21,7 @@ public class StandardBike extends Bike {
             ResultSet res = stm.executeQuery(sql);
 
             if (res.next()) {
-                StandardElectricBike bike = new StandardElectricBike();
+                StandardBike bike = new StandardBike();
                 return setValueBike(res, bike);
             }
         } catch (SQLException throwables) {
@@ -40,7 +40,7 @@ public class StandardBike extends Bike {
             ResultSet res = stm.executeQuery(sql);
 
             if (res.next()) {
-                StandardElectricBike bike = new StandardElectricBike();
+                StandardBike bike = new StandardBike();
                 return setValueBike(res, bike);
 
             }
@@ -60,7 +60,7 @@ public class StandardBike extends Bike {
 
             while (res.next()) {
 
-                StandardElectricBike bike = new StandardElectricBike();
+                StandardBike bike = new StandardBike();
 
                 allBike.add(setValueBike(res, bike));
             }

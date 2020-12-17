@@ -1,6 +1,7 @@
 package views.screen;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.logging.Logger;
@@ -28,13 +29,12 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     public Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
 
-    public void backToHome() throws IOException {
+    public void backToHome() throws IOException, SQLException {
 
         LOGGER.info("home button clicked");
+
         HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
-        homeHandler.setScreenTitle("Home Screen");
-        homeHandler.setImage();
-        homeHandler.show();
+        homeHandler.requestToReturnHome(this);
     }
 
     private BaseScreenHandler(String screenPath) throws IOException {

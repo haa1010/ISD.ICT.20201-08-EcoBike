@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+
 
 public class Station {
     protected Statement stm;
@@ -95,7 +95,7 @@ public class Station {
         stm = EcoBikeRental.getConnection().createStatement();
     }
 
-    public List getAllStations() throws SQLException{
+    public List getAllStations() throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Station");
         ArrayList medium = new ArrayList<>();
@@ -112,11 +112,11 @@ public class Station {
         return medium;
     }
 
-    public List getStationHasEmptyDock() throws SQLException{
+    public List getStationHasEmptyDock() throws SQLException {
         List stations = getAllStations();
 
-        for(Object s : stations) {
-            if(((Station) s).getNumEmptyDockPoint() <= 0) {
+        for (Object s : stations) {
+            if (((Station) s).getNumEmptyDockPoint() <= 0) {
                 stations.remove(s);
             }
         }

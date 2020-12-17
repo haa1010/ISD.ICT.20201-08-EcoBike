@@ -1,5 +1,6 @@
 package views.screen.bike;
 
+import controller.ReturnBikeController;
 import controller.ViewBikeController;
 import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
@@ -20,13 +21,16 @@ import javafx.util.Duration;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
+import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ViewRentingBike extends BaseScreenHandler implements Initializable {
@@ -106,9 +110,23 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
 
     }
 
+    public void requestToViewRentingBike(BaseScreenHandler prevScreen) throws SQLException, IOException {
+        setStartAt();
+        setBikeInfo();
+        setScreenTitle("View renting bike");
+        setPreviousScreen(prevScreen);
+        setScreenTitle("View bike");
+        show();
+    }
+
+
     @FXML
-    private void returnBike() {
+    private void returnBike() throws IOException {
         LOGGER.info("return bike button clicked");
+
+        SelectDockToReturnBikeScreenHandler returnBikeScreenHandler = new SelectDockToReturnBikeScreenHandler(this.stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, bike);
+        returnBikeScreenHandler.setBController(new ReturnBikeController());
+        returnBikeScreenHandler.show();
 
     }
 
@@ -117,20 +135,11 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         super(stage, screenPath);
         this.bike = order.getRentedBike();
         this.order = order;
-        setBikeInfo();
-        int hour = (int) ChronoUnit.HOURS.between(order.getStart(), LocalDateTime.now());
-        int minute = (int) ChronoUnit.MINUTES.between(order.getStart(), LocalDateTime.now());
-        int second = (int) ChronoUnit.SECONDS.between(order.getStart(), LocalDateTime.now());
-        int start = hour * 3600 + minute * 60 + second;
-        this.startAt = start;
-        Timeline animation = new Timeline(
-                new KeyFrame(Duration.seconds(1), ev -> {
-                    setTimeCounting();
-                }));
-        animation.setCycleCount(Animation.INDEFINITE);
-        this.animation = animation;
-        this.getAnimation().play();
 
+    }
+
+    public void setStartAt() {
+        this.startAt = getBController().calculateAmountMinutes(order.getStart());
 
     }
 
@@ -157,23 +166,11 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     }
 
     public void setTimeCounting() {
-        int hour = this.getStartAt() / 3600;
-        int minute = (this.getStartAt() - hour * 3600) / 60;
-        int second = this.getStartAt() - hour * 3600 - minute * 60;
-        if (second < 59) second += 1;
-        else {
-            second = 0;
-            if (minute < 59) minute += 1;
-            else {
-                hour += 1;
-                minute = 0;
-            }
-        }
-        hours.setText(String.valueOf(hour));
-        minutes.setText(String.valueOf(minute));
-        seconds.setText(String.valueOf(second));
-        int newStart = hour * 3600 + minute * 60 + second;
-        this.setStartAt(newStart);
+        HashMap<String, Integer> time = getBController().counting(this.getStartAt());
+        hours.setText(String.valueOf(time.get("hour")));
+        minutes.setText(String.valueOf(time.get("minute")));
+        seconds.setText(String.valueOf(time.get("second")));
+        this.setStartAt(time.get("newAmount"));
     }
 
 
@@ -181,6 +178,13 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
      * set bike info to view
      */
     public void setBikeInfo() throws IOException {
+        Timeline animation = new Timeline(
+                new KeyFrame(Duration.seconds(1), ev -> {
+                    setTimeCounting();
+                }));
+        animation.setCycleCount(Animation.INDEFINITE);
+        this.animation = animation;
+        this.getAnimation().play();
 
         liscensePlateTitle.setText(bike.getLicensePlate());
         // set image from url
@@ -189,11 +193,8 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
 // The image is being loaded in the background
         Image image = new Image(imageSource, backgroundLoading);
         urlImage.setImage(image);
-
-        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike);
+        BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
-
-
     }
 
 
