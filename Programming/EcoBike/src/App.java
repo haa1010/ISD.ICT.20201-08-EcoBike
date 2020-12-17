@@ -65,7 +65,7 @@ public class App extends Application {
                     ViewBikeController viewBikeController = new ViewBikeController(stde);
                     BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
                     bikeScreenHandler.setBController(viewBikeController);
-                    bikeScreenHandler.setBike(stde);
+                    bikeScreenHandler.setBike(stde.getId(), stde.getType());
                     bikeScreenHandler.setBikeInfo();
                     bikeScreenHandler.setScreenTitle("View bike");
 

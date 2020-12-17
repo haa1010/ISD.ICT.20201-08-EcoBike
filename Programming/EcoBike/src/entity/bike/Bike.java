@@ -167,6 +167,7 @@ public class Bike {
         bike.setType(res.getString("type"));
         Station station = new Station();
         station.setId(res.getInt("stationID"));
+        station.setName(res.getString("name"));
         bike.setStation(station);
         return bike;
     }
@@ -174,7 +175,7 @@ public class Bike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike natual join BikeDetail   where id=" + qId + ";";
+            String sql = "SELECT * FROM Bike natual join BikeDetail natural join Station   where id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 
@@ -211,7 +212,7 @@ public class Bike {
     public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM Bike natural  joint Station natural join BikeDetail;";
+            String sql = "SELECT * FROM Bike natural join Station natural join BikeDetail;";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 

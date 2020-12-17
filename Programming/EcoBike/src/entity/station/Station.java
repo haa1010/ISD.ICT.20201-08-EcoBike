@@ -18,15 +18,16 @@ public class Station {
     protected String address;
     private int numEmptyDockPoint;
 
-    public Station(int x){
+    public Station(int x) {
         this.numEmptyDockPoint = x;
     }
+
     public Station(int id,
                    String name,
                    int numAvailableBike,
                    int numEmptyDockPoint,
                    float area,
-                   String address){
+                   String address) {
         this.id = id;
         this.name = name;
         this.numAvailableBike = numAvailableBike;
@@ -39,42 +40,53 @@ public class Station {
         this.id = id;
         return this;
     }
+
     public Station setName(String name) {
         this.name = name;
         return this;
     }
+
     public Station setNumAvailableBike(int numAvailableBike) {
         this.numAvailableBike = numAvailableBike;
         return this;
     }
+
     public Station setAddress(String address) {
         this.address = address;
         return this;
     }
+
     public Station setArea(double area) {
         this.area = area;
         return this;
     }
+
     public Station setNumEmptyDockPoint(int numEmptyDockPoint) {
         this.numEmptyDockPoint = numEmptyDockPoint;
         return this;
     }
+
     public int getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public int getNumAvailableBike() {
         return numAvailableBike;
     }
+
     public double getArea() {
         return area;
     }
+
     public String getAddress() {
         return address;
     }
-    public int getNumEmptyDockPoint(){
+
+    public int getNumEmptyDockPoint() {
         return this.numEmptyDockPoint;
     }
 
@@ -82,7 +94,7 @@ public class Station {
         stm = EcoBikeRental.getConnection().createStatement();
     }
 
-    public List getAllStation() throws SQLException{
+    public List getAllStation() throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Station");
         ArrayList medium = new ArrayList<>();
@@ -101,7 +113,7 @@ public class Station {
 
     public Station getStationById(int id) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
-        ResultSet res = stm.executeQuery("select * from Station where id = " + id );
+        ResultSet res = stm.executeQuery("select * from Station where id = " + id);
         Station result = new Station();
         while (res.next()) {
             result = new Station()
@@ -112,12 +124,13 @@ public class Station {
                     .setArea(res.getDouble("area"))
                     .setAddress(res.getString("address"));
         }
+        stm.close();
         return result;
     }
 
     public Station getStationByName(String name) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
-        ResultSet res = stm.executeQuery("select * from Station where name = " + name );
+        ResultSet res = stm.executeQuery("select * from Station where name = " + name);
         Station result = new Station();
         while (res.next()) {
             result = new Station()

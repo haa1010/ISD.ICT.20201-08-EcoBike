@@ -38,6 +38,8 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private Bike bike;
     @FXML
     private ImageView urlImage;
+    @FXML
+    private Button canRent;
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
     public BikeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
@@ -46,17 +48,17 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 
     }
 
-    public void setBike(Bike bike) throws SQLException {
-        if (bike.getType().equals("Standard electric bike")) {
-            this.bike = new StandardElectricBike().getBikeById(bike.getId());
-        } else if (bike.getType().equals("Standard bike")) {
-            this.bike = new StandardBike().getBikeById(bike.getId());
-        } else if (bike.getType().equals("Twin bike")) {
-            this.bike = new TwinBike().getBikeById(bike.getId());
-        } else if (bike.getType().equals("Electric twin bike")) {
-            this.bike = new TwinElectricBike().getBikeById(bike.getId());
+    public void setBike(int id, String type) throws SQLException {
+        if (type.equals("Standard electric bike")) {
+            this.bike = new StandardElectricBike().getBikeById(id);
+        } else if (type.equals("Standard bike")) {
+            this.bike = new StandardBike().getBikeById(id);
+        } else if (type.equals("Twin bike")) {
+            this.bike = new TwinBike().getBikeById(id);
+        } else if (type.equals("Electric twin bike")) {
+            this.bike = new TwinElectricBike().getBikeById(id);
         }
-        bike.setStation(getBController().getStation(bike.getStation().getId()));
+
     }
 
     public ViewBikeController getBController() {
@@ -78,6 +80,11 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
+        if (bike.isRenting()) {
+            canRent.setDisable(true);
+        } else {
+            canRent.setDisable(false);
+        }
     }
 
 
