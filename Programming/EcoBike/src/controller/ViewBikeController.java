@@ -19,11 +19,6 @@ import java.util.TimerTask;
 
 public class ViewBikeController extends BaseController {
 
-
-    public ViewBikeController() {
-
-    }
-
     public HashMap counting(int amount) {
         int hour = amount / 3600;
         int minute = (amount - hour * 3600) / 60;

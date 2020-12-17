@@ -42,10 +42,24 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private ImageView urlImage;
     @FXML
     private Button canRent;
+
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+    private HomeScreenHandler homeScreenHandler;
 
     public BikeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
+    }
+
+    public void setBike(int id, String type) throws SQLException {
+        if (type.equals("Standard electric bike")) {
+            this.bike = new StandardElectricBike().getBikeById(id);
+        } else if (type.equals("Standard bike")) {
+            this.bike = new StandardBike().getBikeById(id);
+        } else if (type.equals("Twin bike")) {
+            this.bike = new TwinBike().getBikeById(id);
+        } else if (type.equals("Electric twin bike")) {
+            this.bike = new TwinElectricBike().getBikeById(id);
+        }
     }
 
     public ViewBikeController getBController() {
@@ -90,7 +104,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         if (this.getPreviousScreen() instanceof HomeScreenHandler) {
             backToHome();
         } else {
-            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation());
+            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler);
             stationScreenHandler.requestToViewStation(this);
         }
     }
@@ -113,5 +127,11 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void requestToViewBike(BaseScreenHandler prevScreen) throws SQLException {
+        setPreviousScreen(prevScreen);
+        setScreenTitle("Bike");
+        show();
     }
 }

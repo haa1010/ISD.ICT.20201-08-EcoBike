@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.FXMLScreenHandler;
+import views.screen.popup.PopupHomeScreen;
 import views.screen.station.StationScreenHandler;
 
 public class StationHandler extends FXMLScreenHandler{
@@ -54,12 +55,20 @@ public class StationHandler extends FXMLScreenHandler{
         view.setOnMouseClicked(event -> {
             StationScreenHandler stationScreen;
             try {
-                stationScreen = new StationScreenHandler(home.getStage(), Configs.STATION_PATH, station);
+                stationScreen = new StationScreenHandler(home.getStage(), Configs.STATION_PATH, station, home);
                 stationScreen.setHomeScreenHandler(home);
                 stationScreen.setBController(new ViewStationController());
                 stationScreen.requestToViewStation(home);
             } catch (Exception e1) {
                 e1.printStackTrace();
+            }
+        });
+        distance.setOnMouseClicked(event -> {
+            PopupHomeScreen popupHomeScreen;
+            try {
+                PopupHomeScreen.success("Test");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
         setStationInfo();

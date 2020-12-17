@@ -57,8 +57,6 @@ public class App extends Application {
             // After fade out, load actual content
             fadeOut.setOnFinished((e) -> {
                 try {
-
-
                     // view bike
 //                    ViewBikeController viewBikeController = new ViewBikeController();
 //                    Bike stde = viewBikeController.viewBikeInfoById(5);

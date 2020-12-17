@@ -2,12 +2,15 @@ package views.screen.station;
 
 import controller.HomeController;
 import controller.ViewStationController;
+import entity.bike.Bike;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
@@ -45,21 +48,49 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
     @FXML
     ImageView home;
 
+    @FXML
+    VBox vbox1;
+
+    @FXML
+    VBox vbox2;
+
+    @FXML
+    VBox vbox3;
+
+    @FXML
+    HBox hboxBike;
+
     private Station station;
 
-    public StationScreenHandler(Stage stage, String screenPath, Station station) throws IOException {
+    List stationItems;
+
+    public StationScreenHandler(Stage stage, String screenPath, Station station, HomeScreenHandler homeScreenHandler) throws IOException {
         super(stage, screenPath);
         this.station = station;
         try {
             setStationInfo();
+            List medium = getBController().getAllBike(station.getId());
+            this.stationItems = new ArrayList<>();
+            for (Object object : medium) {
+                Bike bike = (Bike) object;
+                BikeHandler bikeHandler = new BikeHandler(Configs.BIKE_STATION_PATH, bike, homeScreenHandler);
+                if (!bike.getRenting()) {
+                    this.stationItems.add(bikeHandler);
+                }
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        addBikeStation(stationItems);
+    }
+
+    public ViewStationController getBController() {
+        return (ViewStationController) super.getBController();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setBController(new HomeController());
+        setBController(new ViewStationController());
         home.setOnMouseClicked(event -> {
             HomeScreenHandler homeScreen;
             System.out.println("Home clicked!");
@@ -90,6 +121,27 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
             emptyDocks.setText(Integer.toString(station.getNumEmptyDockPoint()));
         } catch (NullPointerException e) {
             System.out.println("Station is null.");
+        }
+    }
+
+    public void addBikeStation(List items) {
+        ArrayList stationItems = (ArrayList) ((ArrayList) items).clone();
+        hboxBike.getChildren().forEach(node -> {
+            VBox vBox = (VBox) node;
+            vBox.getChildren().clear();
+        });
+        while (!stationItems.isEmpty()) {
+            hboxBike.getChildren().forEach(node -> {
+                int vid = hboxBike.getChildren().indexOf(node);
+                VBox vBox = (VBox) node;
+                vBox.setSpacing(20);
+                while(vBox.getChildren().size() < 2 && !stationItems.isEmpty()){
+                    BikeHandler bike = (BikeHandler) stationItems.get(0);
+                    vBox.getChildren().add(bike.getContent());
+                    stationItems.remove(bike);
+                }
+            });
+            return;
         }
     }
 }

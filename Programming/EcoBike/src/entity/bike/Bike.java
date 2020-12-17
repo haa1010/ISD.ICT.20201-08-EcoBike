@@ -150,6 +150,10 @@ public class Bike {
         return coefficient;
     }
 
+    public boolean getRenting() {
+        return isRenting;
+    }
+
     public Bike setValueBike(ResultSet res, Bike bike) throws SQLException {
 
 

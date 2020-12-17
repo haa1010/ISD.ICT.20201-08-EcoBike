@@ -1,5 +1,9 @@
 package utils;
 
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -52,6 +56,7 @@ public class Configs {
     public static final String STATION_HOME_PATH = "/views/fxml/station_home.fxml";
     public static final String POPUP_HOME_PATH = "/views/fxml/popup_home.fxml";
     public static final String STATION_PATH = "/views/fxml/station.fxml";
+    public static final String BIKE_STATION_PATH = "/views/fxml/bike_station.fxml";
     public static final String TRANSACTION_ERROR_SCREEN_PATH = "/views/fxml/transaction_error.fxml";
     public static final String RETURN_BIKE_SCREEN_PATH = "/views/fxml/return_bike.fxml";
     public static final String BIKE_INFO_PATH = "/views/fxml/bike.fxml";
