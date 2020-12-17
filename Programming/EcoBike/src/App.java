@@ -1,5 +1,4 @@
 import controller.ReturnBikeController;
-import controller.ViewBikeController;
 import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
 import entity.order.Order;
@@ -13,15 +12,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Configs;
-import views.screen.bike.BikeScreenHandler;
-import views.screen.bike.ReturnBikeHandler;
-import views.screen.bike.ViewRentingBike;
 import views.screen.home.HomeScreenHandler;
+import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class App extends Application {
 
@@ -100,8 +94,8 @@ public class App extends Application {
 //                    Bike bike;
 //                    try {
 //                        bike = new StandardElectricBike().getBikeById(3);
-//                        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(primaryStage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), bike);
-//                        returnBikeHandler.show();
+//                    SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  bike);
+//                    d.show();
 //                    } catch (SQLException throwables) {
 //                        throwables.printStackTrace();
 //                    }
