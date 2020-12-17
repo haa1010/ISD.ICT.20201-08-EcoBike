@@ -82,7 +82,7 @@ public class Station {
         stm = EcoBikeRental.getConnection().createStatement();
     }
 
-    public List getAllStation() throws SQLException{
+    public List getAllStations() throws SQLException{
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Station");
         ArrayList medium = new ArrayList<>();
@@ -97,6 +97,17 @@ public class Station {
             medium.add(station);
         }
         return medium;
+    }
+
+    public List getStationHasEmptyDock() throws SQLException{
+        List stations = getAllStations();
+
+        for(Object s : stations) {
+            if(((Station) s).getNumEmptyDockPoint() <= 0) {
+                stations.remove(s);
+            }
+        }
+        return stations;
     }
 
     public Station getStationById(int id) throws SQLException {

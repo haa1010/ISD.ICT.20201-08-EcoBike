@@ -1,4 +1,4 @@
-package views.screen.bike;
+package views.screen.returnbike;
 
 import controller.BaseController;
 import controller.PaymentController;
@@ -7,6 +7,7 @@ import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
 import entity.invoice.Invoice;
 import entity.order.Order;
+import entity.station.Station;
 import entity.transaction.Card;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
+import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
@@ -51,6 +53,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Text rentedTime;
     @FXML
     private Text total;
+    @FXML
+    private Text station;
 
     @FXML
     private ImageView bikeImage;
@@ -72,14 +76,17 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Button editBtn;
 
     private Bike bike;
+    private Station s;
     private Card card;
 
-    private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+    private static Logger LOGGER = Utils.getLogger(ReturnBikeHandler.class.getName());
 
-    public ReturnBikeHandler(Stage stage, String screenPath, BaseController bController, Bike bike) throws IOException {
+    public ReturnBikeHandler(Stage stage, String screenPath, BaseController bController, Bike bike, Station station) throws IOException {
         super(stage, screenPath);
         setBController(bController);
         this.bike = bike;
+        this.s = station;
+
         setBikeInfo();
         card = getBController().getCard();
         setCardInfo();
@@ -93,7 +100,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         numberPlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
-        int deposit1 = (int) (bike.getValue() * 0.4);
+        station.setText(s.getName());
+        int deposit1 = (int)(bike.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         // set image from url
         String imageSource = bike.getUrlImage();
@@ -154,6 +162,12 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         tes.setHomeScreenHandler(homeScreenHandler);
         tes.setScreenTitle("Transaction Error Screen");
         tes.show();
+    }
+
+    @FXML
+    void backToDockSelection (MouseEvent event) throws IOException {
+        SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  bike);
+        d.show();
     }
 
     @FXML

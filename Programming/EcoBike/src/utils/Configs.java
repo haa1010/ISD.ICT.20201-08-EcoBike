@@ -46,7 +46,6 @@ public class Configs {
     public static String CURRENCY = "VND";
     public static float PERCENT_VAT = 10;
     // static resource
-    public static final String IMAGE_PATH = "assets/images";
     public static final String RESULT_SCREEN_PATH = "/views/fxml/result.fxml";
     public static final String INVOICE_MEDIA_SCREEN_PATH = "/views/fxml/media_invoice.fxml";
     public static final String PAYMENT_SCREEN_PATH = "/views/fxml/payment.fxml";
@@ -63,6 +62,9 @@ public class Configs {
     public static final String RENT_BIKE_PATH = "/views/fxml/rent_bike.fxml";
     public static final String HOME_SCREEN_PATH = "/views/fxml/home.fxml";
     public static final String BIKE_INFO = "/views/fxml/BikeInfo.fxml";
+    public static final String RETURN_DOCK_ITEM_PATH = "/views/fxml/return_dock_item.fxml";
+    public static final String SELECT_DOCK_TO_RETURN_BIKE_PATH = "/views/fxml/select_dock_to_return_bike.fxml";
+
     public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
     // credit card expires on the last day of the month of that year
     public static final String MONTH[] = {
