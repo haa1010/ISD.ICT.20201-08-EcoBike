@@ -1,7 +1,7 @@
 package entity.bike;
 
 import entity.db.EcoBikeRental;
-import entity.station.Station;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,16 +20,17 @@ public class TwinElectricBike extends StandardElectricBike {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike B natural join BikeDetail natural join Station natural join ElectricBike SEB  where  where type=\"Electric twin bike\" id=" + qId + ";";
+            String sql = "SELECT * FROM Bike B natural join BikeDetail natural join Station natural join ElectricBike SEB    where type=\"Electric twin bike\" and  B.id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
-            stm.close();
+
             if (res.next()) {
                 TwinElectricBike bike = new TwinElectricBike();
 
                 TwinElectricBike eBike = (TwinElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
+                stm.close();
                 return eBike;
             }
         } catch (SQLException throwables) {
@@ -43,7 +44,7 @@ public class TwinElectricBike extends StandardElectricBike {
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
-            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station natural join ElectricBike where type=\"Electric twin bike\" Bike.barcode= " + barcode;
+            String sql = "SELECT * FROM Bike natural join BikeDetail natural join Station natural join ElectricBike where type=\"Electric twin bike\" and Bike.barcode= " + barcode;
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 
@@ -55,7 +56,7 @@ public class TwinElectricBike extends StandardElectricBike {
 
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
-
+                stm.close();
                 return eBike;
             }
         } catch (SQLException throwables) {
