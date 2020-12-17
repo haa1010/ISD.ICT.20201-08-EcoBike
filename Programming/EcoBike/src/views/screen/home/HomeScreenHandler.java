@@ -62,12 +62,11 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     private List homeItems;
 
-    private String searchString;
+    private String searchString = searchInput.getText();
 
     @FXML
     public void onEnter(ActionEvent ae){
         searchString = searchInput.getText();
-        System.out.println(searchString);
     }
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
@@ -92,7 +91,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             for (Object object : medium) {
                 Station station = (Station) object;
                 StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
-                this.homeItems.add(dock);
+                if (searchString == null) {
+                    this.homeItems.add(dock);
+                } else if (station.getName().contains(searchString))
+                    this.homeItems.add(dock);
             }
         } catch (SQLException | IOException e) {
             LOGGER.info("Errors occured: " + e.getMessage());
@@ -101,11 +103,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
         home.setOnMouseClicked(e -> {
             addStationHome(this.homeItems);
-        });
-
-        search.setOnMouseClicked(e -> {
-            searchString = searchInput.getText();
-            System.out.println(searchString);
         });
 
         addStationHome(this.homeItems);
@@ -136,6 +133,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             hboxHome.getChildren().forEach(node -> {
                 int vid = hboxHome.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
+                vBox.setSpacing(20);
                 while(vBox.getChildren().size() < size / 2 && !homeItems.isEmpty()){
                     StationHandler station = (StationHandler) homeItems.get(0);
                     vBox.getChildren().add(station.getContent());

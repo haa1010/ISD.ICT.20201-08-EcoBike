@@ -3,7 +3,7 @@
 /out/
 /.idea/
 .classpath
-
+/src/entity/db/EcoBikeRental.java
 # Created by https://www.toptal.com/developers/gitignore/api/intellij,vscode,java,eclipse,linux,windows,macos,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij,vscode,java,eclipse,linux,windows,macos,node
 

@@ -58,7 +58,6 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         super(stage, screenPath);
         this.bike = bike;
         setBikeInfo();
-
     }
 
 
@@ -128,5 +127,11 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void requestToViewBike(BaseScreenHandler prevScreen) throws SQLException {
+        setPreviousScreen(prevScreen);
+        setScreenTitle("Bike");
+        show();
     }
 }
