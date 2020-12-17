@@ -16,6 +16,7 @@ import views.screen.home.HomeScreenHandler;
 import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class App extends Application {
 
@@ -61,15 +62,17 @@ public class App extends Application {
 //                    bikeScreenHandler.setScreenTitle("View bike");
 //                    bikeScreenHandler.setBController(viewBikeController);
 //                    bikeScreenHandler.show();
+
+                    // Thong
                     //Show home screen after splash screen
-                    try {
-                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
-                        homeHandler.setScreenTitle("Home Screen");
-                        homeHandler.setImage();
-                        homeHandler.show();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+//                    try {
+//                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
+//                        homeHandler.setScreenTitle("Home Screen");
+//                        homeHandler.setImage();
+//                        homeHandler.show();
+//                    } catch (IOException e1) {
+//                        e1.printStackTrace();
+//                    }
 //                    Bike bike;
 //                    try {
 //                        bike = new Bike().getBikeById(3);
@@ -88,14 +91,16 @@ public class App extends Application {
 //                    homeHandler.setScreenTitle("Home Screen");
 //                    homeHandler.setImage();
 //                    homeHandler.show();
-//                    Bike bike;
-//                    try {
-//                        bike = new StandardElectricBike().getBikeById(3);
-//                    SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  bike);
-//                    d.show();
-//                    } catch (SQLException throwables) {
-//                        throwables.printStackTrace();
-//                    }
+
+                    // Hang
+                    Bike bike;
+                    try {
+                        bike = new StandardElectricBike().getBikeById(3);
+                    SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  bike);
+                    d.show();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
