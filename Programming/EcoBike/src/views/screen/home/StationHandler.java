@@ -66,6 +66,7 @@ public class StationHandler extends FXMLScreenHandler{
         distance.setOnMouseClicked(event -> {
             PopupHomeScreen popupHomeScreen;
             try {
+                System.out.println("Distance clicked");
                 PopupHomeScreen.success("Test");
             } catch (IOException e) {
                 e.printStackTrace();

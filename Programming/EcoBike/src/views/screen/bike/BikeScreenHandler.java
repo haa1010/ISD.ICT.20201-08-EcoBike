@@ -50,16 +50,18 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         super(stage, screenPath);
     }
 
-    public void setBike(int id, String type) throws SQLException {
-        if (type.equals("Standard electric bike")) {
-            this.bike = new StandardElectricBike().getBikeById(id);
-        } else if (type.equals("Standard bike")) {
-            this.bike = new StandardBike().getBikeById(id);
-        } else if (type.equals("Twin bike")) {
-            this.bike = new TwinBike().getBikeById(id);
-        } else if (type.equals("Electric twin bike")) {
-            this.bike = new TwinElectricBike().getBikeById(id);
+    public Bike setBike(int id, String type) throws SQLException {
+        switch (type) {
+            case "Standard electric bike":
+                return new StandardElectricBike().getBikeById(id);
+            case "Standard bike":
+                return new StandardBike().getBikeById(id);
+            case "Twin bike":
+                return new TwinBike().getBikeById(id);
+            case "Electric twin bike":
+                return new TwinElectricBike().getBikeById(id);
         }
+        return null;
     }
 
     public ViewBikeController getBController() {
@@ -76,7 +78,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
      * set bike info to view
      */
     public void setBikeInfo(int id, String type) throws IOException, SQLException {
-        this.bike = getBController().setBike(id, type);
+        this.bike = this.setBike(id, type);
         liscensePlateTitle.setText(bike.getLicensePlate());
         // set image from url
         String imageSource = bike.getUrlImage();

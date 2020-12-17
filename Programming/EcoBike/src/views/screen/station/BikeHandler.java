@@ -44,7 +44,7 @@ public class BikeHandler extends FXMLScreenHandler{
     private Bike bike;
     private HomeScreenHandler home;
 
-    public BikeHandler(String screenPath, Bike bike, HomeScreenHandler home) throws SQLException, IOException{
+    public BikeHandler(String screenPath, Bike bike, HomeScreenHandler home, StationScreenHandler stationScreenHandler) throws SQLException, IOException{
         super(screenPath);
         this.bike = bike;
         this.home = home;
@@ -52,14 +52,13 @@ public class BikeHandler extends FXMLScreenHandler{
         view.setOnMouseClicked(e -> {
             BikeScreenHandler bikeScreen;
             try {
-                bikeScreen = new BikeScreenHandler(home.getStage(), Configs.BIKE_INFO_PATH);
-                bikeScreen.setBike(bike.getId(), bike.getType());
+                bikeScreen = new BikeScreenHandler(stationScreenHandler.getStage(), Configs.BIKE_INFO_PATH);
+//                bikeScreen.setBike(bike.getId(), bike.getType());
                 bikeScreen.setBikeInfo(bike.getId(), bike.getType());
                 bikeScreen.setHomeScreenHandler(home);
                 bikeScreen.setBController(new ViewBikeController());
-                bikeScreen.requestToViewBike(home);
+                bikeScreen.requestToViewBike(stationScreenHandler);
             } catch (Exception e1) {
-                System.out.println(e1.getMessage());
                 e1.printStackTrace();
             }
         });

@@ -30,6 +30,7 @@ public class TwinBike extends Bike {
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
                 TwinBike bike = new TwinBike();
+                System.out.println(bike);
                 return setValueBike(res, bike);
             }
         } catch (SQLException throwables) {

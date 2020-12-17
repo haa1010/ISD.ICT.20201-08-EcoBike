@@ -243,11 +243,11 @@
                 <Font name="Arial" size="18.0" />
             </font>
         </Label>
-<!--        <Button fx:id="rentBikeButton" layoutX="1180.0" layoutY="26.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="121.0" style="-fx-background-color: #4D5DEB;" text="Rent Bike" textFill="WHITE">-->
-<!--            <font>-->
-<!--                <Font name="Arial Bold" size="18.0" />-->
-<!--            </font>-->
-<!--        </Button>-->
+        <Button fx:id="rentBikeButton" layoutX="1180.0" layoutY="26.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="121.0" style="-fx-background-color: #4D5DEB;" text="Rent Bike" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Button>
         <TextField fx:id="searchInput" layoutX="218.0" layoutY="23.0" onAction="#onEnter" prefHeight="43.0" prefWidth="848.0" promptText="Search" style="-fx-background-color: #ffffff; -fx-border-color: #111111;">
             <font>
                 <Font name="Arial" size="18.0" />

@@ -73,7 +73,7 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
             this.stationItems = new ArrayList<>();
             for (Object object : medium) {
                 Bike bike = (Bike) object;
-                BikeHandler bikeHandler = new BikeHandler(Configs.BIKE_STATION_PATH, bike, homeScreenHandler);
+                BikeHandler bikeHandler = new BikeHandler(Configs.BIKE_STATION_PATH, bike, homeScreenHandler, this);
                 if (!bike.getRenting()) {
                     this.stationItems.add(bikeHandler);
                 }
@@ -86,6 +86,10 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
 
     public ViewStationController getBController() {
         return (ViewStationController) super.getBController();
+    }
+
+    public Stage getStage() {
+        return this.stage;
     }
 
     @Override
