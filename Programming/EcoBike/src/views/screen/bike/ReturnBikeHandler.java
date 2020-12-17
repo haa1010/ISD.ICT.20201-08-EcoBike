@@ -158,7 +158,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     @FXML
     void backToHome(MouseEvent event) throws IOException {
-        HomeScreenHandler homeScreenHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
+        HomeScreenHandler homeScreenHandler = new HomeScreenHandler(this.stage, Configs.HOME_PATH);
 //        HomeScreenHandler.setHomeScreenHandler(homeScreenHandler);
 //        HomeScreenHandler.setBController(new ViewCartController());
 //        HomeScreenHandler.requestToViewCart(this.getPreviousScreen());

@@ -12,17 +12,17 @@
             <Image url="@../../../assets/images/Logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="71.0" fitWidth="74.0" layoutX="1246.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="home" fitHeight="71.0" fitWidth="74.0" layoutX="1246.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../assets/images/Home.png" />
+            <Image url="@../../../assets/images/home.png" />
          </image>
       </ImageView>
-      <Label layoutX="122.0" layoutY="38.0" prefHeight="55.0" prefWidth="315.0" text="Station Information |">
+      <Label layoutX="122.0" layoutY="38.0" prefHeight="55.0" prefWidth="348.0" text="Station Information |">
          <font>
             <Font name="Arial Bold" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="443.0" layoutY="38.0" prefHeight="55.0" prefWidth="246.0" text="Sanfrancisco">
+      <Label fx:id="name1" layoutX="443.0" layoutY="38.0" prefHeight="55.0" prefWidth="246.0" text="Sanfrancisco">
          <font>
             <Font name="Arial Bold" size="32.0" />
          </font>
@@ -32,7 +32,7 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="215.0" layoutY="163.0" prefHeight="33.0" prefWidth="469.0" text="1st, Dai Co Viet, Hai Ba Trung, Hanoi">
+      <Label fx:id="address" layoutX="215.0" layoutY="163.0" prefHeight="33.0" prefWidth="469.0" text="1st, Dai Co Viet, Hai Ba Trung, Hanoi">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
@@ -42,12 +42,12 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="215.0" layoutY="123.0" prefHeight="33.0" prefWidth="130.0" text="Sanfrancisco">
+      <Label fx:id="name2" layoutX="215.0" layoutY="123.0" prefHeight="33.0" prefWidth="130.0" text="Sanfrancisco">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="215.0" layoutY="203.0" prefHeight="33.0" prefWidth="130.0" text="200 m2">
+      <Label fx:id="area" layoutX="215.0" layoutY="203.0" prefHeight="33.0" prefWidth="130.0" text="200 m2">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
@@ -72,12 +72,12 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="1034.0" layoutY="123.0" prefHeight="33.0" prefWidth="130.0" text="40">
+      <Label fx:id="emptyDocks" layoutX="1034.0" layoutY="123.0" prefHeight="33.0" prefWidth="130.0" text="40">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="1034.0" layoutY="164.0" prefHeight="33.0" prefWidth="130.0" text="30">
+      <Label fx:id="availableBikes" layoutX="1034.0" layoutY="164.0" prefHeight="33.0" prefWidth="130.0" text="30">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

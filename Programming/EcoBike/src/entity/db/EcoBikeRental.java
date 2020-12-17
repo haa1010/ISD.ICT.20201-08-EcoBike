@@ -15,25 +15,23 @@ import utils.Utils;
 
 public class EcoBikeRental {
     private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
-    private static Connection connect;
+    private static Connection conn;
 
     public EcoBikeRental() {
     }
 
 
     public static Connection getConnection() {
-        Connection conn = null;
+        conn = null;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://remotemysql.com/vaftyLWDOZ";
-            String user = "vaftyLWDOZ";
-            String password = "9db0uNrKek";
+            String url = "jdbc:mysql://localhost:3306/vaftyLWDOZ";
+            String user = "root";
+            String password = "30041975";
             conn = DriverManager.getConnection(url, user, password);
-            System.out.println("DB connected");
-
         } catch (SQLException | ClassNotFoundException var10) {
-            System.out.println(var10.getMessage());
+            LOGGER.info(var10.getMessage());
         } finally {
             return conn;
 
