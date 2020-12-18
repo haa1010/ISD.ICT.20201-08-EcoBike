@@ -124,9 +124,8 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     private void returnBike() throws IOException {
         LOGGER.info("return bike button clicked");
 
-        SelectDockToReturnBikeScreenHandler returnBikeScreenHandler = new SelectDockToReturnBikeScreenHandler(this.stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, bike);
-        returnBikeScreenHandler.setBController(new ReturnBikeController());
-        returnBikeScreenHandler.show();
+        SelectDockToReturnBikeScreenHandler selectDock = new SelectDockToReturnBikeScreenHandler(this.stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, order);
+        selectDock.show();
 
     }
 
