@@ -26,7 +26,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     public Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
 
-    public void backToHomeBeforeRent() throws IOException, SQLException {
+    public void backToHome() throws IOException, SQLException {
         LOGGER.info("Home button clicked");
         HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
         homeHandler.requestToReturnHome(this);

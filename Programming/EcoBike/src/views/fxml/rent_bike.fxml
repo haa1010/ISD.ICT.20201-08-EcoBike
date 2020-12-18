@@ -34,7 +34,7 @@
                     </children>
                 </GridPane>
                 <ImageView fx:id="home" fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0"
-                           onMouseClicked="#backToHomeBeforeRent" pickOnBounds="true" preserveRatio="true">
+                           onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../../assets/images/home.png"/>
                     </image>

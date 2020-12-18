@@ -87,7 +87,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private void cancelViewBike() throws IOException, SQLException {
         LOGGER.info("Cancel button clicked");
         if (this.getPreviousScreen() instanceof HomeScreenHandler) {
-            backToHomeBeforeRent();
+            backToHome();
         } else {
             StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler);
             stationScreenHandler.requestToViewStation(this);
