@@ -70,6 +70,8 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     private Integer startAt;
     @FXML
     private ImageView pause;
+    @FXML
+    private ImageView home;
 
 
     public boolean isFlag() {
@@ -124,6 +126,15 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         super(stage, screenPath);
         this.bike = order.getRentedBike();
         this.order = order;
+
+
+        home.setOnMouseClicked(event -> {
+            try {
+                backToHomeAfterRent(order);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void setStartAt() {
@@ -138,7 +149,7 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     }
 
     public void backToHome() throws IOException, SQLException {
-        backToHomeReturn(this.order);
+        backToHomeReturn();
     }
 
     public void backToHomeReturn() {

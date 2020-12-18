@@ -33,6 +33,9 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
 
     @FXML
     private HBox hboxDock;
+
+    @FXML
+    private ImageView home;
 //
 //    @FXML
 //    private ImageView backBtn;
@@ -48,6 +51,13 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
         this.order = order;
         addDockSelection();
 
+        home.setOnMouseClicked(event -> {
+            try {
+                backToHomeAfterRent(order);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public SelectDockToReturnBikeController getBController() {

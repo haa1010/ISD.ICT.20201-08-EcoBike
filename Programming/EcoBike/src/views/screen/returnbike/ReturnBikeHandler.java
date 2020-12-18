@@ -72,6 +72,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Button submitBtn;
     @FXML
     private Button editBtn;
+    @FXML
+    private ImageView home;
 
     private Station s;
     private Card card;
@@ -90,6 +92,14 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
         card = new Card("121319_group8_2020", "Group 8", "128", "1125");
         setCardInfo();
+
+        home.setOnMouseClicked(event -> {
+            try {
+                backToHomeAfterRent(order);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public ReturnBikeController getBController() {
