@@ -60,14 +60,14 @@ public class App extends Application {
                 try {
 
                     //Show home screen after splash screen
-                    try {
-                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
-                        homeHandler.setScreenTitle("Home Screen");
-                        homeHandler.setImage();
-                        homeHandler.show();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+//                    try {
+//                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
+//                        homeHandler.setScreenTitle("Home Screen");
+//                        homeHandler.setImage();
+//                        homeHandler.show();
+//                    } catch (IOException e1) {
+//                        e1.printStackTrace();
+//                    }
 //                    Bike bike;
 //                    try {
 //                        bike = new Bike().getBikeById(3);

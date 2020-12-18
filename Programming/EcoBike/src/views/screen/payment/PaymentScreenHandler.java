@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import controller.PaymentController;
 import common.exception.PlaceOrderException;
 import entity.invoice.Invoice;
+import entity.transaction.Card;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -33,34 +34,43 @@ import java.io.IOException;
 
 public class PaymentScreenHandler extends BaseScreenHandler {
 
-	private Invoice invoice;
+    private Invoice invoice;
 
-	public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
-		super(stage, screenPath);
-		this.invoice = invoice;
-	}
-    
-	@FXML
-	private Label pageTitle;
+    private Card card;
 
-	@FXML
-	private TextField cardNumber;
+    public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
+        super(stage, screenPath);
+        this.invoice = invoice;
+        this.card = null;
+    }
 
-	@FXML
-	private TextField holderName;
+    public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice, Card card) throws IOException {
+        super(stage, screenPath);
+        this.invoice = invoice;
+        this.card = card;
+    }
 
-	@FXML
-	private TextField expirationDate;
+    @FXML
+    private Label pageTitle;
 
-	@FXML
-	private TextField securityCode;
+    @FXML
+    private TextField cardNumber;
 
-	@FXML
-	private TextField bankName;
+    @FXML
+    private TextField holderName;
 
-	/*
-	 * this is for confirm button when return bike
-	 */
+    @FXML
+    private TextField expirationDate;
+
+    @FXML
+    private TextField securityCode;
+
+    @FXML
+    private TextField bankName;
+
+    /*
+     * this is for confirm button when return bike
+     */
 
 //	void confirmToPayOrder() throws IOException{
 //		String contents = "pay order";
@@ -91,45 +101,51 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 //		resultScreen.setScreenTitle("Result Screen");
 //		resultScreen.show();
 //	}
-	
-	/*
-	 * this is for pay deposit
-	 */
+
+    /*
+     * this is for pay deposit
+     */
 
     @FXML
     void confirmToPayDeposit(MouseEvent event) throws IOException {
-    	String contents = "pay order";
-		PaymentController ctrl = (PaymentController) getBController();
-		try {
-			ctrl.validateCardInfo(cardNumber.getText(), holderName.getText(),
-				expirationDate.getText(), securityCode.getText(), bankName.getText());
-		} catch (Exception e) {
-			notifyError(e.getMessage());
-		}
-		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
-				expirationDate.getText(), securityCode.getText(), bankName.getText());
+        if (this.card == null) {
+            String contents = "pay order";
+            PaymentController ctrl = (PaymentController) getBController();
+            try {
+                ctrl.validateCardInfo(cardNumber.getText(), holderName.getText(),
+                        expirationDate.getText(), securityCode.getText(), bankName.getText());
+            } catch (Exception e) {
+                notifyError(e.getMessage());
+            }
+            Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
+                    expirationDate.getText(), securityCode.getText(), bankName.getText());
 
-		BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount());
-		resultScreen.setPreviousScreen(this);
-		resultScreen.setHomeScreenHandler(homeScreenHandler);
-		resultScreen.setScreenTitle("Result Screen");
-		resultScreen.show();
+            BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount());
+            resultScreen.setPreviousScreen(this);
+            resultScreen.setHomeScreenHandler(homeScreenHandler);
+            resultScreen.setScreenTitle("Result Screen");
+            resultScreen.show();
+        }
+
+
     }
-    
+
     /*
-     * Back to rent bike screen 
+     * Back to rent bike screen
      */
     @FXML
     void backToPreviousScreen(MouseEvent event) {
-    		
+
     }
+
     @FXML
     private Label errorDisplay;
+
     /*
      * display error
      */
     void notifyError(String error) {
-    	errorDisplay.setText(error);
+        errorDisplay.setText(error);
     }
-    
+
 }

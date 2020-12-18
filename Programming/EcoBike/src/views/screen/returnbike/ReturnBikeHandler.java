@@ -97,7 +97,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         this.s = station;
 
         setBikeInfo();
-//        card = getBController().getCard();
+
          card = new Card("121319_group8_2020", "Group 8", "128", "1125");
         setCardInfo();
     }
