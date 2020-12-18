@@ -8,8 +8,10 @@ import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.station.Station;
 import entity.transaction.Card;
+import entity.transaction.TransactionInfo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -63,7 +65,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     private TextField dateExpired;
     @FXML
-    private TextField cvvCode;
+    private PasswordField cvvCode;
     @FXML
     private Button cancelBtn;
     @FXML
@@ -74,6 +76,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Station s;
     private Card card;
     private Order order;
+    private int totalAmount;
 
     private static Logger LOGGER = Utils.getLogger(ReturnBikeHandler.class.getName());
 
@@ -118,7 +121,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         int rFee = new ReturnBikeController().calculateAmount(order.getRentedBike().getCoefficient(), order.getStart());
         rentingFee.setText(Utils.getCurrencyFormat(rFee));
 
-        int totalAmount = rFee - deposit1;
+        totalAmount = rFee - deposit1;
         // pay more if rentingFee > deposit
         if (totalAmount > 0) {
             payType.setText("Pay amount");
@@ -135,7 +138,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     void moveToPaymentScreen(MouseEvent event) throws IOException {
         order.setEnd(LocalDateTime.now());
         Invoice invoice = new Invoice(order);
-        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
+        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, card);
         payment.setBController(new PaymentController());
         payment.setPreviousScreen(this);
         payment.setHomeScreenHandler(homeScreenHandler);
@@ -147,7 +150,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         owner.setText(card.getOwner());
         cardCode.setText(card.getCardCode());
         dateExpired.setText(card.getDateExpired());
-        cvvCode.setText("***");
+        cvvCode.setText(card.getCvvCode());
     }
 
     @FXML
@@ -166,9 +169,13 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
 
-        int amount = 100;
-        interbank.payOrder(card, amount, "return bike");
-
+        // pay more if rentingFee > deposit, else refund to account
+        if(totalAmount > 0) {
+            TransactionInfo transactionResult = interbank.payOrder(card, totalAmount, "Pay more for returning bike");
+        }
+        else {
+            TransactionInfo transactionResult = interbank.refund(card, totalAmount, "Refund when returning bike");
+        }
         // else error then display transaction error screen
 
         displayTransactionError(String.valueOf(3));

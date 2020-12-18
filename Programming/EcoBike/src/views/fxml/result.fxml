@@ -16,10 +16,10 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="70.0" prefWidth="1366.0">
          <children>
-            <GridPane layoutX="48.0" layoutY="4.0" prefHeight="67.0" prefWidth="335.0">
+            <GridPane layoutX="48.0" layoutY="4.0" prefHeight="67.0" prefWidth="500.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.0" minWidth="10.0" prefWidth="62.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="320.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="99.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="315.0" minWidth="-Infinity" prefWidth="283.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,42 +30,42 @@
                         <Image url="@../../../assets/images/Logo.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Invoice" wrappingWidth="171.3984375" GridPane.columnIndex="1">
+                  <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Result" wrappingWidth="374.3984375" GridPane.columnIndex="1">
                      <font>
                         <Font name="Arial Bold" size="48.0" />
                      </font>
                   </Text>
                </children>
             </GridPane>
-            <ImageView fx:id="home" fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="home" fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" onMouseClicked="#backToHomeBeforeRent" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/images/home.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <Label fx:id="resultLabel" alignment="CENTER" layoutX="338.0" layoutY="76.0" prefHeight="71.0" prefWidth="710.0" text="Your Transaction Is Successful">
+      <Label fx:id="resultLabel" alignment="CENTER" layoutX="338.0" layoutY="76.0" prefHeight="71.0" prefWidth="710.0" text="Your Transaction Is Successful" textFill="#eb4d55">
          <font>
-            <Font name="Arial Bold" size="30.0" />
+            <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
       <Rectangle fill="WHITE" height="499.0" layoutX="114.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="1159.0" />
-      <Button fx:id="confirmPayment" layoutX="583.0" layoutY="688.0" mnemonicParsing="false" onMouseClicked="#backToHome" prefHeight="48.0" prefWidth="221.0" style="-fx-background-color: #4D5DEB;" text="Back To Home" textFill="WHITE">
+      <Button fx:id="confirmPayment" layoutX="583.0" layoutY="688.0" mnemonicParsing="false" onMouseClicked="#backToHomeAfterRent" prefHeight="48.0" prefWidth="221.0" style="-fx-background-color: #4D5DEB;" text="Back To Home" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Label fx:id="messageLabel" alignment="CENTER" layoutX="124.0" layoutY="152.0" prefHeight="48.0" prefWidth="337.0" text="Transaction #420E69">
+      <Label alignment="CENTER" layoutX="180.0" layoutY="154.0" prefHeight="48.0" prefWidth="187.0" text="Transaction">
          <font>
-            <Font name="Arial Bold" size="28.0" />
+            <Font name="Arial Bold" size="32.0" />
          </font>
       </Label>
-      <Text layoutX="188.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" underline="true" wrappingWidth="148.5">
+      <Text layoutX="187.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card's owner" underline="true" wrappingWidth="168.5">
          <font>
             <Font name="Arial Bold" size="26.0" />
          </font>
       </Text>
-      <Label fx:id="username" layoutX="258.0" layoutY="262.0" prefHeight="48.0" prefWidth="586.0" text="Pham Nhat Linh">
+      <Label fx:id="owner" layoutX="256.0" layoutY="255.0" prefHeight="48.0" prefWidth="586.0" text="Pham Nhat Linh">
          <font>
             <Font name="Arial" size="26.0" />
          </font>
@@ -75,7 +75,7 @@
             <Font name="Arial Bold" size="26.0" />
          </font>
       </Text>
-      <Label fx:id="transaction_detail" layoutX="258.0" layoutY="360.0" prefHeight="48.0" prefWidth="907.0" text="Pay Deposit When Rent Bike #12345">
+      <Label fx:id="content" layoutX="258.0" layoutY="360.0" prefHeight="48.0" prefWidth="907.0" text="Pay Deposit When Return Bike #12345">
          <font>
             <Font name="Arial" size="26.0" />
          </font>
@@ -98,6 +98,11 @@
       <Label layoutX="258.0" layoutY="556.0" prefHeight="48.0" prefWidth="907.0" text="Credit Card">
          <font>
             <Font name="Arial" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="id" alignment="TOP_LEFT" layoutX="380.0" layoutY="159.0" prefHeight="37.0" prefWidth="281.0" text="#123">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
          </font>
       </Label>
    </children>
