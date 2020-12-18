@@ -64,12 +64,8 @@ public class BikeHandler extends FXMLScreenHandler {
     }
 
     private void setBikeInfo() throws SQLException {
-        // set the cover image of media
-//        File file = new File("assets/images/map (1) 1.png");
-        Image image = new Image(bike.getUrlImage());
-//        bikeImage.setFitHeight(152);
-//        bikeImage.setFitWidth(315);
-        bikeImage.setImage(image);
+
+        setImage(bikeImage, bike.getUrlImage());
         licensePlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
