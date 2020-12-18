@@ -18,10 +18,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -63,7 +60,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     private TextField expirationDate;
 
     @FXML
-    private TextField securityCode;
+    private PasswordField securityCode;
 
     @FXML
     private TextField bankName;
@@ -126,8 +123,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             resultScreen.setScreenTitle("Result Screen");
             resultScreen.show();
         }
-
-
     }
 
     /*

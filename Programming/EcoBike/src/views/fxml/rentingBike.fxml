@@ -51,7 +51,7 @@
                                 <Insets left="10.0"/>
                             </GridPane.margin>
                         </Label>
-                        <ImageView fx:id="home" fitHeight="69.0" fitWidth="71.0" onMouseClicked="#backToHome"
+                        <ImageView fx:id="home" fitHeight="69.0" fitWidth="71.0" onMouseClicked="#backToHomeAfterRent"
                                    pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
                             <image>
                                 <Image url="@../../../assets/images/Home.png"/>

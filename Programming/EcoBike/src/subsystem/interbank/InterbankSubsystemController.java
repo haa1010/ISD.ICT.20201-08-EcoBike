@@ -58,11 +58,16 @@ public class InterbankSubsystemController {
 		transaction.put("amount", amount);
 		transaction.put("createdAt", Utils.getToday());
 
+		Map<String, Object> dataForHash = new MyMap();
+		dataForHash.put("secretKey", "BtNH8J4Tl/I=");
+		dataForHash.put("transaction", transaction);
+		String hashCode = generateData(dataForHash);
+
 		Map<String, Object> requestMap = new MyMap();
 		requestMap.put("version", VERSION);
 		requestMap.put("transaction", transaction);
 		requestMap.put("appCode", Configs.appCode);
-		requestMap.put("hashCode", Configs.hashCode);
+		requestMap.put("hashCode", hashCode);
 
 		String responseText = interbankBoundary.query(Configs.PROCESS_TRANSACTION_URL, generateData(requestMap));
 		MyMap response = null;

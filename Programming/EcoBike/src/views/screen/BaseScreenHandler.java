@@ -32,7 +32,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         homeHandler.requestToReturnHome(this);
     }
 
-    public void backToHomeReturn(Order order) throws IOException, SQLException {
+    public void backToHomeAfterRent(Order order) throws IOException, SQLException {
         LOGGER.info("Home button clicked");
         HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH, order);
         homeHandler.requestToReturnHome(this);
