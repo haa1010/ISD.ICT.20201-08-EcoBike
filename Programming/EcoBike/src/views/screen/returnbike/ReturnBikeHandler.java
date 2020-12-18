@@ -4,7 +4,6 @@ import controller.BaseController;
 import controller.PaymentController;
 import controller.ReturnBikeController;
 import entity.bike.Bike;
-import entity.bike.StandardElectricBike;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.station.Station;
@@ -12,28 +11,20 @@ import entity.transaction.Card;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import subsystem.interbank.InterbankSubsystemController;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
-import views.screen.bike.BikeScreenHandler;
-import views.screen.home.HomeScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 public class ReturnBikeHandler extends BaseScreenHandler {
@@ -44,14 +35,6 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Text barcode;
     @FXML
     private Text type;
-//    @FXML
-//    private Text battery;
-//    @FXML
-//    private Text remainingTime;
-//    @FXML
-//    private Text batteryLabel;
-//    @FXML
-//    private Text remainingTimeLabel;
     @FXML
     private Text deposit;
     @FXML
@@ -59,11 +42,15 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     private Text total;
     @FXML
+    private Text rentingFee;
+    @FXML
     private Text station;
     @FXML
     private Text start;
     @FXML
     private Text end;
+    @FXML
+    private Text payType;
 
     @FXML
     private ImageView bikeImage;
@@ -98,7 +85,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
         setBikeInfo();
 
-         card = new Card("121319_group8_2020", "Group 8", "128", "1125");
+        card = new Card("121319_group8_2020", "Group 8", "128", "1125");
         setCardInfo();
     }
 
@@ -107,38 +94,41 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     private void setBikeInfo() {
+
         Bike bike = this.order.getRentedBike();
         numberPlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
         station.setText(s.getName());
-        int deposit1 = (int)(bike.getValue() * 0.4);
+        int deposit1 = (int) (bike.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(deposit1));
-        // set image from url
-        String imageSource = bike.getUrlImage();
-        boolean backgroundLoading = true;
+        setImage(bikeImage, bike.getUrlImage());
 
-        Image image = new Image(imageSource, backgroundLoading);
-        bikeImage.setImage(image);
+        start.setText((order.getStart().format(Utils.DATE_FORMATTER)));
+        end.setText(LocalDateTime.now().format(Utils.DATE_FORMATTER));
 
-//        if (bike instanceof StandardElectricBike) {
-//            int batteryPercentage = ((StandardElectricBike) bike).getBatteryPercentage();
-//            battery.setText(batteryPercentage + " %");
-//            remainingTime.setText(Utils.convertTime(((StandardElectricBike) bike).getRemainingTime()));
-//        } else {
-//            batteryLabel.setVisible(false);
-//            battery.setVisible(false);
-//            remainingTimeLabel.setVisible(false);
-//            remainingTime.setVisible(false);
-//        }
+        // format rentedTime
+        int hours = Duration.between(order.getStart(), LocalDateTime.now()).toHoursPart();
+        long days = Duration.between(order.getStart(), LocalDateTime.now()).toDaysPart();
+        String rentedTimeText = days > 0 ? days + " days " : "";
+        rentedTimeText += hours > 0 ? hours + " hours " : "";
+        rentedTimeText += Duration.between(order.getStart(), LocalDateTime.now()).toMinutesPart() + " minutes";
+        rentedTime.setText(rentedTimeText);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd ");
-        start.setText((order.getStart().format(formatter)));
-        end.setText((LocalDateTime.now()).plusHours(2).format(formatter));
-        rentedTime.setText(String.valueOf((Duration.between(order.getStart(), (LocalDateTime.now()).plusHours(2))).toMinutes()) + " minutes");
+        int rFee = new ReturnBikeController().calculateAmount(order.getRentedBike().getCoefficient(), order.getStart());
+        rentingFee.setText(Utils.getCurrencyFormat(rFee));
 
-        int totalAmount =  new ReturnBikeController().calculateAmount(1, LocalDateTime.now().minusHours(2));
-        total.setText(Utils.getCurrencyFormat(totalAmount));
+        int totalAmount = rFee - deposit1;
+        // pay more if rentingFee > deposit
+        if (totalAmount > 0) {
+            payType.setText("Pay amount");
+            total.setText(Utils.getCurrencyFormat(totalAmount));
+        }
+        // else refund
+        else {
+            payType.setText("Refund");
+            total.setText(Utils.getCurrencyFormat(-totalAmount));
+        }
     }
 
     @FXML
@@ -176,7 +166,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
 
-        int amount  = 100;
+        int amount = 100;
         interbank.payOrder(card, amount, "return bike");
 
         // else error then display transaction error screen
@@ -185,7 +175,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     }
 
-    void displayTransactionError (String errorCode) throws IOException {
+    void displayTransactionError(String errorCode) throws IOException {
         String errorMessage;
         errorMessage = Configs.errorCodes.get(errorCode);
 
@@ -201,16 +191,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     @FXML
-    void backToDockSelection (MouseEvent event) throws IOException {
-        SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  order);
+    void backToDockSelection(MouseEvent event) throws IOException {
+        SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, order);
         d.show();
-    }
-
-    @FXML
-    void backToHome(MouseEvent event) throws IOException {
-        HomeScreenHandler homeScreenHandler = new HomeScreenHandler(this.stage, Configs.HOME_PATH);
-//        HomeScreenHandler.setHomeScreenHandler(homeScreenHandler);
-//        HomeScreenHandler.setBController(new ViewCartController());
-//        HomeScreenHandler.requestToViewCart(this.getPreviousScreen());
     }
 }

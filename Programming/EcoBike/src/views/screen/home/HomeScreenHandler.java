@@ -1,6 +1,7 @@
 package views.screen.home;
 
 import controller.HomeController;
+import entity.order.Order;
 import entity.station.Station;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,6 +64,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private List homeItems;
 
     private String searchString = searchInput.getText();
+    private Order order;
 
     @FXML
     public void onEnter(ActionEvent ae){
@@ -71,6 +73,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
+        this.order = null;
+    }
+
+    public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException {
+        super(stage, screenPath);
+        this.order = order;
     }
 
     public HomeController getBController() {
