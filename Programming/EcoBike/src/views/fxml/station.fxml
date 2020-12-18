@@ -18,7 +18,7 @@
             </image>
         </ImageView>
         <ImageView fx:id="home" fitHeight="71.0" fitWidth="74.0" layoutX="1246.0" layoutY="22.0"
-                   onMouseClicked="#backToHomeBeforeRent" pickOnBounds="true" preserveRatio="true">
+                   onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../assets/images/home.png"/>
             </image>

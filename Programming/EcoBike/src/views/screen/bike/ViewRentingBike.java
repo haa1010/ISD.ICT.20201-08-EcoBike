@@ -155,6 +155,14 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
 
     }
 
+    public void backToHome() throws IOException, SQLException {
+        backToHomeReturn(this.order);
+    }
+
+    public void backToHomeReturn() {
+
+    }
+
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();
     }
