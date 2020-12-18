@@ -68,11 +68,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         this.bike = getBController().setBike(id, type);
         liscensePlateTitle.setText(bike.getLicensePlate());
         // set image from url
-        String imageSource = bike.getUrlImage();
-        boolean backgroundLoading = true;
-// The image is being loaded in the background
-        Image image = new Image(imageSource, backgroundLoading);
-        urlImage.setImage(image);
+        setImage(urlImage, bike.getUrlImage());
 
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, true);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
@@ -91,7 +87,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private void cancelViewBike() throws IOException, SQLException {
         LOGGER.info("Cancel button clicked");
         if (this.getPreviousScreen() instanceof HomeScreenHandler) {
-            backToHome();
+            backToHomeBeforeRent();
         } else {
             StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler);
             stationScreenHandler.requestToViewStation(this);

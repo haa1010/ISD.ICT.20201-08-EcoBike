@@ -71,6 +71,7 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     @FXML
     private ImageView pause;
 
+
     public boolean isFlag() {
         return flag;
     }
@@ -190,11 +191,11 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
 
         liscensePlateTitle.setText(bike.getLicensePlate());
         // set image from url
-        String imageSource = bike.getUrlImage();
-        boolean backgroundLoading = true;
-// The image is being loaded in the background
-        Image image = new Image(imageSource, backgroundLoading);
-        urlImage.setImage(image);
+//        String imageSource = bike.getUrlImage();
+//        boolean backgroundLoading = true;
+//// The image is being loaded in the background
+//        Image image = new Image(imageSource, backgroundLoading);
+        setImage(urlImage, bike.getUrlImage());
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
     }

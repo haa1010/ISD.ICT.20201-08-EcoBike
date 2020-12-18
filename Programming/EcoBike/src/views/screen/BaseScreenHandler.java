@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.logging.Logger;
+
 import controller.BaseController;
+import entity.order.Order;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.Configs;
@@ -24,9 +26,15 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     public Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
 
 
-    public void backToHome() throws IOException, SQLException {
+    public void backToHomeBeforeRent() throws IOException, SQLException {
         LOGGER.info("Home button clicked");
         HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
+        homeHandler.requestToReturnHome(this);
+    }
+
+    public void backToHomeReturn(Order order) throws IOException, SQLException {
+        LOGGER.info("Home button clicked");
+        HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH, order);
         homeHandler.requestToReturnHome(this);
     }
 
