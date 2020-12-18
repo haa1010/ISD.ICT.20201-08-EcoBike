@@ -66,7 +66,8 @@ public class StationHandler extends FXMLScreenHandler{
         distance.setOnMouseClicked(event -> {
             PopupHomeScreen popupHomeScreen;
             try {
-                PopupHomeScreen.success("Test");
+                System.out.println("Distance clicked");
+                PopupHomeScreen.showPopup();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -79,8 +80,8 @@ public class StationHandler extends FXMLScreenHandler{
     }
 
     private void setStationInfo() throws SQLException {
-        // set the cover image of media
-        File file = new File("assets/images/map (1) 1.png");
+        // set the cover image of station
+        File file = new File("assets/images/dock-img.png");
         Image image = new Image(file.toURI().toString());
         stationImage.setFitHeight(160);
         stationImage.setFitWidth(152);

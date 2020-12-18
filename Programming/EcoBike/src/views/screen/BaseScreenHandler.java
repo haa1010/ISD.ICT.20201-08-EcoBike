@@ -3,13 +3,8 @@ package views.screen;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.logging.Logger;
-
-
 import controller.BaseController;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.Configs;
@@ -30,9 +25,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 
 
     public void backToHome() throws IOException, SQLException {
-
-        LOGGER.info("home button clicked");
-
+        LOGGER.info("Home button clicked");
         HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
         homeHandler.requestToReturnHome(this);
     }

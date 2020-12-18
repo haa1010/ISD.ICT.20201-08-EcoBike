@@ -1,6 +1,7 @@
 package views.screen.popup;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -12,13 +13,11 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
+import views.screen.home.HomeScreenHandler;
+import views.screen.station.StationScreenHandler;
 
 
 public class PopupHomeScreen extends BaseScreenHandler{
-    
-
-    @FXML
-    ImageView tickicon;
 
     @FXML
     Label message;
@@ -33,35 +32,24 @@ public class PopupHomeScreen extends BaseScreenHandler{
     Label estimatedTime;
 
     @FXML
-    Button back;
+    private void back() throws IOException, SQLException {
+        LOGGER.info("Back button clicked");
+        close(0);
+    }
 
     
     public PopupHomeScreen(Stage stage) throws IOException{
         super(stage, Configs.POPUP_HOME_PATH);
     }
 
-    private static PopupHomeScreen popup(String message, String imagepath, Boolean undecorated) throws IOException{
+    private static PopupHomeScreen popup(Boolean undecorated) throws IOException{
         PopupHomeScreen popup = new PopupHomeScreen(new Stage());
         if (undecorated) popup.stage.initStyle(StageStyle.UNDECORATED);
-        popup.message.setText(message);
-        popup.setImage(imagepath);
         return popup;
     }
 
-    public static void success(String message) throws IOException{
-        popup(message, Configs.IMAGE_PATH + "/" + "tickgreen.png", true).show(true);
-    }
-
-    public static void error(String message) throws IOException{
-        popup(message, Configs.IMAGE_PATH + "/" + "tickerror.png", false).show(false);
-    }
-
-    public static PopupHomeScreen loading(String message) throws IOException{
-        return popup(message, Configs.IMAGE_PATH + "/" + "loading.gif", true);
-    }
-
-    public void setImage(String path) {
-        super.setImage(tickicon, path);
+    public static void showPopup() throws IOException{
+        popup(true).show(false);
     }
 
     public void show(Boolean autoclose) {

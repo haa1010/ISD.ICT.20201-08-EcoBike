@@ -91,19 +91,22 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
 
                 //  Image icon16 = new Image("../../../assets/images/playIcon.png");
 
-                String imagePath = "file:///D:/itss/ISD.ICT.20201.08/Programming/EcoBike/assets/images/playIcon.png";
-                Image image = new Image(imagePath);
-                pause.setImage(image);
+//                String imagePath = "assets/images/playIcon.png";
+//                Image image = new Image(imagePath);
+//                pause.setImage(image);
+                setImage(pause, "assets/images/playIcon.png");
                 setFlag(true);
 
             } else {
                 animation.play();
-                String imageSource = "file:///D:/itss/ISD.ICT.20201.08/Programming/EcoBike/assets/images/pauseIcon.png";
+                String imageSource = "assets/images/pauseIcon.png";
 
                 boolean backgroundLoading = true;
 // The image is being loaded in the background
-                Image image = new Image(imageSource, backgroundLoading);
-                pause.setImage(image);
+//                Image image = new Image(imageSource, backgroundLoading);
+//                pause.setImage(image);
+                setImage(pause, "assets/images/pauseIcon.png");
+
                 setFlag(false);
             }
         }
@@ -124,9 +127,8 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     private void returnBike() throws IOException {
         LOGGER.info("return bike button clicked");
 
-        SelectDockToReturnBikeScreenHandler returnBikeScreenHandler = new SelectDockToReturnBikeScreenHandler(this.stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, bike);
-        returnBikeScreenHandler.setBController(new ReturnBikeController());
-        returnBikeScreenHandler.show();
+        SelectDockToReturnBikeScreenHandler selectDock = new SelectDockToReturnBikeScreenHandler(this.stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, order);
+        selectDock.show();
 
     }
 

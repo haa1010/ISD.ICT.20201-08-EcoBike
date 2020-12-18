@@ -75,7 +75,5 @@ public class Order {
         this.totalUpToNow = totalUpToNow;
     }
 
-    ;
-
 }
 
