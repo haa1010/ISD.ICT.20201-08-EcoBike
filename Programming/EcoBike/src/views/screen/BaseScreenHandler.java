@@ -2,10 +2,13 @@ package views.screen;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Hashtable;
 import java.util.logging.Logger;
 
 import controller.BaseController;
+import controller.ReturnBikeController;
+import entity.invoice.Invoice;
 import entity.order.Order;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,6 +16,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
+import views.screen.payment.TransactionErrorScreenHandler;
 
 public class BaseScreenHandler extends FXMLScreenHandler {
 
@@ -82,5 +86,21 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 
     public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
         this.homeScreenHandler = HomeScreenHandler;
+    }
+
+
+    public void displayTransactionError(String errorCode, Order order, int amount, String contents) throws IOException {
+        String errorMessage;
+        errorMessage = Configs.errorCodes.get(errorCode);
+
+//        order.setEnd(LocalDateTime.now());
+        Invoice invoice = new Invoice(order, amount, contents);
+
+        TransactionErrorScreenHandler tes = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, errorMessage, invoice);
+        tes.setPreviousScreen(this);
+        tes.setBController(new ReturnBikeController());
+        tes.setHomeScreenHandler(homeScreenHandler);
+        tes.setScreenTitle("Transaction Error Screen");
+        tes.show();
     }
 }

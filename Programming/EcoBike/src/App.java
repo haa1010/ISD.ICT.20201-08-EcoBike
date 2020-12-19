@@ -85,7 +85,7 @@ public class App extends Application {
                      Bike bike;
                      try {
                          bike = new StandardElectricBike().getBikeById(3);
-                         Order order = new Order(bike, LocalDateTime.now());
+                         Order order = new Order(bike, LocalDateTime.now().minusHours(28));
                          SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  order);
                      d.show();
                      } catch (SQLException throwables) {
