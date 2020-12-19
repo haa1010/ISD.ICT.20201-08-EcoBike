@@ -11,7 +11,8 @@ public class InterbankBoundary {
 			response = API.post(url, data);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			throw new UnrecognizedException();
+			e.printStackTrace();
+//			throw new UnrecognizedException();
 		}
 		return response;
 	}

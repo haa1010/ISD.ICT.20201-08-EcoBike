@@ -13,6 +13,7 @@ import controller.PaymentController;
 import common.exception.PlaceOrderException;
 import entity.invoice.Invoice;
 import entity.transaction.Card;
+import entity.transaction.TransactionInfo;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -40,6 +41,14 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         super(stage, screenPath);
         this.invoice = invoice;
         this.card = null;
+
+        home.setOnMouseClicked(event -> {
+            try {
+                backToHome();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice, Card card) throws IOException {
@@ -50,7 +59,16 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         this.holderName.setText(card.getOwner());
         this.expirationDate.setText(card.getDateExpired());
         this.securityCode.setText(card.getCvvCode());
+
+        home.setOnMouseClicked(event -> {
+            try {
+                backToHomeAfterRent(this.invoice.getOrder());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
+
 
     @FXML
     private Label pageTitle;
@@ -63,10 +81,14 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
     @FXML
     private TextField expirationDate;
+    @FXML
+    private TextField bankName;
 
     @FXML
     private PasswordField securityCode;
 
+    @FXML
+    private ImageView home;
 
     /*
      * this is for confirm button when return bike
@@ -145,6 +167,14 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             	error.setHomeScreenHandler(homeScreenHandler);
             	error.show();
             }
+//           TransactionInfo response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
+//                    expirationDate.getText(), securityCode.getText(), bankName.getText());
+
+//            BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, holderName.getText(), invoice.getContents(), invoice.getAmount(),);
+//            resultScreen.setPreviousScreen(this);
+//            resultScreen.setHomeScreenHandler(homeScreenHandler);
+//            resultScreen.setScreenTitle("Result Screen");
+//            resultScreen.show();
         }
 
     /*

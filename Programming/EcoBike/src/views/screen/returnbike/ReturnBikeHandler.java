@@ -2,6 +2,7 @@ package views.screen.returnbike;
 
 import controller.BaseController;
 import controller.PaymentController;
+import controller.ResultScreenController;
 import controller.ReturnBikeController;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
@@ -22,6 +23,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
+import views.screen.payment.ResultScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
 
 import java.io.IOException;
@@ -166,29 +168,28 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     void submitReturnBike(MouseEvent event) throws IOException {
 
-//        Thông tin thẻ:
-//        Mã thẻ: 121319_group8_2020
-//        Chủ thẻ: Group 8
-//        CVV: 128
-//        Ngày hết hạn: 1125
-//        Key Pair
-//        App Code: A1SRyiBqj/E=
-//        Secret Key: BtNH8J4Tl/I=
-
-
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
 
         // pay more if rentingFee > deposit, else refund to account
+        TransactionInfo transactionResult;
+        card.setCvvCode(cvvCode.getText());
+        System.out.println("card " + card.getCvvCode());
         if(totalAmount > 0) {
-            TransactionInfo transactionResult = interbank.payOrder(card, totalAmount, "Pay more for returning bike");
+            transactionResult = interbank.payOrder(card, totalAmount, "Pay more for returning bike");
         }
         else {
-            TransactionInfo transactionResult = interbank.refund(card, totalAmount, "Refund when returning bike");
+            transactionResult = interbank.refund(card, - totalAmount, "Refund when returning bike");
         }
         // else error then display transaction error screen
 
-        displayTransactionError(String.valueOf(3));
+        if(!transactionResult.getErrorCode().equals("00")) {
+            displayTransactionError(transactionResult.getErrorCode());
+        }
+        else {
+            ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
+            resultScreenHandler.show();
+        }
 
     }
 
