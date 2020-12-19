@@ -1,6 +1,8 @@
 package views.screen.home;
 
 import controller.HomeController;
+import controller.RentBikeController;
+import controller.ViewStationController;
 import entity.station.Station;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +16,8 @@ import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
+import views.screen.barcode.BarcodeScreenHandler;
+import views.screen.station.StationScreenHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -67,6 +71,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     @FXML
     public void onEnter(ActionEvent ae){
         searchString = searchInput.getText();
+        addStationHome(this.homeItems);
     }
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
@@ -106,7 +111,15 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         });
 
         rentBikeButton.setOnMouseClicked(e -> {
-
+            BarcodeScreenHandler barcodeScreen;
+            try {
+                barcodeScreen = new BarcodeScreenHandler(this.stage, Configs.BARCODER_SCREEN_PATH);
+                barcodeScreen.setHomeScreenHandler(this);
+                barcodeScreen.setBController(new RentBikeController());
+                barcodeScreen.requestToViewBarcode(this);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         });
 
         addStationHome(this.homeItems);

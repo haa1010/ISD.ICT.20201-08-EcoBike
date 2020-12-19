@@ -45,7 +45,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="463.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #4D5DEB;" text="Back" textFill="WHITE">
+      <Button fx:id="back" layoutX="463.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #EB4D55;" text="OK" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
