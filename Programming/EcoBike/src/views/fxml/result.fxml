@@ -44,13 +44,13 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label fx:id="resultLabel" alignment="CENTER" layoutX="338.0" layoutY="76.0" prefHeight="71.0" prefWidth="710.0" text="Your Transaction Is Successful" textFill="#eb4d55">
+      <Label fx:id="resultLabel" alignment="CENTER" layoutX="338.0" layoutY="76.0" prefHeight="71.0" prefWidth="710.0" text="Your Transaction is Successful" textFill="#eb4d55">
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
       <Rectangle fill="WHITE" height="499.0" layoutX="114.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="1159.0" />
-      <Button fx:id="confirmPayment" layoutX="583.0" layoutY="688.0" mnemonicParsing="false" onMouseClicked="#backToHomeAfterRent" prefHeight="48.0" prefWidth="221.0" style="-fx-background-color: #4D5DEB;" text="Back To Home" textFill="WHITE">
+      <Button fx:id="backToHome" layoutX="583.0" layoutY="688.0" mnemonicParsing="false" onMouseClicked="#backToHomeAfterRent" prefHeight="48.0" prefWidth="221.0" style="-fx-background-color: #4D5DEB;" text="Back To Home" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>

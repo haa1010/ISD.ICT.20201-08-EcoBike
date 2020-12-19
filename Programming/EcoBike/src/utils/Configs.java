@@ -77,14 +77,14 @@ public class Configs {
 
 
     public static final Map<String, String> errorCodes = new HashMap<String, String>() {{
-        put("0", "Transaction successfully");
-        put("1", "Invalid card");
-        put("2", "Insufficient account balance");
-        put("3", "Internal Server Error");
-        put("4", "Fraud transaction");
-        put("5", "Missing transaction information");
-        put("6", "Missing version information");
-        put("7", "Invalid amount");
+        put("00", "Transaction successfully");
+        put("01", "Invalid card");
+        put("02", "Insufficient account balance");
+        put("03", "Internal Server Error");
+        put("04", "Fraud transaction");
+        put("05", "Missing transaction information");
+        put("06", "Missing version information");
+        put("07", "Invalid amount");
     }};
 
     public static final String YEARS[] = Arrays.stream(IntStream.rangeClosed(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.YEAR) + 5).toArray()).mapToObj(String::valueOf).toArray(String[]::new);

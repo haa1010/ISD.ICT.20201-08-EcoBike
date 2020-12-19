@@ -38,7 +38,7 @@
                   </Text>
                </children>
             </GridPane>
-            <ImageView fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="home" fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/images/home.png" />
                </image>
