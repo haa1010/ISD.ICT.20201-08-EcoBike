@@ -1,6 +1,7 @@
 package views.screen.barcode;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import controller.RentBikeController;
 import entity.bike.Bike;
@@ -45,8 +46,8 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
     private Label displayError;
 
     @FXML
-    void backToHome(MouseEvent event) {
-    	// implement later
+    void backToHomie(MouseEvent event) throws IOException, SQLException {
+    	this.backToHome();
     }
 
     @FXML

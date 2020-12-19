@@ -1,6 +1,7 @@
 package views.screen.rentbike;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -42,14 +43,13 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
     private Label deposit;
 
     @FXML
-    void backToHome(MouseEvent event) {
-        // implement later
+    void backToHomie(MouseEvent event) throws IOException, SQLException {
+        this.backToHome();
     }
 
     @FXML
     void backToPreviousScreen(MouseEvent event) {
-        // implement later
-        // TODO: back to previous screen (barcode/bike info screen)
+        this.getPreviousScreen().show();
     }
 
     @FXML
