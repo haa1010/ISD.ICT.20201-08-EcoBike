@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
+import views.screen.rentbike.RentBikeScreenHandler;
 
 import java.io.IOException;
 
@@ -45,6 +46,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         super(stage, screenPath);
         this.invoice = invoice;
         this.card = card;
+        this.cardNumber.setText(card.getCardCode());
+        this.holderName.setText(card.getOwner());
+        this.expirationDate.setText(card.getDateExpired());
+        this.securityCode.setText(card.getCvvCode());
     }
 
     @FXML
@@ -62,8 +67,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     @FXML
     private PasswordField securityCode;
 
-    @FXML
-    private TextField bankName;
 
     /*
      * this is for confirm button when return bike
@@ -104,33 +107,46 @@ public class PaymentScreenHandler extends BaseScreenHandler {
      */
 
     @FXML
-    void confirmToPayDeposit(MouseEvent event) throws IOException {
+    void confirmTransaction(MouseEvent event) throws IOException {
+    	String contents;
+    	PaymentController ctrl = (PaymentController) getBController();
         if (this.card == null) {
-            String contents = "pay order";
-            PaymentController ctrl = (PaymentController) getBController();
+            contents = "rent";
+        }
+        else {
+        	contents = "return";
+        }
             try {
                 ctrl.validateCardInfo(cardNumber.getText(), holderName.getText(),
-                        expirationDate.getText(), securityCode.getText(), bankName.getText());
+                        expirationDate.getText(), securityCode.getText());
             } catch (Exception e) {
                 notifyError(e.getMessage());
             }
+        
             Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
-                    expirationDate.getText(), securityCode.getText(), bankName.getText());
-
-            BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount());
-            resultScreen.setPreviousScreen(this);
-            resultScreen.setHomeScreenHandler(homeScreenHandler);
-            resultScreen.setScreenTitle("Result Screen");
-            resultScreen.show();
+                    expirationDate.getText(), securityCode.getText());
+            
+            if(response.get("RESULT") == "PAYMENT SUCCESSFUL!"){
+	            BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount());
+	            resultScreen.setPreviousScreen(this);
+	            resultScreen.setHomeScreenHandler(homeScreenHandler);
+	            resultScreen.setScreenTitle("Result Screen");
+	            resultScreen.show();
+            }
+            else {
+            	BaseScreenHandler error = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, response.get("MESSAGE"), this.invoice);
+            	error.setPreviousScreen(this);
+            	error.setHomeScreenHandler(homeScreenHandler);
+            	error.show();
+            }
         }
-    }
 
     /*
-     * Back to rent bike screen
+     * Back to rent/return bike screen
      */
     @FXML
     void backToPreviousScreen(MouseEvent event) {
-
+    	this.getPreviousScreen().show();
     }
 
     @FXML

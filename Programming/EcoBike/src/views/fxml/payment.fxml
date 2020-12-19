@@ -50,12 +50,12 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="734.0" layoutY="672.0" mnemonicParsing="false" onMouseClicked="#confirmToPayDeposit" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
+      <Button layoutX="734.0" layoutY="672.0" mnemonicParsing="false" onMouseClicked="#confirmTransaction" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Text layoutX="286.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Card Number" wrappingWidth="263.13671875">
+      <Text layoutX="287.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number" wrappingWidth="263.13671875">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -65,51 +65,41 @@
             <Font name="Arial Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="cardNumber" layoutX="286.0" layoutY="217.0" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="123456789101112">
+      <TextField fx:id="cardNumber" layoutX="287.0" layoutY="278.0" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="121319_group8_2020">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
       </TextField>
-      <Text layoutX="286.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card's owner" wrappingWidth="263.13671875">
+      <Text layoutX="815.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Holder Name" wrappingWidth="263.13671875">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="holderName" layoutX="286.0" layoutY="369.0" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="Pham Nhat Linh">
+      <TextField fx:id="holderName" layoutX="815.0" layoutY="275.0" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="Group 8">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
       </TextField>
-      <Text layoutX="814.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Code" wrappingWidth="263.13671875">
+      <Text layoutX="815.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Code" wrappingWidth="263.13671875">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="286.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date" wrappingWidth="263.13671875">
+      <Text layoutX="287.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date" wrappingWidth="263.13671875">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="814.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bank Name" wrappingWidth="263.13671875">
-         <font>
-            <Font name="Arial Bold" size="24.0" />
-         </font>
-      </Text>
-      <TextField fx:id="bankName" layoutX="814.0" layoutY="217.0" prefHeight="43.0" prefWidth="263.0" style="-fx-background-color: #f8edcd;">
+      <TextField fx:id="expirationDate" layoutX="287.0" layoutY="498.0" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="11/25">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="expirationDate" layoutX="286.0" layoutY="533.0" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="11/2021">
-         <font>
-            <Font name="Arial" size="24.0" />
-         </font>
-      </TextField>
-      <Label fx:id="errorDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="477.0" layoutY="604.0" prefHeight="59.0" prefWidth="453.0" text="*Error Display Here" textFill="RED">
+      <Label fx:id="errorDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="477.0" layoutY="604.0" prefHeight="59.0" prefWidth="453.0" textFill="RED">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
       </Label>
-      <PasswordField fx:id="securityCode" layoutX="814.0" layoutY="541.0" prefHeight="43.0" prefWidth="263.0" style="-fx-background-color: #f8edcd #f8edcd;" />
+      <PasswordField fx:id="securityCode" layoutX="815.0" layoutY="506.0" prefHeight="43.0" prefWidth="263.0" style="-fx-background-color: #f8edcd #f8edcd;" text="128" />
    </children>
 </AnchorPane>
