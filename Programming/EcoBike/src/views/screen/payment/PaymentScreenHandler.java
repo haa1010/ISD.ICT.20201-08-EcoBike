@@ -144,29 +144,29 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             } catch (Exception e) {
                 notifyError(e.getMessage());
             }
-        
-            Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
-                    expirationDate.getText(), securityCode.getText());
-            
-            if(response.get("RESULT") == "PAYMENT SUCCESSFUL!"){
-            	BaseScreenHandler resultScreen = new BaseScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH);
-            	if(contents == "return") {
-		            resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount());
-            	}
-            	else if(contents == "rent") {
-            		resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount(), invoice.getOrder());
-            	}
-            		resultScreen.setPreviousScreen(this);    
-		            resultScreen.setHomeScreenHandler(homeScreenHandler);
-		            resultScreen.setScreenTitle("Result Screen");
-		            resultScreen.show();
-            }
-            else {
-            	BaseScreenHandler error = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, response.get("MESSAGE"), this.invoice);
-            	error.setPreviousScreen(this);
-            	error.setHomeScreenHandler(homeScreenHandler);
-            	error.show();
-            }
+//
+//            Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
+//                    expirationDate.getText(), securityCode.getText());
+//
+//            if(response.get("RESULT") == "PAYMENT SUCCESSFUL!"){
+//            	BaseScreenHandler resultScreen = new BaseScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH);
+//            	if(contents == "return") {
+//		            resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount());
+//            	}
+//            	else if(contents == "rent") {
+//            		resultScreen = new ResultScreenHandler(this.stage, Configs.RESULT_SCREEN_PATH, response.get("RESULT"), response.get("MESSAGE"), holderName.getText(), invoice.getContents(), invoice.getAmount(), invoice.getOrder());
+//            	}
+//            		resultScreen.setPreviousScreen(this);
+//		            resultScreen.setHomeScreenHandler(homeScreenHandler);
+//		            resultScreen.setScreenTitle("Result Screen");
+//		            resultScreen.show();
+//            }
+//            else {
+//            	BaseScreenHandler error = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, response.get("MESSAGE"), this.invoice);
+//            	error.setPreviousScreen(this);
+//            	error.setHomeScreenHandler(homeScreenHandler);
+//            	error.show();
+//            }
 //           TransactionInfo response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
 //                    expirationDate.getText(), securityCode.getText(), bankName.getText());
 
