@@ -18,47 +18,8 @@ import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 
-// This is invoice screen handler
 
 public class ResultScreenHandler extends BaseScreenHandler {
-
-	
-	// private Order order;
-
-	// public ResultScreenHandler(Stage stage, String screenPath, String result, String message) throws IOException {
-	// 	super(stage, screenPath);
-	// 	resultLabel.setText(result);
-	// 	messageLabel.setText(message);
-	// }
-	
-	// public ResultScreenHandler(Stage stage, String screenPath, String result, String message, String username, String contents, int amount) throws IOException {
-	// 	super(stage, screenPath);
-	// 	resultLabel.setText(result);
-	// 	messageLabel.setText(message);
-	// 	this.username.setText(username);
-	// 	this.transaction_detail.setText(contents);
-	// 	this.amount.setText(Utils.getCurrencyFormat(amount));
-	// 	this.order = null;
-	// }
-	
-	// public ResultScreenHandler(Stage stage, String screenPath, String result, String message, String username, String contents, int amount, Order order) throws IOException {
-	// 	super(stage, screenPath);
-	// 	resultLabel.setText(result);
-	// 	messageLabel.setText(message);
-	// 	this.username.setText(username);
-	// 	this.transaction_detail.setText(contents);
-	// 	this.amount.setText(Utils.getCurrencyFormat(amount));
-	// 	this.order = order;
-	// }
-	
-    // @FXML
-    // private Label username;
-
-    // @FXML
-    // private Label transaction_detail;
-
-    // @FXML
-    // private Label amount;
 
 	@FXML
 	private Label owner;
@@ -66,16 +27,24 @@ public class ResultScreenHandler extends BaseScreenHandler {
 	@FXML
 	private Label content;
 
-
 	@FXML
 	private Label amount;
 
-//	@FXML
-//	void confirmPayment(MouseEvent event) throws IOException {
-//		homeScreenHandler.show();
-//	}
-
+	@FXML
+	private Button backToHomeBtn;
 	
+	private Order order;
+
+	/**
+	 * This constructor use when returning bike sucessful
+	 * @author hangtt
+	 *
+	 * @param stage
+	 * @param screenPath
+	 * @param bController
+	 * @param trans
+	 * @throws IOException
+	 */
 	public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans) throws IOException {
 		super(stage, screenPath);
 		this.owner.setText(trans.getCard().getOwner());
@@ -83,21 +52,49 @@ public class ResultScreenHandler extends BaseScreenHandler {
 		this.amount.setText(Utils.getCurrencyFormat(trans.getAmount()));
 		setBController(bController);
 
+		backToHomeBtn.setOnMouseClicked(event -> {
+			try {
+				backToHome();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
 
-	// @FXML
-	// void confirmPayment(MouseEvent event) throws IOException, SQLException {
-	// 	if(order == null) {
-	// 		this.backToHome();
-	// 	}
-	// 	else {
-	// 		this.backToHomeAfterRent(order);
-	// 	}
 
+	/**
+	 * This constructor use when rent bike sucessful
+	 * @author hangtt
+	 *
+	 * @param stage
+	 * @param screenPath
+	 * @param bController
+	 * @param trans
+	 * @param order
+	 * @throws IOException
+	 */
+	public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans, Order order) throws IOException {
+//		this(stage, screenPath, bController, trans);
+		super(stage, screenPath);
+		this.owner.setText(trans.getCard().getOwner());
+		this.content.setText(trans.getTransactionContent());
+		this.amount.setText(Utils.getCurrencyFormat(trans.getAmount()));
+		setBController(bController);
+		this.order = order;
+		backToHomeBtn.setOnMouseClicked(event -> {
+			try {
+				backToHomeAfterRent(order);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	public ReturnBikeController getBController() {
 		return (ReturnBikeController) super.getBController();
 	}
+
+
 
 
 }
