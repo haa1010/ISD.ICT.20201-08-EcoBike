@@ -1,17 +1,20 @@
 package views.screen.returnbike;
 
 import controller.*;
-import entity.bike.Bike;
+import entity.order.Order;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
+import views.screen.bike.ViewRentingBike;
+import views.screen.home.HomeScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,17 +34,30 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
     @FXML
     private HBox hboxDock;
 
+    @FXML
+    private ImageView home;
+//
+//    @FXML
+//    private ImageView backBtn;
+
     private List docks;
 
-    private Bike bike;
+    private Order order;
 
     private static Logger LOGGER = Utils.getLogger(ReturnBikeHandler.class.getName());
 
-    public SelectDockToReturnBikeScreenHandler(Stage stage, String screenPath, Bike bike) throws IOException {
+    public SelectDockToReturnBikeScreenHandler(Stage stage, String screenPath, Order order) throws IOException {
         super(stage, screenPath);
-        this.bike = bike;
+        this.order = order;
         addDockSelection();
 
+        home.setOnMouseClicked(event -> {
+            try {
+                backToHomeAfterRent(order);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public SelectDockToReturnBikeController getBController() {
@@ -86,8 +102,16 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
     }
 
     public void dockChosen( Station s) throws IOException {
-        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(stage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), bike, s);
+        ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(stage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), s, order);
         returnBikeHandler.show();
+    }
+
+    @FXML
+    public void backToViewRentingBike() throws IOException, SQLException {
+        ViewRentingBike viewRentingBike = new ViewRentingBike(stage, Configs.RENT_BIKE_INFO_PATH, order);
+        viewRentingBike.setBController(new ViewBikeController());
+        viewRentingBike.requestToViewRentingBike(new HomeScreenHandler(stage, Configs.HOME_SCREEN_PATH));
+        viewRentingBike.show();
     }
 }
 

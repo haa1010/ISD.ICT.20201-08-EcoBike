@@ -68,11 +68,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         this.bike = getBController().setBike(id, type);
         liscensePlateTitle.setText(bike.getLicensePlate());
         // set image from url
-        String imageSource = bike.getUrlImage();
-        boolean backgroundLoading = true;
-// The image is being loaded in the background
-        Image image = new Image(imageSource, backgroundLoading);
-        urlImage.setImage(image);
+        setImage(urlImage, bike.getUrlImage());
 
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, true);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());

@@ -57,6 +57,9 @@
                     <GridPane.margin>
                         <Insets left="25.0"/>
                     </GridPane.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
                 </ImageView>
             </children>
         </GridPane>

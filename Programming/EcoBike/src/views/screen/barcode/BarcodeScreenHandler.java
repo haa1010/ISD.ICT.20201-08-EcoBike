@@ -46,8 +46,8 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
     private Label displayError;
 
     @FXML
-    void backToHome(MouseEvent event) {
-    	// implement later
+    void backToHomie(MouseEvent event) throws IOException, SQLException {
+    	this.backToHome();
     }
 
     @FXML

@@ -25,13 +25,14 @@ public class InterbankSubsystemController {
 	
 	// pay command can be pay or refund
 	
-	private static final String PAY_COMMAND = "pay";
+	private String command = "pay";
 	private static final String VERSION = "1.0.1";
 
 	private static InterbankBoundary interbankBoundary = new InterbankBoundary();
 
 	public TransactionInfo refund(Card card, int amount, String contents) {
-		return null;
+		this.command = "refund";
+		return this.deductMoney(card, amount, contents);
 	}
 	
 	private String generateData(Map<String, Object> data) {
@@ -39,6 +40,11 @@ public class InterbankSubsystemController {
 	}
 
 	public TransactionInfo payOrder(Card card, int amount, String contents) {
+		this.command = "pay";
+		return this.deductMoney(card, amount, contents);
+	}
+
+	public TransactionInfo deductMoney(Card card, int amount, String contents) {
 		Map<String, Object> transaction = new MyMap();
 
 		try {
@@ -47,15 +53,22 @@ public class InterbankSubsystemController {
 			// TODO Auto-generated catch block
 			throw new InvalidCardException();
 		}
-		transaction.put("command", PAY_COMMAND);
+		transaction.put("command", command);
 		transaction.put("transactionContent", contents);
 		transaction.put("amount", amount);
 		transaction.put("createdAt", Utils.getToday());
 
+		Map<String, Object> dataForHash = new MyMap();
+		dataForHash.put("secretKey", SECRET_KEY);
+		dataForHash.put("transaction", transaction);
+		String hashCode = Utils.md5(generateData(dataForHash));
+
+
 		Map<String, Object> requestMap = new MyMap();
 		requestMap.put("version", VERSION);
 		requestMap.put("transaction", transaction);
-		//requestMap.put("appCode", Configs.appCode);
+		requestMap.put("appCode", Configs.appCode);
+		requestMap.put("hashCode", hashCode);
 
 		String responseText = interbankBoundary.query(Configs.PROCESS_TRANSACTION_URL, generateData(requestMap));
 		MyMap response = null;
@@ -72,35 +85,49 @@ public class InterbankSubsystemController {
 	private TransactionInfo makePaymentTransaction(MyMap response) {
 		if (response == null)
 			return null;
-		MyMap transaction = (MyMap) response.get("transaction");
-		Card card = new Card( (String) transaction.get("cvvCode"),
-				(String) transaction.get("owner"), (String) transaction.get("cardCode"), (String) transaction.get("dateExpired") );
-		TransactionInfo trans = new TransactionInfo((String) response.get("errorCode"), card,
-				(String) transaction.get("transactionId"), (String) transaction.get("transactionContent"),
-				Integer.parseInt((String) transaction.get("amount")), (String) transaction.get("createdAt"));
+		TransactionInfo trans;
+		if(response.get("transaction") != null) {
+			MyMap transaction = (MyMap) response.get("transaction");
+			Card card = new Card((String) transaction.get("cvvCode"),
+					(String) transaction.get("owner"), (String) transaction.get("cardCode"), (String) transaction.get("dateExpired"));
+			trans = new TransactionInfo((String) response.get("errorCode"), card, (String) transaction.get("transactionContent"),
+					Integer.parseInt((String) transaction.get("amount")), (String) transaction.get("createdAt"));
 
-		switch (trans.getErrorCode()) {
-		case "00":
-			break;
-		case "01":
-			throw new InvalidCardException();
-		case "02":
-			throw new NotEnoughBalanceException();
-		case "03":
-			throw new InternalServerErrorException();
-		case "04":
-			throw new SuspiciousTransactionException();
-		case "05":
-			throw new NotEnoughTransactionInfoException();
-		case "06":
-			throw new InvalidVersionException();
-		case "07":
-			throw new InvalidTransactionAmountException();
-		default:
-			throw new UnrecognizedException();
+			switch (trans.getErrorCode()) {
+//		case "00":
+//			break;
+//		case "01":
+//			throw new InvalidCardException();
+//		case "02":
+//			throw new NotEnoughBalanceException();
+//		case "03":
+//			throw new InternalServerErrorException();
+//		case "04":
+//			throw new SuspiciousTransactionException();
+//		case "05":
+//			throw new NotEnoughTransactionInfoException();
+//		case "06":
+//			throw new InvalidVersionException();
+//		case "07":
+//			throw new InvalidTransactionAmountException();
+				case "00":
+				case "01":
+				case "02":
+				case "03":
+				case "04":
+				case "05":
+				case "06":
+				case "07":
+					break;
+				default:
+					throw new UnrecognizedException();
+			}
 		}
-
+		else {
+			trans = new TransactionInfo(response.get("errorCode").toString());
+		}
 		return trans;
+
 	}
 
 }

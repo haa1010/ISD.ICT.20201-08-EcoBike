@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -15,7 +16,8 @@ import java.util.logging.Logger;
  */
 public class Utils {
 
-    public static DateFormat DATE_FORMATER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd");
+
     private static Logger LOGGER = getLogger(Utils.class.getName());
 
     static {
@@ -35,8 +37,8 @@ public class Utils {
     }
 
     public static String getCurrencyFormat(int num) {
-        Locale vietname = new Locale("vi", "VN");
-        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietname);
+        Locale vietnam = new Locale("vi", "VN");
+        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietnam);
         return defaultFormat.format(num);
     }
 

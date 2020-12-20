@@ -1,13 +1,11 @@
 package views.screen.station;
 
-import controller.HomeController;
 import controller.ViewStationController;
 import entity.bike.Bike;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -15,15 +13,14 @@ import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
-import views.screen.home.StationHandler;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class StationScreenHandler extends BaseScreenHandler implements Initializable {
 
@@ -124,10 +121,19 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
             hboxBike.getChildren().forEach(node -> {
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-                while (vBox.getChildren().size() < 2 && !stationItems.isEmpty()) {
-                    BikeHandler bike = (BikeHandler) stationItems.get(0);
-                    vBox.getChildren().add(bike.getContent());
-                    stationItems.remove(bike);
+                if (items.size() % 3 == 0)
+                {
+                    while (vBox.getChildren().size() < items.size() / 3 && !stationItems.isEmpty()) {
+                        BikeHandler bike = (BikeHandler) stationItems.get(0);
+                        vBox.getChildren().add(bike.getContent());
+                        stationItems.remove(bike);
+                    }
+                } else {
+                    while (vBox.getChildren().size() < items.size() / 3 + 1 && !stationItems.isEmpty()) {
+                        BikeHandler bike = (BikeHandler) stationItems.get(0);
+                        vBox.getChildren().add(bike.getContent());
+                        stationItems.remove(bike);
+                    }
                 }
             });
             return;

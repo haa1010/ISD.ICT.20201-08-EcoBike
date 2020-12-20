@@ -21,7 +21,6 @@ import views.screen.BaseScreenHandler;
 import views.screen.FXMLScreenHandler;
 import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
-import views.screen.popup.PopupHomeScreen;
 import views.screen.station.StationScreenHandler;
 
 public class BikeHandler extends FXMLScreenHandler {
@@ -64,12 +63,8 @@ public class BikeHandler extends FXMLScreenHandler {
     }
 
     private void setBikeInfo() throws SQLException {
-        // set the cover image of media
-//        File file = new File("assets/images/map (1) 1.png");
-        Image image = new Image(bike.getUrlImage());
-//        bikeImage.setFitHeight(152);
-//        bikeImage.setFitWidth(315);
-        bikeImage.setImage(image);
+
+        setImage(bikeImage, bike.getUrlImage());
         licensePlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());

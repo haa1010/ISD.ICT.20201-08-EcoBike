@@ -2,7 +2,9 @@ package views.screen.home;
 
 import controller.HomeController;
 import controller.RentBikeController;
+import controller.ViewBikeController;
 import controller.ViewStationController;
+import entity.order.Order;
 import entity.station.Station;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +19,8 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.barcode.BarcodeScreenHandler;
+import views.screen.bike.ViewRentingBike;
+import views.screen.rentbike.RentBikeScreenHandler;
 import views.screen.station.StationScreenHandler;
 
 import java.io.File;
@@ -67,6 +71,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private List homeItems;
 
     private String searchString = searchInput.getText();
+    private Order order;
 
     @FXML
     public void onEnter(ActionEvent ae){
@@ -76,6 +81,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
+        this.order = null;
+    }
+
+    public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException {
+        super(stage, screenPath);
+        this.order = order;
     }
 
     public HomeController getBController() {
@@ -110,18 +121,33 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             addStationHome(this.homeItems);
         });
 
-        rentBikeButton.setOnMouseClicked(e -> {
-            BarcodeScreenHandler barcodeScreen;
-            try {
-                barcodeScreen = new BarcodeScreenHandler(this.stage, Configs.BARCODER_SCREEN_PATH);
-                barcodeScreen.setHomeScreenHandler(this);
-                barcodeScreen.setBController(new RentBikeController());
-                barcodeScreen.requestToViewBarcode(this);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        });
-
+        if (order == null) {
+            rentBikeButton.setOnMouseClicked(e -> {
+                BarcodeScreenHandler barcodeScreen;
+                try {
+                    barcodeScreen = new BarcodeScreenHandler(this.stage, Configs.BARCODER_SCREEN_PATH);
+                    barcodeScreen.setHomeScreenHandler(this);
+                    barcodeScreen.setBController(new RentBikeController());
+                    barcodeScreen.requestToViewBarcode(this);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
+        } else {
+            rentBikeButton.setText("Return Bike");
+            rentBikeButton.setStyle("-fx-background-color: #eb4d55");
+            rentBikeButton.setOnMouseClicked(e -> {
+                ViewRentingBike viewRentingBike;
+                try {
+                    viewRentingBike = new ViewRentingBike(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBike.setHomeScreenHandler(this);
+                    viewRentingBike.setBController(new ViewBikeController());
+                    viewRentingBike.requestToViewRentingBike(this);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
+        }
         addStationHome(this.homeItems);
     }
 
