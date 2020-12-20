@@ -128,7 +128,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             transactionResult = interbank.refund(this.card, Math.abs(this.invoice.getAmount()), this.invoice.getContents());
         } else
             transactionResult = interbank.payOrder(this.card, this.invoice.getAmount(), this.invoice.getContents());
-
         if (!transactionResult.getErrorCode().equals("00")) {
             displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
         } else {
@@ -165,6 +164,12 @@ public class PaymentScreenHandler extends BaseScreenHandler {
                 tmp.updateBikeFieldById("Station", stationID, "4", Integer.toString(numAvailableBike));
                 tmp.updateBikeFieldById("Bike", bikeID, "7", Integer.toString(1));
             }
+            // if card = null -> start renting, else return successful
+//            if (this.card != null) {
+//                resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
+//            } else {
+//                resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, this.invoice.getOrder());
+//            }
             resultScreenHandler.show();
         }
     }

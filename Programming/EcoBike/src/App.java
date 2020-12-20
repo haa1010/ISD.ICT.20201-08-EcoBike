@@ -60,14 +60,14 @@ public class App extends Application {
                 try {
 
                     //Show home screen after splash screen
-//                    try {
-//                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
-//                        homeHandler.setScreenTitle("Home Screen");
-//                        homeHandler.setImage();
-//                        homeHandler.show();
-//                    } catch (IOException e1) {
-//                        e1.printStackTrace();
-//                    }
+                    try {
+                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
+                        homeHandler.setScreenTitle("Home Screen");
+                        homeHandler.setImage();
+                        homeHandler.show();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
 //                    Bike bike;
 //                    try {
 //                        bike = new Bike().getBikeById(3);
@@ -82,15 +82,15 @@ public class App extends Application {
 //                    viewRentingBike.show();
 
                     // test return bike
-                     Bike bike;
-                     try {
-                         bike = new StandardElectricBike().getBikeById(3);
-                         Order order = new Order(bike, LocalDateTime.now().minusHours(28));
-                         SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  order);
-                     d.show();
-                     } catch (SQLException throwables) {
-                         throwables.printStackTrace();
-                     }
+//                     Bike bike;
+//                     try {
+//                         bike = new StandardElectricBike().getBikeById(3);
+//                         Order order = new Order(bike, LocalDateTime.now().minusHours(28));
+//                         SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  order);
+//                     d.show();
+//                     } catch (SQLException throwables) {
+//                         throwables.printStackTrace();
+//                     }
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -99,8 +99,6 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-
-    ;
 }
 
 

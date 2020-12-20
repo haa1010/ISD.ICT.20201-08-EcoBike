@@ -1,6 +1,9 @@
 package views.screen.home;
 
 import controller.HomeController;
+import controller.RentBikeController;
+import controller.ViewBikeController;
+import controller.ViewStationController;
 import entity.order.Order;
 import entity.station.Station;
 import javafx.event.ActionEvent;
@@ -15,6 +18,10 @@ import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
+import views.screen.barcode.BarcodeScreenHandler;
+import views.screen.bike.ViewRentingBike;
+import views.screen.rentbike.RentBikeScreenHandler;
+import views.screen.station.StationScreenHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -67,8 +74,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private Order order;
 
     @FXML
-    public void onEnter(ActionEvent ae){
+    public void onEnter(ActionEvent ae) throws IOException, SQLException {
         searchString = searchInput.getText();
+        initHome(searchString);
     }
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
@@ -79,6 +87,21 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException {
         super(stage, screenPath);
         this.order = order;
+        if (order != null){
+            rentBikeButton.setText("Return Bike");
+            rentBikeButton.setStyle("-fx-background-color: #eb4d55");
+            rentBikeButton.setOnMouseClicked(e -> {
+                ViewRentingBike viewRentingBike;
+                try {
+                    viewRentingBike = new ViewRentingBike(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBike.setHomeScreenHandler(this);
+                    viewRentingBike.setBController(new ViewBikeController());
+                    viewRentingBike.requestToViewRentingBike(this);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
+        }
     }
 
     public HomeController getBController() {
@@ -94,16 +117,18 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     public void initialize(URL arg0, ResourceBundle arg1) {
         setBController(new HomeController());
         try {
-            List medium = getBController().getAllStations();
-            this.homeItems = new ArrayList<>();
-            for (Object object : medium) {
-                Station station = (Station) object;
-                StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
-                if (searchString == null) {
-                    this.homeItems.add(dock);
-                } else if (station.getName().contains(searchString))
-                    this.homeItems.add(dock);
-            }
+            initHome(this.searchString);
+            rentBikeButton.setOnMouseClicked(e -> {
+                BarcodeScreenHandler barcodeScreen;
+                try {
+                    barcodeScreen = new BarcodeScreenHandler(this.stage, Configs.BARCODER_SCREEN_PATH);
+                    barcodeScreen.setHomeScreenHandler(this);
+                    barcodeScreen.setBController(new RentBikeController());
+                    barcodeScreen.requestToViewBarcode(this);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
         } catch (SQLException | IOException e) {
             LOGGER.info("Errors occured: " + e.getMessage());
             e.printStackTrace();
@@ -113,10 +138,48 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             addStationHome(this.homeItems);
         });
 
-        rentBikeButton.setOnMouseClicked(e -> {
+        if (order == null) {
+            rentBikeButton.setOnMouseClicked(e -> {
+                BarcodeScreenHandler barcodeScreen;
+                try {
+                    barcodeScreen = new BarcodeScreenHandler(this.stage, Configs.BARCODER_SCREEN_PATH);
+                    barcodeScreen.setHomeScreenHandler(this);
+                    barcodeScreen.setBController(new RentBikeController());
+                    barcodeScreen.requestToViewBarcode(this);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
+        } else {
+            rentBikeButton.setText("Return Bike");
+            rentBikeButton.setStyle("-fx-background-color: #eb4d55");
+            rentBikeButton.setOnMouseClicked(e -> {
+                ViewRentingBike viewRentingBike;
+                try {
+                    viewRentingBike = new ViewRentingBike(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBike.setHomeScreenHandler(this);
+                    viewRentingBike.setBController(new ViewBikeController());
+                    viewRentingBike.requestToViewRentingBike(this);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
+        }
+        addStationHome(this.homeItems);
+    }
 
-        });
-
+    public void initHome(String searchString) throws SQLException, IOException {
+        setBController(new HomeController());
+        List medium = getBController().getAllStations();
+        this.homeItems = new ArrayList<>();
+        for (Object object : medium) {
+            Station station = (Station) object;
+            StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
+            if (searchString == null) {
+                this.homeItems.add(dock);
+            } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
+                this.homeItems.add(dock);
+        }
         addStationHome(this.homeItems);
     }
 
@@ -146,7 +209,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 int vid = hboxHome.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-                while(vBox.getChildren().size() < size / 2 && !homeItems.isEmpty()){
+                while (vBox.getChildren().size() < size / 2 && !homeItems.isEmpty()) {
                     StationHandler station = (StationHandler) homeItems.get(0);
                     vBox.getChildren().add(station.getContent());
                     homeItems.remove(station);

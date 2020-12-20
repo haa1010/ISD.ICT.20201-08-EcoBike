@@ -61,7 +61,7 @@ public class Configs {
     public static final String RETURN_BIKE_SCREEN_PATH = "/views/fxml/return_bike.fxml";
     public static final String BIKE_INFO_PATH = "/views/fxml/bike.fxml";
     public static final String RENT_BIKE_INFO_PATH = "/views/fxml/rentingBike.fxml";
-    public static final String BARCODER_SCREEN_PATH = "/views/fxml/barcode.fxml";
+    public static final String BARCODER_SCREEN_PATH = "/views/fxml/barcode_screen.fxml";
     public static final String RENT_BIKE_PATH = "/views/fxml/rent_bike.fxml";
     public static final String HOME_SCREEN_PATH = "/views/fxml/home.fxml";
     public static final String BIKE_INFO = "/views/fxml/bike_info.fxml";

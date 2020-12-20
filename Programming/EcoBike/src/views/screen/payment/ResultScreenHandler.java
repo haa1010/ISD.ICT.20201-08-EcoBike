@@ -74,7 +74,12 @@ public class ResultScreenHandler extends BaseScreenHandler {
 	 * @throws IOException
 	 */
 	public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans, Order order) throws IOException {
-		this(stage, screenPath, bController, trans);
+//		this(stage, screenPath, bController, trans);
+		super(stage, screenPath);
+		this.owner.setText(trans.getCard().getOwner());
+		this.content.setText(trans.getTransactionContent());
+		this.amount.setText(Utils.getCurrencyFormat(trans.getAmount()));
+		setBController(bController);
 		this.order = order;
 		backToHomeBtn.setOnMouseClicked(event -> {
 			try {

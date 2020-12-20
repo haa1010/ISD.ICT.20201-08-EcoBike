@@ -189,17 +189,17 @@ public class PaymentController extends BaseController {
 			return false;
 		}
 	}
-	public void validateCardInfo(String cardNumber, String holderName, String expirationDate, String securityCode) throws Exception {
-		try {
-			String date = this.getExpirationDate(expirationDate);
-		} catch(InvalidCardException e) {
-			throw new Exception("Invalid Expiration Date");
-		}
-		if(!this.validateName(holderName))
-			throw new Exception("Invalid Owner Name");
-		else if(!this.validateNumberField(securityCode))
-			throw new Exception("Wrong format cvvCode");
-		else if(!this.validateCardCode(cardNumber))
-			throw new Exception("Wrong format code number");
-	}
+//	public void validateCardInfo(String cardNumber, String holderName, String expirationDate, String securityCode) throws Exception {
+//		try {
+//			String date = this.getExpirationDate(expirationDate);
+//		} catch(InvalidCardException e) {
+//			throw new Exception("Invalid Expiration Date");
+//		}
+//		if(!this.validateName(holderName))
+//			throw new Exception("Invalid Owner Name");
+//		else if(!this.validateNumberField(securityCode))
+//			throw new Exception("Wrong format cvvCode");
+//		else if(!this.validateCardCode(cardNumber))
+//			throw new Exception("Wrong format code number");
+//	}
 }

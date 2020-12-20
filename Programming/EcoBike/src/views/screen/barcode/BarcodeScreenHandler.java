@@ -68,5 +68,11 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
     	rent.setBController(new RentBikeController());
     	rent.show();
     }
+
+	public void requestToViewBarcode(BaseScreenHandler prevScreen) throws SQLException {
+		setPreviousScreen(prevScreen);
+		setScreenTitle("Rent bike");
+		show();
+	}
 	
 }
