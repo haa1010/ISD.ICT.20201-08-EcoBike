@@ -90,6 +90,9 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         setBController(bController);
         this.order = order;
         this.s = station;
+        
+        //update rented bike's station
+        this.order.getRentedBike().setStation(s);
 
         setBikeInfo();
 
