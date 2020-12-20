@@ -77,7 +77,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     public void onEnter(ActionEvent ae) throws IOException, SQLException {
         searchString = searchInput.getText();
         initHome(searchString);
-        System.out.println(searchString);
     }
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
@@ -119,7 +118,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         setBController(new HomeController());
         try {
             initHome(this.searchString);
-            System.out.println(searchString + ", " + homeItems);
             rentBikeButton.setOnMouseClicked(e -> {
                 BarcodeScreenHandler barcodeScreen;
                 try {
@@ -179,7 +177,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
             if (searchString == null) {
                 this.homeItems.add(dock);
-            } else if (station.getName().contains(searchString))
+            } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
                 this.homeItems.add(dock);
         }
         addStationHome(this.homeItems);

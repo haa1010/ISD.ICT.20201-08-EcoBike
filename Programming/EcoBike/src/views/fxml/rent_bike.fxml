@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -52,79 +53,15 @@
                         <Font name="Arial Bold" size="32.0" />
                     </font>
                 </Text>
-                <ImageView fitHeight="245.0" fitWidth="388.0" layoutX="73.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="73.0" AnchorPane.topAnchor="51.0">
+                <ImageView fx:id="bikeImage" fitHeight="245.0" fitWidth="388.0" layoutX="73.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="73.0" AnchorPane.topAnchor="51.0">
                     <image>
                         <Image url="@../../../assets/images/bike_preview.png" />
                     </image>
                 </ImageView>
-                <GridPane layoutX="633.0" layoutY="34.0" prefHeight="279.0" prefWidth="540.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="298.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="179.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number Plate">
-                            <font>
-                                <Font name="Arial" size="24.0" />
-                            </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Barcode" GridPane.rowIndex="1">
-                            <font>
-                                <Font name="Arial" size="24.0" />
-                            </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" GridPane.rowIndex="2">
-                            <font>
-                                <Font name="Arial" size="24.0" />
-                            </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Battery Percentage" GridPane.rowIndex="3">
-                            <font>
-                                <Font name="Arial" size="24.0" />
-                            </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estimate Remaing Time" GridPane.rowIndex="4">
-                            <font>
-                                <Font name="Arial" size="24.0" />
-                            </font>
-                        </Text>
-                        <Label fx:id="plate" prefHeight="48.0" prefWidth="228.0" text="29A-1234" GridPane.columnIndex="1">
-                            <font>
-                                <Font name="Arial Bold" size="24.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="barcode" prefHeight="48.0" prefWidth="227.0" text="123456" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <font>
-                                <Font name="Arial Bold" size="24.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="type" prefHeight="48.0" prefWidth="232.0" text="Standard E-Bike" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <font>
-                                <Font name="Arial Bold" size="24.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="battery" prefHeight="48.0" prefWidth="233.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                            <font>
-                                <Font name="Arial Bold" size="24.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="time" prefHeight="48.0" prefWidth="228.0" text="2 Hours" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                            <font>
-                                <Font name="Arial Bold" size="24.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </GridPane>
+            <Pane layoutX="627.0" layoutY="-7.0" prefHeight="344.0" prefWidth="617.0" />
             </children>
         </AnchorPane>
-        <Separator layoutX="713.0" layoutY="452.0" orientation="VERTICAL" prefHeight="185.0" prefWidth="0.0" style="-fx-background-color: #c2c2c2;" />
+        <Separator layoutX="713.0" layoutY="478.0" orientation="VERTICAL" prefHeight="159.0" prefWidth="5.0" style="-fx-background-color: #c2c2c2;" />
         <Button layoutX="528.0" layoutY="677.0" mnemonicParsing="false" onMouseClicked="#backToPreviousScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
             <font>
                 <Font name="Arial Bold" size="24.0" />
@@ -135,22 +72,22 @@
                 <Font name="Arial Bold" size="24.0" />
             </font>
         </Button>
-        <Text layoutX="161.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Have To Deposit An Amount Of:">
+        <Text layoutX="147.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Have To Deposit An Amount Of:">
             <font>
                 <Font name="Arial" size="24.0" />
             </font>
         </Text>
-        <Label fx:id="deposit" layoutX="249.0" layoutY="522.0" prefHeight="67.0" prefWidth="216.0" text="420,000 VND" textFill="BLUE">
+        <Label fx:id="deposit" layoutX="235.0" layoutY="549.0" prefHeight="67.0" prefWidth="216.0" text="420,000 VND" textFill="BLUE">
             <font>
                 <Font name="Arial Bold" size="30.0" />
             </font>
         </Label>
-        <Text layoutX="820.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Choose A Payment Method:">
+        <Text layoutX="822.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Choose A Payment Method:">
             <font>
                 <Font name="Arial Bold" size="24.0" />
             </font>
         </Text>
-        <RadioButton disable="true" layoutX="820.0" layoutY="508.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" selected="true" text="Credit Card">
+        <RadioButton disable="true" layoutX="822.0" layoutY="536.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" selected="true" text="Credit Card">
             <font>
                 <Font name="Arial" size="24.0" />
             </font>
