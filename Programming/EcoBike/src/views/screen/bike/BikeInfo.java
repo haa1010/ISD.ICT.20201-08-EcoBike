@@ -78,7 +78,7 @@ public class BikeInfo extends FXMLScreenHandler implements Initializable {
 
         }
         if (isViewBike) {
-            stationLabel.setText("Current station");
+            stationLabel.setText("Station");
         } else {
             stationLabel.setText("Rent station");
         }

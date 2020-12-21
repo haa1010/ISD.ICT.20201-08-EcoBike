@@ -60,26 +60,26 @@ public class App extends Application {
                 try {
 
                     //Show home screen after splash screen
-//                    try {
-//                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
-//                        homeHandler.setScreenTitle("Home Screen");
-//                        homeHandler.setImage();
-//                        homeHandler.show();
-//                    } catch (IOException e1) {
-//                        e1.printStackTrace();
-//                    }
+                    try {
+                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
+                        homeHandler.setScreenTitle("Home Screen");
+                        homeHandler.setImage();
+                        homeHandler.show();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
 //                    Bike bike;
 //                    try {
 //                        bike = new Bike().getBikeById(3);
 
 //                    //   Test rent bike
-                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
-
-                    Order order = new Order(stde, LocalDateTime.now().minusHours(25));
-                    ViewRentingBike viewRentingBike = new ViewRentingBike(primaryStage, Configs.RENT_BIKE_INFO_PATH, order);
-                    viewRentingBike.setBController(new ViewBikeController());
-                    viewRentingBike.requestToViewRentingBike(new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN_PATH));
-                    viewRentingBike.show();
+//                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
+//
+//                    Order order = new Order(stde, LocalDateTime.now().minusHours(25));
+//                    ViewRentingBike viewRentingBike = new ViewRentingBike(primaryStage, Configs.RENT_BIKE_INFO_PATH, order);
+//                    viewRentingBike.setBController(new ViewBikeController());
+//                    viewRentingBike.requestToViewRentingBike(new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN_PATH));
+//                    viewRentingBike.show();
 
                     // test return bike
 //                     Bike bike;
