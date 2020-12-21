@@ -2,14 +2,17 @@ package views.screen.returnbike;
 
 import controller.BaseController;
 import controller.PaymentController;
+import controller.ResultScreenController;
 import controller.ReturnBikeController;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.station.Station;
 import entity.transaction.Card;
+import entity.transaction.TransactionInfo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +23,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
+import views.screen.payment.ResultScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
 
 import java.io.IOException;
@@ -63,17 +67,21 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     private TextField dateExpired;
     @FXML
-    private TextField cvvCode;
+    private PasswordField cvvCode;
     @FXML
     private Button cancelBtn;
     @FXML
     private Button submitBtn;
     @FXML
     private Button editBtn;
+    @FXML
+    private ImageView home;
 
     private Station s;
     private Card card;
     private Order order;
+    private int totalAmount;
+    private String invoiceContents;
 
     private static Logger LOGGER = Utils.getLogger(ReturnBikeHandler.class.getName());
 
@@ -82,11 +90,22 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         setBController(bController);
         this.order = order;
         this.s = station;
+        
+        //update rented bike's station
+        this.order.getRentedBike().setStation(s);
 
         setBikeInfo();
 
-        card = new Card("121319_group8_2020", "Group 8", "128", "1125");
+        this.card = new Card("121319_group8_2020", "Group 8", "128", "1125");
         setCardInfo();
+
+        home.setOnMouseClicked(event -> {
+            try {
+                backToHomeAfterRent(order);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public ReturnBikeController getBController() {
@@ -118,15 +137,17 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         int rFee = new ReturnBikeController().calculateAmount(order.getRentedBike().getCoefficient(), order.getStart());
         rentingFee.setText(Utils.getCurrencyFormat(rFee));
 
-        int totalAmount = rFee - deposit1;
+        totalAmount = rFee - deposit1;
         // pay more if rentingFee > deposit
         if (totalAmount > 0) {
             payType.setText("Pay amount");
+            this.invoiceContents = "Pay additional for returning bike";
             total.setText(Utils.getCurrencyFormat(totalAmount));
         }
         // else refund
         else {
             payType.setText("Refund");
+            this.invoiceContents = "Refund for returning bike";
             total.setText(Utils.getCurrencyFormat(-totalAmount));
         }
     }
@@ -134,8 +155,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException {
         order.setEnd(LocalDateTime.now());
-        Invoice invoice = new Invoice(order);
-        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
+        Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
+        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
         payment.setPreviousScreen(this);
         payment.setHomeScreenHandler(homeScreenHandler);
@@ -147,48 +168,35 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         owner.setText(card.getOwner());
         cardCode.setText(card.getCardCode());
         dateExpired.setText(card.getDateExpired());
-        cvvCode.setText("***");
     }
 
     @FXML
     void submitReturnBike(MouseEvent event) throws IOException {
 
-//        Thông tin thẻ:
-//        Mã thẻ: 121319_group8_2020
-//        Chủ thẻ: Group 8
-//        CVV: 128
-//        Ngày hết hạn: 1125
-//        Key Pair
-//        App Code: A1SRyiBqj/E=
-//        Secret Key: BtNH8J4Tl/I=
-
-
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
 
-        int amount = 100;
-        interbank.payOrder(card, amount, "return bike");
-
+        // pay more if rentingFee > deposit, else refund to account
+        TransactionInfo transactionResult;
+        card.setCvvCode(cvvCode.getText());
+        if(totalAmount > 0) {
+            transactionResult = interbank.payOrder(card, totalAmount, "Pay additional for returning bike");
+        }
+        else {
+            transactionResult = interbank.refund(card, - totalAmount, "Refund for returning bike");
+        }
         // else error then display transaction error screen
 
-        displayTransactionError(String.valueOf(3));
+        if(!transactionResult.getErrorCode().equals("00")) {
+            displayTransactionError(transactionResult.getErrorCode(), this.order,totalAmount, this.invoiceContents);
+        }
+        else {
+            ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
+            resultScreenHandler.show();
+        }
 
     }
 
-    void displayTransactionError(String errorCode) throws IOException {
-        String errorMessage;
-        errorMessage = Configs.errorCodes.get(errorCode);
-
-        order.setEnd(LocalDateTime.now());
-        Invoice invoice = new Invoice(order);
-
-        TransactionErrorScreenHandler tes = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, errorMessage, invoice);
-        tes.setPreviousScreen(this);
-        tes.setBController(new ReturnBikeController());
-        tes.setHomeScreenHandler(homeScreenHandler);
-        tes.setScreenTitle("Transaction Error Screen");
-        tes.show();
-    }
 
     @FXML
     void backToDockSelection(MouseEvent event) throws IOException {

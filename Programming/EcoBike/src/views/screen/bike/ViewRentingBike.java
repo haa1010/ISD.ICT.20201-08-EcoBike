@@ -70,6 +70,8 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     private Integer startAt;
     @FXML
     private ImageView pause;
+    @FXML
+    private ImageView home;
 
 
     public boolean isFlag() {
@@ -88,26 +90,13 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         if (animation != null) {
             if (!isFlag()) {
                 animation.pause();
-
-
-                //  Image icon16 = new Image("../../../assets/images/playIcon.png");
-
-//                String imagePath = "assets/images/playIcon.png";
-//                Image image = new Image(imagePath);
-//                pause.setImage(image);
                 setImage(pause, "assets/images/playIcon.png");
                 setFlag(true);
 
             } else {
                 animation.play();
                 String imageSource = "assets/images/pauseIcon.png";
-
-                boolean backgroundLoading = true;
-// The image is being loaded in the background
-//                Image image = new Image(imageSource, backgroundLoading);
-//                pause.setImage(image);
                 setImage(pause, "assets/images/pauseIcon.png");
-
                 setFlag(false);
             }
         }
@@ -134,16 +123,22 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     }
 
     public ViewRentingBike(Stage stage, String screenPath, Order order) throws IOException {
-
         super(stage, screenPath);
         this.bike = order.getRentedBike();
         this.order = order;
 
+
+        home.setOnMouseClicked(event -> {
+            try {
+                backToHomeAfterRent(order);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void setStartAt() {
         this.startAt = getBController().calculateAmountMinutes(order.getStart());
-
     }
 
     public Timeline getAnimation() {
@@ -151,12 +146,10 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
     }
 
     public void setAnimation(Timeline animation) {
-
-
     }
 
     public void backToHome() throws IOException, SQLException {
-        backToHomeReturn(this.order);
+        backToHomeReturn();
     }
 
     public void backToHomeReturn() {
@@ -197,6 +190,7 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         this.animation = animation;
         this.getAnimation().play();
         liscensePlateTitle.setText(bike.getLicensePlate());
+        // set image from url
         setImage(urlImage, bike.getUrlImage());
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());

@@ -21,7 +21,6 @@ import views.screen.BaseScreenHandler;
 import views.screen.FXMLScreenHandler;
 import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
-import views.screen.popup.PopupHomeScreen;
 import views.screen.station.StationScreenHandler;
 
 public class BikeHandler extends FXMLScreenHandler {

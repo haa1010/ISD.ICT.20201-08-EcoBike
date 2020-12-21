@@ -243,7 +243,7 @@
                 <Font name="Arial" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="rentBikeButton" layoutX="1180.0" layoutY="26.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="121.0" style="-fx-background-color: #4D5DEB;" text="Rent Bike" textFill="WHITE">
+        <Button fx:id="rentBikeButton" layoutX="1151.0" layoutY="26.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: #4D5DEB;" text="Rent Bike" textFill="WHITE">
             <font>
                 <Font name="Arial Bold" size="18.0" />
             </font>

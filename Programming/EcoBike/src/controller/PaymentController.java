@@ -98,7 +98,7 @@ public class PaymentController extends BaseController {
 	 *         message.
 	 */
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
-			String expirationDate, String securityCode, String bankName) {
+			String expirationDate, String securityCode) {
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
 		try {
@@ -117,7 +117,7 @@ public class PaymentController extends BaseController {
 	}
 
 	/**
-	 * This method validates Cardholder's name and Interbank's name of Card Information
+	 * This method validates Cardholder's name
 	 *
 	 * @param name
 	 * @return boolean
@@ -184,24 +184,22 @@ public class PaymentController extends BaseController {
 	public boolean validateCardCode(String number) {
 		try {
 			number = number.trim();
-			return ((!number.equals("")) && (number.matches("^[_A-Za-z0-9]*$")));
+			return ((!number.equals("")) && (number.matches("^[_0-9A-Za-z]*$")));
 		} catch (NumberFormatException | NullPointerException e) {
 			return false;
 		}
 	}
-	public void validateCardInfo(String cardNumber, String holderName, String expirationDate, String securityCode, String bankName) throws Exception {
-		try {
-			String date = this.getExpirationDate(expirationDate);
-		} catch(InvalidCardException e) {
-			throw new Exception("Invalid Expiration Date");
-		}
-		if(!this.validateName(holderName))
-			throw new Exception("Invalid Owner Name");
-		else if(!this.validateName(bankName))
-			throw new Exception("Invalid Bank Name");
-		else if(!this.validateNumberField(securityCode))
-			throw new Exception("Wrong format cvvCode");
-		else if(!this.validateCardCode(cardNumber))
-			throw new Exception("Wrong format code number");
-	}
+//	public void validateCardInfo(String cardNumber, String holderName, String expirationDate, String securityCode) throws Exception {
+//		try {
+//			String date = this.getExpirationDate(expirationDate);
+//		} catch(InvalidCardException e) {
+//			throw new Exception("Invalid Expiration Date");
+//		}
+//		if(!this.validateName(holderName))
+//			throw new Exception("Invalid Owner Name");
+//		else if(!this.validateNumberField(securityCode))
+//			throw new Exception("Wrong format cvvCode");
+//		else if(!this.validateCardCode(cardNumber))
+//			throw new Exception("Wrong format code number");
+//	}
 }

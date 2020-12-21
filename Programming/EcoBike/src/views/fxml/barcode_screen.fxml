@@ -37,7 +37,7 @@
                   </Text>
                </children>
             </GridPane>
-            <ImageView fx:id="home" fitHeight="56.0" fitWidth="129.0" layoutX="849.0" layoutY="10.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="home" fitHeight="56.0" fitWidth="129.0" layoutX="849.0" layoutY="10.0" onMouseClicked="#backToHomie" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/images/home.png" />
                </image>
@@ -49,7 +49,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="btnHomeScreen" layoutX="578.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#backToHome" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
+      <Button fx:id="btnHomeScreen" layoutX="578.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#backToHomie" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
