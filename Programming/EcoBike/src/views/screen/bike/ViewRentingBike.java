@@ -189,12 +189,12 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
         animation.setCycleCount(Animation.INDEFINITE);
         this.animation = animation;
         this.getAnimation().play();
-
         liscensePlateTitle.setText(bike.getLicensePlate());
         // set image from url
         setImage(urlImage, bike.getUrlImage());
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
+        amountUpToNow.setText(Utils.getCurrencyFormat(new ReturnBikeController().calculateAmount(bike.getCoefficient(), order.getStart())));
     }
 
 

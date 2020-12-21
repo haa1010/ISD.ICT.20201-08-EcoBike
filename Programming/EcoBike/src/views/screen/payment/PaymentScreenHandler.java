@@ -76,9 +76,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
     }
 
@@ -111,9 +111,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
     }
 
@@ -134,7 +134,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             ResultScreenHandler resultScreenHandler = null;
             // if card = null -> start renting, else return successful
             Bike tmp = new Bike();
-            if (this.card != null) {
+            if (!this.invoice.getContents().contains("deposit")) {
                 resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
                 // write sql to update bike, done returning
                 // change in current dock
@@ -144,10 +144,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
                 numEmptyDockPoint--;
                 int stationID = this.invoice.getOrder().getRentedBike().getStation().getId();
                 int bikeID = this.invoice.getOrder().getRentedBike().getId();
-                
-                tmp.updateBikeFieldById("Station", stationID, "3", Integer.toString(numEmptyDockPoint));
-                tmp.updateBikeFieldById("Station", stationID, "4", Integer.toString(numAvailableBike));
-                tmp.updateBikeFieldById("Bike", bikeID, "7", Integer.toString(0));
+
+                tmp.updateBikeFieldById("Station", stationID, "numEmptyDockPoint", Integer.toString(numEmptyDockPoint));
+                tmp.updateBikeFieldById("Station", stationID, "numAvailableBike", Integer.toString(numAvailableBike));
+                tmp.updateBikeFieldById("Bike", bikeID, "isRenting", Integer.toString(0));
             } else {
                 resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, this.invoice.getOrder());
                 // write sql to update bike, start renting
@@ -159,10 +159,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
                 numEmptyDockPoint++;
                 int stationID = this.invoice.getOrder().getRentedBike().getStation().getId();
                 int bikeID = this.invoice.getOrder().getRentedBike().getId();
-                
-                tmp.updateBikeFieldById("Station", stationID, "3", Integer.toString(numEmptyDockPoint));
-                tmp.updateBikeFieldById("Station", stationID, "4", Integer.toString(numAvailableBike));
-                tmp.updateBikeFieldById("Bike", bikeID, "7", Integer.toString(1));
+
+                tmp.updateBikeFieldById("Station", stationID, "numEmptyDockPoint", Integer.toString(numEmptyDockPoint));
+                tmp.updateBikeFieldById("Station", stationID, "numAvailableBike", Integer.toString(numAvailableBike));
+                tmp.updateBikeFieldById("Bike", bikeID, "isRenting", Integer.toString(1));
             }
             // if card = null -> start renting, else return successful
 //            if (this.card != null) {

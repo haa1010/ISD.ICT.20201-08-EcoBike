@@ -172,6 +172,8 @@ public class Bike {
         Station station = new Station();
         station.setId(res.getInt("stationID"));
         station.setName(res.getString("name"));
+        station.setNumEmptyDockPoint(res.getInt("numEmptyDockPoint"));
+        station.setNumAvailableBike(res.getInt("numAvailableBike"));
         bike.setStation(station);
         return bike;
     }
