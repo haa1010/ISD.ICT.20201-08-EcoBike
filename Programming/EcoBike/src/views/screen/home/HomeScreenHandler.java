@@ -76,17 +76,19 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     @FXML
     public void onEnter(ActionEvent ae) throws IOException, SQLException {
         searchString = searchInput.getText();
-        initHome(searchString);
+        initHome(searchString, this.order);
     }
 
-    public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
+    public HomeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
         this.order = null;
+        initHome(this.searchString, this.order);
     }
 
-    public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException {
+    public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException, SQLException {
         super(stage, screenPath);
         this.order = order;
+        initHome(this.searchString, order);
         if (order != null) {
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
@@ -117,7 +119,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     public void initialize(URL arg0, ResourceBundle arg1) {
         setBController(new HomeController());
         try {
-            initHome(this.searchString);
             rentBikeButton.setOnMouseClicked(e -> {
                 BarcodeScreenHandler barcodeScreen;
                 try {
@@ -129,28 +130,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                     e1.printStackTrace();
                 }
             });
-        } catch (SQLException | IOException e) {
+        } catch (Exception e) {
             LOGGER.info("Errors occured: " + e.getMessage());
             e.printStackTrace();
         }
 
-        home.setOnMouseClicked(e -> {
-            addStationHome(this.homeItems);
-        });
-
-        if (order == null) {
-            rentBikeButton.setOnMouseClicked(e -> {
-                BarcodeScreenHandler barcodeScreen;
-                try {
-                    barcodeScreen = new BarcodeScreenHandler(this.stage, Configs.BARCODER_SCREEN_PATH);
-                    barcodeScreen.setHomeScreenHandler(this);
-                    barcodeScreen.setBController(new RentBikeController());
-                    barcodeScreen.requestToViewBarcode(this);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            });
-        } else {
+        if (order != null) {
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
@@ -165,22 +150,35 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 }
             });
         }
-        addStationHome(this.homeItems);
     }
 
-    public void initHome(String searchString) throws SQLException, IOException {
+    public void initHome(String searchString, Order order) throws SQLException, IOException {
         setBController(new HomeController());
         List medium = getBController().getAllStations();
         this.homeItems = new ArrayList<>();
-        for (Object object : medium) {
-            Station station = (Station) object;
-
-            StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
-            if (searchString == null) {
-                this.homeItems.add(dock);
-            } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
-                this.homeItems.add(dock);
+        if (order != null) {
+            for (Object object : medium) {
+                Station station = (Station) object;
+                StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this, order);
+                if (searchString == null) {
+                    this.homeItems.add(dock);
+                } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
+                    this.homeItems.add(dock);
+            }
+        } else
+        {
+            for (Object object : medium) {
+                Station station = (Station) object;
+                StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
+                if (searchString == null) {
+                    this.homeItems.add(dock);
+                } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
+                    this.homeItems.add(dock);
+            }
         }
+        home.setOnMouseClicked(e -> {
+            addStationHome(this.homeItems);
+        });
         addStationHome(this.homeItems);
     }
 

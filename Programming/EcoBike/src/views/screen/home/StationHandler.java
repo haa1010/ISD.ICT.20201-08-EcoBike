@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import controller.ViewStationController;
+import entity.order.Order;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -46,16 +47,37 @@ public class StationHandler extends FXMLScreenHandler {
     private static Logger LOGGER = Utils.getLogger(StationHandler.class.getName());
     private Station station;
     private HomeScreenHandler home;
+    private Order order;
 
     public StationHandler(String screenPath, Station station, HomeScreenHandler home) throws SQLException, IOException {
         super(screenPath);
         this.station = station;
         this.home = home;
         //Select dock marker
+        initHomeStations(station, home, this.order);
+        setStationInfo();
+    }
+
+    public StationHandler(String screenPath, Station station, HomeScreenHandler home, Order order) throws SQLException, IOException {
+        super(screenPath);
+        this.station = station;
+        this.home = home;
+        this.order = order;
+        initHomeStations(station, home, order);
+        setStationInfo();
+    }
+
+    public Station getStation(){
+        return station;
+    }
+
+    public void initHomeStations(Station station, HomeScreenHandler home, Order order) {
         view.setOnMouseClicked(event -> {
             StationScreenHandler stationScreen;
             try {
-                stationScreen = new StationScreenHandler(home.getStage(), Configs.STATION_PATH, station, home);
+                if (order == null)
+                    stationScreen = new StationScreenHandler(home.getStage(), Configs.STATION_PATH, station, home);
+                else stationScreen = new StationScreenHandler(home.getStage(), Configs.STATION_PATH, station, home, order);
                 stationScreen.setHomeScreenHandler(home);
                 stationScreen.setBController(new ViewStationController());
                 stationScreen.requestToViewStation(home);
@@ -72,30 +94,14 @@ public class StationHandler extends FXMLScreenHandler {
                 e.printStackTrace();
             }
         });
-        setStationInfo();
-    }
-
-    public Station getStation() {
-        return station;
     }
 
     private void setStationInfo() throws SQLException {
         // set the cover image of station
-        File file = new File("assets/images/dock-img.png");
-        Image image = new Image(file.toURI().toString());
-        stationImage.setFitHeight(160);
-        stationImage.setFitWidth(152);
-        stationImage.setImage(image);
-
         stationName.setText(station.getName());
         stationAddress.setText("Address: " + station.getAddress());
         stationAvailableBike.setText("Available bikes: " + (station.getNumAvailableBike()));
         stationEmptyDock.setText("Empty docks: " + (station.getNumEmptyDockPoint()));
-//        spinnerChangeNumber.setValueFactory(
-//                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 1)
-//        );
-
-        setImage(stationImage, "assets/images/map (1) 1.png");
     }
 
 }

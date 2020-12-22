@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="158.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <SplitPane dividerPositions="0.29797979797979796" maxWidth="691.0" prefHeight="160.0" prefWidth="691.0" style="-fx-background-color: #F4FAFD; -fx-border-color: #111111; -fx-max-width: 615">
         <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                 <children>
-                    <ImageView fx:id="stationImage" fitHeight="148.0" fitWidth="174.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="stationImage" fitHeight="140.0" fitWidth="144.0" layoutX="19.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../../../assets/images/dock-img.png" />
                         </image>

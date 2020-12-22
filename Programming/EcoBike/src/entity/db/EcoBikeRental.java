@@ -24,9 +24,9 @@ public class EcoBikeRental {
         if (conn == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                String url = "jdbc:mysql://remotemysql.com/vaftyLWDOZ";
-                String user = "vaftyLWDOZ";
-                String password = "9db0uNrKek";
+                String url = "jdbc:mysql://localhost/vaftyLWDOZ";
+                String user = "root";
+                String password = "30041975";
 
                 conn = DriverManager.getConnection(url, user, password);
                 System.out.println("DB connected");
