@@ -69,7 +69,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private Button rentBikeButton;
 
     private List homeItems;
-
+    @FXML
+    private Button viewRentBike;
     private String searchString = searchInput.getText();
     private Order order;
 
@@ -82,13 +83,18 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
         this.order = null;
+        this.searchString = null;
         initHome(this.searchString, this.order);
+
+
     }
 
     public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException, SQLException {
         super(stage, screenPath);
         this.order = order;
+        this.searchString = null;
         initHome(this.searchString, order);
+
         if (order != null) {
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
@@ -165,8 +171,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
                     this.homeItems.add(dock);
             }
-        } else
-        {
+        } else {
             for (Object object : medium) {
                 Station station = (Station) object;
                 StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
@@ -208,7 +213,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 int vid = hboxHome.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-                while (vBox.getChildren().size() < size / 2 && !homeItems.isEmpty()) {
+               
+                while (vBox.getChildren().size() <= size / 2 && !homeItems.isEmpty()) {
                     StationHandler station = (StationHandler) homeItems.get(0);
                     vBox.getChildren().add(station.getContent());
                     homeItems.remove(station);

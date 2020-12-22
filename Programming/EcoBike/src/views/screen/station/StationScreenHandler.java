@@ -1,19 +1,23 @@
 package views.screen.station;
 
+import controller.ReturnBikeController;
 import controller.ViewStationController;
 import entity.bike.Bike;
 import entity.order.Order;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
+import views.screen.returnbike.ReturnBikeHandler;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,38 +30,37 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class StationScreenHandler extends BaseScreenHandler implements Initializable {
 
     @FXML
-    Label name1;
+    private Label name1;
 
     @FXML
-    Label name2;
+    private Label name2;
 
     @FXML
-    Label address;
+    private Label address;
 
     @FXML
-    Label area;
+    private Label area;
 
     @FXML
-    Label availableBikes;
+    private Label availableBikes;
 
     @FXML
-    Label emptyDocks;
+    private Label emptyDocks;
 
     @FXML
-    ImageView homeLogo;
+    private ImageView homeLogo;
 
     @FXML
-    VBox vbox1;
+    private VBox vbox1;
 
     @FXML
-    VBox vbox2;
+    private VBox vbox2;
 
     @FXML
-    VBox vbox3;
+    private VBox vbox3;
 
     @FXML
-    HBox hboxBike;
-
+    private HBox hboxBike;
     private Station station;
 
     List stationItems;
@@ -95,6 +98,7 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
                 BikeHandler bikeHandler;
                 if (order == null) {
                     bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home);
+
                     homeLogo.setOnMouseClicked(e -> {
                         try {
                             backToHome();
@@ -102,8 +106,9 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
                             ioException.printStackTrace();
                         }
                     });
-                }
-                else {
+                } else {
+
+
                     homeLogo.setOnMouseClicked(e -> {
                         try {
                             backToHomeAfterRent(order);
