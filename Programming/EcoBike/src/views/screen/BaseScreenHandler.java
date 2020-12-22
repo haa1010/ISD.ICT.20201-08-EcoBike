@@ -2,7 +2,6 @@ package views.screen;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.Hashtable;
 import java.util.logging.Logger;
 
@@ -14,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
-import views.screen.bike.BikeScreenHandler;
+import views.screen.bike.BikeInformationHandler;
 import views.screen.home.HomeScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
 
@@ -27,7 +26,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     protected Hashtable<String, String> messages;
     private BaseController bController;
 
-    public Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+    public Logger LOGGER = Utils.getLogger(BikeInformationHandler.class.getName());
 
 
     public void backToHome() throws IOException, SQLException {

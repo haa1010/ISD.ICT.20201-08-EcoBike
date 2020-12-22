@@ -1,28 +1,22 @@
 package views.screen.station;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import controller.ViewBikeController;
-import controller.ViewStationController;
 import entity.bike.Bike;
 import entity.order.Order;
-import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.FXMLScreenHandler;
-import views.screen.bike.BikeScreenHandler;
-import views.screen.home.HomeScreenHandler;
-import views.screen.station.StationScreenHandler;
+import views.screen.bike.BikeInformationHandler;
 
 public class BikeHandler extends FXMLScreenHandler {
 
@@ -64,15 +58,14 @@ public class BikeHandler extends FXMLScreenHandler {
     public void initStationBikes(Stage stage, BaseScreenHandler home, Bike bike, Order order) throws SQLException {
         setBikeInfo();
         view.setOnMouseClicked(e -> {
-            BikeScreenHandler bikeScreen;
+            BikeInformationHandler bikeScreen;
             try {
                 if (order == null) {
-                    bikeScreen = new BikeScreenHandler(stage, Configs.BIKE_INFO_PATH);
+                    bikeScreen = new BikeInformationHandler(stage, Configs.BIKE_INFO_PATH);
                     bikeScreen.setBController(new ViewBikeController());
                     bikeScreen.requestToViewBike(home, bike.getId(), bike.getType());
-                }
-                else {
-                    bikeScreen = new BikeScreenHandler(stage, Configs.BIKE_INFO_PATH, order);
+                } else {
+                    bikeScreen = new BikeInformationHandler(stage, Configs.BIKE_INFO_PATH, order);
                     bikeScreen.setBController(new ViewBikeController());
                     bikeScreen.requestToViewBike(home, bike.getId(), bike.getType(), order);
                 }
