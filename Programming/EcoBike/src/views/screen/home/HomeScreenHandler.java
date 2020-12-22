@@ -87,7 +87,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException {
         super(stage, screenPath);
         this.order = order;
-        if (order != null){
+        if (order != null) {
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
@@ -174,6 +174,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         this.homeItems = new ArrayList<>();
         for (Object object : medium) {
             Station station = (Station) object;
+
             StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
             if (searchString == null) {
                 this.homeItems.add(dock);

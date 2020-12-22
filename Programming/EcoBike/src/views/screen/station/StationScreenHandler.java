@@ -121,8 +121,7 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
             hboxBike.getChildren().forEach(node -> {
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-                if (items.size() % 3 == 0)
-                {
+                if (items.size() % 3 == 0) {
                     while (vBox.getChildren().size() < items.size() / 3 && !stationItems.isEmpty()) {
                         BikeHandler bike = (BikeHandler) stationItems.get(0);
                         vBox.getChildren().add(bike.getContent());

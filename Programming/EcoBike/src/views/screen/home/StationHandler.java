@@ -19,7 +19,7 @@ import views.screen.FXMLScreenHandler;
 import views.screen.popup.PopupHomeScreen;
 import views.screen.station.StationScreenHandler;
 
-public class StationHandler extends FXMLScreenHandler{
+public class StationHandler extends FXMLScreenHandler {
 
     @FXML
     protected ImageView stationImage;
@@ -47,7 +47,7 @@ public class StationHandler extends FXMLScreenHandler{
     private Station station;
     private HomeScreenHandler home;
 
-    public StationHandler(String screenPath, Station station, HomeScreenHandler home) throws SQLException, IOException{
+    public StationHandler(String screenPath, Station station, HomeScreenHandler home) throws SQLException, IOException {
         super(screenPath);
         this.station = station;
         this.home = home;
@@ -75,7 +75,7 @@ public class StationHandler extends FXMLScreenHandler{
         setStationInfo();
     }
 
-    public Station getStation(){
+    public Station getStation() {
         return station;
     }
 
