@@ -1,4 +1,3 @@
-import controller.ReturnBikeController;
 import controller.ViewBikeController;
 import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
@@ -13,13 +12,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Configs;
-import views.screen.bike.BikeScreenHandler;
-import views.screen.bike.ViewRentingBike;
+import views.screen.bike.BikeInformationHandler;
 import views.screen.home.HomeScreenHandler;
-import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class App extends Application {
@@ -76,7 +71,7 @@ public class App extends Application {
                     Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
 
                     Order order = new Order(stde, LocalDateTime.now().minusHours(25));
-                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
+                    BikeInformationHandler bikeScreenHandler = new BikeInformationHandler(primaryStage, Configs.BIKE_INFO_PATH);
                     bikeScreenHandler.setBController(new ViewBikeController());
                     bikeScreenHandler.requestToViewBike(new HomeScreenHandler(new Stage(), Configs.HOME_PATH), 1, "Standard bike", order);
                     bikeScreenHandler.show();

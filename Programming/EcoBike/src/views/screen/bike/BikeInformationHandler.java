@@ -1,7 +1,6 @@
 package views.screen.bike;
 
 
-import common.exception.PlaceOrderException;
 import controller.RentBikeController;
 import controller.ViewBikeController;
 import entity.bike.*;
@@ -10,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import utils.Configs;
@@ -21,19 +17,16 @@ import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
 import views.screen.rentbike.RentBikeScreenHandler;
-import views.screen.station.BikeHandler;
 import views.screen.station.StationScreenHandler;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-public class BikeScreenHandler extends BaseScreenHandler implements Initializable {
+public class BikeInformationHandler extends BaseScreenHandler implements Initializable {
 
     @FXML
     private Label liscensePlateTitle;
@@ -45,10 +38,10 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     @FXML
     private Button canRent;
     private Order order;
-    private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+    private static Logger LOGGER = Utils.getLogger(BikeInformationHandler.class.getName());
     private HomeScreenHandler homeScreenHandler;
 
-    public BikeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
+    public BikeInformationHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
     }
 

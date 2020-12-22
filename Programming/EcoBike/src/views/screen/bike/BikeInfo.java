@@ -1,19 +1,12 @@
 package views.screen.bike;
 
 
-import controller.ViewBikeController;
 import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import utils.Utils;
-import views.screen.BaseScreenHandler;
 import views.screen.FXMLScreenHandler;
 
 import java.io.IOException;
@@ -45,7 +38,7 @@ public class BikeInfo extends FXMLScreenHandler implements Initializable {
     @FXML
     private Label remainingTime;
     private Bike bike;
-    private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
+    private static Logger LOGGER = Utils.getLogger(BikeInformationHandler.class.getName());
     private boolean isViewBike;
 
     public BikeInfo(String screenPath, Bike bike, boolean isViewBike) throws IOException {
