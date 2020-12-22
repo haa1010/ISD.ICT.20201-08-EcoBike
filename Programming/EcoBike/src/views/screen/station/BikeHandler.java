@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import controller.ViewBikeController;
 import entity.bike.Bike;
+import entity.order.Order;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -59,7 +60,7 @@ public class BikeHandler extends FXMLScreenHandler {
         view.setOnMouseClicked(e -> {
             BikeInformationHandler bikeScreen;
             try {
-                bikeScreen = new BikeInformationHandler(stage, Configs.BIKE_INFO_PATH);
+                bikeScreen = new BikeInformationHandler(stage, Configs.BIKE_INFO_PATH, order);
                 //    bikeScreen.setHomeScreenHandler(new HomeScreenHandler(new Stage(), Configs.HOME_PATH));
                 bikeScreen.setBController(new ViewBikeController());
                 bikeScreen.requestToViewBike(home, bike.getId(), bike.getType());

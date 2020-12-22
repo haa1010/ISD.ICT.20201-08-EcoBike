@@ -15,6 +15,7 @@ import utils.Configs;
 import views.screen.bike.BikeInformationHandler;
 import views.screen.home.HomeScreenHandler;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class App extends Application {

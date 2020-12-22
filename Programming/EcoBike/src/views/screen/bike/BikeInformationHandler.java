@@ -45,7 +45,7 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
         super(stage, screenPath);
     }
 
-    public BikeScreenHandler(Stage stage, String screenPath, Order order) throws IOException, SQLException {
+    public BikeInformationHandler(Stage stage, String screenPath, Order order) throws IOException, SQLException {
         super(stage, screenPath);
         this.order = order;
     }
