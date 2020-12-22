@@ -37,11 +37,24 @@ public class BikeHandler extends FXMLScreenHandler {
     private static Logger LOGGER = Utils.getLogger(BikeHandler.class.getName());
     private Bike bike;
     private StationScreenHandler home;
+    private Order order;
 
     public BikeHandler(Stage stage, String screenPath, Bike bike, BaseScreenHandler home) throws SQLException, IOException {
         super(screenPath);
         this.bike = bike;
         this.home = (StationScreenHandler) home;
+        initStationBikes(stage, home, bike, this.order);
+    }
+
+    public BikeHandler(Stage stage, String screenPath, Bike bike, BaseScreenHandler home, Order order) throws SQLException, IOException {
+        super(screenPath);
+        this.bike = bike;
+        this.home = (StationScreenHandler) home;
+        this.order = order;
+        initStationBikes(stage, home, bike, this.order);
+    }
+
+    public void initStationBikes(Stage stage, BaseScreenHandler home, Bike bike, Order order) throws SQLException {
         setBikeInfo();
         view.setOnMouseClicked(e -> {
             BikeInformationHandler bikeScreen;
@@ -56,15 +69,11 @@ public class BikeHandler extends FXMLScreenHandler {
         });
     }
 
-    private void setBikeInfo() throws SQLException {
-
+    private void setBikeInfo() {
         setImage(bikeImage, bike.getUrlImage());
         licensePlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
-//        spinnerChangeNumber.setValueFactory(
-//                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 1)
-//        );
     }
 
 }

@@ -55,26 +55,26 @@ public class App extends Application {
                 try {
 
                     //Show home screen after splash screen
-//                    try {
-//                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
-//                        homeHandler.setScreenTitle("Home Screen");
-//                        homeHandler.setImage();
-//                        homeHandler.show();
-//                    } catch (IOException e1) {
-//                        e1.printStackTrace();
-//                    }
+                    try {
+                        HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
+                        homeHandler.setScreenTitle("Home Screen");
+                        homeHandler.setImage();
+                        homeHandler.show();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
 //                    Bike bike;
 //                    try {
 //                        bike = new Bike().getBikeById(3);
 
 //                    //   Test rent bike
-                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
-
-                    Order order = new Order(stde, LocalDateTime.now().minusHours(25));
-                    BikeInformationHandler bikeScreenHandler = new BikeInformationHandler(primaryStage, Configs.BIKE_INFO_PATH);
-                    bikeScreenHandler.setBController(new ViewBikeController());
-                    bikeScreenHandler.requestToViewBike(new HomeScreenHandler(new Stage(), Configs.HOME_PATH), 1, "Standard bike", order);
-                    bikeScreenHandler.show();
+//                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
+//
+//                    Order order = new Order(stde, LocalDateTime.now().minusHours(25));
+//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
+//                    bikeScreenHandler.setBController(new ViewBikeController());
+//                    bikeScreenHandler.requestToViewBike(new HomeScreenHandler(new Stage(), Configs.HOME_PATH), 1, "Standard bike", order);
+//                    bikeScreenHandler.show();
 
                     // test return bike
 //                     Bike bike;

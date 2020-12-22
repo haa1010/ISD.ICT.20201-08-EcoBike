@@ -2,6 +2,7 @@ package views.screen.station;
 
 import controller.ViewStationController;
 import entity.bike.Bike;
+import entity.order.Order;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,7 +44,7 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
     Label emptyDocks;
 
     @FXML
-    ImageView home;
+    ImageView homeLogo;
 
     @FXML
     VBox vbox1;
@@ -61,22 +62,19 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
 
     List stationItems;
 
-    public StationScreenHandler(Stage stage, String screenPath, Station station, HomeScreenHandler homeScreenHandler) throws IOException {
+    private Order order;
+
+    public StationScreenHandler(Stage stage, String screenPath, Station station, BaseScreenHandler homeScreenHandler) throws IOException {
         super(stage, screenPath);
         this.station = station;
-        try {
-            setStationInfo();
-            List medium = getBController().getAllBikeAvailable(station.getId());
-            this.stationItems = new ArrayList<>();
-            for (Object object : medium) {
-                Bike bike = (Bike) object;
-                BikeHandler bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, this);
-                this.stationItems.add(bikeHandler);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        addBikeStation(stationItems);
+        initStation(stage, this, this.order);
+    }
+
+    public StationScreenHandler(Stage stage, String screenPath, Station station, BaseScreenHandler homeScreenHandler, Order order) throws IOException {
+        super(stage, screenPath);
+        this.station = station;
+        this.order = order;
+        initStation(stage, this, order);
     }
 
     public ViewStationController getBController() {
@@ -85,6 +83,42 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
 
     public Stage getStage() {
         return this.stage;
+    }
+
+    public void initStation(Stage stage, StationScreenHandler home, Order order) {
+        try {
+            setStationInfo();
+            List medium = getBController().getAllBikeAvailable(station.getId());
+            this.stationItems = new ArrayList<>();
+            for (Object object : medium) {
+                Bike bike = (Bike) object;
+                BikeHandler bikeHandler;
+                if (order == null) {
+                    bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home);
+                    homeLogo.setOnMouseClicked(e -> {
+                        try {
+                            backToHome();
+                        } catch (IOException | SQLException ioException) {
+                            ioException.printStackTrace();
+                        }
+                    });
+                }
+                else {
+                    homeLogo.setOnMouseClicked(e -> {
+                        try {
+                            backToHomeAfterRent(order);
+                        } catch (IOException | SQLException ioException) {
+                            ioException.printStackTrace();
+                        }
+                    });
+                    bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home, order);
+                }
+                this.stationItems.add(bikeHandler);
+            }
+        } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
+        }
+        addBikeStation(stationItems);
     }
 
     @Override
