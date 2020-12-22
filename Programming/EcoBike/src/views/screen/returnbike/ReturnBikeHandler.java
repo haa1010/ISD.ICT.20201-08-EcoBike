@@ -199,7 +199,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
             displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
         } else {
             BaseEntity.updateDB(0, this.order.getRentedBike());
-            transactionResult.newTransactionDB(invoice.getId());
+            transactionResult.newTransactionDB(invoice.getId(), card);
             ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
             resultScreenHandler.show();
         }

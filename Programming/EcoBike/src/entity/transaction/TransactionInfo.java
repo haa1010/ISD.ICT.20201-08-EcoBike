@@ -64,15 +64,15 @@ public class TransactionInfo {
 		return errorCode;
 	}
 	
-	public void newTransactionDB(int invoice) throws SQLException{
+	public void newTransactionDB(int ivID, Card card) throws SQLException{
 		// new card also
 		Statement stm = EcoBikeRental.getConnection().createStatement();
-		String invoiceID = Integer.toString(invoice);
-		String cardID = Integer.toString(this.card.newCardDB());
+		String invoiceID = Integer.toString(ivID);
+		String cardID = Integer.toString(this.card.newCardDB(card));
 		String createdDate = "\'"+this.createdAt+"\'";
 		String content = "\'"+this.transactionContent+"\'";
 		String amount = Integer.toString(this.amount);
-		stm.execute("INSERT INTO TransacationInfo(cardID, invoiceID, createdDate, content, amount) "
+		stm.execute("INSERT INTO TransactionInfo(cardID, invoiceID, createdDate, content, amount) "
 				+ "VALUES ("+cardID+","+invoiceID+","+createdDate+","+content+","+amount+");");
 		
     }

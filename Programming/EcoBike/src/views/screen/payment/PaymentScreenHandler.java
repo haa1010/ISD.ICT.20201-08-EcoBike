@@ -137,6 +137,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
                 resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, this.invoice.getOrder());
             } else {
                 BaseEntity.updateDB(0, invoice.getOrder().getRentedBike());
+                transactionResult.newTransactionDB(invoice.getId(), card);
                 resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
             }
             resultScreenHandler.show();

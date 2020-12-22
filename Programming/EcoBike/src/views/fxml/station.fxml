@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +19,7 @@
                 <Image url="@../../../assets/images/Logo.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="homeLogo" fitHeight="71.0" fitWidth="74.0" layoutX="1246.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="home" fitHeight="71.0" fitWidth="74.0" layoutX="1246.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../assets/images/home.png" />
             </image>
@@ -124,5 +125,13 @@
                 </HBox>
             </content>
         </ScrollPane>
+      <Button fx:id="returnBtn" layoutX="1087.0" layoutY="44.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="136.0" style="-fx-background-color: #EB4D55;" text="Return Here" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

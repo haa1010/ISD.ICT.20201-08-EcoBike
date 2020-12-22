@@ -10,14 +10,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
-import views.screen.home.HomeScreenHandler;
 import views.screen.returnbike.ReturnBikeHandler;
+import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +24,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class StationScreenHandler extends BaseScreenHandler implements Initializable {
 
@@ -48,7 +46,7 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
     private Label emptyDocks;
 
     @FXML
-    private ImageView homeLogo;
+    private ImageView home;
 
     @FXML
     private VBox vbox1;
@@ -61,6 +59,10 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
 
     @FXML
     private HBox hboxBike;
+
+    @FXML
+    private Button returnBtn;
+
     private Station station;
 
     List stationItems;
@@ -70,6 +72,16 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
     public StationScreenHandler(Stage stage, String screenPath, Station station, BaseScreenHandler homeScreenHandler) throws IOException {
         super(stage, screenPath);
         this.station = station;
+        returnBtn.setVisible(false);
+
+        this.home.setOnMouseClicked(e -> {
+            try {
+                backToHome();
+            } catch (IOException | SQLException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
         initStation(stage, this, this.order);
     }
 
@@ -77,6 +89,24 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
         super(stage, screenPath);
         this.station = station;
         this.order = order;
+
+        this.returnBtn.setOnMouseClicked(e -> {
+            try {
+                ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(stage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), this.station, order);
+                returnBikeHandler.show();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+        this.home.setOnMouseClicked(e -> {
+            try {
+                backToHomeAfterRent(order);
+            } catch (IOException | SQLException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
         initStation(stage, this, order);
     }
 
@@ -98,24 +128,21 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
                 BikeHandler bikeHandler;
                 if (order == null) {
                     bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home);
-
-                    homeLogo.setOnMouseClicked(e -> {
-                        try {
-                            backToHome();
-                        } catch (IOException | SQLException ioException) {
-                            ioException.printStackTrace();
-                        }
-                    });
+//                    this.home.setOnMouseClicked(e -> {
+//                        try {
+//                            backToHome();
+//                        } catch (IOException | SQLException ioException) {
+//                            ioException.printStackTrace();
+//                        }
+//                    });
                 } else {
-
-
-                    homeLogo.setOnMouseClicked(e -> {
-                        try {
-                            backToHomeAfterRent(order);
-                        } catch (IOException | SQLException ioException) {
-                            ioException.printStackTrace();
-                        }
-                    });
+//                    this.home.setOnMouseClicked(e -> {
+//                        try {
+//                            backToHomeAfterRent(order);
+//                        } catch (IOException | SQLException ioException) {
+//                            ioException.printStackTrace();
+//                        }
+//                    });
                     bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home, order);
                 }
                 this.stationItems.add(bikeHandler);
