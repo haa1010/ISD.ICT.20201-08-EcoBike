@@ -5,6 +5,7 @@ import common.exception.PlaceOrderException;
 import controller.RentBikeController;
 import controller.ViewBikeController;
 import entity.bike.*;
+import entity.order.Order;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -43,7 +44,7 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private ImageView urlImage;
     @FXML
     private Button canRent;
-
+    private Order order;
     private static Logger LOGGER = Utils.getLogger(BikeScreenHandler.class.getName());
     private HomeScreenHandler homeScreenHandler;
 
@@ -55,8 +56,18 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
         return (ViewBikeController) super.getBController();
     }
 
+    public void requestToViewBike(BaseScreenHandler prevScreen, int id, String type, Order order) throws SQLException, IOException {
+        setBikeInfo(id, type);
+        setCantRent();
+        this.order = order;
+        setScreenTitle("View bike");
+        show();
+    }
+
     public void requestToViewBike(BaseScreenHandler prevScreen, int id, String type) throws SQLException, IOException {
         setBikeInfo(id, type);
+        setCanRent();
+        this.order = null;
         setScreenTitle("View bike");
         show();
     }
@@ -72,13 +83,28 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
 
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, true);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
-        if (bike.isRenting()) {
-            canRent.setDisable(true);
+
+    }
+
+    public void backToHomie() throws IOException, SQLException {
+        if (this.order != null) {
+            backToHomeAfterRent(order);
         } else {
-            canRent.setDisable(false);
+            backToHome();
         }
     }
 
+    public void setCantRent() {
+
+        canRent.setDisable(true);
+
+    }
+
+    public void setCanRent() {
+
+        canRent.setDisable(false);
+
+    }
 
     /**
      * back to previous screen
@@ -87,9 +113,10 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private void cancelViewBike() throws IOException, SQLException {
         LOGGER.info("Cancel button clicked");
         if (this.getPreviousScreen() instanceof HomeScreenHandler) {
-            backToHome();
+            if (this.order == null) backToHome();
+            else backToHomeAfterRent(this.order);
         } else {
-            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler);
+            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler, this.order);
             stationScreenHandler.requestToViewStation(this);
         }
     }
