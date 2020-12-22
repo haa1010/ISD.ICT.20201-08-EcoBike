@@ -1,5 +1,10 @@
 package entity.transaction;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import entity.db.EcoBikeRental;
+
 public class TransactionInfo {
 	private String errorCode;
 
@@ -58,4 +63,18 @@ public class TransactionInfo {
 	public String getErrorCode() {
 		return errorCode;
 	}
+	
+	public void newTransactionDB(int invoice) throws SQLException{
+		// new card also
+		Statement stm = EcoBikeRental.getConnection().createStatement();
+		String invoiceID = Integer.toString(invoice);
+		String cardID = Integer.toString(this.card.newCardDB());
+		String createdDate = "\'"+this.createdAt+"\'";
+		String content = "\'"+this.transactionContent+"\'";
+		String amount = Integer.toString(this.amount);
+		stm.execute("INSERT INTO TransacationInfo(cardID, invoiceID, createdDate, content, amount) "
+				+ "VALUES ("+cardID+","+invoiceID+","+createdDate+","+content+","+amount+");");
+		
+    }
+	
 }

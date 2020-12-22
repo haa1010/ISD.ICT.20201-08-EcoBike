@@ -63,9 +63,11 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
     }
 
     @FXML
-    void moveToPaymentScreen(MouseEvent event) throws IOException {
+    void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
         Order order = new Order(rented, LocalDateTime.now());
+        order.newOrderDB();
         Invoice invoice = new Invoice(order, order.getDeposit(), "Pay deposit for renting bike " + order.getRentedBike().getBarcode());
+        invoice.newInvoiceDB();
         BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
         payment.setBController(new PaymentController());
         payment.setPreviousScreen(this);

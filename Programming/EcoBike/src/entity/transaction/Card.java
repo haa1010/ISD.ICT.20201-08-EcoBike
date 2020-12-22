@@ -79,4 +79,32 @@ public class Card {
 		this.cvvCode = cvvCode;
 		this.dateExpired = dateExpired;
 	}
+	
+	
+	public int newCardDB() throws SQLException{
+		int currentCardID = -1;
+		// ID auto++ also
+		// if card exist then return;
+		// else add
+		Statement stm = EcoBikeRental.getConnection().createStatement();
+		String owner = "\'"+this.getOwner()+"\'";
+		String cvvCode = "\'"+this.getCvvCode()+"\'";
+		String cardCode = "\'"+this.getCardCode()+"\'";
+		String dateExpired = "\'"+this.getCvvCode()+"\'";
+		ResultSet res = stm.executeQuery("SELECT id from Card where owner = "+owner+
+				" AND cvvCode ="+cvvCode+" AND cardCode =" + cardCode +" AND dateExpired = "+dateExpired);
+		if(res.getInt("id") != 0)// not a new card
+			currentCardID = res.getInt("id");
+		else {
+			stm.execute("INSERT INTO Card(owner, cvvCode, cardCode, dateExpired) VALUES ("+owner+","+cvvCode+","+cardCode+","+dateExpired+");");
+			
+	    	res = stm.executeQuery("SELECT id from Card");
+	    	while (res.next()) {
+	    		currentCardID = res.getInt("id");
+	    	}
+		}
+		return currentCardID;
+    }
+	
+	
 }
