@@ -20,7 +20,7 @@ import views.screen.FXMLScreenHandler;
 import views.screen.popup.PopupHomeScreen;
 import views.screen.station.StationScreenHandler;
 
-public class StationHandler extends FXMLScreenHandler{
+public class StationHandler extends FXMLScreenHandler {
 
     @FXML
     protected ImageView stationImage;
@@ -49,7 +49,7 @@ public class StationHandler extends FXMLScreenHandler{
     private HomeScreenHandler home;
     private Order order;
 
-    public StationHandler(String screenPath, Station station, HomeScreenHandler home) throws SQLException, IOException{
+    public StationHandler(String screenPath, Station station, HomeScreenHandler home) throws SQLException, IOException {
         super(screenPath);
         this.station = station;
         this.home = home;
@@ -63,7 +63,7 @@ public class StationHandler extends FXMLScreenHandler{
         this.station = station;
         this.home = home;
         this.order = order;
-        initHomeStations(station, home, this.order);
+        initHomeStations(station, home, order);
         setStationInfo();
     }
 
@@ -96,19 +96,12 @@ public class StationHandler extends FXMLScreenHandler{
         });
     }
 
-    private void setStationInfo(){
+    private void setStationInfo() throws SQLException {
         // set the cover image of station
-        File file = new File("assets/images/dock-img.png");
-        Image image = new Image(file.toURI().toString());
-        stationImage.setFitHeight(160);
-        stationImage.setFitWidth(152);
-        stationImage.setImage(image);
-
         stationName.setText(station.getName());
         stationAddress.setText("Address: " + station.getAddress());
         stationAvailableBike.setText("Available bikes: " + (station.getNumAvailableBike()));
         stationEmptyDock.setText("Empty docks: " + (station.getNumEmptyDockPoint()));
-        setImage(stationImage, "assets/images/map (1) 1.png");
     }
 
 }

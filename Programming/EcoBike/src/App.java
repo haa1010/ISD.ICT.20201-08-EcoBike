@@ -76,10 +76,10 @@ public class App extends Application {
 //                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
 //
 //                    Order order = new Order(stde, LocalDateTime.now().minusHours(25));
-//                    ViewRentingBike viewRentingBike = new ViewRentingBike(primaryStage, Configs.RENT_BIKE_INFO_PATH, order);
-//                    viewRentingBike.setBController(new ViewBikeController());
-//                    viewRentingBike.requestToViewRentingBike(new HomeScreenHandler(primaryStage, Configs.HOME_SCREEN_PATH));
-//                    viewRentingBike.show();
+//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
+//                    bikeScreenHandler.setBController(new ViewBikeController());
+//                    bikeScreenHandler.requestToViewBike(new HomeScreenHandler(new Stage(), Configs.HOME_PATH), 1, "Standard bike", order);
+//                    bikeScreenHandler.show();
 
                     // test return bike
 //                     Bike bike;
