@@ -111,14 +111,14 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
      */
     @FXML
     private void cancelViewBike() throws IOException, SQLException {
-//        LOGGER.info("Cancel button clicked");
-//        if (this.getPreviousScreen() instanceof HomeScreenHandler) {
-//            if (this.order == null) backToHome();
-//            else backToHomeAfterRent(this.order);
-//        } else {
-//            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler, this.order);
-//            stationScreenHandler.requestToViewStation(this);
-//        }
+        LOGGER.info("Cancel button clicked");
+        if (this.getPreviousScreen() instanceof HomeScreenHandler) {
+            if (this.order == null) backToHome();
+            else backToHomeAfterRent(this.order);
+        } else {
+            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler, this.order);
+            stationScreenHandler.requestToViewStation(this);
+        }
     }
 
     /**
