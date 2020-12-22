@@ -5,6 +5,7 @@ import common.exception.PlaceOrderException;
 import controller.RentBikeController;
 import controller.ViewBikeController;
 import entity.bike.*;
+import entity.order.Order;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -48,6 +49,10 @@ public class BikeScreenHandler extends BaseScreenHandler implements Initializabl
     private HomeScreenHandler homeScreenHandler;
 
     public BikeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
+        super(stage, screenPath);
+    }
+
+    public BikeScreenHandler(Stage stage, String screenPath, Order order) throws IOException, SQLException {
         super(stage, screenPath);
     }
 

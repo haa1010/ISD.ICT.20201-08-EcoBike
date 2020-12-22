@@ -172,13 +172,25 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         setBController(new HomeController());
         List medium = getBController().getAllStations();
         this.homeItems = new ArrayList<>();
-        for (Object object : medium) {
-            Station station = (Station) object;
-            StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
-            if (searchString == null) {
-                this.homeItems.add(dock);
-            } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
-                this.homeItems.add(dock);
+        if (order != null) {
+            for (Object object : medium) {
+                Station station = (Station) object;
+                StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this, order);
+                if (searchString == null) {
+                    this.homeItems.add(dock);
+                } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
+                    this.homeItems.add(dock);
+            }
+        } else
+        {
+            for (Object object : medium) {
+                Station station = (Station) object;
+                StationHandler dock = new StationHandler(Configs.STATION_HOME_PATH, station, this);
+                if (searchString == null) {
+                    this.homeItems.add(dock);
+                } else if (station.getName().toLowerCase().contains(searchString.toLowerCase()))
+                    this.homeItems.add(dock);
+            }
         }
         addStationHome(this.homeItems);
     }
