@@ -4,6 +4,7 @@ import controller.BaseController;
 import controller.PaymentController;
 import controller.ResultScreenController;
 import controller.ReturnBikeController;
+import entity.BaseEntity;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
 import entity.order.Order;
@@ -24,7 +25,6 @@ import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
 import views.screen.payment.ResultScreenHandler;
-import views.screen.payment.TransactionErrorScreenHandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -78,7 +78,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     private ImageView home;
 
-    private Station s;
+    private Station newStation;
     private Card card;
     private Order order;
     private int totalAmount;
@@ -90,10 +90,10 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         super(stage, screenPath);
         setBController(bController);
         this.order = order;
-        this.s = station;
-        
+        this.newStation = station;
+
         //update rented bike's station
-        this.order.getRentedBike().setStation(s);
+        this.order.getRentedBike().setStation(newStation);
 
         setBikeInfo();
 
@@ -119,7 +119,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         numberPlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
-        station.setText(s.getName());
+        station.setText(newStation.getName());
         int deposit1 = (int) (bike.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         setImage(bikeImage, bike.getUrlImage());
@@ -189,23 +189,17 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         // pay more if rentingFee > deposit, else refund to account
         TransactionInfo transactionResult;
         card.setCvvCode(cvvCode.getText());
-        if(totalAmount > 0) {
+        if (totalAmount > 0) {
             transactionResult = interbank.payOrder(card, totalAmount, "Pay additional for returning bike");
+        } else {
+            transactionResult = interbank.refund(card, -totalAmount, "Refund for returning bike");
         }
-        else {
-            transactionResult = interbank.refund(card, - totalAmount, "Refund for returning bike");
-        }
-        // else error then display transaction error screen
 
-        if(!transactionResult.getErrorCode().equals("00")) {
-            displayTransactionError(transactionResult.getErrorCode(), this.order,totalAmount, this.invoiceContents);
-            
-        }
-        else {
-        	
-        	// update transaction db
-        	transactionResult.newTransactionDB(invoice.getId());
-        	
+        if (!transactionResult.getErrorCode().equals("00")) {
+            displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
+        } else {
+            BaseEntity.updateDB(0, this.order.getRentedBike());
+            transactionResult.newTransactionDB(invoice.getId());
             ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
             resultScreenHandler.show();
         }

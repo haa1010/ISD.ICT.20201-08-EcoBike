@@ -114,8 +114,8 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
             if (this.order == null) backToHome();
             else backToHomeAfterRent(this.order);
         } else {
-            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler, this.order);
-            stationScreenHandler.requestToViewStation(this);
+//            StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler, this.order);
+//            stationScreenHandler.requestToViewStation(this);
         }
     }
 

@@ -1,5 +1,6 @@
 package entity.station;
 
+import entity.BaseEntity;
 import entity.bike.Bike;
 import entity.db.EcoBikeRental;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Station {
+public class Station extends BaseEntity {
     protected Statement stm;
     protected int id;
     protected String name;

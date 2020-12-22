@@ -102,6 +102,8 @@ public class StationHandler extends FXMLScreenHandler {
         stationAddress.setText("Address: " + station.getAddress());
         stationAvailableBike.setText("Available bikes: " + (station.getNumAvailableBike()));
         stationEmptyDock.setText("Empty docks: " + (station.getNumEmptyDockPoint()));
+
+        setImage(stationImage, "assets/images/dock-img.png");
     }
 
 }

@@ -11,7 +11,7 @@
         <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                 <children>
-                    <ImageView fx:id="stationImage" fitHeight="140.0" fitWidth="144.0" layoutX="19.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="stationImage" fitHeight="116.0" fitWidth="113.0" layoutX="33.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../../../assets/images/dock-img.png" />
                         </image>
