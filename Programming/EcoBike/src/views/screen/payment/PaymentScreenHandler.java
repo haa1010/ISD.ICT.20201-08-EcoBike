@@ -132,12 +132,13 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
             // if invoice is used for deposit -> start renting, else return successful
             if (this.invoice.getContents().contains("deposit")) {
-                BaseEntity.updateDB(1, invoice.getOrder().getRentedBike());
+                BaseEntity.updateDB(1, this.invoice.getOrder().getRentedBike());
                 this.invoice.getOrder().getRentedBike().setRenting(false);
                 resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, this.invoice.getOrder());
             } else {
-                BaseEntity.updateDB(0, invoice.getOrder().getRentedBike());
-                transactionResult.newTransactionDB(invoice.getId(), card);
+                BaseEntity.updateDB(0, this.invoice.getOrder().getRentedBike());
+                this.invoice.newInvoiceDB();
+                transactionResult.newTransactionDB(this.invoice.getId(), this.card);
                 resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
             }
             resultScreenHandler.show();
