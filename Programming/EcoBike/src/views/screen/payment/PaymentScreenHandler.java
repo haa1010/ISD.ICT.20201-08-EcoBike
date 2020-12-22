@@ -133,6 +133,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         } else {
             ResultScreenHandler resultScreenHandler = null;
             // if card = null -> start renting, else return successful
+            
+            // save transaction info
+            transactionResult.newTransactionDB(this.invoice.getId());
+            
             Bike tmp = new Bike();
             if (!this.invoice.getContents().contains("deposit")) {
                 resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);

@@ -1,9 +1,24 @@
 package entity.invoice;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import entity.db.EcoBikeRental;
 import entity.order.Order;
 
 public class Invoice {
-    private Order order;
+	private int id;
+	
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	private Order order;
     private int amount;
     private String contents;
 
@@ -35,5 +50,22 @@ public class Invoice {
 
     public void setContents(String contents) {
         this.contents = contents;
+    }
+    
+    public void newInvoiceDB() throws SQLException{
+    	// setID also
+    	Statement stm = EcoBikeRental.getConnection().createStatement();
+    	String orderID = Integer.toString(this.getOrder().getId());
+    	String totalAmount = Integer.toString(this.getAmount());
+    	String content = "\'"+this.getContents()+"\'";
+    	
+    	stm.execute("INSERT INTO Invoice(content, totalAmount, orderID) VALUES ("+content+","+totalAmount+","+orderID+");");
+    	
+    	int id = -1;
+    	ResultSet res = stm.executeQuery("SELECT id from Invoice");
+    	while (res.next()) {
+    		id = res.getInt("id");
+    	}
+    	this.setId(id);
     }
 }

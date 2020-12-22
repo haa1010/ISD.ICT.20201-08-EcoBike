@@ -27,6 +27,7 @@ import views.screen.payment.ResultScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
@@ -153,9 +154,12 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     @FXML
-    void moveToPaymentScreen(MouseEvent event) throws IOException {
+    void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
         order.setEnd(LocalDateTime.now());
+        order.updateOrderDB();
         Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
+        invoice.newInvoiceDB();
+        
         BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
         payment.setPreviousScreen(this);
@@ -171,7 +175,13 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     @FXML
-    void submitReturnBike(MouseEvent event) throws IOException {
+    void submitReturnBike(MouseEvent event) throws IOException, SQLException {
+    	
+    	// update db invoice, order
+    	order.setEnd(LocalDateTime.now());
+        order.updateOrderDB();
+        Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
+        invoice.newInvoiceDB();
 
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
@@ -189,8 +199,13 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
         if(!transactionResult.getErrorCode().equals("00")) {
             displayTransactionError(transactionResult.getErrorCode(), this.order,totalAmount, this.invoiceContents);
+            
         }
         else {
+        	
+        	// update transaction db
+        	transactionResult.newTransactionDB(invoice.getId());
+        	
             ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
             resultScreenHandler.show();
         }
