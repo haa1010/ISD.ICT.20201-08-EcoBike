@@ -91,11 +91,8 @@ public class StationHandler extends FXMLScreenHandler {
         stationAddress.setText("Address: " + station.getAddress());
         stationAvailableBike.setText("Available bikes: " + (station.getNumAvailableBike()));
         stationEmptyDock.setText("Empty docks: " + (station.getNumEmptyDockPoint()));
-//        spinnerChangeNumber.setValueFactory(
-//                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 1)
-//        );
 
-        setImage(stationImage, "assets/images/map (1) 1.png");
+        setImage(stationImage, "assets/images/dock-img.png");
     }
 
 }

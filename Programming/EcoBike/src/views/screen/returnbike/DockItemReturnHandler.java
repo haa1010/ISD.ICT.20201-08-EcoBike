@@ -62,22 +62,6 @@ public class DockItemReturnHandler extends FXMLScreenHandler {
         });
         setStationInfo();
     }
-//
-//    public DockItemReturnHandler(Stage stage, String screenPath, Station station, SelectDockToReturnBikeScreenHandler home) throws SQLException, IOException {
-//        super(stage, screenPath);
-//        this.station = station;
-//        this.home = home;
-//        returnBtn.setOnMouseClicked(event -> {
-//            try {
-//                LOGGER.info("Choose " + station.getName() + " to return");
-//                // update db
-//            } catch (Exception e) {
-//                LOGGER.severe("Cannot return bike to this station right now! ");
-//                e.printStackTrace();
-//            }
-//        });
-//        setStationInfo();
-//    }
 
     public Station getStation() {
         return station;

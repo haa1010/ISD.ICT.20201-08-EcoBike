@@ -63,7 +63,6 @@ public class ViewBikeController extends BaseController {
     public Bike viewBikeInfoById(int id) throws SQLException {
         Bike bike = new Bike();
         return bike.getBikeById(id);
-
     }
 
     public boolean checkCanRent(Bike bike) {

@@ -7,7 +7,9 @@ import java.util.Hashtable;
 import java.util.logging.Logger;
 
 import controller.BaseController;
+import controller.ResultScreenController;
 import controller.ReturnBikeController;
+import entity.BaseEntity;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import javafx.scene.Scene;
@@ -16,6 +18,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.bike.BikeScreenHandler;
 import views.screen.home.HomeScreenHandler;
+import views.screen.payment.ResultScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
 
 public class BaseScreenHandler extends FXMLScreenHandler {
@@ -103,4 +106,5 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         tes.setScreenTitle("Transaction Error Screen");
         tes.show();
     }
+
 }
