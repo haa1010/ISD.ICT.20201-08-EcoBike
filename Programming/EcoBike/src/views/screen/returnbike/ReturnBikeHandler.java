@@ -6,6 +6,7 @@ import controller.ResultScreenController;
 import controller.ReturnBikeController;
 import entity.BaseEntity;
 import entity.bike.Bike;
+import entity.db.EcoBikeRental;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.station.Station;
@@ -28,6 +29,7 @@ import views.screen.payment.ResultScreenHandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
@@ -177,11 +179,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     void submitReturnBike(MouseEvent event) throws IOException, SQLException {
     	
-    	// update db invoice, order
     	order.setEnd(LocalDateTime.now());
         order.updateOrderDB();
-        Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
-        invoice.newInvoiceDB();
 
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
@@ -199,6 +198,18 @@ public class ReturnBikeHandler extends BaseScreenHandler {
             displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
         } else {
             BaseEntity.updateDB(0, this.order.getRentedBike());
+            
+            // update db invoice, order
+            Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
+            invoice.newInvoiceDB();
+            // update db bike table, station col
+            int bikeID = invoice.getOrder().getRentedBike().getId();
+            int stationID = invoice.getOrder().getRentedBike().getStation().getId();
+            Statement stm = EcoBikeRental.getConnection().createStatement();
+            stm.executeUpdate(" update " + "Bike" + " set" + " "
+                    + " stationID " + "= " + Integer.toString(stationID)
+                    + " where id = " + Integer.toString(bikeID) + " ;");
+            
             transactionResult.newTransactionDB(invoice.getId(), this.card);
             ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
             resultScreenHandler.show();
