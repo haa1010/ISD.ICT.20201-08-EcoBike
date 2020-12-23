@@ -2,10 +2,12 @@ package views.screen.payment;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import controller.ResultScreenController;
 import entity.BaseEntity;
 import entity.bike.Bike;
+import entity.db.EcoBikeRental;
 import entity.invoice.Invoice;
 import entity.station.Station;
 import entity.transaction.Card;
@@ -140,6 +142,14 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             } else {
                 BaseEntity.updateDB(0, this.invoice.getOrder().getRentedBike());
                 this.invoice.newInvoiceDB();
+                // update db bike table, station col
+                int bikeID = this.invoice.getOrder().getRentedBike().getId();
+                int stationID = this.invoice.getOrder().getRentedBike().getStation().getId();
+                Statement stm = EcoBikeRental.getConnection().createStatement();
+                stm.executeUpdate(" update " + "Bike" + " set" + " "
+                        + " stationID " + "= " + Integer.toString(stationID)
+                        + " where id = " + Integer.toString(bikeID) + " ;");
+                
                 transactionResult.newTransactionDB(this.invoice.getId(), this.card);
                 resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
             }
