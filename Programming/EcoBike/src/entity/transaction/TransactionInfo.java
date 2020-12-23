@@ -1,5 +1,6 @@
 package entity.transaction;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -75,6 +76,21 @@ public class TransactionInfo {
 		stm.execute("INSERT INTO TransactionInfo(cardID, invoiceID, createdDate, content, amount) "
 				+ "VALUES ("+cardID+","+invoiceID+","+createdDate+","+content+","+amount+");");
 		
+		int id = -1;
+    	ResultSet res = stm.executeQuery("SELECT id from TransactionInfo");
+    	while (res.next()) {
+    		id = res.getInt("id");
+    	}
+    	this.setId(id);
     }
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 }
