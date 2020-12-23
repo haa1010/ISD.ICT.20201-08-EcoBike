@@ -19,10 +19,10 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="jfoenix-9.0.10" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="org.junit.jupiter:junit-jupiter-params:5.4.1" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" name="jfoenix-9.0.10" level="project" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="org.junit.jupiter:junit-jupiter-params:5.4.1" level="project" />
+    <orderEntry type="module-library" exported="">
       <library name="JUnit5.4">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.4.2/junit-jupiter-5.4.2.jar!/" />
@@ -38,6 +38,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mysql-connector-java-8.0.22" level="project" />
+    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.491" level="project" />
   </component>
 </module>
