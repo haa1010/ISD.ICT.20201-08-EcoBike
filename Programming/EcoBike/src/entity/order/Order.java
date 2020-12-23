@@ -90,10 +90,8 @@ public class Order {
         String start = this.start.toString();
         stm.execute("INSERT INTO EcoOrder(deposit, bikeID, startAt) VALUES (" + deposit + "," + bikeID + "," + "\'" + start + "\'" + ");");
         ResultSet res = stm.executeQuery("SELECT id from EcoOrder where endAt is NULL");
-        int id = -1;
-        //res.next();
-        while(res.next())
-        	id = res.getInt("id");
+        res.next();
+        int id = res.getInt("id");
         this.setId(id);
     }
 
