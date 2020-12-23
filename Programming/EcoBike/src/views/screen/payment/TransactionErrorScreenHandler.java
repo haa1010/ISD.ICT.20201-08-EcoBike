@@ -39,10 +39,11 @@ public class TransactionErrorScreenHandler extends BaseScreenHandler{
 
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException {
-        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
-        payment.setBController(new PaymentController());
-        payment.setPreviousScreen(this);
-        payment.setScreenTitle("Payment Screen ");
-        payment.show();
+//        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
+//        payment.setBController(new PaymentController());
+//        payment.setPreviousScreen(this);
+//        payment.setScreenTitle("Payment Screen ");
+//        payment.show();
+    	this.getPreviousScreen().show();
     }
 }

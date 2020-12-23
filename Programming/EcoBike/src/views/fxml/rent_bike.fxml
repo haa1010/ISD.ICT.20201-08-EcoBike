@@ -62,7 +62,7 @@
                         <Image url="@../../../assets/images/bike_preview.png" />
                     </image>
                 </ImageView>
-                <Pane fx:id="bikeInfo" layoutX="627.0" layoutY="-7.0" prefHeight="344.0" prefWidth="617.0" />
+                <Pane fx:id="bikeInfo" layoutX="643.0" layoutY="-26.0" prefHeight="351.0" prefWidth="601.0" />
             </children>
         </AnchorPane>
         <Separator layoutX="713.0" layoutY="478.0" orientation="VERTICAL" prefHeight="159.0" prefWidth="5.0" style="-fx-background-color: #c2c2c2;" />

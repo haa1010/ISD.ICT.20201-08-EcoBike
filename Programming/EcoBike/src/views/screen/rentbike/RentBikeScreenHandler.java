@@ -86,6 +86,7 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         this.rented = rented;
         int depo = (int) (rented.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(depo));
+        setImage(bikeImage, rented.getUrlImage());
         
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.rented, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());

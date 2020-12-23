@@ -29,6 +29,9 @@ public class ResultScreenHandler extends BaseScreenHandler {
 
 	@FXML
 	private Label amount;
+	
+	@FXML
+	private Label id;
 
 	@FXML
 	private Button backToHomeBtn;
@@ -47,6 +50,7 @@ public class ResultScreenHandler extends BaseScreenHandler {
 	 */
 	public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans) throws IOException {
 		super(stage, screenPath);
+		this.id.setText("#"+Integer.toString(trans.getId()));
 		this.owner.setText(trans.getCard().getOwner());
 		this.content.setText(trans.getTransactionContent());
 		this.amount.setText(Utils.getCurrencyFormat(trans.getAmount()));
