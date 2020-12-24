@@ -1,12 +1,9 @@
 package views.screen.home;
 
-<<<<<<< HEAD
 import controller.HomeController;
 import controller.RentBikeController;
 import controller.ViewBikeController;
-=======
-import controller.*;
->>>>>>> Add view renting bike button
+import controller.SelectDockToReturnBikeController;
 import entity.order.Order;
 import entity.station.Station;
 import javafx.event.ActionEvent;
@@ -21,14 +18,8 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.barcode.BarcodeScreenHandler;
-<<<<<<< HEAD
-import views.screen.bike.RentingBikeHandler;
-=======
-import views.screen.bike.ViewRentingBike;
-import views.screen.rentbike.RentBikeScreenHandler;
 import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
-import views.screen.station.StationScreenHandler;
->>>>>>> Add view renting bike button
+import views.screen.bike.RentingBikeHandler;
 
 import java.io.IOException;
 import java.net.URL;
@@ -105,18 +96,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
-<<<<<<< HEAD
-                RentingBikeHandler viewRentingBikeHandler;
-=======
-//                ViewRentingBike viewRentingBike;
-//                try {
-//                    viewRentingBike = new ViewRentingBike(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
-//                    viewRentingBike.setHomeScreenHandler(this);
-//                    viewRentingBike.setBController(new ViewBikeController());
-//                    viewRentingBike.requestToViewRentingBike(this);
-//                } catch (Exception e1) {
-//                    e1.printStackTrace();
-//                }
                 SelectDockToReturnBikeScreenHandler selectDock;
                 try {
                     selectDock = new SelectDockToReturnBikeScreenHandler(this.stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, order);
@@ -130,13 +109,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
             viewRent.setDisable(false);
             viewRent.setOnMouseClicked(e -> {
-                ViewRentingBike viewRentingBike;
->>>>>>> Add view renting bike button
+                RentingBikeHandler viewRentingBike;
                 try {
-                    viewRentingBikeHandler = new RentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
-                    viewRentingBikeHandler.setHomeScreenHandler(this);
-                    viewRentingBikeHandler.setBController(new ViewBikeController());
-                    viewRentingBikeHandler.requestToViewRentingBike(this);
+                    viewRentingBike = new RentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBike.setHomeScreenHandler(this);
+                    viewRentingBike.setBController(new ViewBikeController());
+                    viewRentingBike.requestToViewRentingBike(this);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -246,13 +224,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 int vid = hboxHome.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-<<<<<<< HEAD
-
-                while (vBox.getChildren().size() <= size / 2 && !homeItems.isEmpty()) {
-=======
-               
                 while (vBox.getChildren().size() < size / 2 && !homeItems.isEmpty()) {
->>>>>>> Add view renting bike button
                     StationHandler station = (StationHandler) homeItems.get(0);
                     vBox.getChildren().add(station.getContent());
                     homeItems.remove(station);
