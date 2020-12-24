@@ -115,39 +115,27 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
     @FXML
     public void submitToPay() throws Exception {
-        try {
             this.card = getBController().createCard(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText());
-
+            
             TransactionInfo transactionResult = getBController().submitToPay(this.invoice, this.card);
+            
             if (!transactionResult.getErrorCode().equals("00")) {
                 displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
             } else {
                 if (this.invoice.getContents().contains("deposit")) {
-                    moveToSuccessfulDepositScreen(this.invoice, transactionResult, this.card);
+                    getBController().moveToSuccessfulDepositScreen(this.invoice, transactionResult, this.card, this.stage);
                 } else {
                     getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
                 }
-
             }
-        } catch (Exception e) {
-            LOGGER.info(e.getMessage());
-        }
     }
+    
 
     @FXML
     void backToPreviousScreen(MouseEvent event) {
         this.getPreviousScreen().show();
     }
 
-    void moveToSuccessfulDepositScreen(Invoice invoice, TransactionInfo transactionResult, Card card) throws SQLException, IOException {
-        ResultScreenHandler resultScreenHandler = null;
-        new Bike().updateDB(1, invoice.getOrder().getRentedBike());
-        //this.invoice.getOrder().getRentedBike().setRenting(false);
-        invoice.newInvoiceDB();
-        transactionResult.newTransactionDB(invoice.getId(), card);
-        resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, invoice.getOrder());
-        resultScreenHandler.show();
-    }
 
 
     public void requestToPaymentScreen(BaseScreenHandler prev, HomeScreenHandler homeScreenHandler) {

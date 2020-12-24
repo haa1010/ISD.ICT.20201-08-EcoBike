@@ -102,6 +102,4 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         payment.setInvoice(getBController().saveToDB(rented));
         payment.requestToPaymentScreen(this, homeScreenHandler);
     }
-
-
 }

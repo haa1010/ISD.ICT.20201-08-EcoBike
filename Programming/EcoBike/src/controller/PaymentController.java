@@ -205,8 +205,8 @@ public class PaymentController extends BaseController {
         return transactionResult;
     }
 
-    public Card createCard(String cardCode, String owner, String cvvCode, String dateExpired) throws Exception {
-        validateCardInfo(cardCode, owner, dateExpired, cvvCode);
+    public Card createCard(String cardCode, String owner, String cvvCode, String dateExpired){
+        //validateCardInfo(cardCode, owner, dateExpired, cvvCode);
         return new Card(cardCode, owner, cvvCode, dateExpired);
     }
 
@@ -220,6 +220,16 @@ public class PaymentController extends BaseController {
 
         transactionResult.newTransactionDB(invoice.getId(), card);
         resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
+        resultScreenHandler.show();
+    }
+    
+    public void moveToSuccessfulDepositScreen(Invoice invoice, TransactionInfo transactionResult, Card card, Stage stage) throws SQLException, IOException {
+        ResultScreenHandler resultScreenHandler = null;
+        new Bike().updateDB(1, invoice.getOrder().getRentedBike());
+        //this.invoice.getOrder().getRentedBike().setRenting(false);
+        invoice.newInvoiceDB();
+        transactionResult.newTransactionDB(invoice.getId(), card);
+        resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, invoice.getOrder());
         resultScreenHandler.show();
     }
 
