@@ -25,15 +25,11 @@ import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
-
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class ViewRentingBike extends BaseScreenHandler implements Initializable {
+public class ViewRentingBikeHandler extends BaseScreenHandler implements Initializable {
     @FXML
     private Label liscensePlate;
     @FXML
@@ -122,7 +118,7 @@ public class ViewRentingBike extends BaseScreenHandler implements Initializable 
 
     }
 
-    public ViewRentingBike(Stage stage, String screenPath, Order order) throws IOException {
+    public ViewRentingBikeHandler(Stage stage, String screenPath, Order order) throws IOException {
         super(stage, screenPath);
         this.bike = order.getRentedBike();
         this.order = order;

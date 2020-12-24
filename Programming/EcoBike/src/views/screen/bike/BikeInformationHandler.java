@@ -34,6 +34,7 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
     private Pane bikeInfo;
     private Bike bike;
     @FXML
+
     private ImageView urlImage;
     @FXML
     private Button canRent;
@@ -78,10 +79,8 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
         liscensePlateTitle.setText(bike.getLicensePlate());
         // set image from url
         setImage(urlImage, bike.getUrlImage());
-
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.bike, true);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
-
     }
 
     public void backToHomie() throws IOException, SQLException {
@@ -92,15 +91,15 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
         }
     }
 
-    public void setCantRent() {
-
+    public void setCantRent() throws SQLException {
         canRent.setDisable(true);
 
     }
 
-    public void setCanRent() {
-
-        canRent.setDisable(false);
+    public void setCanRent() throws SQLException {
+        this.bike.isRenting();
+        if (getBController().bikeIsRenting(bike.getId())) canRent.setDisable(true);
+        else canRent.setDisable(false);
 
     }
 

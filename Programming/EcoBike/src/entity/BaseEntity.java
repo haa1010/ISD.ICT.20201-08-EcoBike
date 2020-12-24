@@ -19,7 +19,7 @@ public class BaseEntity {
      * @param value
      * @throws SQLException
      */
-    public static void updateFieldById(String tbname, int id, String column, Object value) throws SQLException {
+    public void updateFieldById(String tbname, int id, String column, Object value) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         if (value instanceof String) {
             value = "\"" + value + "\"";
@@ -46,9 +46,9 @@ public class BaseEntity {
             numEmptyDockPoint--;
             numAvailableBike++;
         }
-        Station.updateFieldById("Station", stationID, "numEmptyDockPoint", Integer.toString(numEmptyDockPoint));
-        Station.updateFieldById("Station", stationID, "numAvailableBike", Integer.toString(numAvailableBike));
-        Bike.updateFieldById("Bike", bikeID, "isRenting", Integer.toString(isRent));
+        new Station().updateFieldById("Station", stationID, "numEmptyDockPoint", Integer.toString(numEmptyDockPoint));
+        new Station().updateFieldById("Station", stationID, "numAvailableBike", Integer.toString(numAvailableBike));
+        new Bike().updateFieldById("Bike", bikeID, "isRenting", Integer.toString(isRent));
     }
 
 }

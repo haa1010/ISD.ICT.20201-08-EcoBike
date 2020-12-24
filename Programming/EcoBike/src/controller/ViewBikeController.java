@@ -1,24 +1,20 @@
 package controller;
 
+import common.exception.ViewBikeException;
 import entity.bike.*;
-import entity.order.Order;
-import entity.station.Station;
-import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.TimerTask;
 
 public class ViewBikeController extends BaseController {
-
+    /**
+     * count 1 second
+     *
+     * @param amount amount want to count
+     * @return a hashmap include: hour, minute, second
+     */
     public HashMap counting(int amount) {
         int hour = amount / 3600;
         int minute = (amount - hour * 3600) / 60;
@@ -40,6 +36,12 @@ public class ViewBikeController extends BaseController {
         return time;
     }
 
+    /**
+     * convert time in  localDateTime to second
+     *
+     * @param start
+     * @return return seconds
+     */
     public int calculateAmountMinutes(LocalDateTime start) {
         int hour = (int) ChronoUnit.HOURS.between(start, LocalDateTime.now());
         int minute = (int) ChronoUnit.MINUTES.between(start, LocalDateTime.now());
@@ -47,46 +49,61 @@ public class ViewBikeController extends BaseController {
         return hour * 3600 + minute * 60 + second;
     }
 
-    public Bike setBike(int id, String type) throws SQLException {
-        if (type.equals("Standard electric bike")) {
-            return new StandardElectricBike().getBikeById(id);
-        } else if (type.equals("Standard bike")) {
-            return new StandardBike().getBikeById(id);
-        } else if (type.equals("Twin bike")) {
-            return new TwinBike().getBikeById(id);
-        } else if (type.equals("Electric twin bike")) {
-            return new TwinElectricBike().getBikeById(id);
+    /**
+     * create instance bike base on id and type
+     *
+     * @param id
+     * @param type
+     * @return
+     * @throws SQLException
+     */
+    public Bike setBike(int id, String type) throws SQLException, ViewBikeException {
+        try {
+            if (type.equals("Standard electric bike")) {
+                return new StandardElectricBike().getBikeById(id);
+            } else if (type.equals("Standard bike")) {
+                return new StandardBike().getBikeById(id);
+            } else if (type.equals("Twin bike")) {
+                return new TwinBike().getBikeById(id);
+            } else if (type.equals("Electric twin bike")) {
+                return new TwinElectricBike().getBikeById(id);
+            }
+        } catch (ViewBikeException | SQLException e) {
+            throw new ViewBikeException("Not found Bike");
         }
         return null;
     }
 
-    public Bike viewBikeInfoById(int id) throws SQLException {
-        Bike bike = new Bike();
-        return bike.getBikeById(id);
+    /**
+     * get bike bike id
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public Bike viewBikeInfoById(int id) throws SQLException, ViewBikeException {
+
+        try {
+            Bike bike = new Bike();
+            return bike.getBikeById(id);
+        } catch (SQLException e) {
+            throw new ViewBikeException("Not found bikeID :" + id + "in DB");
+        }
     }
 
-    public boolean checkCanRent(Bike bike) {
-        return !bike.isRenting();
-    }
-
-    public Bike viewBikeInfoByBarcode(String barcode) throws SQLException {
-        Bike bike = new Bike();
-        return bike.getBikeByBarcode(barcode);
-    }
-
-
-    public void rentBike() {
-
-    }
-
-    public Station getStation(Integer id) throws SQLException {
-
-        return new Station().getStationById(id);
-    }
-
-
-    public void returnBike() {
-
+    /**
+     * check bike isRenting or not
+     *
+     * @param id id of bike
+     * @return return Bike.isRenting
+     * @throws SQLException
+     */
+    public boolean bikeIsRenting(int id) throws SQLException {
+        try {
+            return new Bike().getBikeById(id).isRenting();
+        } catch (SQLException e) {
+            throw new ViewBikeException("Not found bikeID :" + id + "in DB");
+        }
     }
 
 

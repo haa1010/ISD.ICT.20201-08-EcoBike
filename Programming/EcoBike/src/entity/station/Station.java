@@ -98,7 +98,7 @@ public class Station extends BaseEntity {
 
     public List getAllBikeAvailable(int stationId) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
-        ResultSet res = stm.executeQuery("select * from Bike where isRenting= \"false\" and stationId = " + stationId);
+        ResultSet res = stm.executeQuery("select * from Bike where isRenting= 0 and stationId = " + stationId);
 
         ArrayList medium = new ArrayList<>();
         while (res.next()) {
