@@ -3,14 +3,12 @@ package views.screen.home;
 import controller.HomeController;
 import controller.RentBikeController;
 import controller.ViewBikeController;
-import controller.ViewStationController;
 import entity.order.Order;
 import entity.station.Station;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -19,18 +17,14 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.barcode.BarcodeScreenHandler;
-import views.screen.bike.ViewRentingBike;
-import views.screen.rentbike.RentBikeScreenHandler;
-import views.screen.station.StationScreenHandler;
+import views.screen.bike.ViewRentingBikeHandler;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Stack;
 import java.util.logging.Logger;
 
 
@@ -99,12 +93,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
-                ViewRentingBike viewRentingBike;
+                ViewRentingBikeHandler viewRentingBikeHandler;
                 try {
-                    viewRentingBike = new ViewRentingBike(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
-                    viewRentingBike.setHomeScreenHandler(this);
-                    viewRentingBike.setBController(new ViewBikeController());
-                    viewRentingBike.requestToViewRentingBike(this);
+                    viewRentingBikeHandler = new ViewRentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBikeHandler.setHomeScreenHandler(this);
+                    viewRentingBikeHandler.setBController(new ViewBikeController());
+                    viewRentingBikeHandler.requestToViewRentingBike(this);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -145,12 +139,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
-                ViewRentingBike viewRentingBike;
+                ViewRentingBikeHandler viewRentingBikeHandler;
                 try {
-                    viewRentingBike = new ViewRentingBike(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
-                    viewRentingBike.setHomeScreenHandler(this);
-                    viewRentingBike.setBController(new ViewBikeController());
-                    viewRentingBike.requestToViewRentingBike(this);
+                    viewRentingBikeHandler = new ViewRentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBikeHandler.setHomeScreenHandler(this);
+                    viewRentingBikeHandler.setBController(new ViewBikeController());
+                    viewRentingBikeHandler.requestToViewRentingBike(this);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -213,7 +207,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 int vid = hboxHome.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-               
+
                 while (vBox.getChildren().size() <= size / 2 && !homeItems.isEmpty()) {
                     StationHandler station = (StationHandler) homeItems.get(0);
                     vBox.getChildren().add(station.getContent());

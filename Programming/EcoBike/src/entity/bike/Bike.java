@@ -14,12 +14,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bike  extends BaseEntity {
+public class Bike extends BaseEntity {
 
     protected int id;
     protected String type;
     protected String licensePlate;
-    protected boolean isRenting = false;
+    protected boolean isRenting;
     protected int numPedal;
     protected int numSaddle;
     protected int numRearSeat;
@@ -182,7 +182,7 @@ public class Bike  extends BaseEntity {
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
-            String sql = "SELECT * FROM Bike natural join BikeDetail join  Station on Bike.stationID=Station.id  where id=" + qId + ";";
+            String sql = "SELECT * FROM Bike natural join BikeDetail join  Station on Bike.stationID=Station.id  where Bike.id=" + qId + ";";
             Statement stm = EcoBikeRental.getConnection().createStatement();
             ResultSet res = stm.executeQuery(sql);
 

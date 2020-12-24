@@ -52,10 +52,7 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
         Bike rentByBarcode;
         try {
             rentByBarcode = getBController().validateBarcodeBike(barcode);
-            if(rentByBarcode == null ) {
-                notifyError("Barcode is not exist!");
-                throw new Exception();
-            }
+
         } catch (Exception e) {
             notifyError(e.getMessage());
             throw new Exception();

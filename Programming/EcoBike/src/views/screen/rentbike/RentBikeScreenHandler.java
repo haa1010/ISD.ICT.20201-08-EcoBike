@@ -25,7 +25,7 @@ import entity.bike.*;
 public class RentBikeScreenHandler extends BaseScreenHandler {
     @FXML
     private ImageView home;
-    
+
     @FXML
     private Pane bikeInfo;
 
@@ -40,7 +40,7 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
 
     @FXML
     private Label battery;
-    
+
     @FXML
     private ImageView bikeImage;
 
@@ -52,13 +52,13 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
 
     @FXML
     void backToHome(MouseEvent event) throws IOException, SQLException {
-    	rented.setRenting(false);
+        rented.setRenting(false);
         this.backToHome();
     }
 
     @FXML
     void backToPreviousScreen(MouseEvent event) {
-    	rented.setRenting(false);
+        rented.setRenting(false);
         this.getPreviousScreen().show();
     }
 
@@ -87,21 +87,11 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         int depo = (int) (rented.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(depo));
         setImage(bikeImage, rented.getUrlImage());
-        
+
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.rented, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
-        
-//        plate.setText(rented.getLicensePlate());
-//        barcode.setText(rented.getBarcode());
-//        type.setText(rented.getType());
-//        setImage(bikeImage, rented.getUrlImage());
-//        if (rented instanceof StandardElectricBike || rented instanceof TwinElectricBike) {
-//            battery.setText(String.valueOf(((StandardElectricBike) rented).getBatteryPercentage()));
-//            time.setText(String.valueOf(((StandardElectricBike) rented).getRemainingTime()));
-//        } else {
-//            battery.setText("Not used");
-//            time.setText("none");
-//        }
+
+
     }
 
 }

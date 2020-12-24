@@ -34,15 +34,15 @@ public class StandardElectricBike extends Bike {
         this.remainingTime = remainingTime;
     }
 
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
+//    @Override
+//    public int getId() {
+//        return id;
+//    }
+//
+//    @Override
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public StandardElectricBike() throws SQLException {
 
