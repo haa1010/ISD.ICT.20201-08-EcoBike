@@ -10,6 +10,7 @@ import java.util.Map;
 import common.exception.InvalidCardException;
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
+import entity.invoice.Invoice;
 import entity.transaction.Card;
 import entity.transaction.TransactionInfo;
 import subsystem.InterbankInterface;
@@ -202,4 +203,8 @@ public class PaymentController extends BaseController {
 //		else if(!this.validateCardCode(cardNumber))
 //			throw new Exception("Wrong format code number");
 //	}
+
+	public boolean checkInvoice(Invoice invoice, String content) {
+		return invoice.getContents().contains(content);
+	}
 }

@@ -63,20 +63,6 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         this.getPreviousScreen().show();
     }
 
-    @FXML
-    void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
-        Order order = new Order(rented, LocalDateTime.now());
-        order.newOrderDB();
-        Invoice invoice = new Invoice(order, order.getDeposit(), "Pay deposit for renting bike " + order.getRentedBike().getBarcode());
-        invoice.newInvoiceDB();
-        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
-        payment.setBController(new PaymentController());
-        payment.setPreviousScreen(this);
-        payment.setHomeScreenHandler(homeScreenHandler);
-        payment.setScreenTitle("Payment Screen when Rent Bike");
-        payment.show();
-    }
-
     private Bike rented;
 
 
@@ -85,8 +71,7 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         // TODO Auto-generated constructor stub
         rented.setRenting(true);
         this.rented = rented;
-
-
+        this.setBikeInfo();
     }
 
     public void setBikeInfo() throws IOException {
@@ -103,5 +88,22 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         setScreenTitle("Rent Bike Screen");
         show();
     }
-
+    
+    @FXML
+    public void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
+        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, saveToDB());
+        payment.setBController(new PaymentController());
+        payment.setPreviousScreen(this);
+        payment.setHomeScreenHandler(homeScreenHandler);
+        payment.setScreenTitle("Payment Screen when Rent Bike");
+        payment.show();
+    }
+    
+    public Invoice saveToDB() throws SQLException {
+    	Order order = new Order(rented, LocalDateTime.now());
+        order.newOrderDB();
+        Invoice invoice = new Invoice(order, order.getDeposit(), "Pay deposit for renting bike " + order.getRentedBike().getBarcode());
+        invoice.newInvoiceDB();
+        return invoice;
+    }
 }
