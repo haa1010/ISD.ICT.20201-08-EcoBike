@@ -171,7 +171,6 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     @FXML
     void submitReturnBike(MouseEvent event) throws IOException, SQLException {
-
         getBController().updateOrderDB(order);
 
         // call API if success display invoice screen
@@ -191,19 +190,6 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         } else {
             Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
             new PaymentController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
-
-//
-//                    new Bike().updateDB(0, this.order.getRentedBike());
-//
-//            // update db invoice, order
-//
-//            getBController().insertInvoiceToDB(invoice);
-//            // update db bike table, station col
-//            new Bike().updateBikeDB(invoice.getOrder().getRentedBike().getId(),
-//                    invoice.getOrder().getRentedBike().getStation().getId());
-//            transactionResult.newTransactionDB(invoice.getId(), this.card);
-//            ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
-//            resultScreenHandler.show();
         }
 
     }
