@@ -93,8 +93,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         initHome(this.searchString, order);
 
         if (order != null) {
-            rentBikeButton.setText("Renting Bike");
-            rentBikeButton.setStyle("-fx-background-color: #eb4d55");
+            rentBikeButton.setText("Return Bike");
+            rentBikeButton.setStyle("-fx-background-color: #4d5deb");
             rentBikeButton.setOnMouseClicked(e -> {
                 SelectDockToReturnBikeScreenHandler selectDock;
                 try {
@@ -107,7 +107,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 }
             });
 
-            viewRent.setDisable(false);
+            viewRent.setVisible(true);
             viewRent.setOnMouseClicked(e -> {
                 RentingBikeHandler viewRentingBike;
                 try {
@@ -146,7 +146,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                     e1.printStackTrace();
                 }
             });
-            viewRent.setDisable(true);
+            viewRent.setVisible(false);
         } catch (Exception e) {
             LOGGER.info("Errors occured: " + e.getMessage());
             e.printStackTrace();
@@ -154,7 +154,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
         if (order != null) {
             rentBikeButton.setText("Rent Bike");
-            rentBikeButton.setStyle("-fx-background-color: #eb4d55");
+            rentBikeButton.setStyle("-fx-background-color:  #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
                 RentingBikeHandler viewRentingBikeHandler;
                 try {
