@@ -1,8 +1,6 @@
 package entity.bike;
 
 import entity.db.EcoBikeRental;
-
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,10 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TwinElectricBike extends StandardElectricBike {
-    public TwinElectricBike() throws SQLException {
-
-
-    }
+    public TwinElectricBike() throws SQLException { }
 
 
     @Override
@@ -40,7 +35,7 @@ public class TwinElectricBike extends StandardElectricBike {
     }
 
     @Override
-    public Bike getBikeByBarcode(String barcode) throws SQLException {
+    public Bike getBikeByBarcode(String barcode) {
         try {
             barcode = "\"" + barcode + "\"";
             String sql = "SELECT * FROM Bike natural join BikeDetail join  Station on Bike.stationID=Station.id  join ElectricBike SEB on B.id=SEB.id  where type=\"Electric twin bike\" and Bike.barcode= " + barcode;
@@ -61,12 +56,11 @@ public class TwinElectricBike extends StandardElectricBike {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return null;
     }
 
     @Override
-    public List getAllBike() throws SQLException {
+    public List getAllBike() {
         ArrayList allBike = new ArrayList<>();
         try {
             String sql = "SELECT * FROM Bike natural join BikeDetail join  Station on Bike.stationID=Station.id  join ElectricBike SEB on B.id=SEB.id  where type=\"Electric twin bike\";";
@@ -79,17 +73,12 @@ public class TwinElectricBike extends StandardElectricBike {
                 TwinElectricBike eBike = (TwinElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
                 eBike.setBatteryPercentage(res.getInt("batteryPercentage"));
-
-
                 allBike.add(eBike);
             }
             stm.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return allBike;
-
     }
-
 }

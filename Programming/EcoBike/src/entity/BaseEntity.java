@@ -30,7 +30,7 @@ public class BaseEntity {
 
     }
 
-    public static void updateDB(int isRent, Bike currentBike) throws SQLException {
+    public static void updateQtyDB(int isRent, Bike currentBike) throws SQLException {
         Station currentStation = currentBike.getStation();
 
         int stationID = currentStation.getId();

@@ -32,7 +32,7 @@ public class StandardBike extends Bike {
     }
 
     @Override
-    public Bike getBikeByBarcode(String barcode) throws SQLException {
+    public Bike getBikeByBarcode(String barcode) {
         try {
             barcode = "\"" + barcode + "\"";
             String sql = "SELECT * FROM Bike natural join BikeDetail join  Station on Bike.stationID=Station.id  where type=\"Standard bike\" and barcode= " + barcode + ";";
@@ -51,7 +51,7 @@ public class StandardBike extends Bike {
         return null;
     }
 
-    public List getAllBike() throws SQLException {
+    public List getAllBike() {
         ArrayList allBike = new ArrayList<>();
         try {
             String sql = "SELECT * FROM Bike natural join BikeDetail join  Station on Bike.stationID=Station.id where type=\"Standard bike\";";

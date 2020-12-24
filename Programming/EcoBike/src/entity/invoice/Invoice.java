@@ -52,7 +52,7 @@ public class Invoice {
         this.contents = contents;
     }
 
-    public void newInvoiceDB() throws SQLException {
+    public void creatNewInvoiceDB() throws SQLException {
         // setID also
         Statement stm = EcoBikeRental.getConnection().createStatement();
         String orderID = Integer.toString(this.getOrder().getId());

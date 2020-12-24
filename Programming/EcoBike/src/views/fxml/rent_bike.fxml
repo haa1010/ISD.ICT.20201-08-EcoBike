@@ -50,19 +50,14 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="106.0" layoutY="134.0" prefHeight="331.0" prefWidth="1223.0">
+        <AnchorPane layoutX="106.0" layoutY="154.0" prefHeight="364.0" prefWidth="1244.0">
             <children>
-                <Text layoutX="81.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Information" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="16.03125">
-                    <font>
-                        <Font name="Arial Bold" size="32.0" />
-                    </font>
-                </Text>
-                <ImageView fx:id="bikeImage" fitHeight="245.0" fitWidth="388.0" layoutX="73.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="73.0" AnchorPane.topAnchor="51.0">
+                <ImageView fx:id="bikeImage" fitHeight="259.0" fitWidth="376.0" layoutX="37.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="48.0">
                     <image>
                         <Image url="@../../../assets/images/bike_preview.png" />
                     </image>
                 </ImageView>
-                <Pane fx:id="bikeInfo" layoutX="643.0" layoutY="-26.0" prefHeight="351.0" prefWidth="601.0" />
+                <Pane fx:id="bikeInfo" layoutX="620.0" layoutY="20.0" prefHeight="351.0" prefWidth="613.0" />
             </children>
         </AnchorPane>
         <Separator layoutX="713.0" layoutY="478.0" orientation="VERTICAL" prefHeight="159.0" prefWidth="5.0" style="-fx-background-color: #c2c2c2;" />
@@ -82,25 +77,30 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <Text layoutX="147.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Have To Deposit An Amount Of:">
+        <Text layoutX="151.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Have To Deposit An Amount Of:">
             <font>
                 <Font name="Arial" size="24.0" />
             </font>
         </Text>
-        <Label fx:id="deposit" layoutX="235.0" layoutY="549.0" prefHeight="67.0" prefWidth="216.0" text="420,000 VND" textFill="BLUE">
+        <Label fx:id="deposit" layoutX="235.0" layoutY="572.0" prefHeight="67.0" prefWidth="216.0" text="420,000 VND" textFill="BLUE">
             <font>
                 <Font name="Arial Bold" size="30.0" />
             </font>
         </Label>
-        <Text layoutX="822.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Choose A Payment Method:">
+        <Text layoutX="794.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Choose A Payment Method:">
             <font>
                 <Font name="Arial Bold" size="24.0" />
             </font>
         </Text>
-        <RadioButton disable="true" layoutX="822.0" layoutY="536.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" selected="true" text="Credit Card">
+        <RadioButton disable="true" layoutX="794.0" layoutY="572.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" selected="true" text="Credit Card">
             <font>
                 <Font name="Arial" size="24.0" />
             </font>
         </RadioButton>
+          <Text layoutX="770.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Information">
+              <font>
+                  <Font name="Arial Bold" size="32.0" />
+              </font>
+          </Text>
     </children>
 </AnchorPane>

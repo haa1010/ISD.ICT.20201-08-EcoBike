@@ -156,8 +156,6 @@ public class Bike extends BaseEntity {
     }
 
     public Bike setValueBike(ResultSet res, Bike bike) throws SQLException {
-
-
         bike.setLicensePlate(res.getString("licensePlate"));
         bike.setId(res.getInt("id"));
         bike.setNumRearSeat(res.getInt("numRearSeat"));
@@ -193,7 +191,6 @@ public class Bike extends BaseEntity {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return null;
 
     }
@@ -253,12 +250,12 @@ public class Bike extends BaseEntity {
         return -1;
     }
 
-    public void updateBikeDB(int bikeID, int stationID) throws SQLException {
+    public void updateBikeDB(int bikeID, int stationID) {
         try {
             Statement stm = EcoBikeRental.getConnection().createStatement();
             String sql = " update " + "Bike" + " set" + " "
-                    + " stationID " + "= " + Integer.toString(stationID)
-                    + " where id = " + Integer.toString(bikeID) + " ;";
+                    + " stationID " + "= " + stationID
+                    + " where id = " + bikeID + " ;";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,18 +1,8 @@
 package views.screen.payment;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Logger;
-
 import controller.PaymentController;
-import controller.ResultScreenController;
-import controller.ViewBikeController;
-import entity.BaseEntity;
-import entity.bike.Bike;
-import entity.db.EcoBikeRental;
 import entity.invoice.Invoice;
-import entity.station.Station;
 import entity.transaction.Card;
 import entity.transaction.TransactionInfo;
 import javafx.fxml.FXML;
@@ -20,8 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import subsystem.interbank.InterbankSubsystemController;
-import utils.Configs;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
 
@@ -59,10 +47,11 @@ public class PaymentScreenHandler extends BaseScreenHandler {
      *
      * @author hangtt
      */
-    public PaymentScreenHandler(Stage stage, String screenPath) throws IOException {
-        super(stage, screenPath);
+    public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
 
+        super(stage, screenPath);
         this.card = null;
+        this.invoice = invoice;
 
         home.setOnMouseClicked(event -> {
             try {
@@ -71,14 +60,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
                 e.printStackTrace();
             }
         });
-
-
     }
-
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
-
 
     /**
      * This constructor use when pay for returning bike
@@ -87,11 +69,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
      */
     public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice, Card card) throws IOException {
         super(stage, screenPath);
-    	this.invoice = invoice;
+        this.invoice = invoice;
         this.card = card;
-        
-        setCardInfo(card);	
-        
+        setCardInfo(card);
+
         home.setOnMouseClicked(event -> {
             try {
                 backToHomeAfterRent(this.invoice.getOrder());
@@ -99,10 +80,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
                 e.printStackTrace();
             }
         });
-
-
     }
-    
+
     void setCardInfo(Card card) {
         this.cardCode.setText(card.getCardCode());
         this.owner.setText(card.getOwner());
@@ -115,21 +94,20 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
     @FXML
     public void submitToPay() throws Exception {
-            this.card = getBController().createCard(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText());
-            
-            TransactionInfo transactionResult = getBController().submitToPay(this.invoice, this.card);
-            
-            if (!transactionResult.getErrorCode().equals("00")) {
-                displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
+        this.card = getBController().createCard(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText());
+        TransactionInfo transactionResult = getBController().submitToPay(this.invoice, this.card);
+
+        if (!transactionResult.getErrorCode().equals("00")) {
+            displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
+        } else {
+            if (this.invoice.getContents().contains("deposit")) {
+                getBController().moveToSuccessfulDepositScreen(this.invoice, transactionResult, this.card, this.stage);
             } else {
-                if (this.invoice.getContents().contains("deposit")) {
-                    getBController().moveToSuccessfulDepositScreen(this.invoice, transactionResult, this.card, this.stage);
-                } else {
-                    getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
-                }
+                getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
             }
+        }
     }
-    
+
 
     @FXML
     void backToPreviousScreen(MouseEvent event) {
@@ -137,16 +115,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     }
 
 
-
     public void requestToPaymentScreen(BaseScreenHandler prev, HomeScreenHandler homeScreenHandler) {
         setPreviousScreen(prev);
         setHomeScreenHandler(homeScreenHandler);
-        setScreenTitle("Payment Screen when Rent Bike");
+        setScreenTitle("Payment Screen");
         show();
     }
-
-    public void notifyError() {
-
-    }
-
 }

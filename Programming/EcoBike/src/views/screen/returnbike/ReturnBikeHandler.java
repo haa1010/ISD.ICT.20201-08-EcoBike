@@ -2,11 +2,8 @@ package views.screen.returnbike;
 
 import controller.BaseController;
 import controller.PaymentController;
-import controller.ResultScreenController;
 import controller.ReturnBikeController;
-import entity.BaseEntity;
 import entity.bike.Bike;
-import entity.db.EcoBikeRental;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.station.Station;
@@ -25,11 +22,8 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
-import views.screen.payment.ResultScreenHandler;
-
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
@@ -155,7 +149,6 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
         getBController().updateOrderDB(order);
         Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
-        //getBController().insertInvoiceToDB(invoice);
         PaymentScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
         payment.requestToPaymentScreen(this, homeScreenHandler);
@@ -190,7 +183,6 @@ public class ReturnBikeHandler extends BaseScreenHandler {
             Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
             new PaymentController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
         }
-
     }
 
 

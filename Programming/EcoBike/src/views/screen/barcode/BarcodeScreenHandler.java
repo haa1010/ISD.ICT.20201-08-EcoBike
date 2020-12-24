@@ -48,20 +48,18 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
 
     @FXML
     void viewRentBikeScreen(MouseEvent event) throws Exception {
-        String barcode = barcodeInput.getText();
-        Bike rentByBarcode;
         try {
+            String barcode = barcodeInput.getText();
+            Bike rentByBarcode;
             rentByBarcode = getBController().validateBarcodeBike(barcode);
+            RentBikeScreenHandler rent = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, rentByBarcode);
+            rent.setBikeInfo();
+            rent.setBController(new RentBikeController());
+            rent.requestToViewRentBike(this, homeScreenHandler);
 
         } catch (Exception e) {
             notifyError(e.getMessage());
-            throw new Exception();
         }
-
-        RentBikeScreenHandler rent = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, rentByBarcode);
-        rent.setBikeInfo();
-        rent.setBController(new RentBikeController());
-        rent.requestToViewRentBike(this, homeScreenHandler);
     }
 
     public void requestToViewBarcode(BaseScreenHandler prevScreen) throws SQLException {

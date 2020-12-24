@@ -93,7 +93,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         initHome(this.searchString, order);
 
         if (order != null) {
-            rentBikeButton.setText("Return Bike");
+            rentBikeButton.setText("Renting Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
                 SelectDockToReturnBikeScreenHandler selectDock;
@@ -126,10 +126,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         return (HomeController) super.getBController();
     }
 
-    @Override
-    public void show() {
-        super.show();
-    }
+//    @Override
+//    public void show() {
+//        super.show();
+//    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -138,7 +138,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             rentBikeButton.setOnMouseClicked(e -> {
                 BarcodeScreenHandler barcodeScreen;
                 try {
-                    barcodeScreen = new BarcodeScreenHandler(this.stage, Configs.BARCODER_SCREEN_PATH);
+                    barcodeScreen = new BarcodeScreenHandler(this.stage, Configs.BARCODE_SCREEN_PATH);
                     barcodeScreen.setHomeScreenHandler(this);
                     barcodeScreen.setBController(new RentBikeController());
                     barcodeScreen.requestToViewBarcode(this);
@@ -153,7 +153,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         }
 
         if (order != null) {
-            rentBikeButton.setText("Return Bike");
+            rentBikeButton.setText("Rent Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
                 RentingBikeHandler viewRentingBikeHandler;
