@@ -87,10 +87,11 @@ public class PaymentScreenHandler extends BaseScreenHandler {
      */
     public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice, Card card) throws IOException {
         super(stage, screenPath);
-        this.invoice = invoice;
+    	this.invoice = invoice;
         this.card = card;
-        setCardInfo();
-
+        
+        setCardInfo(card);	
+        
         home.setOnMouseClicked(event -> {
             try {
                 backToHomeAfterRent(this.invoice.getOrder());
@@ -101,9 +102,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
 
     }
-
-    void setCardInfo() {
-
+    
+    void setCardInfo(Card card) {
         this.cardCode.setText(card.getCardCode());
         this.owner.setText(card.getOwner());
         this.dateExpired.setText(card.getDateExpired());
