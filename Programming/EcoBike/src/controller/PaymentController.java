@@ -228,6 +228,7 @@ public class PaymentController extends BaseController {
         new Bike().updateDB(1, invoice.getOrder().getRentedBike());
         //this.invoice.getOrder().getRentedBike().setRenting(false);
         invoice.newInvoiceDB();
+        
         transactionResult.newTransactionDB(invoice.getId(), card);
         resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, invoice.getOrder());
         resultScreenHandler.show();

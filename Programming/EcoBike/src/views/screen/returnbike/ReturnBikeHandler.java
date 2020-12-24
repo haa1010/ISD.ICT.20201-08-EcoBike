@@ -153,10 +153,9 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
-
         getBController().updateOrderDB(order);
         Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
-        getBController().insertInvoiceToDB(invoice);
+        //getBController().insertInvoiceToDB(invoice);
         PaymentScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
         payment.requestToPaymentScreen(this, homeScreenHandler);
