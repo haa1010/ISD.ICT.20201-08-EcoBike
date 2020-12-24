@@ -128,21 +128,21 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
                 BikeHandler bikeHandler;
                 if (order == null) {
                     bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home);
-//                    this.home.setOnMouseClicked(e -> {
-//                        try {
-//                            backToHome();
-//                        } catch (IOException | SQLException ioException) {
-//                            ioException.printStackTrace();
-//                        }
-//                    });
+                    this.home.setOnMouseClicked(e -> {
+                        try {
+                            backToHome();
+                        } catch (IOException | SQLException ioException) {
+                            ioException.printStackTrace();
+                        }
+                    });
                 } else {
-//                    this.home.setOnMouseClicked(e -> {
-//                        try {
-//                            backToHomeAfterRent(order);
-//                        } catch (IOException | SQLException ioException) {
-//                            ioException.printStackTrace();
-//                        }
-//                    });
+                    this.home.setOnMouseClicked(e -> {
+                        try {
+                            backToHomeAfterRent(order);
+                        } catch (IOException | SQLException ioException) {
+                            ioException.printStackTrace();
+                        }
+                    });
                     bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home, order);
                 }
                 this.stationItems.add(bikeHandler);
