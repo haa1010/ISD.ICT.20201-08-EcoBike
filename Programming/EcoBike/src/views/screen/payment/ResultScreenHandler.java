@@ -19,81 +19,79 @@ import utils.Utils;
 import views.screen.BaseScreenHandler;
 
 
-public class ResultScreenHandler extends BaseScreenHandler {
+public class ResultScreenHandler extends BaseScreenHandler implements Initializable {
 
-	@FXML
-	private Label owner;
+    @FXML
+    private Label owner;
 
-	@FXML
-	private Label content;
+    @FXML
+    private Label content;
 
-	@FXML
-	private Label amount;
-	
-	@FXML
-	private Label id;
+    @FXML
+    private Label amount;
 
-	@FXML
-	private Button backToHomeBtn;
-	
-	private Order order;
+    @FXML
+    private Label id;
 
-	/**
-	 * This constructor use when returning bike sucessful
-	 * @author hangtt
-	 *
-	 * @param stage
-	 * @param screenPath
-	 * @param bController
-	 * @param trans
-	 * @throws IOException
-	 */
-	public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans) throws IOException {
-		super(stage, screenPath);
-		this.id.setText("#"+Integer.toString(trans.getId()));
-		this.owner.setText(trans.getCard().getOwner());
-		this.content.setText(trans.getTransactionContent());
-		this.amount.setText(Utils.getCurrencyFormat(trans.getAmount()));
-		setBController(bController);
+    @FXML
+    private Button backToHomeBtn;
 
-		backToHomeBtn.setOnMouseClicked(event -> {
-			try {
-				backToHome();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
+    private Order order;
 
+    /**
+     * This constructor use when returning bike sucessful
+     *
+     * @param stage
+     * @param screenPath
+     * @param bController
+     * @param trans
+     * @throws IOException
+     * @author hangtt
+     */
+    public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans) throws IOException {
+        super(stage, screenPath);
+        setBController(bController);
+        setTransactionInfo(trans);
 
-	/**
-	 * This constructor use when rent bike sucessful
-	 * @author hangtt
-	 *
-	 * @param stage
-	 * @param screenPath
-	 * @param bController
-	 * @param trans
-	 * @param order
-	 * @throws IOException
-	 */
-	public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans, Order order) throws IOException {
-		this(stage, screenPath, bController, trans);
-		this.order = order;
-		backToHomeBtn.setOnMouseClicked(event -> {
-			try {
-				backToHomeAfterRent(order);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
+    }
 
-	public ReturnBikeController getBController() {
-		return (ReturnBikeController) super.getBController();
-	}
+    public void setTransactionInfo(TransactionInfo trans) {
+        this.id.setText("#" + Integer.toString(trans.getId()));
+        this.owner.setText(trans.getCard().getOwner());
+        this.content.setText(trans.getTransactionContent());
+        this.amount.setText(Utils.getCurrencyFormat(trans.getAmount()));
+    }
+
+    /**
+     * This constructor use when rent bike sucessful
+     *
+     * @param stage
+     * @param screenPath
+     * @param bController
+     * @param trans
+     * @param order
+     * @throws IOException
+     * @author hangtt
+     */
+    public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans, Order order) throws IOException {
+        this(stage, screenPath, bController, trans);
+        this.order = order;
+
+    }
+
+    public ReturnBikeController getBController() {
+        return (ReturnBikeController) super.getBController();
+    }
 
 
-
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        backToHomeBtn.setOnMouseClicked(event -> {
+            try {
+                backToHomeAfterRent(order);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }

@@ -253,6 +253,18 @@ public class Bike extends BaseEntity {
         return -1;
     }
 
+    public void updateBikeDB(int bikeID, int stationID) throws SQLException {
+        try {
+            Statement stm = EcoBikeRental.getConnection().createStatement();
+            String sql = " update " + "Bike" + " set" + " "
+                    + " stationID " + "= " + Integer.toString(stationID)
+                    + " where id = " + Integer.toString(bikeID) + " ;";
+            stm.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
         return "{" +

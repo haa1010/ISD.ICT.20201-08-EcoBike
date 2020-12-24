@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import controller.PaymentController;
+import controller.RentBikeController;
+import controller.ViewBikeController;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
 import entity.order.Order;
@@ -88,22 +90,18 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         setScreenTitle("Rent Bike Screen");
         show();
     }
-    
+
+    public RentBikeController getBController() {
+        return (RentBikeController) super.getBController();
+    }
+
     @FXML
     public void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
-        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, saveToDB());
+        PaymentScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH);
         payment.setBController(new PaymentController());
-        payment.setPreviousScreen(this);
-        payment.setHomeScreenHandler(homeScreenHandler);
-        payment.setScreenTitle("Payment Screen when Rent Bike");
-        payment.show();
+        payment.setInvoice(getBController().saveToDB(rented));
+        payment.requestToPaymentScreen(this, homeScreenHandler);
     }
-    
-    public Invoice saveToDB() throws SQLException {
-    	Order order = new Order(rented, LocalDateTime.now());
-        order.newOrderDB();
-        Invoice invoice = new Invoice(order, order.getDeposit(), "Pay deposit for renting bike " + order.getRentedBike().getBarcode());
-        invoice.newInvoiceDB();
-        return invoice;
-    }
+
+
 }
