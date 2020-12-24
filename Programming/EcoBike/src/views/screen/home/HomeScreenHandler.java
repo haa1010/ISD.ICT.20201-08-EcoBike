@@ -3,6 +3,7 @@ package views.screen.home;
 import controller.HomeController;
 import controller.RentBikeController;
 import controller.ViewBikeController;
+import controller.SelectDockToReturnBikeController;
 import entity.order.Order;
 import entity.station.Station;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.barcode.BarcodeScreenHandler;
+import views.screen.returnbike.SelectDockToReturnBikeScreenHandler;
 import views.screen.bike.RentingBikeHandler;
 
 import java.io.IOException;
@@ -62,6 +64,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     @FXML
     private Button rentBikeButton;
 
+    @FXML
+    private Button viewRent;
+
     private List homeItems;
     @FXML
     private Button viewRentBike;
@@ -79,8 +84,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         this.order = null;
         this.searchString = null;
         initHome(this.searchString, this.order);
-
-
     }
 
     public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException, SQLException {
@@ -93,12 +96,25 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
-                RentingBikeHandler viewRentingBikeHandler;
+                SelectDockToReturnBikeScreenHandler selectDock;
                 try {
-                    viewRentingBikeHandler = new RentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
-                    viewRentingBikeHandler.setHomeScreenHandler(this);
-                    viewRentingBikeHandler.setBController(new ViewBikeController());
-                    viewRentingBikeHandler.requestToViewRentingBike(this);
+                    selectDock = new SelectDockToReturnBikeScreenHandler(this.stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, order);
+                    selectDock.setHomeScreenHandler(this);
+                    selectDock.setBController(new SelectDockToReturnBikeController());
+                    selectDock.requestToSelectDock(this);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            });
+
+            viewRent.setDisable(false);
+            viewRent.setOnMouseClicked(e -> {
+                RentingBikeHandler viewRentingBike;
+                try {
+                    viewRentingBike = new RentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBike.setHomeScreenHandler(this);
+                    viewRentingBike.setBController(new ViewBikeController());
+                    viewRentingBike.requestToViewRentingBike(this);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -130,6 +146,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                     e1.printStackTrace();
                 }
             });
+            viewRent.setDisable(true);
         } catch (Exception e) {
             LOGGER.info("Errors occured: " + e.getMessage());
             e.printStackTrace();
@@ -207,8 +224,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 int vid = hboxHome.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-
-                while (vBox.getChildren().size() <= size / 2 && !homeItems.isEmpty()) {
+                while (vBox.getChildren().size() < size / 2 && !homeItems.isEmpty()) {
                     StationHandler station = (StationHandler) homeItems.get(0);
                     vBox.getChildren().add(station.getContent());
                     homeItems.remove(station);

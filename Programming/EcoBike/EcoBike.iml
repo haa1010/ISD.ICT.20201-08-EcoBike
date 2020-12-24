@@ -19,6 +19,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="jfoenix-9.0.10" level="project" />
     <orderEntry type="library" exported="" name="lib" level="project" />
     <orderEntry type="library" exported="" name="org.junit.jupiter:junit-jupiter-params:5.4.1" level="project" />
@@ -39,5 +40,10 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="mysql-connector-java-5.1.491" level="project" />
+=======
+    <orderEntry type="library" exported="" name="mysql-connector-java-8.0.22" level="project" />
+    <orderEntry type="library" exported="" name="javafx-swt" level="project" />
+    <orderEntry type="library" exported="" name="org.junit.jupiter:junit-jupiter:5.7.0" level="project" />
+>>>>>>> Add view renting bike button
   </component>
 </module>
