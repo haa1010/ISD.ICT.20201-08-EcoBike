@@ -102,6 +102,7 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
 
     public void dockChosen(Station s) throws IOException {
         ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(stage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), s, order);
+                
         returnBikeHandler.show();
     }
 
@@ -110,7 +111,7 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
         ViewRentingBikeHandler viewRentingBikeHandler = new ViewRentingBikeHandler(stage, Configs.RENT_BIKE_INFO_PATH, order);
         viewRentingBikeHandler.setBController(new ViewBikeController());
         viewRentingBikeHandler.requestToViewRentingBike(new HomeScreenHandler(stage, Configs.HOME_SCREEN_PATH));
-        viewRentingBikeHandler.show();
+
     }
 }
 

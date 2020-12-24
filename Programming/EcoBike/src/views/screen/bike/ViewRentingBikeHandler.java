@@ -114,6 +114,7 @@ public class ViewRentingBikeHandler extends BaseScreenHandler implements Initial
         LOGGER.info("return bike button clicked");
 
         SelectDockToReturnBikeScreenHandler selectDock = new SelectDockToReturnBikeScreenHandler(this.stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, order);
+
         selectDock.show();
 
     }

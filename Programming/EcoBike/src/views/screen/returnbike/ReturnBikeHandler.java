@@ -96,12 +96,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
         //update rented bike's station
         this.order.getRentedBike().setStation(newStation);
-
         setBikeInfo();
-
-        this.card = new Card("121319_group8_2020", "Group 8", "128", "1125");
         setCardInfo();
-
         home.setOnMouseClicked(event -> {
             try {
                 backToHomeAfterRent(order);
@@ -161,7 +157,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         order.updateOrderDB();
         Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
         invoice.newInvoiceDB();
-        
+
         BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
         payment.setPreviousScreen(this);
@@ -171,6 +167,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     private void setCardInfo() {
+        this.card = new Card("121319_group8_2020", "Group 8", "128", "1125");
         owner.setText(card.getOwner());
         cardCode.setText(card.getCardCode());
         dateExpired.setText(card.getDateExpired());
@@ -178,8 +175,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     @FXML
     void submitReturnBike(MouseEvent event) throws IOException, SQLException {
-    	
-    	order.setEnd(LocalDateTime.now());
+
+        order.setEnd(LocalDateTime.now());
         order.updateOrderDB();
 
         // call API if success display invoice screen
@@ -198,7 +195,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
             displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
         } else {
             BaseEntity.updateDB(0, this.order.getRentedBike());
-            
+
             // update db invoice, order
             Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
             invoice.newInvoiceDB();
@@ -209,7 +206,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
             stm.executeUpdate(" update " + "Bike" + " set" + " "
                     + " stationID " + "= " + Integer.toString(stationID)
                     + " where id = " + Integer.toString(bikeID) + " ;");
-            
+
             transactionResult.newTransactionDB(invoice.getId(), this.card);
             ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
             resultScreenHandler.show();
