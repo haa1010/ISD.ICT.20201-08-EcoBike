@@ -5,10 +5,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 
+import entity.BaseEntity;
 import entity.bike.Bike;
 import entity.db.EcoBikeRental;
 
-public class Order {
+public class Order extends BaseEntity {
     protected int id;
 
     public int getId() {
@@ -90,15 +91,16 @@ public class Order {
         String start = this.start.toString();
         stm.execute("INSERT INTO EcoOrder(deposit, bikeID, startAt) VALUES (" + deposit + "," + bikeID + "," + "\'" + start + "\'" + ");");
         ResultSet res = stm.executeQuery("SELECT id from EcoOrder where endAt is NULL");
-        
+
         int id = -1;
         //res.next();
-        while(res.next())
-        	id = res.getInt("id");
+        while (res.next())
+            id = res.getInt("id");
         this.setId(id);
     }
 
     public void updateOrderDB() throws SQLException {
+
         Statement stm = EcoBikeRental.getConnection().createStatement();
         String end = this.end.toString();
         stm.executeUpdate(" update " + "EcoOrder" + " set" + " "

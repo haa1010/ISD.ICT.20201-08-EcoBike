@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
-import views.screen.bike.ViewRentingBikeHandler;
+import views.screen.bike.RentingBikeHandler;
 import views.screen.home.HomeScreenHandler;
 
 import java.io.IOException;
@@ -102,13 +102,13 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
 
     public void dockChosen(Station s) throws IOException {
         ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(stage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), s, order);
-                
+
         returnBikeHandler.show();
     }
 
     @FXML
     public void backToViewRentingBike() throws IOException, SQLException {
-        ViewRentingBikeHandler viewRentingBikeHandler = new ViewRentingBikeHandler(stage, Configs.RENT_BIKE_INFO_PATH, order);
+        RentingBikeHandler viewRentingBikeHandler = new RentingBikeHandler(stage, Configs.RENT_BIKE_INFO_PATH, order);
         viewRentingBikeHandler.setBController(new ViewBikeController());
         viewRentingBikeHandler.requestToViewRentingBike(new HomeScreenHandler(stage, Configs.HOME_SCREEN_PATH));
 

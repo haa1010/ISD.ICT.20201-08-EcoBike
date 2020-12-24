@@ -153,17 +153,13 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
-        order.setEnd(LocalDateTime.now());
-        order.updateOrderDB();
-        Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
-        invoice.newInvoiceDB();
 
-        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
+        getBController().updateOrderDB(order);
+        Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
+        getBController().insertInvoiceToDB(invoice);
+        PaymentScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
-        payment.setPreviousScreen(this);
-        payment.setHomeScreenHandler(homeScreenHandler);
-        payment.setScreenTitle("Payment Screen when Return Bike");
-        payment.show();
+        payment.requestToPaymentScreen(this, homeScreenHandler);
     }
 
     private void setCardInfo() {
@@ -176,8 +172,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     void submitReturnBike(MouseEvent event) throws IOException, SQLException {
 
-        order.setEnd(LocalDateTime.now());
-        order.updateOrderDB();
+        getBController().updateOrderDB(order);
 
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
@@ -194,22 +189,21 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         if (!transactionResult.getErrorCode().equals("00")) {
             displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
         } else {
-            BaseEntity.updateDB(0, this.order.getRentedBike());
-
-            // update db invoice, order
             Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
-            invoice.newInvoiceDB();
-            // update db bike table, station col
-            int bikeID = invoice.getOrder().getRentedBike().getId();
-            int stationID = invoice.getOrder().getRentedBike().getStation().getId();
-            Statement stm = EcoBikeRental.getConnection().createStatement();
-            stm.executeUpdate(" update " + "Bike" + " set" + " "
-                    + " stationID " + "= " + Integer.toString(stationID)
-                    + " where id = " + Integer.toString(bikeID) + " ;");
+            new PaymentController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
 
-            transactionResult.newTransactionDB(invoice.getId(), this.card);
-            ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
-            resultScreenHandler.show();
+//
+//                    new Bike().updateDB(0, this.order.getRentedBike());
+//
+//            // update db invoice, order
+//
+//            getBController().insertInvoiceToDB(invoice);
+//            // update db bike table, station col
+//            new Bike().updateBikeDB(invoice.getOrder().getRentedBike().getId(),
+//                    invoice.getOrder().getRentedBike().getStation().getId());
+//            transactionResult.newTransactionDB(invoice.getId(), this.card);
+//            ResultScreenHandler resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
+//            resultScreenHandler.show();
         }
 
     }

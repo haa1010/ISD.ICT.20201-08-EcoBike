@@ -29,7 +29,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class ViewRentingBikeHandler extends BaseScreenHandler implements Initializable {
+public class RentingBikeHandler extends BaseScreenHandler implements Initializable {
     @FXML
     private Label liscensePlate;
     @FXML
@@ -119,12 +119,10 @@ public class ViewRentingBikeHandler extends BaseScreenHandler implements Initial
 
     }
 
-    public ViewRentingBikeHandler(Stage stage, String screenPath, Order order) throws IOException {
+    public RentingBikeHandler(Stage stage, String screenPath, Order order) throws IOException {
         super(stage, screenPath);
         this.bike = order.getRentedBike();
         this.order = order;
-
-
         home.setOnMouseClicked(event -> {
             try {
                 backToHomeAfterRent(order);

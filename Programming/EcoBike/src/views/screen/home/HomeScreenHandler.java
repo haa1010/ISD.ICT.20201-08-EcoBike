@@ -17,7 +17,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.barcode.BarcodeScreenHandler;
-import views.screen.bike.ViewRentingBikeHandler;
+import views.screen.bike.RentingBikeHandler;
 
 import java.io.IOException;
 import java.net.URL;
@@ -93,9 +93,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
-                ViewRentingBikeHandler viewRentingBikeHandler;
+                RentingBikeHandler viewRentingBikeHandler;
                 try {
-                    viewRentingBikeHandler = new ViewRentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBikeHandler = new RentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
                     viewRentingBikeHandler.setHomeScreenHandler(this);
                     viewRentingBikeHandler.setBController(new ViewBikeController());
                     viewRentingBikeHandler.requestToViewRentingBike(this);
@@ -139,9 +139,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             rentBikeButton.setText("Return Bike");
             rentBikeButton.setStyle("-fx-background-color: #eb4d55");
             rentBikeButton.setOnMouseClicked(e -> {
-                ViewRentingBikeHandler viewRentingBikeHandler;
+                RentingBikeHandler viewRentingBikeHandler;
                 try {
-                    viewRentingBikeHandler = new ViewRentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
+                    viewRentingBikeHandler = new RentingBikeHandler(this.stage, Configs.RENT_BIKE_INFO_PATH, order);
                     viewRentingBikeHandler.setHomeScreenHandler(this);
                     viewRentingBikeHandler.setBController(new ViewBikeController());
                     viewRentingBikeHandler.requestToViewRentingBike(this);
