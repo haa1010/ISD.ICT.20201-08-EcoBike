@@ -113,5 +113,11 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
         viewRentingBikeHandler.requestToViewRentingBike(new HomeScreenHandler(stage, Configs.HOME_SCREEN_PATH));
 
     }
+
+    public void requestToSelectDock(BaseScreenHandler prevScreen) throws SQLException, IOException {
+        setScreenTitle("List stations");
+        setPreviousScreen(prevScreen);
+        show();
+    }
 }
 
