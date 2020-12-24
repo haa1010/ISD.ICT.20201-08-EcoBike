@@ -100,7 +100,7 @@ public class ViewBikeController extends BaseController {
      */
     public boolean bikeIsRenting(int id) throws SQLException {
         try {
-            return new Bike().getBikeById(id).isRenting();
+            return new Bike().getRenting(id) == 1;
         } catch (SQLException e) {
             throw new ViewBikeException("Not found bikeID :" + id + "in DB");
         }

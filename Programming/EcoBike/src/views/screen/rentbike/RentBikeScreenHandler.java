@@ -19,6 +19,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.bike.BikeInfo;
+import views.screen.home.HomeScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
 import entity.bike.*;
 
@@ -84,14 +85,23 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         // TODO Auto-generated constructor stub
         rented.setRenting(true);
         this.rented = rented;
+
+
+    }
+
+    public void setBikeInfo() throws IOException {
         int depo = (int) (rented.getValue() * 0.4);
         deposit.setText(Utils.getCurrencyFormat(depo));
         setImage(bikeImage, rented.getUrlImage());
-
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.rented, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
+    }
 
-
+    public void requestToViewRentBike(BaseScreenHandler prev, HomeScreenHandler homeScreenHandler) {
+        setPreviousScreen(prev);
+        setHomeScreenHandler(homeScreenHandler);
+        setScreenTitle("Rent Bike Screen");
+        show();
     }
 
 }

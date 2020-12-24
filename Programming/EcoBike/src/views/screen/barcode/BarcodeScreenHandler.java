@@ -58,12 +58,10 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
             throw new Exception();
         }
 
-        BaseScreenHandler rent = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, rentByBarcode);
-        rent.setPreviousScreen(this);
-        rent.setHomeScreenHandler(homeScreenHandler);
-        rent.setScreenTitle("Rent Bike Screen");
+        RentBikeScreenHandler rent = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, rentByBarcode);
+        rent.setBikeInfo();
         rent.setBController(new RentBikeController());
-        rent.show();
+        rent.requestToViewRentBike(this, homeScreenHandler);
     }
 
     public void requestToViewBarcode(BaseScreenHandler prevScreen) throws SQLException {

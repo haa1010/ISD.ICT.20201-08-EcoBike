@@ -235,6 +235,24 @@ public class Bike extends BaseEntity {
         return allBike;
     }
 
+    public int getRenting(int id) throws SQLException {
+        try {
+            String qId = "\"" + id + "\"";
+            String sql = "SELECT * FROM Bike  where Bike.id=" + qId + ";";
+            Statement stm = EcoBikeRental.getConnection().createStatement();
+            ResultSet res = stm.executeQuery(sql);
+
+            if (res.next()) {
+
+                return res.getInt("isRenting");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return -1;
+    }
+
     @Override
     public String toString() {
         return "{" +
