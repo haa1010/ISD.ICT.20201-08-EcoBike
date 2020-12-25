@@ -6,9 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Calendar;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 import common.exception.InvalidCardException;
 import common.exception.PaymentException;
@@ -137,9 +135,18 @@ public class PaymentController extends TransactionController {
 
     public boolean validateExpirationDate(String date) throws InvalidCardException {
         try {
+            if (date == null) return false;
             date = date.trim();
             String regex = "^[0-9]{4}$";
-            return date.matches(regex);
+            if (!date.matches(regex)) return false;
+            String cardMonth = date.substring(0, 2);
+            String cardYear = "20" + date.substring(2);
+            Date today = new Date();
+            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+            cal.setTime(today);
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH) + 1;
+            return Integer.parseInt(cardYear) > year || (Integer.parseInt(cardYear) == year && Integer.parseInt(cardMonth) >= month);
         } catch (Exception e) {
             throw new InvalidCardException("Invalid expiration date");
         }

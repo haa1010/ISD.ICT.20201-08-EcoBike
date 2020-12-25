@@ -34,26 +34,27 @@ public class PaymentControllerTest {
     @ParameterizedTest
     @CsvSource({
             "2007-12-03 ,false",
-            "2020-11-29 ,true",
+            "1125 ,true",
+            "1120,false",
             "abc,false",
             ",false"
     })
     public void testExpirationDate(String date, boolean expected) {
-//        boolean isValid = PaymentController.validateExpirationDate(date);
-//        assertEquals(expected,isValid);
+        boolean isValid = PaymentController.validateExpirationDate(date);
+        assertEquals(expected,isValid);
     }
 
     @ParameterizedTest
     @CsvSource({
             "Tran Thi Hang,true",
-            "Vietcombank,true",
-            "nguyen01234,false",
+            "Vietcombank01234,true",
+            "nguyen01234,true",
             "$#nguyen,false",
             ",false"
     })
     public void testNameField(String name, boolean expected) {
-//        boolean isValid = PaymentController.validateName(name);
-//        assertEquals(expected,isValid);
+        boolean isValid = PaymentController.validateName(name);
+        assertEquals(expected,isValid);
     }
 
 
@@ -63,9 +64,21 @@ public class PaymentControllerTest {
             "abc123,false",
             ",false"
     })
-    public void testNumberField(String phone, boolean expected) {
-//        boolean isValid = PaymentController.validateNumberField(phone);
-//        assertEquals(expected,isValid);
+    public void testNumberField(String number, boolean expected) {
+        boolean isValid = PaymentController.validateNumberField(number);
+        assertEquals(expected,isValid);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1234abc8,true",
+            "adv1 23,false",
+            "124_this_is_a_card_code_789,true",
+            ",false"
+    })
+    public void testValidateCardCode(String cardCode, boolean expected) {
+        boolean isValid = PaymentController.validateCardCode(cardCode);
+        assertEquals(expected, isValid);
     }
 
 }

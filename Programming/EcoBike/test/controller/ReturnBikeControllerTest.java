@@ -35,11 +35,11 @@ public class ReturnBikeControllerTest {
 
     @ParameterizedTest
     @CsvSource({
-            "1,19000"
-
+//            "1,0",
+            "1,13000"
     })
     void testCalculateAmount(double coefficient, int expected) {
-        LocalDateTime start = LocalDateTime.of(2020, 12, 15, 20, 38, 0);
+        LocalDateTime start = LocalDateTime.of(2020, 12, 25, 23, 0, 0);
         int amount = (int) returnBikeController.calculateAmount(coefficient, start);
         assertEquals(expected, amount);
     }
