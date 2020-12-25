@@ -50,6 +50,9 @@ public class TransactionInfo {
     private int amount;
     private String createdAt;
 
+    public TransactionInfo() {
+    }
+
     public TransactionInfo(String errorCode, Card card, String transactionContent,
                            int amount, String createdAt) {
         this.errorCode = errorCode;

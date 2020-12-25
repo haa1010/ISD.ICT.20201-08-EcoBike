@@ -143,8 +143,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         }
         // else refund
         else {
-            payType.setText("Refund");
-            this.invoiceContents = "Refund for returning bike";
+            payType.setText("ReturnBike");
+            this.invoiceContents = "ReturnBike for returning bike";
             total.setText(Utils.getCurrencyFormat(-totalAmount));
         }
     }
@@ -167,28 +167,11 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     void submitReturnBike(MouseEvent event) throws IOException, SQLException {
 
-        // call API if success display invoice screen
-        InterbankSubsystemController interbank = new InterbankSubsystemController();
-        // pay more if rentingFee > deposit, else refund to account
-        TransactionInfo transactionResult;
         getBController().setCvvCode(cvvCode.getText(), card);
         if (!getBController().validateCard(card)) {
             errorMessage.setText("* You have to fill in security code");
         } else {
-            if (totalAmount > 0) {
-                transactionResult = interbank.payOrder(card, totalAmount, "Pay additional for returning bike");
-            } else {
-                transactionResult = interbank.refund(card, -totalAmount, "Refund for returning bike");
-            }
-
-            if (!transactionResult.getErrorCode().equals("00")) {
-                displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
-            } else {
-
-                Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
-
-                getBController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
-            }
+            getBController().processReturnBike(card, totalAmount, order, invoiceContents, this.stage, homeScreenHandler, this);
         }
     }
 

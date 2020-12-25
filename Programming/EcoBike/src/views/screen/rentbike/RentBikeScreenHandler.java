@@ -68,6 +68,7 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         super(stage, screenPath);
         // TODO Auto-generated constructor stub
         this.rented = rented;
+        this.setBController(new RentBikeController());
 
     }
 
@@ -96,7 +97,6 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         Invoice invoice = getBController().createInvoice(rented);
         PaymentScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
         payment.setBController(new PaymentController());
-//        payment.setInvoice(getBController().createInvoice(rented));
         payment.requestToPaymentScreen(this, homeScreenHandler);
     }
 }
