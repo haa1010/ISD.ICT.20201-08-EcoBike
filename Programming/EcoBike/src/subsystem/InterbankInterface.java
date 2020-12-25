@@ -9,7 +9,7 @@ import entity.transaction.TransactionInfo;
  * The {@code InterbankInterface} class is used to communicate with the
  * {@link subsystem.InterbankSubsystem InterbankSubsystem} to make transaction
  *
- * @author hieud
+ * @author Tran Thi Hang
  */
 public interface InterbankInterface {
 

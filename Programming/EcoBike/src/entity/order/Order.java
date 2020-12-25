@@ -9,6 +9,12 @@ import entity.BaseEntity;
 import entity.bike.Bike;
 import entity.db.EcoBikeRental;
 
+/**
+ * This class is the order entity
+ * @author Pham Nhat Linh
+ * @version 1.0
+ */
+
 public class Order extends BaseEntity {
     protected int id;
 
@@ -61,14 +67,29 @@ public class Order extends BaseEntity {
     public void setTotalUpToNow(int totalUpToNow) {
         this.totalUpToNow = totalUpToNow;
     }
-
+    
+    /**
+     * Constructor
+     * use when start renting bike
+     * @param rentedBike
+     * @param start
+     */
     public Order(Bike rentedBike, LocalDateTime start) {
         this.rentedBike = rentedBike;
         this.deposit = (int) (rentedBike.getValue() * 0.4);
         this.start = start;
         this.totalUpToNow = 15000;
     }
-
+    
+    /**
+     * Constructor
+     * use when returning bike
+     * @param rentedBike
+     * @param start
+     * @param end
+     * @param deposit
+     * @param totalUpToNow
+     */
     public Order(Bike rentedBike, LocalDateTime start, LocalDateTime end, int deposit, int totalUpToNow) {
         this.rentedBike = rentedBike;
         this.start = start;
@@ -76,7 +97,12 @@ public class Order extends BaseEntity {
         this.deposit = deposit;
         this.totalUpToNow = totalUpToNow;
     }
-
+    
+    /**
+     * write new order to Database
+     * create order when start using rented bike
+     * @throws SQLException
+     */
     public void newOrderDB() throws SQLException {
         // setID also
         Statement stm = EcoBikeRental.getConnection().createStatement();
@@ -92,9 +118,13 @@ public class Order extends BaseEntity {
             id = res.getInt("id");
         this.setId(id);
     }
-
+    
+    /**
+     * update order in database
+     * use when returning bike successfully
+     * @throws SQLException
+     */
     public void updateOrderDB() throws SQLException {
-
         Statement stm = EcoBikeRental.getConnection().createStatement();
         String end = this.end.toString();
         String sql = " update " + "EcoOrder" + " set" + " "

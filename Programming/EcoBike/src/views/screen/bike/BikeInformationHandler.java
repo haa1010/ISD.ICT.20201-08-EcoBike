@@ -1,5 +1,10 @@
 package views.screen.bike;
 
+/**
+ * This class is to display the bike info screen
+ * @author Duong Thi Hue
+ * @version 1.0
+ */
 
 import controller.RentBikeController;
 import controller.ViewBikeController;
@@ -42,19 +47,46 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
     private static Logger LOGGER = Utils.getLogger(BikeInformationHandler.class.getName());
     private HomeScreenHandler homeScreenHandler;
 
+    /**
+     * constructor, when the user not renting any bike
+     * @param stage
+     * @param screenPath
+     * @throws IOException
+     * @throws SQLException
+     */
     public BikeInformationHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
     }
 
+    /**
+     * constructor, when the user is using a rented bike
+     * @param stage
+     * @param screenPath
+     * @param order
+     * @throws IOException
+     * @throws SQLException
+     */
     public BikeInformationHandler(Stage stage, String screenPath, Order order) throws IOException, SQLException {
         super(stage, screenPath);
         this.order = order;
     }
 
+    /**
+     * get the controller of this screen
+     */
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();
     }
-
+    
+    /**
+     * request to view this screen, when the user is not using any bike
+     * @param prevScreen
+     * @param id
+     * @param type
+     * @param order
+     * @throws SQLException
+     * @throws IOException
+     */
     public void requestToViewBike(BaseScreenHandler prevScreen, int id, String type, Order order) throws SQLException, IOException {
         this.setPreviousScreen(prevScreen);
         setBikeInfo(id, type);
@@ -64,6 +96,14 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
         show();
     }
 
+    /**
+     * request to view this screen, when the user is using a rented bike
+     * @param prevScreen
+     * @param id
+     * @param type
+     * @throws SQLException
+     * @throws IOException
+     */
     public void requestToViewBike(BaseScreenHandler prevScreen, int id, String type) throws SQLException, IOException {
         this.setPreviousScreen(prevScreen);
         setBikeInfo(id, type);
@@ -74,7 +114,11 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
     }
 
     /**
-     * set bike info to view
+     * set the bike info in the screen
+     * @param id
+     * @param type
+     * @throws IOException
+     * @throws SQLException
      */
     public void setBikeInfo(int id, String type) throws IOException, SQLException {
         this.bike = getBController().setBike(id, type);
@@ -85,6 +129,11 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
     }
 
+    /**
+     * back to home
+     * @throws IOException
+     * @throws SQLException
+     */
     public void backToHomie() throws IOException, SQLException {
         if (this.order != null) {
             backToHomeAfterRent(order);
@@ -93,11 +142,19 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
         }
     }
 
+    /**
+     * if we cannot rent bike because we are renting another bike, then the button is set to disable
+     * @throws SQLException
+     */
     public void setCantRent() throws SQLException {
         canRent.setDisable(true);
 
     }
-
+    
+    /**
+     * if we can rent bike, then the button is set
+     * @throws SQLException
+     */
     public void setCanRent() throws SQLException {
 
         if (getBController().bikeIsRenting(bike.getId())) canRent.setDisable(true);
@@ -130,8 +187,6 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
         rentBike.setBController(new RentBikeController());
         rentBike.setBikeInfo();
         rentBike.requestToViewRentBike(this, homeScreenHandler);
-
-
     }
 
     @Override
@@ -139,6 +194,11 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
 
     }
 
+    /**
+     * move to this screen
+     * @param prevScreen
+     * @throws SQLException
+     */
     public void requestToViewBike(BaseScreenHandler prevScreen) throws SQLException {
         setPreviousScreen(prevScreen);
         setScreenTitle("Bike");

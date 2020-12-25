@@ -1,6 +1,12 @@
 package views.screen.bike;
 
 
+/**
+ * This class is to display the bike info
+ * @author Duong Thi Hue
+ * @version 1.0
+ */
+
 import entity.bike.Bike;
 import entity.bike.StandardElectricBike;
 import javafx.fxml.FXML;
@@ -41,16 +47,23 @@ public class BikeInfo extends FXMLScreenHandler implements Initializable {
     private static Logger LOGGER = Utils.getLogger(BikeInformationHandler.class.getName());
     private boolean isViewBike;
 
+    /**
+     * constructor
+     * @param screenPath
+     * @param bike
+     * @param isViewBike
+     * @throws IOException
+     */
     public BikeInfo(String screenPath, Bike bike, boolean isViewBike) throws IOException {
         super(screenPath);
         this.bike = bike;
         this.isViewBike = isViewBike;
         setBikeInfo();
     }
-
-    /**
-     * set bike info to view
-     */
+	
+	   /**
+	    * set bike info in the screen
+	    */
     public void setBikeInfo() {
         liscensePlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());

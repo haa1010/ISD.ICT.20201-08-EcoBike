@@ -18,29 +18,48 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+
+/**
+ * This class controls the flow of events in result screen
+ * @author Pham Nhat Linh
+ * @version 1.0
+ *
+ */
 public class TransactionController extends BaseController {
 
-
+	/**
+	 * Validate all the field of the card
+	 * @param card
+	 * @return
+	 */
     public boolean validateCard(Card card) {
         if (card.getCardCode().isEmpty() || card.getDateExpired().isEmpty() || card.getOwner().isEmpty() || card.getCvvCode().isEmpty()) {
             return false;
         }
         return true;
     }
-
+    
+    /**
+     * set the amount of the order
+     * @param order
+     * @param amount
+     */
     public void setAmountOrder(Order order, int amount) {
         order.setTotalUpToNow(amount);
     }
-
+    
+    /**
+     * set the returning time to the order
+     * @param order
+     */
     public void setEndOrder(Order order) {
         order.setEnd(LocalDateTime.now());
-
     }
 
 
     /**
-     * update db and move transaction result
-     *
+     * update/insert order, invoice, transactionInfo in DB
+     * and move to transaction result screen
      * @param invoice
      * @param transactionResult
      * @param card

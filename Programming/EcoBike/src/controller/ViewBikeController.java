@@ -9,14 +9,14 @@ import java.util.HashMap;
 
 /**
  * This class controls the flow of events in view bike screen
- * @author minhthong
+ * @author Duong Thi Hue
  * @version 1.0
  *
  */
 public class ViewBikeController extends BaseController {
+	
     /**
      * count 1 second
-     *
      * @param amount amount want to count
      * @return a hashmap include: hour, minute, second
      */
@@ -43,7 +43,6 @@ public class ViewBikeController extends BaseController {
 
     /**
      * convert time in  localDateTime to second
-     *
      * @param start
      * @return seconds
      */
@@ -55,8 +54,7 @@ public class ViewBikeController extends BaseController {
     }
 
     /**
-     * create instance bike base on id and type
-     *
+     * create bike instance base on id and type
      * @param id
      * @param type
      * @return bike
@@ -80,10 +78,10 @@ public class ViewBikeController extends BaseController {
     }
 
     /**
-     * check bike isRenting or not
+     * check bike isRenting
      *
-     * @param id id of bike
-     * @return Bike.isRenting
+     * @param id of the bike we want to check
+     * @return boolean
      */
     public boolean bikeIsRenting(int id) {
         try {

@@ -3,7 +3,7 @@ package common.exception;
  * The EcobikeException wraps all unchecked exceptions You can use this
  * exception to inform
  *
- * @author hangntt
+ * @author Tran Thi Hang
  * @version 1.0
  */
 public class EcobikeException extends RuntimeException {

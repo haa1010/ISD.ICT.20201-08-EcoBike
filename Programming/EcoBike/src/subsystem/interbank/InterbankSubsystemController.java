@@ -18,6 +18,12 @@ import utils.Configs;
 import utils.MyMap;
 import utils.Utils;
 
+/***
+ * this class is used to control the interbank subsystem
+ * 
+ * @author Tran Thi Hang
+ *
+ */
 public class InterbankSubsystemController {
 
 	private static final String PUBLIC_KEY = "AQzdE8O/fR8=";
@@ -29,21 +35,47 @@ public class InterbankSubsystemController {
 	private static final String VERSION = "1.0.1";
 
 	private static InterbankBoundary interbankBoundary = new InterbankBoundary();
-
+	
+	/**
+	 * This Transaction info is to refund
+	 * @param card
+	 * @param amount
+	 * @param contents
+	 * @return
+	 */
 	public TransactionInfo refund(Card card, int amount, String contents) {
 		this.command = "refund";
 		return this.deductMoney(card, amount, contents);
 	}
 	
+	/**
+	 * data to json form
+	 * @param data
+	 * @return
+	 */
 	private String generateData(Map<String, Object> data) {
 		return ((MyMap) data).toJSON();
 	}
 
+	/**
+	 * This Transaction info is to pay
+	 * @param card
+	 * @param amount
+	 * @param contents
+	 * @return
+	 */
 	public TransactionInfo payOrder(Card card, int amount, String contents) {
 		this.command = "pay";
 		return this.deductMoney(card, amount, contents);
 	}
-
+	
+	/**
+	 * deduct money Transaction Info
+	 * @param card
+	 * @param amount
+	 * @param contents
+	 * @return
+	 */
 	public TransactionInfo deductMoney(Card card, int amount, String contents) {
 		Map<String, Object> transaction = new MyMap();
 
@@ -81,7 +113,12 @@ public class InterbankSubsystemController {
 
 		return makePaymentTransaction(response);
 	}
-
+	
+	/**
+	 * Get transaction response and throw exception depend on the map
+	 * @param response
+	 * @return
+	 */
 	private TransactionInfo makePaymentTransaction(MyMap response) {
 		if (response == null)
 			return null;

@@ -3,7 +3,7 @@ package common.exception;
 ;
 /**
  * This exception is thrown when the card info is invalid
- * @author hangntt
+ * @author Tran Thi Hang
  * @version 1.0
  */
 

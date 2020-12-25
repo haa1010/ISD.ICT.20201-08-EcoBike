@@ -6,6 +6,12 @@ import java.sql.Statement;
 
 import entity.db.EcoBikeRental;
 
+/**
+ * This class is the transaction info entity
+ * @author Pham Nhat Linh
+ * @version 1.0
+ */
+
 public class TransactionInfo {
     private String errorCode;
 
@@ -49,10 +55,21 @@ public class TransactionInfo {
     private String transactionContent;
     private int amount;
     private String createdAt;
-
+    
+    /**
+     * Constructor
+     */
     public TransactionInfo() {
     }
-
+    
+    /**
+     * Constructor
+     * @param errorCode
+     * @param card
+     * @param transactionContent
+     * @param amount
+     * @param createdAt
+     */
     public TransactionInfo(String errorCode, Card card, String transactionContent,
                            int amount, String createdAt) {
         this.errorCode = errorCode;
@@ -69,7 +86,14 @@ public class TransactionInfo {
     public String getErrorCode() {
         return errorCode;
     }
-
+    
+    /**
+     * add new transaction info to database
+     * also add the card used for this transaction to database
+     * @param invoiceID
+     * @param card
+     * @throws SQLException
+     */
     public void newTransactionDB(int ivID, Card card) throws SQLException {
         // new card also
         Statement stm = EcoBikeRental.getConnection().createStatement();
@@ -80,7 +104,6 @@ public class TransactionInfo {
         String amount = Integer.toString(this.amount);
         stm.execute("INSERT INTO TransactionInfo(cardID, invoiceID, createdDate, content, amount) "
                 + "VALUES (" + cardID + "," + invoiceID + "," + createdDate + "," + content + "," + amount + ");");
-
         int id = -1;
         ResultSet res = stm.executeQuery("SELECT id from TransactionInfo");
         while (res.next()) {

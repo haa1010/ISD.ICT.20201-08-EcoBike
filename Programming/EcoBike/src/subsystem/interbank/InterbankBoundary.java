@@ -3,6 +3,13 @@ package subsystem.interbank;
 import common.exception.UnrecognizedException;
 import utils.API;
 
+/***
+ * this class is used to communicate with the
+ * Interbank to make transaction.
+ * 
+ * @author Tran Thi Hang
+ *
+ */
 public class InterbankBoundary {
 
 	String query(String url, String data) {

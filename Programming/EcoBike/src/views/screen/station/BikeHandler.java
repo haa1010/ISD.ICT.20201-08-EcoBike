@@ -1,5 +1,11 @@
 package views.screen.station;
 
+/**
+ * This class is to display the bike info
+ * @author Duong Thi Hue
+ * @version 1.0
+ */
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
@@ -40,13 +46,32 @@ public class BikeHandler extends FXMLScreenHandler {
     private StationScreenHandler home;
     private Order order;
 
+    /**
+     * constructor, when the user is not using any bike
+     * @param stage
+     * @param screenPath
+     * @param bike
+     * @param home
+     * @throws SQLException
+     * @throws IOException
+     */
     public BikeHandler(Stage stage, String screenPath, Bike bike, BaseScreenHandler home) throws SQLException, IOException {
         super(screenPath);
         this.bike = bike;
         this.home = (StationScreenHandler) home;
         initStationBikes(stage, home, bike, this.order);
     }
-
+    
+    /**
+     * constructor, when the user is using a rented bike
+     * @param stage
+     * @param screenPath
+     * @param bike
+     * @param home
+     * @param order
+     * @throws SQLException
+     * @throws IOException
+     */
     public BikeHandler(Stage stage, String screenPath, Bike bike, BaseScreenHandler home, Order order) throws SQLException, IOException {
         super(screenPath);
         this.bike = bike;
@@ -54,7 +79,15 @@ public class BikeHandler extends FXMLScreenHandler {
         this.order = order;
         initStationBikes(stage, home, bike, this.order);
     }
-
+    
+    /**
+     * initialize station with bikes
+     * @param stage
+     * @param home
+     * @param bike
+     * @param order
+     * @throws SQLException
+     */
     public void initStationBikes(Stage stage, BaseScreenHandler home, Bike bike, Order order) throws SQLException {
         setBikeInfo();
         view.setOnMouseClicked(e -> {
@@ -75,6 +108,9 @@ public class BikeHandler extends FXMLScreenHandler {
         });
     }
 
+    /**
+     * set bike info
+     */
     private void setBikeInfo() {
         setImage(bikeImage, bike.getUrlImage());
         licensePlate.setText(bike.getLicensePlate());

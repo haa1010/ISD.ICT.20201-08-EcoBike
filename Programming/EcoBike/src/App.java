@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 
 /**
  * This class is the main class for our EcoBikeRental project
- * @author minhthong
+ * @author Do Minh Thong
  * @version 1.0
  */
 public class App extends Application {

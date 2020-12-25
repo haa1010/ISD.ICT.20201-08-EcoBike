@@ -1,5 +1,10 @@
 package views.screen.station;
 
+/**
+ * This class is to display the station info
+ * @author Nguyen Minh Thong
+ * @version 1.0
+ */
 import controller.ReturnBikeController;
 import controller.ViewStationController;
 import entity.bike.Bike;
@@ -69,6 +74,14 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
 
     private Order order;
 
+    /**
+     * constructor, when the user is not using any bike
+     * @param stage
+     * @param screenPath
+     * @param station
+     * @param homeScreenHandler
+     * @throws IOException
+     */
     public StationScreenHandler(Stage stage, String screenPath, Station station, BaseScreenHandler homeScreenHandler) throws IOException {
         super(stage, screenPath);
         this.station = station;
@@ -84,7 +97,15 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
 
         initStation(stage, this, this.order);
     }
-
+    /**
+     * constructor, when the user is using a rented bike
+     * @param stage
+     * @param screenPath
+     * @param station
+     * @param homeScreenHandler
+     * @param order
+     * @throws IOException
+     */
     public StationScreenHandler(Stage stage, String screenPath, Station station, BaseScreenHandler homeScreenHandler, Order order) throws IOException {
         super(stage, screenPath);
         this.station = station;
@@ -110,6 +131,9 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
         initStation(stage, this, order);
     }
 
+    /**
+     * get the controller of this screen
+     */
     public ViewStationController getBController() {
         return (ViewStationController) super.getBController();
     }
@@ -117,7 +141,13 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
     public Stage getStage() {
         return this.stage;
     }
-
+    
+    /**
+     * initialize station info
+     * @param stage
+     * @param home
+     * @param order
+     */
     public void initStation(Stage stage, StationScreenHandler home, Order order) {
         try {
             setStationInfo();
@@ -157,13 +187,22 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setBController(new ViewStationController());
     }
-
+    
+    /**
+     * request to move to this screen
+     * @param prevScreen
+     * @throws SQLException
+     */
     public void requestToViewStation(BaseScreenHandler prevScreen) throws SQLException {
         setPreviousScreen(prevScreen);
         setScreenTitle("Station");
         show();
     }
 
+    /**
+     * set station info
+     * @throws SQLException
+     */
     private void setStationInfo() throws SQLException {
         try {
             name1.setText(station.getName());
@@ -176,7 +215,11 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
             System.out.println("Station is null.");
         }
     }
-
+    
+    /**
+     * add bike to station
+     * @param items
+     */
     public void addBikeStation(List items) {
         ArrayList stationItems = (ArrayList) ((ArrayList) items).clone();
         hboxBike.getChildren().forEach(node -> {

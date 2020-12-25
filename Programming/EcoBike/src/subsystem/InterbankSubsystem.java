@@ -8,7 +8,7 @@ import subsystem.interbank.InterbankSubsystemController;
  * The {@code InterbankSubsystem} class is used to communicate with the
  * Interbank to make transaction.
  * 
- * @author hieud
+ * @author Tran Thi Hang
  *
  */
 public class InterbankSubsystem implements InterbankInterface {

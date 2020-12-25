@@ -13,6 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+
+/**
+ * This class is the splash screen view handler
+ * @author Do Minh Thong
+ * @version 1.0
+ */
+
 public class SplashScreenHandler implements Initializable {
 
     @FXML

@@ -20,6 +20,11 @@ import views.screen.FXMLScreenHandler;
 import views.screen.popup.PopupHomeScreen;
 import views.screen.station.StationScreenHandler;
 
+/**
+ * This class is to display the info of station in home screen
+ * @author Do Minh Thong
+ * @version 1.0
+ */
 public class StationHandler extends FXMLScreenHandler {
 
     @FXML
@@ -49,6 +54,14 @@ public class StationHandler extends FXMLScreenHandler {
     private HomeScreenHandler home;
     private Order order;
 
+    /**
+     * constructor, when the user is not using any bike 
+     * @param screenPath
+     * @param station
+     * @param home
+     * @throws SQLException
+     * @throws IOException
+     */
     public StationHandler(String screenPath, Station station, HomeScreenHandler home) throws SQLException, IOException {
         super(screenPath);
         this.station = station;
@@ -58,6 +71,15 @@ public class StationHandler extends FXMLScreenHandler {
         setStationInfo();
     }
 
+    /**
+     * constructor, when the user is using a rented bike
+     * @param screenPath
+     * @param station
+     * @param home
+     * @param order
+     * @throws SQLException
+     * @throws IOException
+     */
     public StationHandler(String screenPath, Station station, HomeScreenHandler home, Order order) throws SQLException, IOException {
         super(screenPath);
         this.station = station;
@@ -70,7 +92,13 @@ public class StationHandler extends FXMLScreenHandler {
     public Station getStation(){
         return station;
     }
-
+    
+    /**
+     * initialize stations in home screen
+     * @param station
+     * @param home
+     * @param order
+     */
     public void initHomeStations(Station station, HomeScreenHandler home, Order order) {
         view.setOnMouseClicked(event -> {
             StationScreenHandler stationScreen;
@@ -95,7 +123,11 @@ public class StationHandler extends FXMLScreenHandler {
             }
         });
     }
-
+    
+    /**
+     * set station info
+     * @throws SQLException
+     */
     private void setStationInfo() throws SQLException {
         // set the cover image of station
         stationName.setText(station.getName());

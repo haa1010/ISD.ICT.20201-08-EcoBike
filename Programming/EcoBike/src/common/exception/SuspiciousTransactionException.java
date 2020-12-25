@@ -2,7 +2,7 @@ package common.exception;;
 /**
  * This exception is thrown when the transaction is suspicious
  *
- * @author hangntt
+ * @author Tran Thi Hang
  * @version 1.0
  */
 public class SuspiciousTransactionException extends PaymentException {
