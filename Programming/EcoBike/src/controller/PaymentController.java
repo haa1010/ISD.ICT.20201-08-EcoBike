@@ -10,9 +10,6 @@ import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Map;
 
-import common.exception.InvalidCardException;
-import common.exception.PaymentException;
-import common.exception.UnrecognizedException;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
 import entity.order.Order;
@@ -20,7 +17,6 @@ import entity.transaction.Card;
 import entity.transaction.TransactionInfo;
 import javafx.stage.Stage;
 import subsystem.InterbankInterface;
-import subsystem.InterbankSubsystem;
 import subsystem.interbank.InterbankSubsystemController;
 import utils.Configs;
 import views.screen.payment.ResultScreenHandler;
@@ -29,7 +25,7 @@ import views.screen.payment.ResultScreenHandler;
 /**
  * This class controls the flow of the payment process in our EcoBikeRental project
  *
- * @author Tran Thi Hang
+ * @author Tran Thi Hang, Duong Thi Hue,Pham Nhat Linh
  * @version 1.0
  * <p>
  * created_at: 01/12/2020
@@ -134,25 +130,7 @@ public class PaymentController extends BaseController {
         return true;
     }
 
-    //
-//    /**
-//     * This method check if expiration date of Card Information is valid for making transaction
-//     *
-//     * @param time
-//     * @return boolean
-//     */
-//    public boolean validateExpirationDate(String time) {
-//        try {
-//            time = time.trim();
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//            LocalDate dateTime = LocalDate.parse(time, formatter);
-//            LocalDate now = LocalDate.now();
-//            boolean isAfter = dateTime.isAfter(now);
-//            return isAfter;
-//        } catch (DateTimeParseException | NullPointerException e) {
-//            return false;
-//        }
-//    }
+
     public boolean validateExpirationDate(String date) throws InvalidCardException {
         try {
             date = date.trim();
@@ -208,21 +186,32 @@ public class PaymentController extends BaseController {
         return transactionResult;
     }
 
-    public Card createCard(String cardCode, String owner, String cvvCode, String dateExpired) throws Exception {
-        validateCardInfo(cardCode, owner, dateExpired, cvvCode);
+    public Card createCard(String cardCode, String owner, String cvvCode, String dateExpired){
         return new Card(cardCode, owner, cvvCode, dateExpired);
     }
 
     public void moveToSuccessfulTransactionScreen(Invoice invoice, TransactionInfo transactionResult, Card card, Stage stage) throws SQLException, IOException {
         ResultScreenHandler resultScreenHandler = null;
-        new Bike().updateDB(0, invoice.getOrder().getRentedBike());
-        invoice.newInvoiceDB();
-        // update db bike table, station col
+        new Bike().updateQtyDB(0, invoice.getOrder().getRentedBike());
+        invoice.getOrder().updateOrderDB();
+        invoice.creatNewInvoiceDB();
+        // set new station for bike
         new Bike().updateBikeDB(invoice.getOrder().getRentedBike().getId(),
                 invoice.getOrder().getRentedBike().getStation().getId());
 
         transactionResult.newTransactionDB(invoice.getId(), card);
         resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
+        resultScreenHandler.show();
+    }
+    
+    public void moveToSuccessfulDepositScreen(Invoice invoice, TransactionInfo transactionResult, Card card, Stage stage) throws SQLException, IOException {
+        ResultScreenHandler resultScreenHandler = null;
+        new Bike().updateQtyDB(1, invoice.getOrder().getRentedBike());
+        invoice.getOrder().newOrderDB();
+        invoice.creatNewInvoiceDB();
+        
+        transactionResult.newTransactionDB(invoice.getId(), card);
+        resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, invoice.getOrder());
         resultScreenHandler.show();
     }
 

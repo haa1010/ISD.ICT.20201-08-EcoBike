@@ -257,20 +257,20 @@
                 <Font name="Arial" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="rentBikeButton" layoutX="1151.0" layoutY="22.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: #4D5DEB;" text="Rent Bike" textFill="WHITE">
+        <Button fx:id="rentBikeButton" layoutX="1151.0" layoutY="28.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: #eb4d55 #eb4d55;" text="Rent Bike" textFill="WHITE">
             <font>
-                <Font name="Arial Bold" size="18.0" />
+                <Font name="Arial Bold" size="14.0" />
             </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <TextField fx:id="searchInput" layoutX="226.0" layoutY="23.0" onAction="#onEnter" prefHeight="43.0" prefWidth="842.0" promptText="Search" style="-fx-background-color: #ffffff; -fx-border-color: #111111;">
+        <TextField fx:id="searchInput" layoutX="226.0" layoutY="23.0" onAction="#onEnter" prefHeight="43.0" prefWidth="479.0" promptText="Search" style="-fx-background-color: #ffffff; -fx-border-color: #111111;">
             <font>
                 <Font name="Arial" size="18.0" />
             </font>
         </TextField>
-        <Pane layoutX="1068.0" layoutY="23.0" prefHeight="43.0" prefWidth="61.0" style="-fx-background-color: #ffffff; -fx-border-color: #111111;">
+        <Pane layoutX="692.0" layoutY="23.0" prefHeight="43.0" prefWidth="61.0" style="-fx-background-color: #ffffff; -fx-border-color: #111111;">
             <children>
                 <ImageView fx:id="search" fitHeight="37.0" fitWidth="31.0" layoutX="16.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" scaleX="-1">
                     <image>
@@ -289,5 +289,10 @@
                 </HBox>
             </content>
         </ScrollPane>
+      <Button fx:id="viewRent" layoutX="982.0" layoutY="28.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: #4d5deb;" text="View renting Bike" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

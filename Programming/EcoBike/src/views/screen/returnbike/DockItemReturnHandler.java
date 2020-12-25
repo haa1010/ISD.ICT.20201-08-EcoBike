@@ -1,19 +1,11 @@
 package views.screen.returnbike;
 
-import common.exception.MediaNotAvailableException;
-import controller.DockItemReturnController;
-import controller.ReturnBikeController;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import utils.Configs;
 import utils.Utils;
-import views.screen.BaseScreenHandler;
 import views.screen.FXMLScreenHandler;
 
 import java.io.File;

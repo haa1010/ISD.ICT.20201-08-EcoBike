@@ -95,7 +95,6 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         String errorMessage;
         errorMessage = Configs.errorCodes.get(errorCode);
 
-//        order.setEnd(LocalDateTime.now());
         Invoice invoice = new Invoice(order, amount, contents);
 
         TransactionErrorScreenHandler tes = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, errorMessage, invoice);

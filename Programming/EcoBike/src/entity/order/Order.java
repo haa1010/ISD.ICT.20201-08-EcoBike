@@ -22,12 +22,6 @@ public class Order extends BaseEntity {
     protected int deposit;
     protected int totalUpToNow;
 
-    public int calculateTotalUptoNow() {
-        int total = 0;
-
-        return total;
-    }
-
     public Bike getRentedBike() {
         return rentedBike;
     }

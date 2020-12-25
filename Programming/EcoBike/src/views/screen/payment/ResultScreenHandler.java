@@ -52,11 +52,10 @@ public class ResultScreenHandler extends BaseScreenHandler implements Initializa
         super(stage, screenPath);
         setBController(bController);
         setTransactionInfo(trans);
-
     }
 
     public void setTransactionInfo(TransactionInfo trans) {
-        this.id.setText("#" + Integer.toString(trans.getId()));
+        this.id.setText("#" + trans.getId());
         this.owner.setText(trans.getCard().getOwner());
         this.content.setText(trans.getTransactionContent());
         this.amount.setText(Utils.getCurrencyFormat(trans.getAmount()));
@@ -76,7 +75,6 @@ public class ResultScreenHandler extends BaseScreenHandler implements Initializa
     public ResultScreenHandler(Stage stage, String screenPath, BaseController bController, TransactionInfo trans, Order order) throws IOException {
         this(stage, screenPath, bController, trans);
         this.order = order;
-
     }
 
     public ReturnBikeController getBController() {

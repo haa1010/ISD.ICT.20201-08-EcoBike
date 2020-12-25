@@ -20,7 +20,9 @@ public class RentBikeController extends BaseController {
         if (!this.validateBarcode(barcode))
             throw new Exception("Invalid Barcode");
         tmp = new Bike().getBikeByBarcode(barcode);
+
         if (tmp == null) throw new Exception("Barcode is not exist");
+
         if (checkAvailableBike(tmp))
             throw new Exception("Bike has already been rented");
         return tmp;
@@ -53,7 +55,7 @@ public class RentBikeController extends BaseController {
     }
 
     public String getContent(String barcode) {
-        return "Pay deposit for renting bike" + barcode;
+        return "Pay deposit for renting bike " + barcode;
     }
 
     /**
@@ -63,11 +65,10 @@ public class RentBikeController extends BaseController {
      * @return
      * @throws SQLException
      */
-    public Invoice saveToDB(Bike rented) throws SQLException {
+    public Invoice createInvoice(Bike rented) throws SQLException {
         Order order = new Order(rented, LocalDateTime.now());
-        order.newOrderDB();
+        //order.newOrderDB();
         Invoice invoice = new Invoice(order, order.getDeposit(), getContent(rented.getBarcode()));
-
         return invoice;
     }
 

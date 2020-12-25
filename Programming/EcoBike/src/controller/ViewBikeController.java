@@ -2,7 +2,6 @@ package controller;
 
 import common.exception.ViewBikeException;
 import entity.bike.*;
-
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -55,9 +54,8 @@ public class ViewBikeController extends BaseController {
      * @param id
      * @param type
      * @return
-     * @throws SQLException
      */
-    public Bike setBike(int id, String type) throws SQLException, ViewBikeException {
+    public Bike setBike(int id, String type) throws ViewBikeException {
         try {
             if (type.equals("Standard electric bike")) {
                 return new StandardElectricBike().getBikeById(id);
@@ -75,30 +73,12 @@ public class ViewBikeController extends BaseController {
     }
 
     /**
-     * get bike bike id
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public Bike viewBikeInfoById(int id) throws SQLException, ViewBikeException {
-
-        try {
-            Bike bike = new Bike();
-            return bike.getBikeById(id);
-        } catch (SQLException e) {
-            throw new ViewBikeException("Not found bikeID :" + id + "in DB");
-        }
-    }
-
-    /**
      * check bike isRenting or not
      *
      * @param id id of bike
      * @return return Bike.isRenting
-     * @throws SQLException
      */
-    public boolean bikeIsRenting(int id) throws SQLException {
+    public boolean bikeIsRenting(int id) {
         try {
             return new Bike().getRenting(id) == 1;
         } catch (SQLException e) {

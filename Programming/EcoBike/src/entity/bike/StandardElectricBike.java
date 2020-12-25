@@ -34,20 +34,7 @@ public class StandardElectricBike extends Bike {
         this.remainingTime = remainingTime;
     }
 
-//    @Override
-//    public int getId() {
-//        return id;
-//    }
-//
-//    @Override
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
-    public StandardElectricBike() throws SQLException {
-
-
-    }
+    public StandardElectricBike() throws SQLException { }
 
     @Override
     public Bike getBikeById(int id) throws SQLException {
@@ -58,7 +45,6 @@ public class StandardElectricBike extends Bike {
             ResultSet res = stm.executeQuery(sql);
 
             if (res.next()) {
-
                 StandardElectricBike bike = new StandardElectricBike();
                 StandardElectricBike eBike = (StandardElectricBike) setValueBike(res, bike);
                 eBike.setRemainingTime(res.getInt("remainingTime"));
