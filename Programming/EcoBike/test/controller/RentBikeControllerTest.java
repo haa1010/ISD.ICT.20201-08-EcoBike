@@ -37,13 +37,29 @@ public class RentBikeControllerTest {
     @ParameterizedTest
     @CsvSource({
             " ,false",
-            " asbasced ,false",
+            " asbasced ,true",
             "12ab@#,false",
             "1a2b3c,true"
     })
-    public void test(String barcode, boolean expected) {
+    public void testValidateBarcode(String barcode, boolean expected) {
         boolean isValid = rentBikeController.validateBarcode(barcode);
         assertEquals(expected, isValid);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            ",false",
+            "STB01,true",
+            "STEB01,true",
+            "ST04,false",
+            "ABC123,false"
+    })
+    public void testValidateBarcodeBike(String barcode, boolean expected) throws SQLException {
+        Bike bike = new Bike().getBikeByBarcode(barcode);
+        boolean isValid;
+        isValid = bike != null;
+        assertEquals(expected, isValid);
+    }
+
 
 }

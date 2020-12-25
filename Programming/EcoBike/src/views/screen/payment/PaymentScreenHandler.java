@@ -120,5 +120,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
     public void notify(String message) {
         LOGGER.info(message);
+        errorMessage.setText(message);
     }
 }

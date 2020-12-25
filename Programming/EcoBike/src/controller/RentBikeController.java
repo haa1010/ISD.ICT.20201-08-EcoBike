@@ -44,9 +44,9 @@ public class RentBikeController extends BaseController {
     }
 
     public boolean validateBarcode(String barcode) {
+        if (barcode == null) return false;
         barcode = barcode.trim();
-        if (barcode == null || barcode.isEmpty()
-        ) return false;
+        if (barcode.isEmpty()) return false;
         for (int i = 0; i < barcode.length(); i++) {
             if (!Character.isLetterOrDigit(barcode.charAt(i)))
                 return false;
