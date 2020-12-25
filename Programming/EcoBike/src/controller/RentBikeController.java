@@ -43,7 +43,8 @@ public class RentBikeController extends BaseController {
 
     public boolean validateBarcode(String barcode) {
         barcode = barcode.trim();
-        if (barcode == null) return false;
+        if (barcode == null || barcode.isEmpty()
+        ) return false;
         for (int i = 0; i < barcode.length(); i++) {
             if (!Character.isLetterOrDigit(barcode.charAt(i)))
                 return false;
@@ -66,7 +67,8 @@ public class RentBikeController extends BaseController {
         Order order = new Order(rented, LocalDateTime.now());
         order.newOrderDB();
         Invoice invoice = new Invoice(order, order.getDeposit(), getContent(rented.getBarcode()));
-        invoice.newInvoiceDB();
+
         return invoice;
     }
+
 }

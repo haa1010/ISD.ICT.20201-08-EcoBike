@@ -3,6 +3,7 @@ package views.screen.payment;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import controller.PaymentController;
@@ -87,11 +88,11 @@ public class PaymentScreenHandler extends BaseScreenHandler {
      */
     public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice, Card card) throws IOException {
         super(stage, screenPath);
-    	this.invoice = invoice;
+        this.invoice = invoice;
         this.card = card;
-        
-        setCardInfo(card);	
-        
+
+        setCardInfo(card);
+
         home.setOnMouseClicked(event -> {
             try {
                 backToHomeAfterRent(this.invoice.getOrder());
@@ -102,7 +103,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
 
     }
-    
+
     void setCardInfo(Card card) {
         this.cardCode.setText(card.getCardCode());
         this.owner.setText(card.getOwner());
@@ -117,7 +118,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     public void submitToPay() throws Exception {
         try {
             this.card = getBController().createCard(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText());
-
             TransactionInfo transactionResult = getBController().submitToPay(this.invoice, this.card);
             if (!transactionResult.getErrorCode().equals("00")) {
                 displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());

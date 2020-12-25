@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Calendar;
@@ -14,6 +15,7 @@ import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
+import entity.order.Order;
 import entity.transaction.Card;
 import entity.transaction.TransactionInfo;
 import javafx.stage.Stage;
@@ -66,15 +68,7 @@ public class PaymentController extends BaseController {
      * @throws InvalidCardException - if the string does not represent a valid date
      *                              in the expected format
      */
-    public boolean validateExipationDate(String date) throws InvalidCardException {
-        try {
-            date = date.trim();
-            String regex = "^[0-9]{4}$";
-            return date.matches(regex);
-        } catch (Exception e) {
-            throw new InvalidCardException("Invalid expiration date");
-        }
-    }
+
 
     /**
      * Pay order, and then return the result with a message.
@@ -117,7 +111,7 @@ public class PaymentController extends BaseController {
     public boolean validateName(String name) {
         try {
             name = name.trim();
-            return ((!name.equals("")) && (name.matches("^[ A-Za-z]+$")));
+            return ((!name.equals("")) && (name.matches("^[ A-Za-z0-9]+$")));
         } catch (NullPointerException e) {
             return false;
         }
@@ -140,25 +134,34 @@ public class PaymentController extends BaseController {
         return true;
     }
 
-    /**
-     * This method check if expiration date of Card Information is valid for making transaction
-     *
-     * @param time
-     * @return boolean
-     */
-    public boolean validateExpirationDate(String time) {
+    //
+//    /**
+//     * This method check if expiration date of Card Information is valid for making transaction
+//     *
+//     * @param time
+//     * @return boolean
+//     */
+//    public boolean validateExpirationDate(String time) {
+//        try {
+//            time = time.trim();
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//            LocalDate dateTime = LocalDate.parse(time, formatter);
+//            LocalDate now = LocalDate.now();
+//            boolean isAfter = dateTime.isAfter(now);
+//            return isAfter;
+//        } catch (DateTimeParseException | NullPointerException e) {
+//            return false;
+//        }
+//    }
+    public boolean validateExpirationDate(String date) throws InvalidCardException {
         try {
-            time = time.trim();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate dateTime = LocalDate.parse(time, formatter);
-            LocalDate now = LocalDate.now();
-            boolean isAfter = dateTime.isAfter(now);
-            return isAfter;
-        } catch (DateTimeParseException | NullPointerException e) {
-            return false;
+            date = date.trim();
+            String regex = "^[0-9]{4}$";
+            return date.matches(regex);
+        } catch (Exception e) {
+            throw new InvalidCardException("Invalid expiration date");
         }
     }
-
     /*
      * @linh
      * continue to write

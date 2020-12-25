@@ -154,9 +154,9 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
 
-        getBController().updateOrderDB(order);
+        // getBController().updateOrderDB(order);
         Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
-        getBController().insertInvoiceToDB(invoice);
+        //getBController().insertInvoiceToDB(invoice);
         PaymentScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
         payment.requestToPaymentScreen(this, homeScreenHandler);
@@ -172,7 +172,6 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     @FXML
     void submitReturnBike(MouseEvent event) throws IOException, SQLException {
 
-        getBController().updateOrderDB(order);
 
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
@@ -190,6 +189,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
             displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
         } else {
             Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
+            getBController().updateOrderDB(order);
             new PaymentController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
 
 //
