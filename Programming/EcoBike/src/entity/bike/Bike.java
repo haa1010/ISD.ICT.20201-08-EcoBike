@@ -1,8 +1,7 @@
 package entity.bike;
 /**
  * This class is the base class for bike
- *
- * @author hue
+ * @author Duong Thi Hue
  * @version 1.0
  */
 

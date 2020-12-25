@@ -28,7 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
-
+/**
+ * This class is to display the home screen
+ * @author Do Minh Thong
+ * @version 1.0
+ */
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
 
@@ -74,18 +78,39 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private Order order;
 
     @FXML
+    /**
+     * search dock
+     * @param ae
+     * @throws IOException
+     * @throws SQLException
+     */
     public void onEnter(ActionEvent ae) throws IOException, SQLException {
         searchString = searchInput.getText();
         initHome(searchString, this.order);
     }
 
+    /**
+     * constructor, when the user is not using any bike
+     * @param stage
+     * @param screenPath
+     * @throws IOException
+     * @throws SQLException
+     */
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException, SQLException {
         super(stage, screenPath);
         this.order = null;
         this.searchString = null;
         initHome(this.searchString, this.order);
     }
-
+    
+    /**
+     * constructor, when the user is using a rented bike
+     * @param stage
+     * @param screenPath
+     * @param order
+     * @throws IOException
+     * @throws SQLException
+     */
     public HomeScreenHandler(Stage stage, String screenPath, Order order) throws IOException, SQLException {
         super(stage, screenPath);
         this.order = order;
@@ -122,12 +147,18 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         }
     }
 
+    /**
+     * get the controller of this screen
+     */
     public HomeController getBController() {
         return (HomeController) super.getBController();
     }
 
 
     @Override
+    /**
+     * initialize the screen
+     */
     public void initialize(URL arg0, ResourceBundle arg1) {
         setBController(new HomeController());
         try {
@@ -164,7 +195,14 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             });
         }
     }
-
+    
+    /**
+     * display the home screen
+     * @param searchString
+     * @param order
+     * @throws SQLException
+     * @throws IOException
+     */
     public void initHome(String searchString, Order order) throws SQLException, IOException {
         setBController(new HomeController());
         List medium = getBController().getAllStations();
@@ -194,6 +232,11 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         addStationHome(this.homeItems);
     }
 
+    /**
+     * request to move to this screen
+     * @param prevScreen
+     * @throws SQLException
+     */
     public void requestToReturnHome(BaseScreenHandler prevScreen) throws SQLException {
         setPreviousScreen(prevScreen);
         setScreenTitle("Home");
@@ -208,6 +251,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         return this.stage;
     }
 
+    /**
+     * add station to home
+     * @param items
+     */
     public void addStationHome(List items) {
         ArrayList homeItems = (ArrayList) ((ArrayList) items).clone();
         hboxHome.getChildren().forEach(node -> {

@@ -14,7 +14,11 @@ import javafx.stage.Stage;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
 
-
+/**
+ * This class is to display the payment screen
+ * @author Pham Nhat Linh
+ * @version 1.0
+ */
 public class PaymentScreenHandler extends BaseScreenHandler {
 
     @FXML
@@ -47,8 +51,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
     /**
      * This constructor use when pay for renting bike
-     *
-     * @author hangtt
+     * @param stage
+     * @param screenPath
+     * @param invoice
+     * @throws IOException
      */
     public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
 
@@ -67,8 +73,11 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
     /**
      * This constructor use when pay for returning bike
-     *
-     * @author hangtt
+     * @param stage
+     * @param screenPath
+     * @param invoice
+     * @param card
+     * @throws IOException
      */
     public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice, Card card) throws IOException {
         super(stage, screenPath);
@@ -84,18 +93,29 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             }
         });
     }
-
-    private void setCardInfo(Card card) {
+    
+    /**
+     * set credit card info
+     * @param card
+     */
+    void setCardInfo(Card card) {
         this.cardCode.setText(card.getCardCode());
         this.owner.setText(card.getOwner());
         this.dateExpired.setText(card.getDateExpired());
     }
 
+    /**
+     * get the controller of this screen
+     */
     public PaymentController getBController() {
         return (PaymentController) super.getBController();
     }
 
     @FXML
+    /**
+     * handle the event when user clicks the submit button
+     * @throws Exception
+     */
     public void submitToPay() throws Exception {
         try {
             getBController().processPayRequest(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText(), invoice, stage, homeScreenHandler, this);
@@ -104,13 +124,21 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         }
     }
 
-
+    
+    /**
+     * back to previous screen
+     * @param event
+     */
     @FXML
     void backToPreviousScreen(MouseEvent event) {
         this.getPreviousScreen().show();
     }
 
-
+    /**
+     * request to move to this screen
+     * @param prev
+     * @param homeScreenHandler
+     */
     public void requestToPaymentScreen(BaseScreenHandler prev, HomeScreenHandler homeScreenHandler) {
         setPreviousScreen(prev);
         setHomeScreenHandler(homeScreenHandler);
@@ -118,6 +146,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         show();
     }
 
+    /**
+     * error display
+     * @param message
+     */
     public void notify(String message) {
         LOGGER.info(message);
         errorMessage.setText(message);

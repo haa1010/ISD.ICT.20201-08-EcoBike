@@ -10,7 +10,8 @@ import java.util.Map;
  * To create a new JSON object,
  * JSON jsonObject = new JSON();
  * jsonObject.put("key", value);
- *
+ * 
+ * @author Pham Nhat Linh
  *
  */
 public class MyMap extends LinkedHashMap<String, Object> {
@@ -18,9 +19,6 @@ public class MyMap extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Return a {@link java.lang.String String} that represents the JSON object.
-	 * 
-	 * @author hieudm
-	 *         https://hg.openjdk.java.net/jdk8/jdk8/jdk/file/tip/src/share/classes/java/util/Hashtable.java
 	 * @return a {@link java.lang.String String}.
 	 */
 	public String toJSON() {
@@ -54,9 +52,6 @@ public class MyMap extends LinkedHashMap<String, Object> {
 	/**
 	 * Return a {@link java.util.Map Map} that represents the mapping among
 	 * attribute names and their values of an object.
-	 * 
-	 * @author hieudm
-	 *         https://stackoverflow.com/questions/52406467/convert-object-to-map-in-java
 	 * @param obj - an arbitrary {@link java.lang.Object Object}.
 	 * @return a {@link java.util.Map Map} mapping the attribute names and its
 	 *         values.
@@ -86,8 +81,6 @@ public class MyMap extends LinkedHashMap<String, Object> {
 	/**
 	 * Return a {@link java.lang.String String} that represents the term in between
 	 * 2 double quote.
-	 * 
-	 * @author hieudm
 	 * @param 
 	 * str - {@link java.lang.String String}
 	 * idx - the index of the open quote
@@ -119,8 +112,6 @@ public class MyMap extends LinkedHashMap<String, Object> {
 	}
 	/**
 	 * Return a {@link utils.MyMap MyMap} that represents the interested substring in a {@link java.lang.String String}.
-	 * 
-	 * @author hieudm
 	 * @param 
 	 * str - {@link java.lang.String String}
 	 * idx - the index of the first character in the interested substring in the {@link java.lang.String String}

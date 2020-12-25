@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-public class TransactionController extends BaseController {
 
     /**
      * This method validates Cardholder's name
@@ -101,16 +100,19 @@ public class TransactionController extends BaseController {
     public void setAmountOrder(Order order, int amount) {
         order.setTotalUpToNow(amount);
     }
-
+    
+    /**
+     * set the returning time to the order
+     * @param order
+     */
     public void setEndOrder(Order order) {
         order.setEnd(LocalDateTime.now());
-
     }
 
 
     /**
-     * update db and move transaction result
-     *
+     * update/insert order, invoice, transactionInfo in DB
+     * and move to transaction result screen
      * @param invoice
      * @param transactionResult
      * @param card

@@ -11,15 +11,13 @@ import java.sql.Statement;
 /**
  * This class is the base entity
  * we can get other entity by query in the db
- *
- * @author hue
+ * @author Duong Thi Hue
  * @version 1.0
  */
 public class BaseEntity {
 
     /**
      * update row in table
-     *
      * @param tbname
      * @param id
      * @param column

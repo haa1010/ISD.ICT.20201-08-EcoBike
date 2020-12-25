@@ -29,6 +29,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/**
+ * This class is to display the info of the renting bike
+ * @author Duong Thi Hue
+ * @version 1.0
+ */
 public class RentingBikeHandler extends BaseScreenHandler implements Initializable {
     @FXML
     private Label liscensePlate;
@@ -82,6 +87,11 @@ public class RentingBikeHandler extends BaseScreenHandler implements Initializab
     private boolean flag;
 
     @FXML
+    /**
+     * pause and continue renting time
+     * @param event
+     * @throws IOException
+     */
     private void pauseCountingTime(MouseEvent event) throws IOException {
         if (animation != null) {
             if (!isFlag()) {
@@ -98,7 +108,13 @@ public class RentingBikeHandler extends BaseScreenHandler implements Initializab
         }
 
     }
-
+    
+    /**
+     * request to move to this screen
+     * @param prevScreen
+     * @throws SQLException
+     * @throws IOException
+     */
     public void requestToViewRentingBike(BaseScreenHandler prevScreen) throws SQLException, IOException {
         setStartAt();
         setBikeInfo();
@@ -110,6 +126,10 @@ public class RentingBikeHandler extends BaseScreenHandler implements Initializab
 
 
     @FXML
+    /**
+     * request to move to select dock to return bike screen
+     * @throws IOException
+     */
     private void returnBike() throws IOException {
         LOGGER.info("return bike button clicked");
 
@@ -119,6 +139,13 @@ public class RentingBikeHandler extends BaseScreenHandler implements Initializab
 
     }
 
+    /**
+     * constructor
+     * @param stage
+     * @param screenPath
+     * @param order
+     * @throws IOException
+     */
     public RentingBikeHandler(Stage stage, String screenPath, Order order) throws IOException {
         super(stage, screenPath);
         this.bike = order.getRentedBike();
@@ -143,11 +170,16 @@ public class RentingBikeHandler extends BaseScreenHandler implements Initializab
     public void setAnimation(Timeline animation) {
     }
 
+    /**
+     * back to home
+     */
     public void backToHome() throws IOException, SQLException {
         backToHomeAfterRent(order);
     }
 
-
+    /**
+     * get the controller of this screen
+     */
     public ViewBikeController getBController() {
         return (ViewBikeController) super.getBController();
     }
@@ -161,6 +193,9 @@ public class RentingBikeHandler extends BaseScreenHandler implements Initializab
         this.startAt = startAt;
     }
 
+    /**
+     * set time counting
+     */
     public void setTimeCounting() {
         HashMap<String, Integer> time = getBController().counting(this.getStartAt());
         hours.setText(String.valueOf(time.get("hour")));

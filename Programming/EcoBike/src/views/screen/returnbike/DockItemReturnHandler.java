@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
+/**
+ * This class is to display the station user chooses to return bike
+ * @author Do Minh Thong
+ * @version 1.0
+ */
 public class DockItemReturnHandler extends FXMLScreenHandler {
 
     @FXML
@@ -38,6 +43,14 @@ public class DockItemReturnHandler extends FXMLScreenHandler {
 
     private static Logger LOGGER = Utils.getLogger(DockItemReturnHandler.class.getName());
 
+    /**
+     * constructor
+     * @param screenPath
+     * @param station
+     * @param home
+     * @throws IOException
+     * @throws SQLException
+     */
     public DockItemReturnHandler( String screenPath, Station station, SelectDockToReturnBikeScreenHandler home) throws IOException, SQLException {
         super(screenPath);
         this.station = station;
@@ -58,12 +71,14 @@ public class DockItemReturnHandler extends FXMLScreenHandler {
     public Station getStation() {
         return station;
     }
-
+    /**
+     * set the station info
+     * @throws SQLException
+     */
     private void setStationInfo() throws SQLException {
         stationName.setText(station.getName());
         emptyDocks.setText(Integer.toString(station.getNumEmptyDockPoint()));
         stationAddress.setText(station.getAddress());
         setImage(stationImage, "assets/images/dock-img.png");
     }
-
 }

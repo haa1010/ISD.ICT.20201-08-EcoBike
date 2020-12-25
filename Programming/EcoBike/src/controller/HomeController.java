@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * This class controls the flow of events in homescreen
- * @author minhthong
+ * @author Do Minh Thong
  * @version 1.0
  *
  */

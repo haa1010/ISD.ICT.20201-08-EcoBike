@@ -31,16 +31,6 @@ import views.screen.home.HomeScreenHandler;
  *
  * @author Tran Thi Hang, Duong Thi Hue,Pham Nhat Linh
  * @version 1.0
- * <p>
- * created_at: 01/12/2020
- * <p>
- * project_name: EcoBike Rental (EBR)
- * <p>
- * teacher_name: Dr. Nguyen Thi Thu Trang
- * <p>
- * class_name: TT.CNTT ICT 02 K62
- * <p>
- * helpers: Teaching Assistants and other team members
  */
 
 public class PaymentController extends TransactionController {
@@ -58,21 +48,7 @@ public class PaymentController extends TransactionController {
     private String content;
 
     /**
-     * Validate the input date which should be in the format "mm/yy", and then
-     * return a {@link java.lang.String String} representing the date in the
-     * required format "mmyy" .
-     *
-     * @param date - the {@link java.lang.String String} represents the input date
-     * @return {@link java.lang.String String} - date representation of the required
-     * format
-     * @throws InvalidCardException - if the string does not represent a valid date
-     *                              in the expected format
-     */
-
-
-    /**
      * Pay order, and then return the result with a message.
-     *
      * @param amount         - the amount to pay
      * @param contents       - the transaction contents
      * @param cardNumber     - the card number
@@ -107,7 +83,6 @@ public class PaymentController extends TransactionController {
      * @param name
      * @return boolean
      */
-
     public boolean validateName(String name) {
         try {
             name = name.trim();
@@ -134,7 +109,12 @@ public class PaymentController extends TransactionController {
         return true;
     }
 
-
+    /**
+     * This methods validate card's expiration date
+     * @param date
+     * @return
+     * @throws InvalidCardException
+     */
     public boolean validateExpirationDate(String date) throws InvalidCardException {
         try {
             if (date == null) return false;
@@ -170,7 +150,7 @@ public class PaymentController extends TransactionController {
     }
 
     /**
-     * validate card
+     * This method validate all the card info
      *
      * @param cardNumber
      * @param holderName
@@ -186,10 +166,6 @@ public class PaymentController extends TransactionController {
             throw new InvalidCardException("Wrong format cvvCode");
         else if (!this.validateCardCode(cardNumber))
             throw new InvalidCardException("Wrong format code number");
-    }
-
-    public boolean checkInvoice(Invoice invoice, String content) {
-        return invoice.getContents().contains(content);
     }
 
     /**
@@ -217,7 +193,7 @@ public class PaymentController extends TransactionController {
     }
 
     /**
-     * process pay order request
+     * Control the process of paying deposit, pay/refund when returning bike
      *
      * @param cardNumber
      * @param holderName
@@ -235,7 +211,6 @@ public class PaymentController extends TransactionController {
         Card card = createCard(cardNumber, holderName, securityCode, expirationDate);
         TransactionInfo transactionResult = submitToPay(invoice, card);
         proceedTransactionResult(transactionResult, invoice, card, stage, homeScreenHandler, prev);
-
     }
 
 }

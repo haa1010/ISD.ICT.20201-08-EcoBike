@@ -10,6 +10,7 @@ import entity.transaction.TransactionInfo;
  * {@link subsystem.InterbankSubsystem InterbankSubsystem} to make transaction
  * 
  *
+ * @author Tran Thi Hang
  */
 public interface InterbankInterface {
 
