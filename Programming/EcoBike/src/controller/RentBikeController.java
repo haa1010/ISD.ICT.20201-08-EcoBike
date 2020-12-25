@@ -66,7 +66,7 @@ public class RentBikeController extends BaseController {
      */
     public Invoice createInvoice(Bike rented) throws SQLException {
         Order order = new Order(rented, LocalDateTime.now());
-        order.newOrderDB();
+        //order.newOrderDB();
         Invoice invoice = new Invoice(order, order.getDeposit(), getContent(rented.getBarcode()));
         return invoice;
     }
