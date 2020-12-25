@@ -7,7 +7,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This class is the base class for Twin Electric Bike
+ * @author hue
+ * @version 1.0
+ */
 public class TwinElectricBike extends StandardElectricBike {
+	/**
+	 * Constructor
+	 * @throws SQLException
+	 */
     public TwinElectricBike() throws SQLException { }
 
 

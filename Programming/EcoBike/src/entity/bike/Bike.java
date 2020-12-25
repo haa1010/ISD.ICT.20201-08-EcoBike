@@ -1,5 +1,6 @@
 package entity.bike;
 /**
+ * This class is the base class for bike
  * @author hue
  * @version 1.0
  */
@@ -28,11 +29,22 @@ public class Bike extends BaseEntity {
     protected double coefficient;
     protected Station station;
     protected String urlImage;
-
+    
+    /**
+     * Bike Constructor
+     * @throws SQLException
+     */
     public Bike() throws SQLException {
 
     }
-
+    
+    /**
+     * Bike Constructor
+     * @param id
+     * @param licensePlate
+     * @param barcode
+     * @param type
+     */
     public Bike(int id, String licensePlate, String barcode, String type) {
         this.id = id;
         this.licensePlate = licensePlate;
@@ -40,7 +52,21 @@ public class Bike extends BaseEntity {
         this.type = type;
 
     }
-
+    
+    /**
+     * Bike Constructor
+     * @param id
+     * @param type
+     * @param licensePlate
+     * @param value
+     * @param numPedal
+     * @param numSaddle
+     * @param numRearSeat
+     * @param barcode
+     * @param isRenting
+     * @param urlImage
+     * @param coefficient
+     */
     public Bike(int id, String type, String licensePlate, int value, int numPedal, int numSaddle, int numRearSeat, String barcode, boolean isRenting, String urlImage, int coefficient) {
         this.id = id;
         this.type = type;
@@ -54,7 +80,11 @@ public class Bike extends BaseEntity {
         this.isRenting = isRenting;
         this.urlImage = urlImage;
     }
-
+    
+    /**
+     * check if the bike is being rented or not
+     * @return isRenting
+     */
     public boolean isRenting() {
         return isRenting;
     }
@@ -155,6 +185,13 @@ public class Bike extends BaseEntity {
         return isRenting;
     }
 
+    /**
+     * Set a bike from a result set by querying the db
+     * @param res
+     * @param bike
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike setValueBike(ResultSet res, Bike bike) throws SQLException {
         bike.setLicensePlate(res.getString("licensePlate"));
         bike.setId(res.getInt("id"));
@@ -176,7 +213,13 @@ public class Bike extends BaseEntity {
         bike.setStation(station);
         return bike;
     }
-
+    
+    /**
+     * get a bike by querying it in db
+     * @param id
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
@@ -195,7 +238,12 @@ public class Bike extends BaseEntity {
 
     }
 
-
+    /**
+     * find a bike by its barcode
+     * @param barcode
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
@@ -213,6 +261,11 @@ public class Bike extends BaseEntity {
         return null;
     }
 
+    /**
+     * get all bike in db
+     * @return List[Bike]
+     * @throws SQLException
+     */
     public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
         try {
@@ -231,7 +284,13 @@ public class Bike extends BaseEntity {
 
         return allBike;
     }
-
+    
+    /**
+     * check if a bike with an id is rented or not
+     * @param id
+     * @return -1 if not found, 1 if rented, 0 otherwise
+     * @throws SQLException
+     */
     public int getRenting(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
@@ -249,7 +308,12 @@ public class Bike extends BaseEntity {
 
         return -1;
     }
-
+    
+    /**
+     * Update the bike info in db after returning
+     * @param bikeID
+     * @param stationID
+     */
     public void updateBikeDB(int bikeID, int stationID) {
         try {
             Statement stm = EcoBikeRental.getConnection().createStatement();
@@ -262,6 +326,10 @@ public class Bike extends BaseEntity {
         }
     }
 
+    /**
+     * Write a bike object to string
+     * @return string
+     */
     @Override
     public String toString() {
         return "{" +

@@ -1,4 +1,9 @@
 package entity.station;
+/**
+ * This class is the station entity 
+ * @author minhthong
+ * @version 1.0
+ */
 
 import entity.BaseEntity;
 import entity.bike.Bike;
@@ -20,10 +25,23 @@ public class Station extends BaseEntity {
     protected String address;
     private int numEmptyDockPoint;
 
+    /**
+     * Constructor
+     * @param x
+     */
     public Station(int x) {
         this.numEmptyDockPoint = x;
     }
 
+    /**
+     * Constructor
+     * @param id
+     * @param name
+     * @param numAvailableBike
+     * @param numEmptyDockPoint
+     * @param area
+     * @param address
+     */
     public Station(int id,
                    String name,
                    int numAvailableBike,
@@ -91,11 +109,19 @@ public class Station extends BaseEntity {
     public int getNumEmptyDockPoint() {
         return this.numEmptyDockPoint;
     }
-
+    /**
+     * Constructor
+     * @throws SQLException
+     */
     public Station() throws SQLException {
         stm = EcoBikeRental.getConnection().createStatement();
     }
-
+    /**
+     * Get all the bike of this station in database
+     * @param stationId
+     * @return List[Bike]
+     * @throws SQLException
+     */
     public List getAllBikeAvailable(int stationId) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Bike where isRenting= 0 and stationId = " + stationId);
@@ -114,6 +140,11 @@ public class Station extends BaseEntity {
         return medium;
     }
 
+    /**
+     * Get all the station in the database
+     * @return List[Station]
+     * @throws SQLException
+     */
     public List getAllStations() throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Station");
@@ -130,7 +161,12 @@ public class Station extends BaseEntity {
         }
         return medium;
     }
-
+    
+    /**
+     * get all the station with empty dock in database
+     * @return List[Station]
+     * @throws SQLException
+     */
     public List getStationHasEmptyDock() throws SQLException {
         List stations = getAllStations();
 
@@ -141,7 +177,13 @@ public class Station extends BaseEntity {
         }
         return stations;
     }
-
+    
+    /**
+     * Get a station by its id
+     * @param id
+     * @return Station
+     * @throws SQLException
+     */
     public Station getStationById(int id) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Station where id = " + id);
@@ -159,6 +201,12 @@ public class Station extends BaseEntity {
         return result;
     }
 
+    /**
+     * Get a station by its name
+     * @param name
+     * @return Station
+     * @throws SQLException
+     */
     public Station getStationByName(String name) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Station where name = " + name);
@@ -175,6 +223,12 @@ public class Station extends BaseEntity {
         return result;
     }
 
+    /**
+     * get all bike in a station with station's id
+     * @param stationId
+     * @return List[Bike]
+     * @throws SQLException
+     */
     public List getAllBike(int stationId) throws SQLException {
         Statement stm = EcoBikeRental.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Bike where stationId = " + stationId);
