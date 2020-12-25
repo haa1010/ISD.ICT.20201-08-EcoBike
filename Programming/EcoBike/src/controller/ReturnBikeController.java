@@ -56,7 +56,7 @@ public class ReturnBikeController extends BaseController {
      */
     public void updateOrderDB(Order order) throws SQLException {
         order.setEnd(LocalDateTime.now());
-        order.updateOrderDB();
+        //order.updateOrderDB();
     }
 
     /**

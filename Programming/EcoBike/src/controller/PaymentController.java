@@ -65,6 +65,7 @@ public class PaymentController extends BaseController {
     public void moveToSuccessfulTransactionScreen(Invoice invoice, TransactionInfo transactionResult, Card card, Stage stage) throws SQLException, IOException {
         ResultScreenHandler resultScreenHandler = null;
         new Bike().updateQtyDB(0, invoice.getOrder().getRentedBike());
+        invoice.getOrder().updateOrderDB();
         invoice.creatNewInvoiceDB();
         // set new station for bike
         new Bike().updateBikeDB(invoice.getOrder().getRentedBike().getId(),
@@ -78,6 +79,7 @@ public class PaymentController extends BaseController {
     public void moveToSuccessfulDepositScreen(Invoice invoice, TransactionInfo transactionResult, Card card, Stage stage) throws SQLException, IOException {
         ResultScreenHandler resultScreenHandler = null;
         new Bike().updateQtyDB(1, invoice.getOrder().getRentedBike());
+        invoice.getOrder().newOrderDB();
         invoice.creatNewInvoiceDB();
         
         transactionResult.newTransactionDB(invoice.getId(), card);
