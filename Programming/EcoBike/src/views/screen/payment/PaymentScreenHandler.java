@@ -1,11 +1,6 @@
 package views.screen.payment;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.util.logging.Logger;
-
 import controller.PaymentController;
 import entity.invoice.Invoice;
 import entity.transaction.Card;
@@ -90,7 +85,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         });
     }
 
-    void setCardInfo(Card card) {
+    private void setCardInfo(Card card) {
         this.cardCode.setText(card.getCardCode());
         this.owner.setText(card.getOwner());
         this.dateExpired.setText(card.getDateExpired());

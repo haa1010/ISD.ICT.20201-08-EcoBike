@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 public class API {
 
-	public static DateFormat DATE_FORMATER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private static Logger LOGGER = Utils.getLogger(Utils.class.getName());
 
 	public static String get(String url, String token) throws Exception {
@@ -42,8 +42,6 @@ public class API {
 		LOGGER.info("Respone Info: " + respone.substring(0, respone.length() - 1).toString());
 		return respone.substring(0, respone.length() - 1).toString();
 	}
-
-	int var;
 
 	public static String post(String url, String data
 //			, String token

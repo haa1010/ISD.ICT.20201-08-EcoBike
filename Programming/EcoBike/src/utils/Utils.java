@@ -11,9 +11,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-/**
- * @author nguyenlm Contains helper functions
- */
 public class Utils {
 
     public static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd");
@@ -46,7 +43,7 @@ public class Utils {
      * Return a {@link java.lang.String String} that represents the current time in the format of yyyy-MM-dd HH:mm:ss.
      *
      * @return the current time as {@link java.lang.String String}.
-     * @author hieudm
+     *
      */
     public static String getToday() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -60,7 +57,7 @@ public class Utils {
      *
      * @param message - plain text as {@link java.lang.String String}.
      * @return cipher text as {@link java.lang.String String}.
-     * @author hieudm vnpay
+     *
      */
     public static String md5(String message) {
         String digest = null;

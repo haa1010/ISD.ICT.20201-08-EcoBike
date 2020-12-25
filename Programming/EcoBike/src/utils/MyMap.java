@@ -10,8 +10,7 @@ import java.util.Map;
  * To create a new JSON object,
  * JSON jsonObject = new JSON();
  * jsonObject.put("key", value);
- * 
- * @author hieud
+ *
  *
  */
 public class MyMap extends LinkedHashMap<String, Object> {
