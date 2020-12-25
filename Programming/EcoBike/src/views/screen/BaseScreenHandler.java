@@ -88,18 +88,4 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     }
 
 
-//    public void displayTransactionError(String errorCode, Order order, int amount, String contents) throws IOException {
-//        String errorMessage;
-//        errorMessage = Configs.errorCodes.get(errorCode);
-//
-//        Invoice invoice = new Invoice(order, amount, contents);
-//
-//        TransactionErrorScreenHandler tes = new TransactionErrorScreenHandler(this.stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, errorMessage, invoice);
-//        tes.setPreviousScreen(this);
-//        tes.setBController(new ReturnBikeController());
-//        tes.setHomeScreenHandler(homeScreenHandler);
-//        tes.setScreenTitle("Transaction Error Screen");
-//        tes.show();
-//    }
-
 }

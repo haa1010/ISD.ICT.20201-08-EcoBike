@@ -165,13 +165,14 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     @FXML
-    void submitReturnBike(MouseEvent event) throws IOException, SQLException {
+    void submitReturnBike(MouseEvent event) throws Exception {
 
         getBController().setCvvCode(cvvCode.getText(), card);
-        if (!getBController().validateCard(card)) {
-            errorMessage.setText("* You have to fill in security code");
-        } else {
+        try {
+            getBController().validateCard(card.getCardCode(), card.getOwner(), card.getCvvCode(), card.getDateExpired());
             getBController().processReturnBike(card, totalAmount, order, invoiceContents, this.stage, homeScreenHandler, this);
+        } catch (Exception e) {
+            errorMessage.setText("* You have to fill in security code");
         }
     }
 

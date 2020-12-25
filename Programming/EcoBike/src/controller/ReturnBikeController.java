@@ -1,6 +1,6 @@
 package controller;
 
-import UpdateDB.ReturnBike;
+import updateDB.ReturnBike;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
 import entity.order.Order;
@@ -65,7 +65,7 @@ public class ReturnBikeController extends TransactionController {
     public int getBikeDeposit(Bike bike) {
         return (int) (bike.getValue() * 0.4);
     }
-    
+
     /**
      *
      */
