@@ -52,6 +52,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     private Text end;
     @FXML
     private Text payType;
+    @FXML
+    private Text errorMessage;
 
     @FXML
     private ImageView bikeImage;
@@ -172,11 +174,15 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         // pay more if rentingFee > deposit, else refund to account
         TransactionInfo transactionResult;
         card.setCvvCode(cvvCode.getText());
-        if (totalAmount > 0) {
-            transactionResult = interbank.payOrder(card, totalAmount, "Pay additional for returning bike");
-        } else {
-            transactionResult = interbank.refund(card, -totalAmount, "Refund for returning bike");
+        if(!getBController().validateCard(card)) {
+            errorMessage.setText("* You have to fill in security code");
         }
+        else {
+            if (totalAmount > 0) {
+                transactionResult = interbank.payOrder(card, totalAmount, "Pay additional for returning bike");
+            } else {
+                transactionResult = interbank.refund(card, -totalAmount, "Refund for returning bike");
+            }
 
         if (!transactionResult.getErrorCode().equals("00")) {
             displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);

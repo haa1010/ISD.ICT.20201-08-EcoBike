@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
@@ -36,6 +37,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     private Button cancelBtn;
     @FXML
     private Button submitBtn;
+    @FXML
+    private Text errorMessage;
 
     @FXML
     private PasswordField cvvCode;
@@ -105,7 +108,11 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             if (!transactionResult.getErrorCode().equals("00")) {
                 displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
             } else {
-                getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
+                if (this.invoice.getContents().contains("deposit")) {
+                    getBController().moveToSuccessfulDepositScreen(this.invoice, transactionResult, this.card, this.stage);
+                } else {
+                    getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
+                }
             }
         }
     }

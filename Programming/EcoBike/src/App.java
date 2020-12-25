@@ -64,29 +64,6 @@ public class App extends Application {
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-//                    Bike bike;
-//                    try {
-//                        bike = new Bike().getBikeById(3);
-
-//                    //   Test rent bike
-//                    Bike stde = new StandardElectricBike().getBikeByBarcode("STEB01");
-//
-//                    Order order = new Order(stde, LocalDateTime.now().minusHours(25));
-//                    BikeScreenHandler bikeScreenHandler = new BikeScreenHandler(primaryStage, Configs.BIKE_INFO_PATH);
-//                    bikeScreenHandler.setBController(new ViewBikeController());
-//                    bikeScreenHandler.requestToViewBike(new HomeScreenHandler(new Stage(), Configs.HOME_PATH), 1, "Standard bike", order);
-//                    bikeScreenHandler.show();
-
-                    // test return bike
-//                     Bike bike;
-//                     try {
-//                         bike = new StandardElectricBike().getBikeById(3);
-//                         Order order = new Order(bike, LocalDateTime.now().minusHours(28));
-//                         SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(primaryStage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH,  order);
-//                     d.show();
-//                     } catch (SQLException throwables) {
-//                         throwables.printStackTrace();
-//                     }
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }

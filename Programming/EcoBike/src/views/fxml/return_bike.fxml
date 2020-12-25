@@ -286,7 +286,7 @@
                         <Font name="Arial Bold" size="32.0" />
                     </font>
                 </Text>
-                <Button fx:id="editBtn" layoutX="166.0" layoutY="454.0" mnemonicParsing="false" onMouseClicked="#moveToPaymentScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Edit" textFill="WHITE">
+                <Button fx:id="editBtn" layoutX="164.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#moveToPaymentScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Edit" textFill="WHITE">
                     <font>
                         <Font name="Arial Bold" size="24.0" />
                     </font>
@@ -294,6 +294,16 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
+            <Text fill="#eb4d55" layoutX="54.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="errorMessage" fill="#eb4d55" layoutX="50.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
             </children>
         </AnchorPane>
         <Separator layoutX="894.0" layoutY="144.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="5.0" style="-fx-background-color: #c2c2c2;" />

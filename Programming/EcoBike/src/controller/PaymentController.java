@@ -39,7 +39,7 @@ import views.screen.payment.ResultScreenHandler;
  * helpers: Teaching Assistants and other team members
  */
 
-public class PaymentController extends BaseController {
+public class PaymentController extends TransactionController {
 
     /**
      * Represent the card used for payment
@@ -188,31 +188,6 @@ public class PaymentController extends BaseController {
 
     public Card createCard(String cardCode, String owner, String cvvCode, String dateExpired){
         return new Card(cardCode, owner, cvvCode, dateExpired);
-    }
-
-    public void moveToSuccessfulTransactionScreen(Invoice invoice, TransactionInfo transactionResult, Card card, Stage stage) throws SQLException, IOException {
-        ResultScreenHandler resultScreenHandler = null;
-        new Bike().updateQtyDB(0, invoice.getOrder().getRentedBike());
-        invoice.getOrder().updateOrderDB();
-        invoice.creatNewInvoiceDB();
-        // set new station for bike
-        new Bike().updateBikeDB(invoice.getOrder().getRentedBike().getId(),
-                invoice.getOrder().getRentedBike().getStation().getId());
-
-        transactionResult.newTransactionDB(invoice.getId(), card);
-        resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult);
-        resultScreenHandler.show();
-    }
-    
-    public void moveToSuccessfulDepositScreen(Invoice invoice, TransactionInfo transactionResult, Card card, Stage stage) throws SQLException, IOException {
-        ResultScreenHandler resultScreenHandler = null;
-        new Bike().updateQtyDB(1, invoice.getOrder().getRentedBike());
-        invoice.getOrder().newOrderDB();
-        invoice.creatNewInvoiceDB();
-        
-        transactionResult.newTransactionDB(invoice.getId(), card);
-        resultScreenHandler = new ResultScreenHandler(stage, Configs.RESULT_SCREEN_PATH, new ResultScreenController(), transactionResult, invoice.getOrder());
-        resultScreenHandler.show();
     }
 
 }
