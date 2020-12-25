@@ -1,5 +1,10 @@
 package entity.bike;
 
+/**
+ * This class is the base class for Standard Bike
+ * @author hue
+ * @version 1.0
+ */
 import entity.db.EcoBikeRental;
 
 import java.sql.ResultSet;
@@ -9,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StandardBike extends Bike {
+	/**
+	 * Constructor
+	 * @throws SQLException
+	 */
     public StandardBike() throws SQLException {
     }
 
@@ -51,6 +60,10 @@ public class StandardBike extends Bike {
         return null;
     }
 
+    /**
+     * get a list of all bike of this type
+     * @return List[Bike]
+     */
     public List getAllBike() {
         ArrayList allBike = new ArrayList<>();
         try {
