@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import views.screen.BaseScreenHandler;
 import views.screen.home.HomeScreenHandler;
@@ -31,6 +32,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     private Button cancelBtn;
     @FXML
     private Button submitBtn;
+    @FXML
+    private Text errorMessage;
 
     @FXML
     private PasswordField cvvCode;
@@ -95,15 +98,20 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     @FXML
     public void submitToPay() throws Exception {
         this.card = getBController().createCard(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText());
-        TransactionInfo transactionResult = getBController().submitToPay(this.invoice, this.card);
+        if(!getBController().validateCard(card)) {
+            errorMessage.setText("* You have to fill in all the fields");
+        }
+        else {
+            TransactionInfo transactionResult = getBController().submitToPay(this.invoice, this.card);
 
-        if (!transactionResult.getErrorCode().equals("00")) {
-            displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
-        } else {
-            if (this.invoice.getContents().contains("deposit")) {
-                getBController().moveToSuccessfulDepositScreen(this.invoice, transactionResult, this.card, this.stage);
+            if (!transactionResult.getErrorCode().equals("00")) {
+                displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
             } else {
-                getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
+                if (this.invoice.getContents().contains("deposit")) {
+                    getBController().moveToSuccessfulDepositScreen(this.invoice, transactionResult, this.card, this.stage);
+                } else {
+                    getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
+                }
             }
         }
     }

@@ -289,7 +289,7 @@
                 </HBox>
             </content>
         </ScrollPane>
-      <Button fx:id="viewRent" layoutX="982.0" layoutY="28.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: #4d5deb;" text="View renting Bike" textFill="WHITE">
+      <Button fx:id="viewRent" layoutX="982.0" layoutY="28.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: #eb4d55 #eb4d55 #eb4d55 #eb4d55;" text="View renting Bike" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
