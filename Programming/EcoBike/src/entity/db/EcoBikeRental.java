@@ -1,5 +1,4 @@
 package entity.db;
-
 import utils.Configs;
 
 import java.sql.Connection;

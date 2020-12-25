@@ -36,7 +36,6 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
     @FXML
     private ImageView home;
 
-
     private List docks;
 
     private Order order;
