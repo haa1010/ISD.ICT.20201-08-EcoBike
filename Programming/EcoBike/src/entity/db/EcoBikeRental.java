@@ -1,6 +1,4 @@
 package entity.db;
-
-import com.mysql.cj.jdbc.ConnectionGroup;
 import utils.Configs;
 
 import java.sql.Connection;
