@@ -10,18 +10,14 @@ import javafx.stage.Stage;
 import views.screen.BaseScreenHandler;
 
 
-public class TransactionErrorScreenHandler extends BaseScreenHandler{
+public class TransactionErrorScreenHandler extends BaseScreenHandler {
 
     @FXML
     Label message;
 
-    private Invoice invoice;
-
-
-    public TransactionErrorScreenHandler(Stage stage, String screenPath, String errorMessage, Invoice invoice) throws IOException {
+    public TransactionErrorScreenHandler(Stage stage, String screenPath, String errorMessage) throws IOException {
         super(stage, screenPath);
         message.setText(errorMessage);
-        this.invoice = invoice;
     }
 
     public BaseController getBController() {
@@ -30,11 +26,6 @@ public class TransactionErrorScreenHandler extends BaseScreenHandler{
 
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException {
-//        BaseScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);
-//        payment.setBController(new PaymentController());
-//        payment.setPreviousScreen(this);
-//        payment.setScreenTitle("Payment Screen ");
-//        payment.show();
-    	this.getPreviousScreen().show();
+        this.getPreviousScreen().show();
     }
 }

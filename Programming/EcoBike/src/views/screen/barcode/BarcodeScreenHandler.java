@@ -53,10 +53,10 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
             Bike rentByBarcode = getBController().validateBarcodeBike(barcode);
             RentBikeScreenHandler rent = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, rentByBarcode);
             rent.setBikeInfo();
-            rent.setBController(new RentBikeController());
             rent.requestToViewRentBike(this, homeScreenHandler);
         } catch (Exception e) {
             notifyError(e.getMessage());
+
         }
 
     }

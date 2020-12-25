@@ -56,6 +56,7 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
     }
 
     public void requestToViewBike(BaseScreenHandler prevScreen, int id, String type, Order order) throws SQLException, IOException {
+        this.setPreviousScreen(prevScreen);
         setBikeInfo(id, type);
         setCantRent();
         this.order = order;
@@ -64,6 +65,7 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
     }
 
     public void requestToViewBike(BaseScreenHandler prevScreen, int id, String type) throws SQLException, IOException {
+        this.setPreviousScreen(prevScreen);
         setBikeInfo(id, type);
         setCanRent();
         this.order = null;
@@ -113,13 +115,8 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
             if (this.order == null) backToHome();
             else backToHomeAfterRent(this.order);
         } else {
-            if (this.order == null) {
-                StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler);
-                stationScreenHandler.requestToViewStation(this);
-            } else {
-                StationScreenHandler stationScreenHandler = new StationScreenHandler(this.stage, Configs.STATION_PATH, bike.getStation(), homeScreenHandler, this.order);
-                stationScreenHandler.requestToViewStation(this);
-            }
+            this.getPreviousScreen().show();
+
         }
     }
 

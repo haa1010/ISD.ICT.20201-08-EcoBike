@@ -127,7 +127,7 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
                 Bike bike = (Bike) object;
                 BikeHandler bikeHandler;
                 if (order == null) {
-                    bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home);
+                    bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, this);
                     this.home.setOnMouseClicked(e -> {
                         try {
                             backToHome();
@@ -143,7 +143,7 @@ public class StationScreenHandler extends BaseScreenHandler implements Initializ
                             ioException.printStackTrace();
                         }
                     });
-                    bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, home, order);
+                    bikeHandler = new BikeHandler(stage, Configs.BIKE_STATION_PATH, bike, this, order);
                 }
                 this.stationItems.add(bikeHandler);
             }

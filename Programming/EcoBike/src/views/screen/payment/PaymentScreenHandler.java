@@ -98,17 +98,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     @FXML
     public void submitToPay() throws Exception {
         try {
-            this.card = getBController().createCard(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText());
-            TransactionInfo transactionResult = getBController().submitToPay(this.invoice, this.card);
-            if (!transactionResult.getErrorCode().equals("00")) {
-                displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
-            } else {
-                if (this.invoice.getContents().contains("deposit")) {
-                    getBController().moveToSuccessfulDepositScreen(this.invoice, transactionResult, this.card, this.stage);
-                } else {
-                    getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
-                }
-            }
+            getBController().processPayRequest(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText(), invoice, stage, homeScreenHandler, this);
         } catch (Exception e) {
             notify(e.getMessage());
         }
