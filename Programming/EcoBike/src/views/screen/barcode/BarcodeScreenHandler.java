@@ -50,16 +50,15 @@ public class BarcodeScreenHandler extends BaseScreenHandler {
     void viewRentBikeScreen(MouseEvent event) throws Exception {
         try {
             String barcode = barcodeInput.getText();
-            Bike rentByBarcode;
-            rentByBarcode = getBController().validateBarcodeBike(barcode);
+            Bike rentByBarcode = getBController().validateBarcodeBike(barcode);
             RentBikeScreenHandler rent = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, rentByBarcode);
             rent.setBikeInfo();
             rent.setBController(new RentBikeController());
             rent.requestToViewRentBike(this, homeScreenHandler);
-
         } catch (Exception e) {
             notifyError(e.getMessage());
         }
+
     }
 
     public void requestToViewBarcode(BaseScreenHandler prevScreen) throws SQLException {

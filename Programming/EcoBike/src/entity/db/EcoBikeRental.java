@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 public class EcoBikeRental {
     private static Connection conn;
+
     public EcoBikeRental() {
     }
 
