@@ -1,6 +1,5 @@
 package entity.db;
 
-import com.mysql.cj.jdbc.ConnectionGroup;
 import utils.Configs;
 
 import java.sql.Connection;
@@ -9,6 +8,7 @@ import java.sql.SQLException;
 
 public class EcoBikeRental {
     private static Connection conn;
+
     public EcoBikeRental() {
     }
 

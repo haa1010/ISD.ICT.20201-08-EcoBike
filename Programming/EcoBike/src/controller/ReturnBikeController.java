@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 
-public class ReturnBikeController  extends TransactionController  {
+public class ReturnBikeController extends TransactionController {
 
     /**
      * get Card information for transaction
@@ -53,7 +53,7 @@ public class ReturnBikeController  extends TransactionController  {
      *
      * @param order
      */
-    public void updateOrderDB(Order order) {
+    public void updateOrder(Order order) {
         order.setEnd(LocalDateTime.now());
     }
 

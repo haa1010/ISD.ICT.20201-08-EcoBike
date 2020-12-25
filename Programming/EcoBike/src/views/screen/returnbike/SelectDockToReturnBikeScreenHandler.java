@@ -35,9 +35,7 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
 
     @FXML
     private ImageView home;
-//
-//    @FXML
-//    private ImageView backBtn;
+
 
     private List docks;
 
@@ -102,7 +100,6 @@ public class SelectDockToReturnBikeScreenHandler extends BaseScreenHandler imple
 
     public void dockChosen(Station s) throws IOException {
         ReturnBikeHandler returnBikeHandler = new ReturnBikeHandler(stage, Configs.RETURN_BIKE_SCREEN_PATH, new ReturnBikeController(), s, order);
-
         returnBikeHandler.show();
     }
 

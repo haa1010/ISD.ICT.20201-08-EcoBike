@@ -22,6 +22,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.Duration;
@@ -149,10 +150,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     @FXML
     void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
-
-        // getBController().updateOrderDB(order);
         Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
-        //getBController().insertInvoiceToDB(invoice);
         PaymentScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
         payment.requestToPaymentScreen(this, homeScreenHandler);
@@ -174,25 +172,25 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         // pay more if rentingFee > deposit, else refund to account
         TransactionInfo transactionResult;
         card.setCvvCode(cvvCode.getText());
-        if(!getBController().validateCard(card)) {
+        if (!getBController().validateCard(card)) {
             errorMessage.setText("* You have to fill in security code");
-        }
-        else {
+        } else {
             if (totalAmount > 0) {
                 transactionResult = interbank.payOrder(card, totalAmount, "Pay additional for returning bike");
             } else {
                 transactionResult = interbank.refund(card, -totalAmount, "Refund for returning bike");
             }
 
-        if (!transactionResult.getErrorCode().equals("00")) {
-            displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
-        } else {
-            Invoice invoice = new Invoice(order, totalAmount, this.invoiceContents);
-            getBController().updateOrderDB(order);
-            new PaymentController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
+            if (!transactionResult.getErrorCode().equals("00")) {
+                displayTransactionError(transactionResult.getErrorCode(), this.order, totalAmount, this.invoiceContents);
+            } else {
+
+                Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
+                getBController().updateOrder(order);
+                new PaymentController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
+            }
         }
     }
-
 
     @FXML
     void backToDockSelection(MouseEvent event) throws IOException {

@@ -114,6 +114,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
                     getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
                 }
             }
+        } catch (Exception e) {
+            notify(e.getMessage());
         }
     }
 
@@ -129,5 +131,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         setHomeScreenHandler(homeScreenHandler);
         setScreenTitle("Payment Screen");
         show();
+    }
+
+    public void notify(String message) {
+        LOGGER.info(message);
     }
 }
