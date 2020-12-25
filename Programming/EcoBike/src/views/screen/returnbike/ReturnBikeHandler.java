@@ -115,7 +115,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         barcode.setText(bike.getBarcode());
         type.setText(bike.getType());
         station.setText(newStation.getName());
-        int deposit1 = (int) (bike.getValue() * 0.4);
+        int deposit1 = getBController().getBikeDeposit(bike);
         deposit.setText(Utils.getCurrencyFormat(deposit1));
         setImage(bikeImage, bike.getUrlImage());
 
@@ -131,6 +131,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         rentedTime.setText(rentedTimeText);
 
         int rFee = new ReturnBikeController().calculateAmount(order.getRentedBike().getCoefficient(), order.getStart());
+        getBController().setAmountOrder(order, rFee);
         rentingFee.setText(Utils.getCurrencyFormat(rFee));
 
         totalAmount = rFee - deposit1;
@@ -157,7 +158,7 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     private void setCardInfo() {
-        this.card = new Card("121319_group8_2020", "Group 8", "128", "1125");
+        this.card = getBController().createCard("121319_group8_2020", "Group 8", "128", "1125");
         owner.setText(card.getOwner());
         cardCode.setText(card.getCardCode());
         dateExpired.setText(card.getDateExpired());
@@ -168,10 +169,9 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
         // call API if success display invoice screen
         InterbankSubsystemController interbank = new InterbankSubsystemController();
-
         // pay more if rentingFee > deposit, else refund to account
         TransactionInfo transactionResult;
-        card.setCvvCode(cvvCode.getText());
+        getBController().setCvvCode(cvvCode.getText(), card);
         if (!getBController().validateCard(card)) {
             errorMessage.setText("* You have to fill in security code");
         } else {
@@ -186,8 +186,8 @@ public class ReturnBikeHandler extends BaseScreenHandler {
             } else {
 
                 Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
-                getBController().updateOrder(order);
-                new PaymentController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
+
+                getBController().moveToSuccessfulTransactionScreen(invoice, transactionResult, card, this.stage);
             }
         }
     }

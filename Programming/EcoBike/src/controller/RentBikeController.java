@@ -72,4 +72,23 @@ public class RentBikeController extends BaseController {
         return invoice;
     }
 
+    /**
+     * set isRenting of bike
+     *
+     * @param bike
+     * @param state
+     */
+    public void setRentBike(Bike bike, boolean state) {
+        bike.setRenting(state);
+    }
+
+    /**
+     * get deposit of bike
+     *
+     * @param bike
+     * @return
+     */
+    public int getDeposit(Bike bike) {
+        return (int) (bike.getValue() * 0.4);
+    }
 }

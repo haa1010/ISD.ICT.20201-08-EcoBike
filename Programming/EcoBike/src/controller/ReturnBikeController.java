@@ -48,15 +48,7 @@ public class ReturnBikeController extends TransactionController {
         return (int) (10000 + (Math.ceil((minutes - 30) / 15) * 3000) * coefficient);
     }
 
-    /**
-     * update order in db
-     *
-     * @param order
-     */
-    public void updateOrder(Order order) {
-        order.setEnd(LocalDateTime.now());
-    }
-
+ 
     /**
      * create invoice
      *
@@ -67,6 +59,37 @@ public class ReturnBikeController extends TransactionController {
      */
     public Invoice createInvoice(Order order, int amount, String content) {
         return new Invoice(order, amount, content);
+    }
+
+    /**
+     * get bike deposit
+     *
+     * @param bike
+     * @return
+     */
+
+    public int getBikeDeposit(Bike bike) {
+        return (int) (bike.getValue() * 0.4);
+    }
+
+    /**
+     * create card
+     *
+     * @param cardCode
+     * @param owner
+     * @param cvvCode
+     * @param dateExpired
+     * @return
+     */
+    public Card createCard(String cardCode, String owner, String cvvCode, String dateExpired) {
+        return new Card(cardCode, owner, cvvCode, dateExpired);
+    }
+
+    /**
+     *
+     */
+    public void setCvvCode(String cvv, Card card) {
+        card.setCvvCode(cvv);
     }
 }
 
