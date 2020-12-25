@@ -1,6 +1,5 @@
-package UpdateDB;
+package updateDB;
 
-import UpdateDB.UpdateDBTransaction;
 import controller.ResultScreenController;
 import entity.bike.Bike;
 import entity.invoice.Invoice;

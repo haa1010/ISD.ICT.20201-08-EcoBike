@@ -1,6 +1,7 @@
 package entity.bike;
 /**
  * This class is the base class for bike
+ *
  * @author hue
  * @version 1.0
  */
@@ -29,17 +30,19 @@ public class Bike extends BaseEntity {
     protected double coefficient;
     protected Station station;
     protected String urlImage;
-    
+
     /**
      * Bike Constructor
+     *
      * @throws SQLException
      */
     public Bike() throws SQLException {
 
     }
-    
+
     /**
      * Bike Constructor
+     *
      * @param id
      * @param licensePlate
      * @param barcode
@@ -52,9 +55,10 @@ public class Bike extends BaseEntity {
         this.type = type;
 
     }
-    
+
     /**
      * Bike Constructor
+     *
      * @param id
      * @param type
      * @param licensePlate
@@ -80,9 +84,10 @@ public class Bike extends BaseEntity {
         this.isRenting = isRenting;
         this.urlImage = urlImage;
     }
-    
+
     /**
      * check if the bike is being rented or not
+     *
      * @return isRenting
      */
     public boolean isRenting() {
@@ -187,6 +192,7 @@ public class Bike extends BaseEntity {
 
     /**
      * Set a bike from a result set by querying the db
+     *
      * @param res
      * @param bike
      * @return Bike
@@ -213,9 +219,10 @@ public class Bike extends BaseEntity {
         bike.setStation(station);
         return bike;
     }
-    
+
     /**
      * get a bike by querying it in db
+     *
      * @param id
      * @return Bike
      * @throws SQLException
@@ -240,6 +247,7 @@ public class Bike extends BaseEntity {
 
     /**
      * find a bike by its barcode
+     *
      * @param barcode
      * @return Bike
      * @throws SQLException
@@ -263,6 +271,7 @@ public class Bike extends BaseEntity {
 
     /**
      * get all bike in db
+     *
      * @return List[Bike]
      * @throws SQLException
      */
@@ -284,9 +293,10 @@ public class Bike extends BaseEntity {
 
         return allBike;
     }
-    
+
     /**
      * check if a bike with an id is rented or not
+     *
      * @param id
      * @return -1 if not found, 1 if rented, 0 otherwise
      * @throws SQLException
@@ -308,9 +318,10 @@ public class Bike extends BaseEntity {
 
         return -1;
     }
-    
+
     /**
      * Update the bike info in db after returning
+     *
      * @param bikeID
      * @param stationID
      */
@@ -328,6 +339,7 @@ public class Bike extends BaseEntity {
 
     /**
      * Write a bike object to string
+     *
      * @return string
      */
     @Override
@@ -341,5 +353,32 @@ public class Bike extends BaseEntity {
                 "}";
     }
 
+    /**
+     * update station and bike when a bike is returned/rented
+     *
+     * @param isRent
+     * @param currentBike
+     * @throws SQLException
+     */
+    public void updateQtyDB(int isRent, Bike currentBike) throws SQLException {
+        Station currentStation = currentBike.getStation();
+
+        int stationID = currentStation.getId();
+        int bikeID = currentBike.getId();
+
+        int numAvailableBike = currentStation.getNumAvailableBike();
+        int numEmptyDockPoint = currentStation.getNumEmptyDockPoint();
+
+        if (isRent == 1) {
+            numEmptyDockPoint++;
+            numAvailableBike--;
+        } else {
+            numEmptyDockPoint--;
+            numAvailableBike++;
+        }
+        new Station().updateFieldById("Station", stationID, "numEmptyDockPoint", Integer.toString(numEmptyDockPoint));
+        new Station().updateFieldById("Station", stationID, "numAvailableBike", Integer.toString(numAvailableBike));
+        new Bike().updateFieldById("Bike", bikeID, "isRenting", Integer.toString(isRent));
+    }
 
 }

@@ -1,7 +1,7 @@
 package controller;
 
-import UpdateDB.UpdateDBTransaction;
-import entity.bike.Bike;
+import common.exception.InvalidCardException;
+import updateDB.UpdateDBTransaction;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.transaction.Card;
@@ -20,12 +20,82 @@ import java.time.LocalDateTime;
 
 public class TransactionController extends BaseController {
 
+    /**
+     * This method validates Cardholder's name
+     *
+     * @param name
+     * @return boolean
+     */
 
-    public boolean validateCard(Card card) {
-        if (card.getCardCode().isEmpty() || card.getDateExpired().isEmpty() || card.getOwner().isEmpty() || card.getCvvCode().isEmpty()) {
+    public boolean validateName(String name) {
+        try {
+            name = name.trim();
+            return ((!name.equals("")) && (name.matches("^[ A-Za-z0-9]+$")));
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+
+    /**
+     * This method validate Security Code/cvvCode
+     *
+     * @param number
+     * @return boolean
+     */
+    public boolean validateNumberField(String number) {
+
+        try {
+            number = number.trim();
+            Integer.parseInt(number);
+        } catch (NumberFormatException | NullPointerException e) {
             return false;
         }
         return true;
+    }
+
+
+    public boolean validateExpirationDate(String date) throws InvalidCardException {
+        try {
+            date = date.trim();
+            String regex = "^[0-9]{4}$";
+            return date.matches(regex);
+        } catch (Exception e) {
+            throw new InvalidCardException("Invalid expiration date");
+        }
+    }
+
+    /**
+     * This method validate cardCode
+     *
+     * @param number
+     * @return boolean
+     */
+    public boolean validateCardCode(String number) {
+        try {
+            number = number.trim();
+            return ((!number.equals("")) && (number.matches("^[_0-9A-Za-z]*$")));
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+    }
+
+    /**
+     * validate card
+     *
+     * @param cardNumber
+     * @param holderName
+     * @param securityCode
+     * @param expirationDate
+     * @throws Exception
+     */
+    public void validateCard(String cardNumber, String holderName, String securityCode, String expirationDate) throws Exception {
+        if (!validateExpirationDate(expirationDate)) throw new InvalidCardException("Invalid expirationDate");
+        if (!this.validateName(holderName))
+            throw new InvalidCardException("Invalid Owner Name");
+        else if (!this.validateNumberField(securityCode))
+            throw new InvalidCardException("Wrong format cvvCode");
+        else if (!this.validateCardCode(cardNumber))
+            throw new InvalidCardException("Wrong format code number");
     }
 
     public void setAmountOrder(Order order, int amount) {

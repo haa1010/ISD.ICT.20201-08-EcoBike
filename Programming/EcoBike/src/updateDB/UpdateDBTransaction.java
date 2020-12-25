@@ -1,4 +1,4 @@
-package UpdateDB;
+package updateDB;
 
 import entity.invoice.Invoice;
 import entity.transaction.TransactionInfo;
