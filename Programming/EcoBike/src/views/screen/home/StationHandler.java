@@ -1,19 +1,15 @@
 package views.screen.home;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
-
 import controller.ViewStationController;
 import entity.order.Order;
 import entity.station.Station;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import utils.Configs;
 import utils.Utils;
 import views.screen.FXMLScreenHandler;
@@ -37,14 +33,12 @@ public class StationHandler extends FXMLScreenHandler {
     @FXML
     protected Label stationEmptyDock;
 
-
     @FXML
     protected Button view;
 
     @FXML
     protected Button distance;
 
-    private static Logger LOGGER = Utils.getLogger(StationHandler.class.getName());
     private Station station;
     private HomeScreenHandler home;
     private Order order;

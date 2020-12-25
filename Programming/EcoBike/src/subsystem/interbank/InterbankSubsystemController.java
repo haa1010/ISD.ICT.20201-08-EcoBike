@@ -1,7 +1,5 @@
 package subsystem.interbank;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import common.exception.InternalServerErrorException;
@@ -20,11 +18,9 @@ import utils.Utils;
 
 public class InterbankSubsystemController {
 
-	private static final String PUBLIC_KEY = "AQzdE8O/fR8=";
 	private static final String SECRET_KEY = "BtNH8J4Tl/I=";
 	
 	// pay command can be pay or refund
-	
 	private String command = "pay";
 	private static final String VERSION = "1.0.1";
 

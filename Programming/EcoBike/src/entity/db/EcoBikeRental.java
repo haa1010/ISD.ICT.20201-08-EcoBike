@@ -4,13 +4,25 @@ import utils.Configs;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+/**
+ * This class is the database entity of the program
+ * @author minhthong
+ * @version 1.0
+ */
 
 public class EcoBikeRental {
     private static Connection conn;
-
+    
+    /**
+     * Constructor
+     */
     public EcoBikeRental() {
     }
 
+    /**
+     * Get the connection to the remote database
+     * @return Connection
+     */
     public static Connection getConnection() {
         if (conn == null) {
             try {

@@ -8,6 +8,13 @@ import entity.station.Station;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class is the base entity
+ * we can get other entity by query in the db
+ * @author hue
+ * @version 1.0
+ *
+ */
 public class BaseEntity {
 
     /**
@@ -30,6 +37,12 @@ public class BaseEntity {
 
     }
 
+    /**
+     * update station and bike when a bike is returned/rented
+     * @param isRent
+     * @param currentBike
+     * @throws SQLException
+     */
     public static void updateQtyDB(int isRent, Bike currentBike) throws SQLException {
         Station currentStation = currentBike.getStation();
 

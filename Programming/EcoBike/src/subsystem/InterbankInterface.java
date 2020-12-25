@@ -9,8 +9,7 @@ import entity.transaction.TransactionInfo;
  * The {@code InterbankInterface} class is used to communicate with the
  * {@link subsystem.InterbankSubsystem InterbankSubsystem} to make transaction
  * 
- * @author hieud
- * 
+ *
  */
 public interface InterbankInterface {
 
@@ -26,7 +25,7 @@ public interface InterbankInterface {
 	 * @throws UnrecognizedException if responded with an unknown error code or
 	 *                               something goes wrong
 	 */
-	public abstract TransactionInfo payOrder(Card card, int amount, String contents)
+	TransactionInfo payOrder(Card card, int amount, String contents)
 			throws PaymentException, UnrecognizedException;
 
 	/**
@@ -41,7 +40,7 @@ public interface InterbankInterface {
 	 * @throws UnrecognizedException if responded with an unknown error code or
 	 *                               something goes wrong
 	 */
-	public abstract TransactionInfo refund(Card card, int amount, String contents)
+	TransactionInfo refund(Card card, int amount, String contents)
 			throws PaymentException, UnrecognizedException;
 
 }

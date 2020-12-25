@@ -1,19 +1,8 @@
 package utils;
 
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.IntStream;
 
-
-/**
- * @author nguyenlm Contains the configs for AIMS Project
- */
 public class Configs {
 
     // api constants
@@ -21,7 +10,6 @@ public class Configs {
     public static final String appCode = "A1SRyiBqj/E=";
 
     // database Configs
-    public static final String DB_NAME = "ecoBikeRental";
     public static final String DB_URL = "jdbc:mysql://remotemysql.com/vaftyLWDOZ";
     public static final String DB_USERNAME = "vaftyLWDOZ";
     public static final String DB_PASSWORD = "9db0uNrKek";

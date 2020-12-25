@@ -9,12 +9,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is the base class for Twin Bike
+ * @author hue
+ * @version 1.0
+ */
 public class TwinBike extends Bike {
-    /**
-     * set default attribute for twin bike
-     *
-     * @author hue
-     */
+    
+	/**
+	 * Constructor
+	 * @throws SQLException
+	 */
     public TwinBike() throws SQLException {
         super();
     }
@@ -59,6 +64,10 @@ public class TwinBike extends Bike {
         return null;
     }
 
+    /**
+     * get a list of all bike of this type
+     * @return List[Bike]
+     */
     public List getAllBike() {
         ArrayList allBike = new ArrayList<>();
         try {
