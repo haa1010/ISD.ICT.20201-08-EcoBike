@@ -1,4 +1,4 @@
-package UpdateDB;
+package updateDB;
 
 import controller.ResultScreenController;
 import entity.bike.Bike;

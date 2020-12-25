@@ -11,8 +11,8 @@ import java.util.*;
 import java.util.Hashtable;
 import java.util.Map;
 
-import UpdateDB.RentBike;
-import UpdateDB.ReturnBike;
+import updateDB.RentBike;
+import updateDB.ReturnBike;
 import common.exception.InvalidCardException;
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
@@ -231,7 +231,7 @@ public class PaymentController extends TransactionController {
      */
     public void processPayRequest(String cardNumber, String holderName, String securityCode, String expirationDate, Invoice invoice, Stage stage, HomeScreenHandler homeScreenHandler, BaseScreenHandler prev) throws Exception {
 
-        validateCardInfo(cardNumber, holderName, securityCode, expirationDate);
+        validateCard(cardNumber, holderName, securityCode, expirationDate);
         Card card = createCard(cardNumber, holderName, securityCode, expirationDate);
         TransactionInfo transactionResult = submitToPay(invoice, card);
         proceedTransactionResult(transactionResult, invoice, card, stage, homeScreenHandler, prev);
