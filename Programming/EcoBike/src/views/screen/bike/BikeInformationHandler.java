@@ -97,7 +97,7 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
     }
 
     public void setCanRent() throws SQLException {
-        this.bike.isRenting();
+
         if (getBController().bikeIsRenting(bike.getId())) canRent.setDisable(true);
         else canRent.setDisable(false);
 
@@ -129,13 +129,12 @@ public class BikeInformationHandler extends BaseScreenHandler implements Initial
     @FXML
     private void rentBike() throws IOException {
         LOGGER.info("Rent bike button clicked");
-
         RentBikeScreenHandler rentBike = new RentBikeScreenHandler(this.stage, Configs.RENT_BIKE_PATH, bike);
-        rentBike.setPreviousScreen(this);
-        rentBike.setHomeScreenHandler(homeScreenHandler);
-        rentBike.setScreenTitle("Rent bike");
         rentBike.setBController(new RentBikeController());
-        rentBike.show();
+        rentBike.setBikeInfo();
+        rentBike.requestToViewRentBike(this, homeScreenHandler);
+
+
     }
 
     @Override

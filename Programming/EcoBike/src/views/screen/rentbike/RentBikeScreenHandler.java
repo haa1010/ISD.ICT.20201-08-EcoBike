@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import controller.PaymentController;
 import controller.RentBikeController;
+import controller.ReturnBikeController;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
 import javafx.fxml.FXML;
@@ -50,13 +51,13 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
 
     @FXML
     void backToHome(MouseEvent event) throws IOException, SQLException {
-        rented.setRenting(false);
+        getBController().setRentBike(rented, false);
         this.backToHome();
     }
 
     @FXML
     void backToPreviousScreen(MouseEvent event) {
-        rented.setRenting(false);
+        getBController().setRentBike(rented, false);
         this.getPreviousScreen().show();
     }
 
@@ -66,13 +67,13 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
     public RentBikeScreenHandler(Stage stage, String screenPath, Bike rented) throws IOException {
         super(stage, screenPath);
         // TODO Auto-generated constructor stub
-        rented.setRenting(true);
         this.rented = rented;
-        this.setBikeInfo();
+
     }
 
     public void setBikeInfo() throws IOException {
-        int depo = (int) (rented.getValue() * 0.4);
+        getBController().setRentBike(rented, true);
+        int depo = getBController().getDeposit(rented);
         deposit.setText(Utils.getCurrencyFormat(depo));
         setImage(bikeImage, rented.getUrlImage());
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.rented, false);

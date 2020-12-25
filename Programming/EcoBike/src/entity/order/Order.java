@@ -97,9 +97,11 @@ public class Order extends BaseEntity {
 
         Statement stm = EcoBikeRental.getConnection().createStatement();
         String end = this.end.toString();
-        stm.executeUpdate(" update " + "EcoOrder" + " set" + " "
+        String sql = " update " + "EcoOrder" + " set" + " "
                 + "endAt" + "=" + "\'" + end + "\' "
-                + "where id =" + this.getId() + ";");
+                + ", amount =" + "\'" + totalUpToNow + "\' "
+                + "where id =" + this.getId() + ";";
+        stm.executeUpdate(sql);
     }
 
     public void setId(int id) {

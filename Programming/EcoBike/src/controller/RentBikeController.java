@@ -45,7 +45,8 @@ public class RentBikeController extends BaseController {
 
     public boolean validateBarcode(String barcode) {
         barcode = barcode.trim();
-        if (barcode.isEmpty()) return false;
+        if (barcode == null || barcode.isEmpty()
+        ) return false;
         for (int i = 0; i < barcode.length(); i++) {
             if (!Character.isLetterOrDigit(barcode.charAt(i)))
                 return false;
@@ -69,5 +70,25 @@ public class RentBikeController extends BaseController {
         //order.newOrderDB();
         Invoice invoice = new Invoice(order, order.getDeposit(), getContent(rented.getBarcode()));
         return invoice;
+    }
+
+    /**
+     * set isRenting of bike
+     *
+     * @param bike
+     * @param state
+     */
+    public void setRentBike(Bike bike, boolean state) {
+        bike.setRenting(state);
+    }
+
+    /**
+     * get deposit of bike
+     *
+     * @param bike
+     * @return
+     */
+    public int getDeposit(Bike bike) {
+        return (int) (bike.getValue() * 0.4);
     }
 }

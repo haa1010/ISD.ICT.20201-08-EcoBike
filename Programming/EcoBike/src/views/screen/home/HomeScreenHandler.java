@@ -126,10 +126,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         return (HomeController) super.getBController();
     }
 
-//    @Override
-//    public void show() {
-//        super.show();
-//    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

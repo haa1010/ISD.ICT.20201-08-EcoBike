@@ -1,6 +1,11 @@
 package views.screen.payment;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.util.logging.Logger;
+
 import controller.PaymentController;
 import entity.invoice.Invoice;
 import entity.transaction.Card;
@@ -97,13 +102,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
     @FXML
     public void submitToPay() throws Exception {
-        this.card = getBController().createCard(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText());
-        if(!getBController().validateCard(card)) {
-            errorMessage.setText("* You have to fill in all the fields");
-        }
-        else {
+        try {
+            this.card = getBController().createCard(this.cardCode.getText(), this.owner.getText(), this.cvvCode.getText(), this.dateExpired.getText());
             TransactionInfo transactionResult = getBController().submitToPay(this.invoice, this.card);
-
             if (!transactionResult.getErrorCode().equals("00")) {
                 displayTransactionError(transactionResult.getErrorCode(), this.invoice.getOrder(), this.invoice.getAmount(), this.invoice.getContents());
             } else {
@@ -113,6 +114,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
                     getBController().moveToSuccessfulTransactionScreen(this.invoice, transactionResult, this.card, this.stage);
                 }
             }
+        } catch (Exception e) {
+            notify(e.getMessage());
         }
     }
 
@@ -128,5 +131,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         setHomeScreenHandler(homeScreenHandler);
         setScreenTitle("Payment Screen");
         show();
+    }
+
+    public void notify(String message) {
+        LOGGER.info(message);
     }
 }
