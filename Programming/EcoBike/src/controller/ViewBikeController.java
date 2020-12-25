@@ -7,6 +7,12 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
+/**
+ * This class controls the flow of events in view bike screen
+ * @author minhthong
+ * @version 1.0
+ *
+ */
 public class ViewBikeController extends BaseController {
     /**
      * count 1 second
@@ -39,7 +45,7 @@ public class ViewBikeController extends BaseController {
      * convert time in  localDateTime to second
      *
      * @param start
-     * @return return seconds
+     * @return seconds
      */
     public int calculateAmountMinutes(LocalDateTime start) {
         int hour = (int) ChronoUnit.HOURS.between(start, LocalDateTime.now());
@@ -53,7 +59,8 @@ public class ViewBikeController extends BaseController {
      *
      * @param id
      * @param type
-     * @return
+     * @return bike
+     * @throws ViewBikeException
      */
     public Bike setBike(int id, String type) throws ViewBikeException {
         try {
@@ -76,7 +83,7 @@ public class ViewBikeController extends BaseController {
      * check bike isRenting or not
      *
      * @param id id of bike
-     * @return return Bike.isRenting
+     * @return Bike.isRenting
      */
     public boolean bikeIsRenting(int id) {
         try {

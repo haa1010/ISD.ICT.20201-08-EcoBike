@@ -18,11 +18,19 @@ import views.screen.home.HomeScreenHandler;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+/**
+ * This class is the main class for our EcoBikeRental project
+ * @author minhthong
+ * @version 1.0
+ */
 public class App extends Application {
 
     @FXML
     ImageView logo;
-
+    /**
+     * This method is to start our program
+     * @param Stage primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
         try {

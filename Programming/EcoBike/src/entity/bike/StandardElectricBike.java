@@ -1,5 +1,11 @@
 package entity.bike;
 
+
+/**
+ * This class is the base class for Standard Electric Bike
+ * @author hue
+ * @version 1.0
+ */
 import entity.db.EcoBikeRental;
 import entity.station.Station;
 
@@ -10,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StandardElectricBike extends Bike {
-    /**
+    /*
      * set default batteryPercentage=100%
      * set default remainingTime=14400= 4 hours
      */
@@ -33,7 +39,10 @@ public class StandardElectricBike extends Bike {
     public void setRemainingTime(int remainingTime) {
         this.remainingTime = remainingTime;
     }
-
+    /**
+     * Bike Constructor
+     * @throws SQLException
+     */
     public StandardElectricBike() throws SQLException { }
 
     @Override
