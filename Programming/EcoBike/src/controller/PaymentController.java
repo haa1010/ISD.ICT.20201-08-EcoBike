@@ -2,28 +2,22 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Map;
 
+import UpdateDB.RentBike;
+import UpdateDB.ReturnBike;
 import common.exception.InvalidCardException;
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
-import entity.bike.Bike;
 import entity.invoice.Invoice;
-import entity.order.Order;
 import entity.transaction.Card;
 import entity.transaction.TransactionInfo;
 import javafx.stage.Stage;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
-import subsystem.interbank.InterbankSubsystemController;
-import utils.Configs;
-import views.screen.payment.ResultScreenHandler;
+import views.screen.BaseScreenHandler;
+import views.screen.home.HomeScreenHandler;
 
 
 /**
@@ -144,10 +138,6 @@ public class PaymentController extends TransactionController {
             throw new InvalidCardException("Invalid expiration date");
         }
     }
-    /*
-     * @linh
-     * continue to write
-     */
 
     /**
      * This method validate cardCode
@@ -164,7 +154,16 @@ public class PaymentController extends TransactionController {
         }
     }
 
-    public void validateCardInfo(String cardNumber, String holderName, String expirationDate, String securityCode) throws Exception {
+    /**
+     * validate card
+     *
+     * @param cardNumber
+     * @param holderName
+     * @param securityCode
+     * @param expirationDate
+     * @throws Exception
+     */
+    public void validateCardInfo(String cardNumber, String holderName, String securityCode, String expirationDate) throws Exception {
         if (!validateExpirationDate(expirationDate)) throw new InvalidCardException("Invalid expirationDate");
         if (!this.validateName(holderName))
             throw new InvalidCardException("Invalid Owner Name");
@@ -178,20 +177,50 @@ public class PaymentController extends TransactionController {
         return invoice.getContents().contains(content);
     }
 
-    public TransactionInfo submitToPay(Invoice invoice, Card card) {
-        InterbankSubsystemController interbank = new InterbankSubsystemController();
-        TransactionInfo transactionResult = null;
-
-        // payment controller
-        if (invoice.getContents().contains("Refund")) {
-            transactionResult = interbank.refund(card, Math.abs(invoice.getAmount()), invoice.getContents());
-        } else
-            transactionResult = interbank.payOrder(card, invoice.getAmount(), invoice.getContents());
-        return transactionResult;
+    /**
+     * base on transaction result , process rent or return bike
+     *
+     * @param transactionResult
+     * @param invoice
+     * @param card
+     * @param stage
+     * @param homeScreenHandler
+     * @param prev
+     * @throws IOException
+     * @throws SQLException
+     */
+    public void proceedTransactionResult(TransactionInfo transactionResult, Invoice invoice, Card card, Stage stage, HomeScreenHandler homeScreenHandler, BaseScreenHandler prev) throws IOException, SQLException {
+        if (!transactionResult.getErrorCode().equals("00")) {
+            displayTransactionError(transactionResult.getErrorCode(), stage, homeScreenHandler, prev);
+        } else {
+            if (invoice.getContents().contains("deposit")) {
+                moveToTransactionResult(invoice, transactionResult, card, stage, new RentBike());
+            } else {
+                moveToTransactionResult(invoice, transactionResult, card, stage, new ReturnBike());
+            }
+        }
     }
 
-    public Card createCard(String cardCode, String owner, String cvvCode, String dateExpired) {
-        return new Card(cardCode, owner, cvvCode, dateExpired);
+    /**
+     * process pay order request
+     *
+     * @param cardNumber
+     * @param holderName
+     * @param securityCode
+     * @param expirationDate
+     * @param invoice
+     * @param stage
+     * @param homeScreenHandler
+     * @param prev
+     * @throws Exception
+     */
+    public void processPayRequest(String cardNumber, String holderName, String securityCode, String expirationDate, Invoice invoice, Stage stage, HomeScreenHandler homeScreenHandler, BaseScreenHandler prev) throws Exception {
+
+        validateCardInfo(cardNumber, holderName, securityCode, expirationDate);
+        Card card = createCard(cardNumber, holderName, securityCode, expirationDate);
+        TransactionInfo transactionResult = submitToPay(invoice, card);
+        proceedTransactionResult(transactionResult, invoice, card, stage, homeScreenHandler, prev);
+
     }
 
 }
