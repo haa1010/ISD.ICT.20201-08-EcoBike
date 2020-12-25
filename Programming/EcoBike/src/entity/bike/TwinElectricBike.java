@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * This class is the base class for Twin Electric Bike
- * @author hue
+ * @author Duong Thi Hue
  * @version 1.0
  */
 public class TwinElectricBike extends StandardElectricBike {
@@ -22,6 +22,12 @@ public class TwinElectricBike extends StandardElectricBike {
 
 
     @Override
+    /**
+     * get a bike by querying it in db
+     * @param id
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
@@ -45,6 +51,12 @@ public class TwinElectricBike extends StandardElectricBike {
     }
 
     @Override
+    /**
+     * find a bike by its barcode
+     * @param barcode
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeByBarcode(String barcode) {
         try {
             barcode = "\"" + barcode + "\"";
@@ -70,6 +82,10 @@ public class TwinElectricBike extends StandardElectricBike {
     }
 
     @Override
+    /**
+     * get a list of all bike of this type
+     * @return List[Bike]
+     */
     public List getAllBike() {
         ArrayList allBike = new ArrayList<>();
         try {

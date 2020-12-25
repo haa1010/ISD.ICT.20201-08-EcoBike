@@ -2,7 +2,7 @@ package controller;
 
 /**
  * This class controls the flow of events in station screen
- * @author minhthong
+ * @author Do Minh Thong
  * @version 1.0
  *
  */

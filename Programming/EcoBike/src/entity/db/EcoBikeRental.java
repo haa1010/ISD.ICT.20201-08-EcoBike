@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
  * This class is the database entity of the program
- * @author minhthong
+ * @author Do Minh Thong
  * @version 1.0
  */
 

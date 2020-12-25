@@ -29,6 +29,11 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
+/**
+ * This class is to display the return bike screen
+ * @author Tran Thi Hang
+ * @version 1.0
+ */
 public class ReturnBikeHandler extends BaseScreenHandler {
 
     @FXML
@@ -85,6 +90,15 @@ public class ReturnBikeHandler extends BaseScreenHandler {
 
     private static Logger LOGGER = Utils.getLogger(ReturnBikeHandler.class.getName());
 
+    /**
+     * constructor
+     * @param stage
+     * @param screenPath
+     * @param bController
+     * @param station
+     * @param order
+     * @throws IOException
+     */
     public ReturnBikeHandler(Stage stage, String screenPath, BaseController bController, Station station, Order order) throws IOException {
         super(stage, screenPath);
         setBController(bController);
@@ -104,12 +118,17 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         });
     }
 
+    /**
+     * get the controller of this screen
+     */
     public ReturnBikeController getBController() {
         return (ReturnBikeController) super.getBController();
     }
 
+    /**
+     * set bike info
+     */
     private void setBikeInfo() {
-
         Bike bike = this.order.getRentedBike();
         numberPlate.setText(bike.getLicensePlate());
         barcode.setText(bike.getBarcode());
@@ -150,13 +169,22 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     @FXML
+    /**
+     * move to payment screen
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
         Invoice invoice = getBController().createInvoice(order, totalAmount, this.invoiceContents);
         PaymentScreenHandler payment = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice, this.card);
         payment.setBController(new PaymentController());
         payment.requestToPaymentScreen(this, homeScreenHandler);
     }
-
+    
+    /**
+     * set the card info display in the current screen
+     */
     private void setCardInfo() {
         this.card = getBController().createCard("121319_group8_2020", "Group 8", "128", "1125");
         owner.setText(card.getOwner());
@@ -165,7 +193,13 @@ public class ReturnBikeHandler extends BaseScreenHandler {
     }
 
     @FXML
-    void submitReturnBike(MouseEvent event) throws Exception {
+    /**
+     * handle the process when user click submit to return bike
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
+    void submitReturnBike(MouseEvent event) throws IOException, SQLException {
 
         getBController().setCvvCode(cvvCode.getText(), card);
         try {
@@ -176,6 +210,11 @@ public class ReturnBikeHandler extends BaseScreenHandler {
         }
     }
 
+    /**
+     * back to select dock screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void backToDockSelection(MouseEvent event) throws IOException {
         SelectDockToReturnBikeScreenHandler d = new SelectDockToReturnBikeScreenHandler(stage, Configs.SELECT_DOCK_TO_RETURN_BIKE_PATH, order);

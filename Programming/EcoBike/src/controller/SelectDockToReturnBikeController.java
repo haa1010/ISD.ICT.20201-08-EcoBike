@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * This class controls the flow of events in select dock to return bike screen
- * @author minhthong
+ * @author Do Minh Thong
  * @version 1.0
  *
  */

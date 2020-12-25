@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * This class is the base class for Twin Bike
- * @author hue
+ * @author Duong Thi Hue
  * @version 1.0
  */
 public class TwinBike extends Bike {
@@ -23,8 +23,14 @@ public class TwinBike extends Bike {
     public TwinBike() throws SQLException {
         super();
     }
-
+    
     @Override
+    /**
+     * get a bike by querying it in db
+     * @param id
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
@@ -44,6 +50,12 @@ public class TwinBike extends Bike {
     }
 
     @Override
+    /**
+     * find a bike by its barcode
+     * @param barcode
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeByBarcode(String barcode) {
         try {
             barcode = "\"" + barcode + "\"";

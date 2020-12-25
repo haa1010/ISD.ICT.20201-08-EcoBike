@@ -17,6 +17,12 @@ import views.screen.bike.BikeInformationHandler;
 import views.screen.home.HomeScreenHandler;
 import views.screen.payment.TransactionErrorScreenHandler;
 
+/**
+ * This class is the base screen view handler
+ * @author Do Minh Thong
+ * @version 1.0
+ */
+
 public class BaseScreenHandler extends FXMLScreenHandler {
 
     private Scene scene;
@@ -28,19 +34,34 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 
     public Logger LOGGER = Utils.getLogger(BikeInformationHandler.class.getName());
 
-
+    /**
+     * Back to home screen, when the user are not using bike
+     * @throws IOException
+     * @throws SQLException
+     */
     public void backToHome() throws IOException, SQLException {
         LOGGER.info("Home button clicked");
         HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH);
         homeHandler.requestToReturnHome(this);
     }
 
+    /**
+     * back to home screen, when the user is renting bike
+     * @param order
+     * @throws IOException
+     * @throws SQLException
+     */
     public void backToHomeAfterRent(Order order) throws IOException, SQLException {
         LOGGER.info("Home button clicked" + order);
         HomeScreenHandler homeHandler = new HomeScreenHandler(this.stage, Configs.HOME_SCREEN_PATH, order);
         homeHandler.requestToReturnHome(this);
     }
-
+    
+    /**
+     * constructor
+     * @param screenPath
+     * @throws IOException
+     */
     private BaseScreenHandler(String screenPath) throws IOException {
         super(screenPath);
         this.stage = new Stage();
@@ -53,12 +74,20 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     public BaseScreenHandler getPreviousScreen() {
         return this.prev;
     }
-
+    
+    /**
+     * constructor
+     * @param stage
+     * @param screenPath
+     * @throws IOException
+     */
     public BaseScreenHandler(Stage stage, String screenPath) throws IOException {
         super(screenPath);
         this.stage = stage;
     }
-
+    /**
+     * display the current screen
+     */
     public void show() {
         if (this.scene == null) {
             this.scene = new Scene(this.content);
@@ -79,13 +108,8 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         return this.bController;
     }
 
-    public void forward(Hashtable messages) {
-        this.messages = messages;
-    }
-
     public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
         this.homeScreenHandler = HomeScreenHandler;
     }
-
 
 }

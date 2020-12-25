@@ -2,7 +2,7 @@ package entity.bike;
 
 /**
  * This class is the base class for Standard Bike
- * @author hue
+ * @author Duong Thi Hue
  * @version 1.0
  */
 import entity.db.EcoBikeRental;
@@ -22,6 +22,12 @@ public class StandardBike extends Bike {
     }
 
     @Override
+    /**
+     * get a bike by querying it in db
+     * @param id
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
@@ -41,6 +47,12 @@ public class StandardBike extends Bike {
     }
 
     @Override
+    /**
+     * find a bike by its barcode
+     * @param barcode
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeByBarcode(String barcode) {
         try {
             barcode = "\"" + barcode + "\"";

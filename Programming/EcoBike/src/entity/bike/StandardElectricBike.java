@@ -3,7 +3,7 @@ package entity.bike;
 
 /**
  * This class is the base class for Standard Electric Bike
- * @author hue
+ * @author Duong Thi Hue
  * @version 1.0
  */
 import entity.db.EcoBikeRental;
@@ -46,6 +46,12 @@ public class StandardElectricBike extends Bike {
     public StandardElectricBike() throws SQLException { }
 
     @Override
+    /**
+     * get a bike by querying it in db
+     * @param id
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeById(int id) throws SQLException {
         try {
             String qId = "\"" + id + "\"";
@@ -71,6 +77,12 @@ public class StandardElectricBike extends Bike {
 
 
     @Override
+    /**
+     * find a bike by its barcode
+     * @param barcode
+     * @return Bike
+     * @throws SQLException
+     */
     public Bike getBikeByBarcode(String barcode) throws SQLException {
         try {
             barcode = "\"" + barcode + "\"";
@@ -96,6 +108,10 @@ public class StandardElectricBike extends Bike {
     }
 
     @Override
+    /**
+     * get a list of all bike of this type
+     * @return List[Bike]
+     */
     public List getAllBike() throws SQLException {
         ArrayList allBike = new ArrayList<>();
         try {

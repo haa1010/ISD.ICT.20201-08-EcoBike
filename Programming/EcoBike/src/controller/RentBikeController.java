@@ -9,12 +9,20 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 /**
- * This {@code RentBikeController} class control the flow of the renting bike process
+ * This controller class control the flow of the renting bike process
  * in our EcoBike Software.
+ * @author Pham Nhat Linh
+ * @version 1.0
  */
 public class RentBikeController extends BaseController {
 
-
+	/**
+	 * get bike with given barcode, if the barcode is invalid in format, does not exist or the bike has already been rented
+	 * throw exception
+	 * @param barcode
+	 * @return Bike or Null
+	 * @throws Exception
+	 */
     public Bike validateBarcodeBike(String barcode) throws Exception {
         Bike tmp;
         if (!this.validateBarcode(barcode))
@@ -29,11 +37,9 @@ public class RentBikeController extends BaseController {
     }
 
     /**
-     * check bike is on any station: if true return true else return false;
-     *
+     * Check if bike has been rented or not (available bike)
      * @param bike
      * @return
-     * @author hue
      */
     public boolean checkAvailableBike(Bike bike) {
         try {
@@ -42,7 +48,13 @@ public class RentBikeController extends BaseController {
             return false;
         }
     }
-
+    
+    
+    /**
+     * Validate the barcode's format
+     * @param barcode
+     * @return
+     */
     public boolean validateBarcode(String barcode) {
         if (barcode == null) return false;
         barcode = barcode.trim();
@@ -54,20 +66,23 @@ public class RentBikeController extends BaseController {
         return true;
     }
 
+    /**
+     * Create content for the order
+     * @param barcode
+     * @return
+     */
     public String getContent(String barcode) {
         return "Pay deposit for renting bike " + barcode;
     }
 
     /**
-     * save order and invoice to db
-     *
-     * @param rented
+     * create new order based on the rented bike
+     * create new invoice based on the order
+     * @param rented Bike
      * @return
-     * @throws SQLException
      */
-    public Invoice createInvoice(Bike rented) throws SQLException {
+    public Invoice createInvoice(Bike rented) {
         Order order = new Order(rented, LocalDateTime.now());
-        //order.newOrderDB();
         Invoice invoice = new Invoice(order, order.getDeposit(), getContent(rented.getBarcode()));
         return invoice;
     }
@@ -86,7 +101,7 @@ public class RentBikeController extends BaseController {
      * get deposit of bike
      *
      * @param bike
-     * @return
+     * @return deposit of the bike
      */
     public int getDeposit(Bike bike) {
         return (int) (bike.getValue() * 0.4);

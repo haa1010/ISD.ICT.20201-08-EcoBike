@@ -20,7 +20,11 @@ import views.screen.BaseScreenHandler;
 import views.screen.bike.BikeInfo;
 import views.screen.home.HomeScreenHandler;
 import views.screen.payment.PaymentScreenHandler;
-
+/**
+ * This class is to display the rent bike screen
+ * @author Pham Nhat Linh
+ * @version 1.0
+ */
 public class RentBikeScreenHandler extends BaseScreenHandler {
     @FXML
     private ImageView home;
@@ -50,12 +54,22 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
     private Label deposit;
 
     @FXML
+    /**
+     * move back to home screen
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     void backToHome(MouseEvent event) throws IOException, SQLException {
         getBController().setRentBike(rented, false);
         this.backToHome();
     }
 
     @FXML
+    /**
+     * move back to previous screen
+     * @param event
+     */
     void backToPreviousScreen(MouseEvent event) {
         getBController().setRentBike(rented, false);
         this.getPreviousScreen().show();
@@ -63,15 +77,25 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
 
     private Bike rented;
 
-
+    
+    /**
+     * constructor
+     * @param stage
+     * @param screenPath
+     * @param rented
+     * @throws IOException
+     */
     public RentBikeScreenHandler(Stage stage, String screenPath, Bike rented) throws IOException {
         super(stage, screenPath);
         // TODO Auto-generated constructor stub
         this.rented = rented;
         this.setBController(new RentBikeController());
-
     }
 
+    /**
+     * set bike info
+     * @throws IOException
+     */
     public void setBikeInfo() throws IOException {
         getBController().setRentBike(rented, true);
         int depo = getBController().getDeposit(rented);
@@ -80,7 +104,12 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         BikeInfo bikeInfoItems = new BikeInfo(Configs.BIKE_INFO, this.rented, false);
         bikeInfo.getChildren().add(bikeInfoItems.getContent());
     }
-
+    
+    /**
+     * request to move to this screen
+     * @param prev
+     * @param homeScreenHandler
+     */
     public void requestToViewRentBike(BaseScreenHandler prev, HomeScreenHandler homeScreenHandler) {
         setPreviousScreen(prev);
         setHomeScreenHandler(homeScreenHandler);
@@ -88,10 +117,19 @@ public class RentBikeScreenHandler extends BaseScreenHandler {
         show();
     }
 
+    /**
+     * get the controller of this screen
+     */
     public RentBikeController getBController() {
         return (RentBikeController) super.getBController();
     }
 
+    /**
+     * move to paymen screen
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     public void moveToPaymentScreen(MouseEvent event) throws IOException, SQLException {
         Invoice invoice = getBController().createInvoice(rented);

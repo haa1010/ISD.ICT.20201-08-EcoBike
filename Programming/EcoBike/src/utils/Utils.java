@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+/**
+ * @author Do Minh Thong
+ */
 public class Utils {
 
     public static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd");
@@ -24,7 +27,12 @@ public class Utils {
     public static Logger getLogger(String className) {
         return Logger.getLogger(className);
     }
-
+    
+    /**
+     * Convert time to string
+     * @param time
+     * @return
+     */
     public static String convertTime(int time) {
         int hours = (int) time / 3600;
         int minutes = (int) (time - hours * 3600) / 60;
@@ -33,6 +41,10 @@ public class Utils {
         return hours + " hours " + minutes + " minutes";
     }
 
+    /**
+     * make a currency in vietnam format
+     * @return money in vietnam currency
+     */
     public static String getCurrencyFormat(int num) {
         Locale vietnam = new Locale("vi", "VN");
         NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietnam);
@@ -43,7 +55,6 @@ public class Utils {
      * Return a {@link java.lang.String String} that represents the current time in the format of yyyy-MM-dd HH:mm:ss.
      *
      * @return the current time as {@link java.lang.String String}.
-     *
      */
     public static String getToday() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -57,7 +68,6 @@ public class Utils {
      *
      * @param message - plain text as {@link java.lang.String String}.
      * @return cipher text as {@link java.lang.String String}.
-     *
      */
     public static String md5(String message) {
         String digest = null;

@@ -7,6 +7,11 @@ import java.sql.Statement;
 import entity.db.EcoBikeRental;
 import entity.order.Order;
 
+/**
+ * This class is the invoice entity
+ * @author Pham Nhat Linh
+ * @version 1.0
+ */
 public class Invoice {
     private int id;
 
@@ -21,7 +26,13 @@ public class Invoice {
     private Order order;
     private int amount;
     private String contents;
-
+    
+    /**
+     * Constructor
+     * @param order
+     * @param amount
+     * @param contents
+     */
     public Invoice(Order order, int amount, String contents) {
         this.order = order;
         this.amount = amount;
@@ -51,7 +62,11 @@ public class Invoice {
     public void setContents(String contents) {
         this.contents = contents;
     }
-
+    
+    /**
+     * Create new Invoice in Database
+     * @throws SQLException
+     */
     public void creatNewInvoiceDB() throws SQLException {
         // setID also
         Statement stm = EcoBikeRental.getConnection().createStatement();

@@ -1,7 +1,7 @@
 package entity.station;
 /**
  * This class is the station entity 
- * @author minhthong
+ * @author Do Minh Thong
  * @version 1.0
  */
 

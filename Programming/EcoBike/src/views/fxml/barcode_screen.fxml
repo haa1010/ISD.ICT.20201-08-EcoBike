@@ -45,44 +45,44 @@
                 <Font name="Arial Bold" size="48.0" />
             </font>
         </Text>
-        <Button fx:id="btnHomeScreen" layoutX="521.0" layoutY="578.0" mnemonicParsing="false" onMouseClicked="#backToHome" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
+        <Button fx:id="btnHomeScreen" layoutX="513.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#backToHome" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
             <font>
                 <Font name="Arial Bold" size="24.0" />
             </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
         </Button>
-        <Button fx:id="btnRentBikeScreen" layoutX="694.0" layoutY="578.0" mnemonicParsing="false" onMouseClicked="#viewRentBikeScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
+        <Button fx:id="btnRentBikeScreen" layoutX="758.0" layoutY="650.0" mnemonicParsing="false" onMouseClicked="#viewRentBikeScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
             <font>
                 <Font name="Arial Bold" size="24.0" />
             </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
         </Button>
-        <Text layoutX="508.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Barcode">
+        <Text layoutX="528.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Barcode">
             <font>
                 <Font name="Arial Bold" size="28.0" />
             </font>
         </Text>
-        <TextField fx:id="barcodeInput" layoutX="507.0" layoutY="341.0" prefHeight="73.0" prefWidth="353.0" style="-fx-background-color: #f8edcd;">
+        <TextField fx:id="barcodeInput" layoutX="524.0" layoutY="412.0" prefHeight="73.0" prefWidth="353.0" style="-fx-background-color: #f8edcd;">
             <font>
                 <Font name="Arial" size="20.0" />
             </font>
         </TextField>
-        <Label fx:id="displayError" layoutX="504.0" layoutY="439.0" prefHeight="27.0" prefWidth="371.0" textFill="RED">
+        <Label fx:id="displayError" layoutX="535.0" layoutY="535.0" prefHeight="35.0" prefWidth="343.0" textFill="RED">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-          <ImageView fx:id="home" fitHeight="56.0" fitWidth="129.0" layoutX="1236.0" layoutY="38.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
-              <image>
-                  <Image url="@../../../assets/images/home.png" />
-              </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-          </ImageView>
+        <ImageView fx:id="home" fitHeight="56.0" fitWidth="129.0" layoutX="1236.0" layoutY="38.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/images/home.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
     </children>
 </AnchorPane>
