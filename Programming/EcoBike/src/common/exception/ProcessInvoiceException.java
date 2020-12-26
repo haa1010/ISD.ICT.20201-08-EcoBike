@@ -20,7 +20,7 @@ public class ProcessInvoiceException extends EcobikeException {
 
     /**
 	 * Exception Construction
-	 * @param String message
+	 * @param message
 	 */
     public ProcessInvoiceException(String message) {
         super(message);

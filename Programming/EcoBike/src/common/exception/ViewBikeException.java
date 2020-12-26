@@ -14,7 +14,7 @@ public class ViewBikeException extends EcobikeException {
     
     /**
    	 * Exception Construction
-   	 * @param String message
+   	 * @param message
    	 */
     public ViewBikeException(String message) {
         super(message);
