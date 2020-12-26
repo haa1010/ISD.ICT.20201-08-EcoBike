@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="634.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="132.0" fitWidth="132.0" layoutX="251.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../assets/images/dock-img.png" />
+         </image>
+      </ImageView>
+      <Line endX="558.0" endY="186.5" layoutX="28.0" startX="31.5" startY="186.5" />
+      <Line endX="558.0" endY="186.5" layoutX="22.0" layoutY="142.0" startX="31.5" startY="186.5" />
+      <Label layoutX="59.0" layoutY="201.0" prefHeight="17.0" prefWidth="132.0" text="Address: ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="address" layoutX="251.0" layoutY="203.0" prefHeight="26.0" prefWidth="339.0" text="1st, Dai Co Viet ">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="59.0" layoutY="239.0" prefHeight="29.0" prefWidth="118.0" text="Distance:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="distance" layoutX="251.0" layoutY="239.0" prefHeight="29.0" prefWidth="230.0" text="1.5 km">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="59.0" layoutY="282.0" text="Estimated time:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="estimatedTime" layoutX="251.0" layoutY="284.0" prefHeight="17.0" prefWidth="339.0" text="10-15 minutes walk">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="back" layoutX="463.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="39.0" prefWidth="118.0" style="-fx-background-color: #EB4D55;" text="OK" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

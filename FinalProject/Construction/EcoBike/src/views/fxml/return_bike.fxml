@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane maxHeight="-Infinity" prefHeight="70.0" prefWidth="1366.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <GridPane layoutX="48.0" layoutY="4.0" prefHeight="67.0" prefWidth="393.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.0" minWidth="10.0" prefWidth="62.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="320.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <ImageView fitHeight="59.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../assets/images/Logo.png" />
+                            </image>
+                        </ImageView>
+                        <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Return Bike" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="Arial Bold" size="48.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </GridPane>
+                <ImageView fx:id="home" fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../assets/images/home.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="33.0" layoutY="119.0" prefHeight="485.0" prefWidth="750.0" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="119.0">
+            <children>
+                <Text layoutX="28.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Information" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.03125">
+                    <font>
+                        <Font name="Arial Bold" size="32.0" />
+                    </font>
+                </Text>
+                <ImageView fx:id="bikeImage" fitHeight="180.0" fitWidth="263.0" layoutX="23.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="83.0">
+                    <image>
+                        <Image url="@../../../assets/images/bike_preview.png" />
+                    </image>
+                </ImageView>
+                <GridPane layoutX="313.0" layoutY="87.0" prefHeight="390.0" prefWidth="456.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number Plate">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Barcode" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="batteryLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Start renting" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="remainingTimeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="End renting" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deposit" GridPane.rowIndex="7">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rented Time" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Renting fee" GridPane.rowIndex="8">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="numberPlate" strokeType="OUTSIDE" strokeWidth="0.0" text="29A-1234" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="barcode" strokeType="OUTSIDE" strokeWidth="0.0" text="123456" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="type" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard E-Bike" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="start" strokeType="OUTSIDE" strokeWidth="0.0" text="90%" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="end" strokeType="OUTSIDE" strokeWidth="0.0" text="2 hours" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="deposit" strokeType="OUTSIDE" strokeWidth="0.0" text="400,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="rentedTime" strokeType="OUTSIDE" strokeWidth="0.0" text="3 hours" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="rentingFee" strokeType="OUTSIDE" strokeWidth="0.0" text="850,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="remainingTimeLabel1" layoutX="10.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to" GridPane.rowIndex="6">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="station" layoutX="233.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Station 1" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="payType" strokeType="OUTSIDE" strokeWidth="0.0" text="Pay amount" wrappingWidth="198.390625" GridPane.rowIndex="9">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="total" fill="#eb4d55" strokeType="OUTSIDE" strokeWidth="0.0" text="850,000 VND" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </GridPane>
+            </children>
+        </AnchorPane>
+        <Button fx:id="cancelBtn" layoutX="435.0" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#backToDockSelection" prefHeight="48.0" prefWidth="269.0" style="-fx-background-color: #EB4D55;" text="Select other Station" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="submitBtn" layoutX="724.0" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#submitReturnBike" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <AnchorPane layoutX="897.0" layoutY="125.0" prefHeight="485.0" prefWidth="488.0">
+            <children>
+                <GridPane layoutX="44.0" layoutY="73.0" prefHeight="222.0" prefWidth="403.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="400.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="94.0" minHeight="-Infinity" prefHeight="89.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="101.0" minHeight="-Infinity" prefHeight="95.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="98.0" minHeight="-Infinity" prefHeight="94.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.0" minHeight="-Infinity" prefHeight="62.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <GridPane GridPane.rowIndex="3">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Pane prefHeight="200.0" prefWidth="400.0">
+                                    <children>
+                                        <Text fill="#201c1c" layoutX="5.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Code">
+                                            <font>
+                                                <Font name="Arial Bold" size="24.0" />
+                                            </font>
+                                        </Text>
+                              <PasswordField fx:id="cvvCode" layoutX="6.0" layoutY="38.0" prefHeight="45.0" prefWidth="394.0" />
+                                    </children>
+                                </Pane>
+                            </children>
+                        </GridPane>
+                        <Pane prefHeight="96.0" prefWidth="407.0">
+                            <children>
+                                <TextField fx:id="owner" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" style="-fx-background-color: #f2f2f2;" text="Tran Thi Hang">
+                                    <font>
+                                        <Font name="Arial" size="24.0" />
+                                    </font>
+                                </TextField>
+                                <Text fill="#201c1c" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card's owner">
+                                    <font>
+                                        <Font name="Arial Bold" size="24.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="400.0" GridPane.rowIndex="1">
+                            <children>
+                                <TextField fx:id="cardCode" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" style="-fx-background-color: #f2f2f2 #f2f2f2;" text="111111111111111111111">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                </TextField>
+                                <Text fill="#201c1c" layoutX="3.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card code">
+                                    <font>
+                                        <Font name="Arial Bold" size="24.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="400.0" GridPane.rowIndex="2">
+                            <children>
+                                <Pane layoutX="2.0" prefHeight="107.0" prefWidth="393.0">
+                                    <children>
+                                        <TextField fx:id="dateExpired" disable="true" layoutX="3.0" layoutY="38.0" maxWidth="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="394.0" style="-fx-background-color: #f2f2f2 #f2f2f2;" text="12/12">
+                                            <font>
+                                                <Font size="24.0" />
+                                            </font>
+                                        </TextField>
+                                        <Text fill="#201c1c" layoutX="3.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date">
+                                            <font>
+                                                <Font name="Arial Bold" size="24.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </Pane>
+                            </children>
+                        </Pane>
+                    </children>
+                </GridPane>
+                <Text layoutX="44.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Information">
+                    <font>
+                        <Font name="Arial Bold" size="32.0" />
+                    </font>
+                </Text>
+                <Button fx:id="editBtn" layoutX="164.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#moveToPaymentScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Edit" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            <Text fill="#eb4d55" layoutX="54.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="errorMessage" fill="#eb4d55" layoutX="50.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+            </children>
+        </AnchorPane>
+        <Separator layoutX="894.0" layoutY="144.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="5.0" style="-fx-background-color: #c2c2c2;" />
+    </children>
+</AnchorPane>

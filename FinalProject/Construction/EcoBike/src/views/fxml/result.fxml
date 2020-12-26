@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="70.0" prefWidth="1366.0">
+         <children>
+            <GridPane layoutX="48.0" layoutY="4.0" prefHeight="67.0" prefWidth="500.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="99.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="315.0" minWidth="-Infinity" prefWidth="283.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="59.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/Logo.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Result" wrappingWidth="374.3984375" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Arial Bold" size="48.0" />
+                     </font>
+                  </Text>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <Label fx:id="resultLabel" alignment="CENTER" layoutX="338.0" layoutY="76.0" prefHeight="71.0" prefWidth="710.0" text="Your Transaction is Successful" textFill="#eb4d55">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Label>
+      <Rectangle fill="WHITE" height="499.0" layoutX="114.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="1159.0" />
+      <Button fx:id="backToHomeBtn" layoutX="583.0" layoutY="688.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="221.0" style="-fx-background-color: #4D5DEB;" text="Back To Home" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="CENTER" layoutX="180.0" layoutY="154.0" prefHeight="48.0" prefWidth="187.0" text="Transaction">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
+         </font>
+      </Label>
+      <Text layoutX="187.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card's owner" underline="true" wrappingWidth="168.5">
+         <font>
+            <Font name="Arial Bold" size="26.0" />
+         </font>
+      </Text>
+      <Label fx:id="owner" layoutX="256.0" layoutY="255.0" prefHeight="48.0" prefWidth="586.0" text="Hangtt">
+         <font>
+            <Font name="Arial" size="26.0" />
+         </font>
+      </Label>
+      <Text layoutX="188.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Detail" underline="true" wrappingWidth="300.0">
+         <font>
+            <Font name="Arial Bold" size="26.0" />
+         </font>
+      </Text>
+      <Label fx:id="content" layoutX="258.0" layoutY="360.0" prefHeight="48.0" prefWidth="907.0" text="Pay Deposit When Return Bike #12345">
+         <font>
+            <Font name="Arial" size="26.0" />
+         </font>
+      </Label>
+      <Text layoutX="188.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" underline="true" wrappingWidth="300.0">
+         <font>
+            <Font name="Arial Bold" size="26.0" />
+         </font>
+      </Text>
+      <Label fx:id="amount" layoutX="258.0" layoutY="460.0" prefHeight="48.0" prefWidth="907.0" text="420,000VND">
+         <font>
+            <Font name="Arial" size="26.0" />
+         </font>
+      </Label>
+      <Text layoutX="188.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Method" underline="true" wrappingWidth="300.0">
+         <font>
+            <Font name="Arial Bold" size="26.0" />
+         </font>
+      </Text>
+      <Label layoutX="258.0" layoutY="556.0" prefHeight="48.0" prefWidth="907.0" text="Credit Card">
+         <font>
+            <Font name="Arial" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="id" alignment="TOP_LEFT" layoutX="380.0" layoutY="159.0" prefHeight="37.0" prefWidth="281.0" text="#123">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

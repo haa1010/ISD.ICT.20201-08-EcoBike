@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+
+        <AnchorPane maxHeight="-Infinity" prefHeight="70.0" prefWidth="1366.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <GridPane layoutX="48.0" layoutY="4.0" prefHeight="67.0" prefWidth="681.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="0.0" prefWidth="107.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="602.0" minWidth="-Infinity" prefWidth="574.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <ImageView fitHeight="59.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../assets/images/Logo.png" />
+                            </image>
+                        </ImageView>
+                        <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Dock to Return Bike" textAlignment="JUSTIFY" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="Arial Bold" size="48.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </GridPane>
+                <ImageView fx:id="home" fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../assets/images/home.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <ScrollPane layoutX="24.0" layoutY="123.0">
+            <content>
+                <HBox fx:id="hboxDock" alignment="CENTER" prefHeight="629.0" prefWidth="1311.0">
+                    <children>
+                        <VBox fx:id="vboxDock1" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="650.0">
+                            <padding>
+                                <Insets bottom="15.0" top="15.0" />
+                            </padding>
+                        </VBox>
+                        <VBox fx:id="vboxDock2" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="650.0">
+                            <padding>
+                                <Insets bottom="15.0" top="15.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </HBox>
+            </content>
+        </ScrollPane>
+        <ImageView fx:id="backBtn" fitHeight="44.0" fitWidth="62.0" layoutX="45.0" layoutY="75.0" onMouseClicked="#backToViewRentingBike" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/images/back_btn.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+    </children>
+</AnchorPane>

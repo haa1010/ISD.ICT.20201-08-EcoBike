@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="158.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <SplitPane dividerPositions="0.29797979797979796" maxWidth="691.0" prefHeight="160.0" prefWidth="691.0" style="-fx-background-color: #F4FAFD; -fx-border-color: #111111; -fx-max-width: 615">
+        <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <children>
+                    <ImageView fx:id="stationImage" fitHeight="116.0" fitWidth="113.0" layoutX="33.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../../assets/images/dock-img.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="156.0" prefWidth="452.0" style="-fx-background-color: #F4FAFD;">
+                <children>
+                    <Label fx:id="stationAvailableBike" layoutX="14.0" layoutY="52.0" prefHeight="17.0" prefWidth="381.0" text="Available bikes: 38/50" />
+                    <Label fx:id="stationAddress" layoutX="14.0" layoutY="35.0" prefHeight="17.0" prefWidth="381.0" text="Address: 1st, Dai Co Viet" />
+                    <Label fx:id="stationName" layoutX="14.0" prefHeight="43.0" prefWidth="381.0" text="Station 1">
+                        <font>
+                            <Font name="Arial Bold" size="18.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="stationEmptyDock" layoutX="14.0" layoutY="70.0" prefHeight="17.0" prefWidth="381.0" text="Empty docks: 12/50" />
+                    <Button fx:id="view" layoutX="14.0" layoutY="98.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="186.0" style="-fx-background-color: #4D5DEB;" text="View" textFill="WHITE">
+                        <font>
+                            <Font name="Arial Bold" size="18.0" />
+                        </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                    </Button>
+                    <Button fx:id="distance" layoutX="221.0" layoutY="98.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="174.0" style="-fx-background-color: #ffffff; -fx-border-color: #111111;" text="Distance">
+                        <font>
+                            <Font name="Arial Bold" size="18.0" />
+                        </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                    </Button>
+                </children>
+            </AnchorPane>
+        </items>
+    </SplitPane>
+</AnchorPane>
