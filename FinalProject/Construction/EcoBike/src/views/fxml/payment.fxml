@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" prefHeight="70.0" prefWidth="1366.0">
+            <children>
+                <GridPane layoutX="48.0" layoutY="4.0" prefHeight="67.0" prefWidth="355.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.0" minWidth="10.0" prefWidth="62.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="320.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <ImageView fitHeight="59.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../assets/images/Logo.png" />
+                            </image>
+                        </ImageView>
+                        <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment" wrappingWidth="215.3984375" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="Arial Bold" size="48.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </GridPane>
+                <ImageView fx:id="home" fitHeight="56.0" fitWidth="63.0" layoutX="1247.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../assets/images/home.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <Button fx:id="cancelBtn" layoutX="507.0" layoutY="706.0" mnemonicParsing="false" onMouseClicked="#backToPreviousScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="submitBtn" layoutX="720.0" layoutY="706.0" mnemonicParsing="false" onMouseClicked="#submitToPay" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <AnchorPane layoutX="541.0" layoutY="154.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="842.0" style="-fx-border-color: #575252#575252;" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="269.0">
+            <children>
+                <GridPane layoutX="232.0" layoutY="3.0" prefHeight="476.0" prefWidth="372.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Card code" wrappingWidth="263.13671875">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Text>
+                        <TextField fx:id="cardCode" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="121319_group8_2020" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </TextField>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Card's owner" wrappingWidth="263.13671875" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Text>
+                        <TextField fx:id="owner" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="Group 8" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </TextField>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date (MMYY)" wrappingWidth="365.13671875" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Text>
+                        <TextField fx:id="dateExpired" prefHeight="43.0" prefWidth="306.0" style="-fx-background-color: #f8edcd;" text="1125" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Arial" size="24.0" />
+                            </font>
+                        </TextField>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Security Code" wrappingWidth="263.13671875" GridPane.rowIndex="6">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Text>
+                        <PasswordField fx:id="cvvCode" prefHeight="80.0" prefWidth="336.0" style="-fx-background-color: #f8edcd #f8edcd;" text="128" GridPane.rowIndex="7" />
+                    </children>
+                </GridPane>
+            <Text fx:id="errorMessage" fill="#d02424" layoutX="232.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </AnchorPane>
+        <Text layoutX="439.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Card Information">
+            <font>
+                <Font name="Arial Bold" size="48.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>

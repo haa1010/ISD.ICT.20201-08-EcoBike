@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane layoutX="30.0" layoutY="30.0" maxHeight="-Infinity" prefHeight="70.0" prefWidth="960.0">
+            <children>
+                <GridPane layoutX="-1.0" layoutY="4.0" prefHeight="56.0" prefWidth="343.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.0" minWidth="10.0" prefWidth="62.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="320.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <ImageView fitHeight="59.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../assets/images/Logo.png" />
+                            </image>
+                        </ImageView>
+                        <Text fill="#575252" strokeType="OUTSIDE" strokeWidth="0.0" text="Barcode" wrappingWidth="215.3984375" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="Arial Bold" size="48.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </GridPane>
+            </children>
+        </AnchorPane>
+        <Text layoutX="167.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter Barcode of the bike you want to rent">
+            <font>
+                <Font name="Arial Bold" size="48.0" />
+            </font>
+        </Text>
+        <Button fx:id="btnHomeScreen" layoutX="513.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#backToHome" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #EB4D55;" text="Cancel" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="btnRentBikeScreen" layoutX="758.0" layoutY="650.0" mnemonicParsing="false" onMouseClicked="#viewRentBikeScreen" prefHeight="48.0" prefWidth="160.0" style="-fx-background-color: #4D5DEB;" text="Submit" textFill="WHITE">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Text layoutX="528.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Barcode">
+            <font>
+                <Font name="Arial Bold" size="28.0" />
+            </font>
+        </Text>
+        <TextField fx:id="barcodeInput" layoutX="524.0" layoutY="412.0" prefHeight="73.0" prefWidth="353.0" style="-fx-background-color: #f8edcd;">
+            <font>
+                <Font name="Arial" size="20.0" />
+            </font>
+        </TextField>
+        <Label fx:id="displayError" layoutX="535.0" layoutY="535.0" prefHeight="35.0" prefWidth="343.0" textFill="RED">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="home" fitHeight="56.0" fitWidth="129.0" layoutX="1236.0" layoutY="38.0" onMouseClicked="#backToHome" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/images/home.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+    </children>
+</AnchorPane>

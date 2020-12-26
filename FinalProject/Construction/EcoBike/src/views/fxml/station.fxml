@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="viewStation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #ffffff; -fx-border: #111111;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="78.0" fitWidth="85.0" layoutX="22.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/images/Logo.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="home" fitHeight="71.0" fitWidth="74.0" layoutX="1246.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/images/home.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <Label layoutX="122.0" layoutY="38.0" prefHeight="55.0" prefWidth="348.0" text="Station Information |">
+            <font>
+                <Font name="Arial Bold" size="32.0" />
+            </font>
+        </Label>
+        <Label fx:id="name1" layoutX="443.0" layoutY="38.0" prefHeight="55.0" prefWidth="246.0" text="Sanfrancisco">
+            <font>
+                <Font name="Arial Bold" size="32.0" />
+            </font>
+        </Label>
+        <Label layoutX="47.0" layoutY="123.0" prefHeight="33.0" prefWidth="130.0" text="Dock's name">
+            <font>
+                <Font name="Arial" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="address" layoutX="215.0" layoutY="163.0" prefHeight="33.0" prefWidth="469.0" text="1st, Dai Co Viet, Hai Ba Trung, Hanoi">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="47.0" layoutY="163.0" prefHeight="33.0" prefWidth="130.0" text="Address">
+            <font>
+                <Font name="Arial" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="name2" layoutX="215.0" layoutY="123.0" prefHeight="33.0" prefWidth="130.0" text="Sanfrancisco">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="area" layoutX="215.0" layoutY="203.0" prefHeight="33.0" prefWidth="130.0" text="200 m2">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="47.0" layoutY="203.0" prefHeight="33.0" prefWidth="130.0" text="Area">
+            <font>
+                <Font name="Arial" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="850.0" layoutY="203.0" prefHeight="33.0" prefWidth="130.0" text="Walking time">
+            <font>
+                <Font name="Arial" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="850.0" layoutY="164.0" prefHeight="33.0" prefWidth="130.0" text="Available bikes">
+            <font>
+                <Font name="Arial" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="594.0" layoutY="236.0" prefHeight="33.0" prefWidth="179.0" text="Available Bikes">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+        </Label>
+        <Label fx:id="emptyDocks" layoutX="1034.0" layoutY="123.0" prefHeight="33.0" prefWidth="130.0" text="40">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="availableBikes" layoutX="1034.0" layoutY="164.0" prefHeight="33.0" prefWidth="130.0" text="30">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="1034.0" layoutY="203.0" prefHeight="33.0" prefWidth="130.0" text="30 minutes">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="850.0" layoutY="123.0" prefHeight="33.0" prefWidth="130.0" text="Empty docks">
+            <font>
+                <Font name="Arial" size="18.0" />
+            </font>
+        </Label>
+        <ScrollPane layoutX="48.0" layoutY="282.0" prefHeight="450.0" prefWidth="1282.0" style="-fx-background-color: #ffffff; -fx-background-color: black;">
+            <content>
+                <HBox fx:id="hboxBike" prefHeight="450.0" prefWidth="1265.0" style="-fx-background-color: #ffffff;">
+                    <children>
+                        <VBox fx:id="vbox1" prefHeight="434.0" prefWidth="393.0">
+                            <HBox.margin>
+                                <Insets bottom="27.0" left="29.0" top="27.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox fx:id="vbox2" prefHeight="453.0" prefWidth="393.0">
+                            <HBox.margin>
+                                <Insets bottom="27.0" top="27.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox fx:id="vbox3" prefHeight="453.0" prefWidth="393.0">
+                            <HBox.margin>
+                                <Insets bottom="27.0" left="29.0" top="27.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+            </content>
+        </ScrollPane>
+      <Button fx:id="returnBtn" layoutX="1087.0" layoutY="44.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="136.0" style="-fx-background-color: #EB4D55;" text="Return Here" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+    </children>
+</AnchorPane>
