@@ -18,6 +18,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+/**
+ * This class controls the flow of events in any screen with transaction
+ * @author Duong Thi Hue
+ * @version 1.0
+ *
+ */
+
 public class TransactionController extends BaseController {
     /**
      * This method validates Cardholder's name
@@ -25,7 +32,6 @@ public class TransactionController extends BaseController {
      * @param name
      * @return boolean
      */
-
     public boolean validateName(String name) {
         try {
             name = name.trim();
@@ -52,7 +58,12 @@ public class TransactionController extends BaseController {
         return true;
     }
 
-
+    /**
+     * This class validate the expiration date of the card
+     * @param date
+     * @return
+     * @throws InvalidCardException
+     */
     public boolean validateExpirationDate(String date) throws InvalidCardException {
         try {
             date = date.trim();
@@ -96,7 +107,12 @@ public class TransactionController extends BaseController {
         else if (!this.validateCardCode(cardNumber))
             throw new InvalidCardException("Wrong format code number");
     }
-
+    
+    /**
+     * set the amount to the order
+     * @param order
+     * @param amount
+     */
     public void setAmountOrder(Order order, int amount) {
         order.setTotalUpToNow(amount);
     }
