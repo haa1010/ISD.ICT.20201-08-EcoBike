@@ -8,7 +8,7 @@ package common.exception;;
 public class PaymentException extends RuntimeException {
 	/**
 	 * Exception Construction
-	 * @param String message
+	 * @param message
 	 */
 	public PaymentException(String message) {
 		super(message);

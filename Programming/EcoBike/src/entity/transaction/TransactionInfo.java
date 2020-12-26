@@ -90,7 +90,7 @@ public class TransactionInfo {
     /**
      * add new transaction info to database
      * also add the card used for this transaction to database
-     * @param invoiceID
+     * @param ivID invoiceID
      * @param card
      * @throws SQLException
      */

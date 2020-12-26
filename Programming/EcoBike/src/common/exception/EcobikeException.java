@@ -17,7 +17,7 @@ public class EcobikeException extends RuntimeException {
 
     /**
 	 * Exception Construction
-	 * @param String message
+	 * @param message
 	 */
     public EcobikeException(String message) {
         super(message);
