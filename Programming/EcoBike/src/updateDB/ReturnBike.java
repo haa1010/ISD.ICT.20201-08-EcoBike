@@ -3,9 +3,11 @@ package updateDB;
 
 /**
  * This class is used when return bike successfully
+ *
  * @author Duong Thi Hue
  * @version 1.0
  */
+
 import controller.ResultScreenController;
 import entity.bike.Bike;
 import entity.invoice.Invoice;
@@ -18,13 +20,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+/**
+ * @author Duong Thi Hue
+ */
 public class ReturnBike implements UpdateDBTransaction {
     @Override
     /**
-	 * insert invoice, update order of the invoice, update bike of the order, update station of the bike to db
-	 * @param invoice
-	 * @throws SQLException
-	 */
+     * insert invoice, update order of the invoice, update bike of the order, update station of the bike to db
+     * @param invoice
+     * @throws SQLException
+     */
     public void updateDB(Invoice invoice) throws SQLException {
         invoice.getOrder().setEnd(LocalDateTime.now());
         new Bike().updateQtyDB(0, invoice.getOrder().getRentedBike());
@@ -35,7 +40,7 @@ public class ReturnBike implements UpdateDBTransaction {
                 invoice.getOrder().getRentedBike().getStation().getId());
     }
 
-    
+
     /**
      * Move to result screen
      * @param stage
