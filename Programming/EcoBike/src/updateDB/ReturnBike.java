@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class ReturnBike implements UpdateDBTransaction {
     @Override
     /**
-	 * update invoice, order of the invoice, bike of the order, station of the bike to db
+	 * insert invoice, update order of the invoice, update bike of the order, update station of the bike to db
 	 * @param invoice
 	 * @throws SQLException
 	 */
