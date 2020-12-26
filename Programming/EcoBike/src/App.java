@@ -29,7 +29,7 @@ public class App extends Application {
     ImageView logo;
     /**
      * This method is to start our program
-     * @param Stage primaryStage
+     * @param primaryStage
      */
     @Override
     public void start(Stage primaryStage) {
