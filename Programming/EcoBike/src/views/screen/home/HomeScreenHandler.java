@@ -28,8 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+
 /**
  * This class is to display the home screen
+ *
  * @author Do Minh Thong
  * @version 1.0
  */
@@ -91,6 +93,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     /**
      * constructor, when the user is not using any bike
+     *
      * @param stage
      * @param screenPath
      * @throws IOException
@@ -102,9 +105,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         this.searchString = null;
         initHome(this.searchString, this.order);
     }
-    
+
     /**
      * constructor, when the user is using a rented bike
+     *
      * @param stage
      * @param screenPath
      * @param order
@@ -195,9 +199,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             });
         }
     }
-    
+
     /**
      * display the home screen
+     *
      * @param searchString
      * @param order
      * @throws SQLException
@@ -234,6 +239,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     /**
      * request to move to this screen
+     *
      * @param prevScreen
      * @throws SQLException
      */
@@ -253,6 +259,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     /**
      * add station to home
+     *
      * @param items
      */
     public void addStationHome(List items) {
@@ -267,7 +274,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 int vid = hboxHome.getChildren().indexOf(node);
                 VBox vBox = (VBox) node;
                 vBox.setSpacing(20);
-                while (vBox.getChildren().size() < size / 2 && !homeItems.isEmpty()) {
+                while (vBox.getChildren().size() <= size / 2 && !homeItems.isEmpty()) {
                     StationHandler station = (StationHandler) homeItems.get(0);
                     vBox.getChildren().add(station.getContent());
                     homeItems.remove(station);
