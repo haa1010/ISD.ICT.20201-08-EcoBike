@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-
+public class TransactionController extends BaseController {
     /**
      * This method validates Cardholder's name
      *
@@ -100,9 +100,10 @@ import java.time.LocalDateTime;
     public void setAmountOrder(Order order, int amount) {
         order.setTotalUpToNow(amount);
     }
-    
+
     /**
      * set the returning time to the order
+     *
      * @param order
      */
     public void setEndOrder(Order order) {
@@ -113,6 +114,7 @@ import java.time.LocalDateTime;
     /**
      * update/insert order, invoice, transactionInfo in DB
      * and move to transaction result screen
+     *
      * @param invoice
      * @param transactionResult
      * @param card
@@ -165,6 +167,7 @@ import java.time.LocalDateTime;
         errorMessage = Configs.errorCodes.get(errorCode);
         TransactionErrorScreenHandler tes = new TransactionErrorScreenHandler(stage, Configs.TRANSACTION_ERROR_SCREEN_PATH, errorMessage);
         tes.setPreviousScreen(prev);
+
         tes.setBController(new ReturnBikeController());
         tes.setHomeScreenHandler(homeScreenHandler);
         tes.setScreenTitle("Transaction Error Screen");
