@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public interface UpdateDBTransaction {
 	/**
-	 * update invoice, order of the invoice to db
+	 * insert invoice, insert/update order of the invoice to db
 	 * @param invoice
 	 * @throws SQLException
 	 */
