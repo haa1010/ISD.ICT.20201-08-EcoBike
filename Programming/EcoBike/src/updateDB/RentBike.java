@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class RentBike implements UpdateDBTransaction {
     @Override
     /**
-	 * create invoice, order of the invoice, bike of the order, station of the bike to db
+	 * insert invoice, insert order of the invoice, update bike of the order, update station of the bike to db
 	 * @param invoice
 	 * @throws SQLException
 	 */
